@@ -30,8 +30,11 @@
     "chapters_count": 1,
     "total_words": 5849,
     "enable_glossary": true,
-    "last_read_at": "2026-10-13T13:19:38.813Z",
-    "bookmark": null,
+    "last_read_at": "2026-10-13T13:20:03.753Z",
+    "bookmark": {
+      "chapter_number": 1,
+      "paragraph_index": 9
+    },
     "bookmarks": []
   }
 ]
