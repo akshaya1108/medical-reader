@@ -82,7 +82,7 @@
     "affiliation": "Emergency Medicine / Anesthesiology / Sedative-Hypnotic",
     "sect_or_affiliation": "Emergency Medicine / Anesthesiology / Sedative-Hypnotic",
     "image_url": "",
-    "summary": "Short-acting IV sedative-hypnotic enhancing GABA-A signaling, used as a frontline induction agent for Rapid Sequence Intubation (RSI) at 0.3 mg/kg. Noted for its hemodynamically stable profile with minimal effect on blood pressure or heart rate, ideal for trauma and shock. Considerations include transient myoclonus and reversible adrenocortical suppression via 11-beta-hydroxylase inhibition.",
+    "summary": "A short-acting IV sedative-hypnotic that enhances GABA-A signaling, used as a hemodynamically stable induction agent for Rapid Sequence Intubation (RSI).",
     "created_at": "2026-10-13T09:56:46.086876+00:00",
     "updated_at": "2026-10-13T09:56:46.086876+00:00"
   },
@@ -100,7 +100,7 @@
     "affiliation": "Emergency Medicine / Anesthesiology / Critical Care",
     "sect_or_affiliation": "Emergency Medicine / Anesthesiology / Critical Care",
     "image_url": "",
-    "summary": "The administration of 100% supplemental oxygen prior to RSI induction to wash out nitrogen from the functional residual capacity (denitrogenation). This creates an intrapulmonary oxygen reservoir that significantly prolongs the duration of safe apnea before arterial desaturation occurs. Often combined with head-up positioning and apneic oxygenation via nasal cannula during intubation.",
+    "summary": "The administration of high-flow supplemental oxygen prior to RSI to replace lung nitrogen with oxygen and significantly prolong safe apnea time.",
     "created_at": "2026-10-13T12:11:51.811590+00:00",
     "updated_at": "2026-10-13T12:11:51.811590+00:00"
   }

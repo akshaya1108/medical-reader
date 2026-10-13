@@ -165,7 +165,7 @@ FOR EACH EXTRACTED TERM, PROVIDE:
 - "category": Exactly one of: "Anatomy", "Pathology / Disease", "Concept", "Instrument / Device", "Drug".
 - "aliases": Array of AKAs (Also Known As): Brand names, generic names, common medical abbreviations/acronyms, eponyms, or alternate spellings (e.g. ["EtCO2", "end-tidal carbon dioxide"], ["GCS"], ["Rocephin"], ["needle thoracostomy"]).
 - "sect_or_affiliation": Relevant organ system, anatomical region, drug class, or medical specialty (e.g. "Emergency Medicine / Pulmonology", "Third-generation Cephalosporin", "Cardiovascular").
-- "summary": A concise, high-yield clinical summary. STRICT CONSTRAINT: MUST BE UNDER 75 WORDS (2-3 sentences max). Include definition/mechanism, primary clinical indication or presentation, and high-yield management pearl without excessive wordiness.
+- "summary": Exactly ONE concise sentence (1 line). A clear, punchy, high-yield clinical definition and primary clinical role or indication. STRICT: Must be a single sentence.
 - "image_url": Optional URL to a public medical diagram/illustration if specifically known, else "".
 
 EXISTING TERMS ALREADY TRACKED (Do not duplicate; only extract new entities or identify new AKAs):
@@ -183,7 +183,7 @@ Return a JSON array of objects with the exact schema:
     "category": "Pathology / Disease",
     "aliases": ["AKA 1", "Abbreviation / Brand"],
     "sect_or_affiliation": "Organ System / Specialty",
-    "summary": "Concise high-yield clinical definition, presentation, and pearls strictly under 75 words.",
+    "summary": "One sentence high-yield clinical definition and indication.",
     "image_url": ""
   }}
 ]
