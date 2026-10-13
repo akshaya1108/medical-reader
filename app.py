@@ -4,7 +4,7 @@ import re
 import datetime
 import html
 import urllib.parse
-from flask import Flask, request, jsonify, render_template, send_from_directory
+from flask import Flask, request, jsonify, render_template, send_from_directory, redirect
 from dotenv import load_dotenv
 import requests
 import threading
