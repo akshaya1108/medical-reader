@@ -29,12 +29,46 @@ const KNOWN_CLUSTERS = [
 const GEMINI_API_KEY = (typeof localStorage !== 'undefined' && localStorage.getItem('xianxia_gemini_api_key')) ||
   atob('QVEuQWI4Uk42Sk11R1p3VHgzRTVWa3hwdlZMRlBhU0xzWk1zcEZldXlfSHR4aDZCei1xZWc=');
 const GEMINI_MODELS = [
-  'gemini-3.8-flash',
-  'gemini-3.6-flash',
-  'gemini-flash-latest',
-  'gemini-3.5-flash',
-  'gemini-3.5-flash-lite'
+  'gemini-3.1-flash-lite',
+  'gemini-flash-lite-latest',
+  'gemini-3-flash-preview',
+  'gemini-2.5-flash-lite'
 ];
+
+function sanitizeForSupabase(row) {
+  let extraMeta = {};
+  if (row.bnf_dosage) extraMeta.bnf_dosage = row.bnf_dosage;
+  if (row.image_url) extraMeta.image_url = row.image_url;
+  
+  let pinyinVal = Object.keys(extraMeta).length > 0 
+    ? JSON.stringify(extraMeta) 
+    : (row.pinyin_or_chinese || '');
+
+  return {
+    book_id: row.book_id,
+    id: row.id,
+    name: row.name || '',
+    category: row.category || 'Concept',
+    pinyin_or_chinese: pinyinVal,
+    aliases: Array.isArray(row.aliases) ? row.aliases : (row.aliases ? [row.aliases] : []),
+    affiliation: row.affiliation || row.sect_or_affiliation || '',
+    sect_or_affiliation: row.sect_or_affiliation || row.affiliation || '',
+    summary: row.summary || '',
+    mentions: Number(row.mentions || 0),
+    updated_at: row.updated_at || new Date().toISOString()
+  };
+}
+
+function unpackSupabaseRow(row) {
+  if (row && row.pinyin_or_chinese && typeof row.pinyin_or_chinese === 'string' && row.pinyin_or_chinese.startsWith('{') && row.pinyin_or_chinese.endsWith('}')) {
+    try {
+      const extra = JSON.parse(row.pinyin_or_chinese);
+      if (extra.bnf_dosage && !row.bnf_dosage) row.bnf_dosage = extra.bnf_dosage;
+      if (extra.image_url && !row.image_url) row.image_url = extra.image_url;
+    } catch (_) {}
+  }
+  return row;
+}
 
 function isChineseNovel(title = '', genre = '') {
   const t = (title || '').toLowerCase();
@@ -53,10 +87,13 @@ function isChineseNovel(title = '', genre = '') {
 async function callGeminiDirect(prompt) {
   for (const model of GEMINI_MODELS) {
     try {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 9000);
       const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
       const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        signal: ctrl.signal,
         body: JSON.stringify({
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: {
@@ -64,6 +101,7 @@ async function callGeminiDirect(prompt) {
           }
         })
       });
+      clearTimeout(timer);
 
       if (res.ok) {
         const json = await res.json();
@@ -513,7 +551,8 @@ export const api = {
           { headers: HEADERS, cache: 'no-store' }
         );
         if (res.ok) {
-          const entries = await res.json();
+          let entries = await res.json();
+          entries = entries.map(unpackSupabaseRow);
           // Store directly into canonical room in IndexedDB
           await offlineDB.saveGlossary(targetId, entries);
           if (targetId !== bookId) {
@@ -563,10 +602,11 @@ export const api = {
     // 2. Save directly into canonical room in Supabase
     if (this.isOnline()) {
       try {
+        const supabasePayload = [sanitizeForSupabase(row)];
         const res = await fetch(`${SUPABASE_URL}/rest/v1/glossary`, {
           method: 'POST',
           headers: UPSERT_HEADERS,
-          body: JSON.stringify([row])
+          body: JSON.stringify(supabasePayload)
         });
         if (res.ok) {
           lastSyncTimestamp = new Date();
@@ -578,7 +618,7 @@ export const api = {
       }
 
       // Direct sync to local Flask backend when on Wi-Fi / local server
-      if (typeof window !== 'undefined' && (window.location.origin.includes(':5001') || !window.location.hostname.includes('github.io'))) {
+      if (typeof window !== 'undefined' && (window.location.origin.includes(':5001') || window.location.origin.includes(':5002') || !window.location.hostname.includes('github.io'))) {
         try {
           await fetch(`/api/books/${encodeURIComponent(targetId)}/glossary`, {
             method: 'POST',
@@ -700,11 +740,15 @@ export const api = {
     // 2. If online and local Flask backend is reachable, try server endpoint
     if (this.isOnline()) {
       try {
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 6000);
         const res = await fetch(`/api/books/${encodeURIComponent(targetBookId)}/lookup-character`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
+          signal: ctrl.signal,
           body: JSON.stringify({ name: cleanName, add })
         });
+        clearTimeout(timer);
         if (res.ok) {
           const data = await res.json();
           if (data && data.character) {
@@ -717,13 +761,20 @@ export const api = {
       }
     }
 
-    // 3. Direct Gemini AI lookup fallback (runs on GitHub Pages and standalone mobile PWA)
+    // 3. Direct Gemini AI & Wikipedia lookup fallback (runs on GitHub Pages and standalone mobile PWA)
     if (this.isOnline()) {
+      let wikiData = null;
+      try {
+        const wikiRes = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(cleanName)}`);
+        if (wikiRes.ok) {
+          wikiData = await wikiRes.json();
+        }
+      } catch (_) {}
+
       try {
         const books = await this.getBooks();
         const book = books.find(b => b.id === targetBookId || b.id === bookId);
         const bookTitle = book ? (book.title || book.id) : targetBookId;
-        const genre = book ? (book.genre || '') : '';
         const prompt = `
 You are an expert clinical reference assistant and medical educator for "${bookTitle}".
 The user is reading medical literature and wants a verified, high-yield clinical entry for "${cleanName}".
@@ -738,7 +789,10 @@ Analyze "${cleanName}" in clinical medicine:
    - "aliases": Array of AKAs (Also Known As): Brand names, generic names, common medical abbreviations/acronyms, eponyms (always include "${cleanName}" if different from name).
    - "affiliation": Associated organ system, drug class, or medical specialty (e.g. "Emergency Medicine / Pulmonology", "Third-generation Cephalosporin").
    - "summary": Exactly ONE concise sentence (1 line). A clear, punchy, high-yield clinical definition and primary indication or role. STRICT: Must be a single sentence.
-   - "image_url": Optional URL to an image or diagram if known, else "".
+   - "image_url": ${wikiData?.thumbnail?.source ? `"${wikiData.thumbnail.source}"` : '""'}
+   - "bnf_dosage": For Drug entries, standard indications and adult dosage (or empty string if not a drug).
+
+${wikiData?.extract ? `Reference text:\n${wikiData.extract}` : ''}
 
 Return a JSON array with 1 object:
 [
@@ -749,7 +803,8 @@ Return a JSON array with 1 object:
     "aliases": ["AKA 1", "${cleanName}"],
     "affiliation": "Organ System / Specialty",
     "summary": "One sentence high-yield clinical definition and indication.",
-    "image_url": ""
+    "image_url": "${wikiData?.thumbnail?.source || ''}",
+    "bnf_dosage": ""
   }
 ]
 `;
@@ -772,6 +827,9 @@ Return a JSON array with 1 object:
               }
               if (raw.image_url && !matchInGlossary.image_url) {
                 matchInGlossary.image_url = raw.image_url;
+              }
+              if (raw.bnf_dosage && !matchInGlossary.bnf_dosage) {
+                matchInGlossary.bnf_dosage = raw.bnf_dosage;
               }
               if (add) {
                 await this.saveGlossaryEntry(targetBookId, matchInGlossary);
@@ -799,8 +857,9 @@ Return a JSON array with 1 object:
               sect_or_affiliation: raw.affiliation || raw.sect_or_affiliation || '',
               pinyin_or_chinese: '',
               aliases: newAliases,
-              image_url: raw.image_url || '',
+              image_url: raw.image_url || wikiData?.thumbnail?.source || '',
               summary: raw.summary || '',
+              bnf_dosage: raw.bnf_dosage || '',
               mentions: 0
             };
 
@@ -817,6 +876,35 @@ Return a JSON array with 1 object:
         }
       } catch (geminiErr) {
         console.error('Direct Gemini lookup error:', geminiErr);
+      }
+
+      // Wikipedia direct fallback if Gemini was offline/quota exceeded
+      if (wikiData && wikiData.extract) {
+        const stdName = wikiData.title || cleanName;
+        const firstSentence = wikiData.extract.split('.')[0].trim() + '.';
+        const isDrug = /medication|drug|pharmaceutical|indicated for|dosage|antagonist|agonist/i.test(wikiData.extract);
+        const cleanId = stdName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `entity-${Date.now()}`;
+        const fallbackChar = {
+          id: cleanId,
+          name: stdName,
+          category: isDrug ? 'Drug' : 'Concept',
+          affiliation: isDrug ? 'Pharmacology' : 'Clinical Medicine',
+          sect_or_affiliation: isDrug ? 'Pharmacology' : 'Clinical Medicine',
+          pinyin_or_chinese: '',
+          aliases: stdName.toLowerCase() !== lowerName ? [cleanName] : [],
+          image_url: wikiData.thumbnail?.source || '',
+          summary: firstSentence,
+          bnf_dosage: '',
+          mentions: 0
+        };
+        if (add) {
+          await this.saveGlossaryEntry(targetBookId, fallbackChar);
+        }
+        return {
+          found: true,
+          character: fallbackChar,
+          already_existed: false
+        };
       }
     }
 
@@ -1102,10 +1190,11 @@ Return a JSON array with 1 object:
     for (const item of queue) {
       try {
         if (item.type === 'save_glossary') {
+          const sbRow = sanitizeForSupabase(item.row);
           const res = await fetch(`${SUPABASE_URL}/rest/v1/glossary`, {
             method: 'POST',
             headers: UPSERT_HEADERS,
-            body: JSON.stringify([item.row])
+            body: JSON.stringify([sbRow])
           });
           if (res.ok) await offlineDB.removeSyncItem(item.id);
         } else if (item.type === 'delete_glossary') {

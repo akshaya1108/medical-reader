@@ -94,6 +94,8 @@ def is_chinese_novel(novel_title: str = "", genre: str = "") -> bool:
 
 def clean_entry_for_novel(entry: dict, is_chinese: bool = False) -> dict:
     """Normalizes medical glossary entry fields."""
+    if not entry.get("id"):
+        entry["id"] = slugify(entry.get("name", ""))
     entry["pinyin_or_chinese"] = ""
     entry["category"] = normalize_category(entry.get("category", "Concept"))
     
@@ -357,7 +359,7 @@ Return ONLY a valid JSON object with the following fields:
 }}
 """
 
-    models_to_try = ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-3.5-flash", "gemini-flash-latest"]
+    models_to_try = ["gemini-3.1-flash-lite", "gemini-flash-lite-latest", "gemini-3-flash-preview"]
     for model_name in models_to_try:
         try:
             from google.genai import types

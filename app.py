@@ -673,6 +673,18 @@ def load_glossary(book_id, sync_remote=True):
         
         clean_entry_for_novel(entry, is_chinese=is_chinese)
 
+        p_val = (entry.get("pinyin_or_chinese") or "").strip()
+        if p_val.startswith("{") and p_val.endswith("}"):
+            try:
+                extra_meta = json.loads(p_val)
+                if isinstance(extra_meta, dict):
+                    if extra_meta.get("bnf_dosage") and not entry.get("bnf_dosage"):
+                        entry["bnf_dosage"] = extra_meta["bnf_dosage"]
+                    if extra_meta.get("image_url") and not entry.get("image_url"):
+                        entry["image_url"] = extra_meta["image_url"]
+            except Exception:
+                pass
+
         if is_chinese:
             pinyin = (entry.get("pinyin_or_chinese") or "").strip()
             if pinyin and pinyin.lower() not in ["n/a", "none", "null"]:
@@ -718,12 +730,18 @@ def push_glossary_to_supabase_async(book_id, entries):
                 aliases = item.get("aliases") or []
                 if isinstance(aliases, str):
                     aliases = [a.strip() for a in aliases.split(",") if a.strip()]
+                extra_meta = {}
+                if item.get("bnf_dosage"):
+                    extra_meta["bnf_dosage"] = item["bnf_dosage"]
+                if item.get("image_url"):
+                    extra_meta["image_url"] = item["image_url"]
+                pinyin_val = json.dumps(extra_meta) if extra_meta else (item.get("pinyin_or_chinese", "") or "")
                 payload.append({
                     "book_id": canonical_id,
                     "id": gid,
                     "name": item.get("name", ""),
-                    "category": item.get("category", "Character"),
-                    "pinyin_or_chinese": item.get("pinyin_or_chinese", ""),
+                    "category": item.get("category", "Concept"),
+                    "pinyin_or_chinese": pinyin_val,
                     "aliases": aliases,
                     "affiliation": item.get("affiliation") or item.get("sect_or_affiliation", ""),
                     "sect_or_affiliation": item.get("sect_or_affiliation") or item.get("affiliation", ""),

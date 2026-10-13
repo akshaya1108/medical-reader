@@ -81,14 +81,12 @@ def scrape_fandom_character_list(wiki_url_or_title: str, novel_title: str = "") 
         return [title], novel_title or title
     return [wiki_url_or_title], novel_title or wiki_url_or_title
 
-def sanitize_wiki_data_with_gemini(raw_text: str, novel_title: str = "", target_category: str = "") -> List[Dict[str, Any]]:
-    client = get_gemini_client()
-    if not client:
-        return []
-    res, _ = lookup_single_entity(novel_title, novel_title, raw_text=raw_text)
-    return res
+def sanitize_wiki_data_with_gemini(raw_text: str, novel_title: str = "", target_category: str = "", query: str = "", genre: str = "", **kwargs) -> Tuple[List[Dict[str, Any]], str]:
+    target_query = (query or novel_title or "").strip()
+    res, msg = lookup_single_entity(target_query, novel_title=novel_title, raw_text=raw_text, target_category=target_category, **kwargs)
+    return res, msg
 
-def lookup_single_entity(query: str, novel_title: str = "", raw_text: str = "", target_category: str = "", wiki_url: str = "") -> Tuple[List[Dict[str, Any]], str]:
+def lookup_single_entity(query: str, novel_title: str = "", raw_text: str = "", target_category: str = "", wiki_url: str = "", **kwargs) -> Tuple[List[Dict[str, Any]], str]:
     """
     Looks up a medical term (disease, anatomy, drug, score, device) using Wikipedia + Gemini.
     Returns: (list_of_entries, message)
@@ -121,6 +119,7 @@ def lookup_single_entity(query: str, novel_title: str = "", raw_text: str = "", 
                 summary_sent = f"{drug_name}: indicated for {first_dose_line.lower()}." if first_dose_line else f"Pharmaceutical agent listed in BNF 85."
 
             entry = {
+                "id": slugify(drug_name),
                 "name": drug_name,
                 "category": "Drug",
                 "aliases": [q_clean] if q_clean.lower() != drug_name.lower() else [],
@@ -205,6 +204,8 @@ Only return a valid JSON array.
                 if isinstance(parsed, list) and len(parsed) > 0:
                     entries = []
                     for item in parsed:
+                        if not item.get("id"):
+                            item["id"] = slugify(item.get("name", q_clean))
                         clean_entry_for_novel(item)
                         if not item.get("image_url") and wiki_thumb:
                             item["image_url"] = wiki_thumb
@@ -217,10 +218,12 @@ Only return a valid JSON array.
     # Fallback to Wikipedia extract directly if AI was unavailable
     if wiki_extract:
         clean_summary = wiki_first_sentence if len(wiki_first_sentence) > 15 else wiki_extract[:250].strip()
+        entry_name = verified_title or q_clean
         entry = {
-            "name": verified_title or q_clean,
+            "id": slugify(entry_name),
+            "name": entry_name,
             "category": normalize_category(target_category or "Concept"),
-            "aliases": [q_clean] if q_clean.lower() != (verified_title or "").lower() else [],
+            "aliases": [q_clean] if q_clean.lower() != entry_name.lower() else [],
             "affiliation": "Clinical Reference",
             "sect_or_affiliation": "Clinical Reference",
             "summary": clean_summary,

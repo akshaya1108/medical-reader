@@ -1,17 +1,20 @@
 {
-  "tombstones": {},
+  "tombstones": {
+    "atropine": "2026-10-13T20:09:01.773811"
+  },
   "last_synced_ids": {
     "tintinalli-s-emergency-medicine-manual-1": [
-      "rocuronium",
-      "preoxygenation",
-      "rapid-sequence-intubation",
-      "laryngeal-mask-airway",
-      "end-tidal-co2",
-      "etomidate",
-      "propofol",
+      "vallecula",
       "orotracheal-intubation",
+      "etomidate",
+      "laryngeal-mask-airway",
+      "glasgow-coma-scale",
+      "end-tidal-co2",
+      "rocuronium",
+      "propofol",
+      "preoxygenation",
       "macintosh-blade",
-      "vallecula"
+      "rapid-sequence-intubation"
     ],
     "charlie-and-the-chocolate-factory": [],
     "bailey-love-s-short-practice-of-surgery-chapter-1": []

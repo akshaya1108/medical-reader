@@ -1,0 +1,175 @@
+[
+  {
+    "id": "end-tidal-co2",
+    "name": "End-tidal CO2",
+    "category": "Concept",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "EtCO2",
+      "end-tidal carbon dioxide"
+    ],
+    "sect_or_affiliation": "Emergency Medicine",
+    "affiliation": "Emergency Medicine",
+    "image_url": "",
+    "summary": "End-tidal CO2 refers to the partial pressure or maximal concentration of carbon dioxide exhaled at the end of a breath, serving as a vital monitoring parameter in emergency airway management, confirmation of endotracheal tube placement, and monitoring CPR quality.",
+    "updated_at": "2026-10-13T08:23:49.583343+00:00"
+  },
+  {
+    "id": "orotracheal-intubation",
+    "name": "Orotracheal Intubation",
+    "category": "Concept",
+    "pinyin_or_chinese": "",
+    "aliases": [],
+    "affiliation": "Emergency Airway Management",
+    "sect_or_affiliation": "Emergency Airway Management",
+    "summary": "Orotracheal intubation is a standard emergency airway management technique where a breathing tube is passed through the mouth and vocal cords into the trachea to secure ventilation.",
+    "updated_at": "2026-10-13T08:36:45.781+00:00",
+    "image_url": ""
+  },
+  {
+    "id": "rapid-sequence-intubation",
+    "name": "Rapid sequence intubation",
+    "category": "Concept",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "RSI"
+    ],
+    "affiliation": "Emergency Medicine",
+    "sect_or_affiliation": "Emergency Medicine",
+    "summary": "Rapid sequence intubation is an advanced airway management technique involving simultaneous administration of a sedative and a neuromuscular blocking agent to rapidly secure the airway of a patient at high risk of aspiration.",
+    "updated_at": "2026-10-13T08:38:10.216+00:00",
+    "image_url": ""
+  },
+  {
+    "id": "macintosh-blade",
+    "name": "Macintosh Blade",
+    "category": "Instrument / Device",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "curved blade",
+      "Mac blade",
+      "Macintosh laryngoscope blade"
+    ],
+    "affiliation": "Emergency Airway Management",
+    "sect_or_affiliation": "Emergency Airway Management",
+    "summary": "A curved laryngoscope blade designed to seat in the vallecula to indirectly elevate the epiglottis and expose the vocal cords during endotracheal intubation.",
+    "updated_at": "2026-10-13T08:44:01.89+00:00",
+    "image_url": ""
+  },
+  {
+    "id": "vallecula",
+    "name": "Vallecula",
+    "category": "Anatomy",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Epiglottic vallecula"
+    ],
+    "affiliation": "Upper Airway Anatomy",
+    "sect_or_affiliation": "Upper Airway Anatomy",
+    "summary": "An anatomical depression situated anterior to the epiglottis at the base of the tongue, serving as the key landmark where the tip of a curved laryngoscope blade is engaged during endotracheal intubation.",
+    "updated_at": "2026-10-13T08:47:30.39+00:00",
+    "image_url": ""
+  },
+  {
+    "id": "etomidate",
+    "name": "Etomidate",
+    "category": "Drug",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Amidate",
+      "Hypnomidate"
+    ],
+    "affiliation": "Emergency Medicine / Anesthesiology / Sedative-Hypnotic",
+    "sect_or_affiliation": "Emergency Medicine / Anesthesiology / Sedative-Hypnotic",
+    "image_url": "",
+    "summary": "A short-acting IV sedative-hypnotic that enhances GABA-A signaling, used as a hemodynamically stable induction agent for Rapid Sequence Intubation (RSI).",
+    "bnf_dosage": "Induction of anaesthesia\n\n[BY SLOW INTRAVENOUS INJECTION]\n• Adult: 150–300 micrograms/kg (max. per dose 60 mg), to be administered over 30-60 seconds (60 seconds in patients in whom hypotension might be hazardous)\n• Elderly: 150–200 micrograms/kg (max. per dose 60 mg), to be administered over 30-60 seconds (60 seconds in patients in whom hypotension might be hazardous)",
+    "created_at": "2026-10-13T09:56:46.086876+00:00",
+    "updated_at": "2026-10-13T09:56:46.086876+00:00"
+  },
+  {
+    "id": "preoxygenation",
+    "name": "Preoxygenation",
+    "category": "Concept",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Preoxygenate",
+      "Denitrogenation",
+      "Nitrogen Washout",
+      "Apneic Preoxygenation"
+    ],
+    "affiliation": "Emergency Medicine / Anesthesiology / Critical Care",
+    "sect_or_affiliation": "Emergency Medicine / Anesthesiology / Critical Care",
+    "image_url": "",
+    "summary": "The administration of high-flow supplemental oxygen prior to RSI to replace lung nitrogen with oxygen and significantly prolong safe apnea time.",
+    "created_at": "2026-10-13T12:11:51.811590+00:00",
+    "updated_at": "2026-10-13T12:11:51.811590+00:00"
+  },
+  {
+    "id": "laryngeal-mask-airway",
+    "name": "Laryngeal Mask Airway",
+    "category": "Instrument / Device",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "LMA",
+      "Supraglottic Airway",
+      "SGA"
+    ],
+    "affiliation": "Emergency Medicine / Anesthesiology / Critical Care",
+    "sect_or_affiliation": "Emergency Medicine / Anesthesiology / Critical Care",
+    "image_url": "",
+    "summary": "The laryngeal mask airway (LMA) is a supraglottic airway device designed to maintain a patent airway and facilitate oxygenation and ventilation without entering the trachea. It consists of an airway tube connected to an elliptical cuff that sits in the hypopharynx and forms a low-pressure seal around the laryngeal inlet. In emergency medicine and resuscitation, it serves as a primary rescue device in 'cannot intubate, cannot oxygenate' (CICO) scenarios, a bridge to a definitive airway, or a conduit for endotracheal intubation. Sizing is primarily based on patient weight (e.g., size 3 for 30–50 kg, size 4 for 50–70 kg, size 5 for >70 kg). Second-generation LMAs incorporate a gastric drainage port to allow decompression and reduce aspiration risk, as well as higher seal pressures. While LMAs do not provide definitive protection against gastric aspiration compared to a cuffed endotracheal tube, their insertion is rapid, technically simpler than direct or video laryngoscopy, and does not require visualization of the vocal cords or manipulation of the cervical spine.",
+    "bnf_dosage": "",
+    "created_at": "2026-10-13T13:01:33.744235+00:00",
+    "updated_at": "2026-10-13T13:01:33.744235+00:00"
+  },
+  {
+    "id": "propofol",
+    "name": "Propofol",
+    "category": "Drug",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Diprivan",
+      "2,6-diisopropylphenol",
+      "Propofol,"
+    ],
+    "affiliation": "Anesthesiology / Emergency Medicine / Intravenous Anesthetic",
+    "sect_or_affiliation": "Anesthesiology / Emergency Medicine / Intravenous Anesthetic",
+    "image_url": "",
+    "summary": "Propofol is a short-acting, intravenously administered hypnotic and sedative agent widely used in emergency medicine, critical care, and anesthesia for rapid sequence intubation (RSI) induction, procedural sedation, and maintenance of mechanical ventilation sedation. Its primary mechanism of action involves potentiation of GABA-A receptor activity, leading to increased chloride conductance, hyperpolarization of neuronal membranes, and generalized central nervous system depression, along with minor NMDA receptor inhibition. It exhibits rapid onset (30–45 seconds) and a brief duration of clinical effect (5–10 minutes following bolus administration) due to rapid lipophilic tissue redistribution and hepatic metabolism. Major clinical adverse effects include dose-dependent systemic hypotension (caused by decreased systemic vascular resistance and negative inotropy), respiratory depression/apnea, and intense burning pain on peripheral intravenous injection (often mitigated by pretreatment with lidocaine). High-dose (>4–5 mg/kg/h) or prolonged (>48 hours) infusions carry the risk of Propofol-Related Infusion Syndrome (PRIS), a life-threatening condition characterized by severe refractory metabolic acidosis, hyperkalemia, rhabdomyolysis, hyperlipidemia, hepatomegaly, renal failure, and refractory bradyarrhythmias or asystole.",
+    "bnf_dosage": "Induction of anaesthesia using 0.5% or 1% injection\n\n[BY SLOW INTRAVENOUS INJECTION, OR BY INTRAVENOUS]\nINFUSION\nAdult 18–54 years: Usual dose 1.5–2.5 mg/kg, to be administered at a rate of 20–40 mg every 10 seconds until response, for debilitated patients use dose for 55 years and over\nAdult 55 years and over: Usual dose 1–1.5 mg/kg, to be administered at a rate of 20 mg every 10 seconds until response\nInduction of anaesthesia using 2% injection\n\n[BY INTRAVENOUS INFUSION]\nAdult 18–54 years: Usual dose 1.5–2.5 mg/kg, to be administered at a rate of 20–40 mg every 10 seconds until response. For debilitated patients use dose for 55 years and over\nAdult 55 years and over: Usual dose 1–1.5 mg/kg, to be administered at a rate of 20 mg every 10 seconds until response\nMaintenance of anaesthesia using 1% injection\nINITIALLY BY INTRAVENOUS INFUSION\n• Adult: Usual dose 4–12 mg/kg/hour, alternatively (by slow intravenous injection) 25–50 mg, dose may be repeated according to response, for debilitated patients use dose for elderly\n• Elderly: Usual dose 3–6 mg/kg/hour, alternatively (by slow intravenous injection) 25–50 mg, dose may be repeated according to response\nMaintenance of anaesthesia using 2% injection\n\n[BY INTRAVENOUS INFUSION]\n• Adult: Usual dose 4–12 mg/kg/hour, for debilitated patients use dose for elderly\n• Elderly: Usual dose 3–6 mg/kg/hour\nSedation of ventilated patients in intensive care using 1%\nor 2% injection\n\n[BY CONTINUOUS INTRAVENOUS INFUSION]\n• Adult: Usual dose 0.3–4 mg/kg/hour, adjusted according to response",
+    "created_at": "2026-10-13T13:05:44.812803+00:00",
+    "updated_at": "2026-10-13T13:05:44.812803+00:00"
+  },
+  {
+    "id": "rocuronium",
+    "name": "Rocuronium",
+    "category": "Drug",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Zemuron",
+      "Rocuronium Bromide",
+      "Roc"
+    ],
+    "affiliation": "Emergency Medicine / Anesthesiology / Nondepolarizing Neuromuscular Blocker",
+    "sect_or_affiliation": "Emergency Medicine / Anesthesiology / Nondepolarizing Neuromuscular Blocker",
+    "image_url": "",
+    "summary": "Rocuronium is an intermediate-acting aminosteroid nondepolarizing neuromuscular blocking agent (NMBA). It competitively blocks nicotinic acetylcholine receptors at the motor endplate, inhibiting skeletal muscle depolarization and producing flaccid paralysis without fasciculations. In emergency medicine, it is a primary paralytic agent for rapid sequence intubation (RSI). At standard RSI dosing of 1.0 to 1.2 mg/kg IV (ideal/adjusted body weight), it achieves excellent intubating conditions in approximately 45 to 60 seconds, comparable to succinylcholine, with an effective duration of paralysis lasting 40 to 60+ minutes. It is the preferred NMBA when succinylcholine is contraindicated (e.g., hyperkalemia, extensive burns >48–72 hours, crush injury, denervating neuromuscular disease, personal/family history of malignant hyperthermia). It has no analgesic, sedative, or amnestic effects, requiring proactive post-intubation sedation and analgesia to prevent patient awareness. Rocuronium is primarily eliminated by the liver and biliary system, with secondary renal excretion; its action can be rapidly and specifically reversed by the selective cyclodextrin binder sugammadex (16 mg/kg IV for immediate post-RSI rescue reversal; 2–4 mg/kg IV for standard reversal depending on twitch depth) or traditional anticholinesterase/anticholinergic combinations (neostigmine and glycopyrrolate) once spontaneous recovery has initiated.",
+    "bnf_dosage": "Neuromuscular blockade (intermediate duration) during surgery and intubation\nINITIALLY BY INTRAVENOUS INJECTION\n• Adult: Initially 600 micrograms/kg; (by intravenous injection) maintenance 150 micrograms/kg, alternatively (by intravenous infusion) maintenance 300–600 micrograms/kg/hour, adjusted according to response",
+    "created_at": "2026-10-13T13:08:07.295524+00:00",
+    "updated_at": "2026-10-13T13:08:07.295524+00:00"
+  },
+  {
+    "id": "atropine",
+    "name": "Atropine",
+    "category": "Drug",
+    "aliases": [],
+    "affiliation": "Pharmacology / BNF 85",
+    "sect_or_affiliation": "Pharmacology / BNF 85",
+    "summary": "Atropine is a tropane alkaloid and anticholinergic medication used to treat certain types of nerve agent and pesticide poisonings as well as some types of slow heart rate, and to decrease saliva production during surgery.",
+    "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Atropine.svg/500px-Atropine.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "bnf_dosage": "Anterior uveitis\nTO THE EYE\n• Adult: (consult product literature)",
+    "pinyin_or_chinese": "",
+    "updated_at": "2026-10-13T14:28:13.730555+00:00"
+  }
+]
