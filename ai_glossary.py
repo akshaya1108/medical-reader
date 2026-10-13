@@ -79,7 +79,7 @@ def get_gemini_client():
         return None
     try:
         from google import genai
-        return genai.Client(api_key=api_key)
+        return genai.Client(api_key=api_key, http_options={"timeout": 10000})
     except Exception as e:
         print(f"Error initializing Gemini client: {e}")
         return None
@@ -198,7 +198,7 @@ Return a JSON array of objects with the exact schema:
 Only return a valid JSON array. No extra commentary or markdown backticks.
 """
 
-    models_to_try = ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-flash-latest", "gemini-3.5-flash", "gemini-3.5-flash-lite"]
+    models_to_try = ["gemini-3.1-flash-lite", "gemini-flash-lite-latest", "gemini-3-flash-preview"]
     extracted = None
 
     for model_name in models_to_try:

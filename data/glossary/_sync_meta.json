@@ -2,13 +2,18 @@
   "tombstones": {},
   "last_synced_ids": {
     "tintinalli-s-emergency-medicine-manual-1": [
-      "orotracheal-intubation",
-      "end-tidal-co2",
-      "vallecula",
-      "etomidate",
+      "rocuronium",
+      "preoxygenation",
       "rapid-sequence-intubation",
+      "laryngeal-mask-airway",
+      "end-tidal-co2",
+      "etomidate",
+      "propofol",
+      "orotracheal-intubation",
       "macintosh-blade",
-      "preoxygenation"
-    ]
+      "vallecula"
+    ],
+    "charlie-and-the-chocolate-factory": [],
+    "bailey-love-s-short-practice-of-surgery-chapter-1": []
   }
 }
