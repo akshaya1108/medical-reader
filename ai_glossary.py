@@ -116,6 +116,14 @@ def clean_entry_for_novel(entry: dict, is_chinese: bool = False) -> dict:
     entry["aliases"] = filtered
     if "image_url" not in entry:
         entry["image_url"] = ""
+    if entry.get("category") == "Drug" and not entry.get("bnf_dosage"):
+        try:
+            import bnf_engine
+            bnf_res = bnf_engine.lookup_drug_bnf(entry.get("name", ""))
+            if bnf_res.get("found"):
+                entry["bnf_dosage"] = bnf_res.get("indications_and_dose", "")
+        except Exception:
+            pass
     return entry
 
 CHINESE_CHAR_RE = re.compile(r'[\u4e00-\u9fff]')

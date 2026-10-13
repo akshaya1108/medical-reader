@@ -183,6 +183,8 @@ const elements = {
   charHoverSect: document.getElementById('char-hover-sect'),
   charHoverImageWrap: document.getElementById('char-hover-image-wrap'),
   charHoverImage: document.getElementById('char-hover-image'),
+  charHoverBnfWrap: document.getElementById('char-hover-bnf-wrap'),
+  charHoverBnf: document.getElementById('char-hover-bnf'),
   charHoverSummary: document.getElementById('char-hover-summary'),
   charHoverAliases: document.getElementById('char-hover-aliases'),
   charHoverAliasesRow: document.getElementById('char-hover-aliases-row'),
@@ -255,8 +257,15 @@ const elements = {
   charFormSect: document.getElementById('char-form-sect'),
   charFormImage: document.getElementById('char-form-image'),
   charFormSummary: document.getElementById('char-form-summary'),
+  charFormBnf: document.getElementById('char-form-bnf'),
+  btnFetchBnfChar: document.getElementById('btn-fetch-bnf-char'),
+  groupCharFormBnf: document.getElementById('group-char-form-bnf'),
   btnCancelCharForm: document.getElementById('btn-cancel-char-form'),
   btnSaveCharForm: document.getElementById('btn-save-char-form'),
+  
+  searchLoreBnf: document.getElementById('search-lore-bnf'),
+  btnFetchBnfSearch: document.getElementById('btn-fetch-bnf-search'),
+  groupSearchLoreBnf: document.getElementById('group-search-lore-bnf'),
   
   apiStatusBadge: document.getElementById('api-status-badge'),
   toast: document.getElementById('toast')
@@ -1932,6 +1941,13 @@ function showCharacterTooltip(targetElement, char, triggerType) {
 
   elements.charHoverSummary.textContent = char.summary || 'No description available yet.';
 
+  if (char.category === 'Drug' && char.bnf_dosage && elements.charHoverBnfWrap && elements.charHoverBnf) {
+    elements.charHoverBnf.textContent = char.bnf_dosage;
+    elements.charHoverBnfWrap.style.display = 'block';
+  } else if (elements.charHoverBnfWrap) {
+    elements.charHoverBnfWrap.style.display = 'none';
+  }
+
   // Quick edit button inside tooltip: open search sidebar with entry pulled up ready to edit
   elements.btnHoverEditChar.onclick = (e) => {
     if (e) e.stopPropagation();
@@ -2469,6 +2485,12 @@ function renderGlossary(filterText = null) {
             </div>
           ` : ''}
           <div class="glossary-char-summary" style="white-space: pre-line;">${escapeHtml(char.summary || 'No summary')}</div>
+          ${char.category === 'Drug' && char.bnf_dosage ? `
+            <div class="glossary-bnf-block" style="margin-top: 8px; padding: 6px 8px; background: rgba(59, 130, 246, 0.08); border-left: 3px solid #2563eb; border-radius: 4px; font-size: 0.8rem; line-height: 1.35;">
+              <div style="font-weight: 600; font-size: 0.72rem; text-transform: uppercase; color: #1d4ed8; margin-bottom: 2px;">📋 BNF 85 Indications &amp; Dose</div>
+              <div style="white-space: pre-line; max-height: 140px; overflow-y: auto;">${escapeHtml(char.bnf_dosage)}</div>
+            </div>
+          ` : ''}
         </div>
         <div class="glossary-card-btns">
           <button class="btn btn-secondary btn-sm btn-edit-char">Edit</button>
@@ -2514,6 +2536,7 @@ function openEditCharacterModal(char) {
     elements.charFormSect.value = char.affiliation || char.sect_or_affiliation || '';
     if (elements.charFormImage) elements.charFormImage.value = char.image_url || '';
     elements.charFormSummary.value = char.summary || '';
+    if (elements.charFormBnf) elements.charFormBnf.value = char.bnf_dosage || '';
   } else {
     elements.charFormHeading.textContent = 'Add Medical Entry';
     elements.charFormId.value = '';
@@ -2528,6 +2551,7 @@ function openEditCharacterModal(char) {
     elements.charFormSect.value = '';
     if (elements.charFormImage) elements.charFormImage.value = '';
     elements.charFormSummary.value = '';
+    if (elements.charFormBnf) elements.charFormBnf.value = '';
   }
 
   // Auto-scroll up to the edit form in the modal scroll area
@@ -2560,6 +2584,7 @@ async function saveCharacterForm() {
   const pinyinVal = elements.charFormPinyin ? elements.charFormPinyin.value.trim() : '';
   const aliases = charAliasManager ? charAliasManager.getAliases() : (elements.charFormAliases ? elements.charFormAliases.value.split(',').map(s => s.trim()).filter(Boolean) : []);
   const imageUrlVal = elements.charFormImage ? elements.charFormImage.value.trim() : '';
+  const bnfVal = elements.charFormBnf ? elements.charFormBnf.value.trim() : '';
 
   const payload = {
     id: elements.charFormId.value || undefined,
@@ -2570,7 +2595,8 @@ async function saveCharacterForm() {
     affiliation: sectVal,
     sect_or_affiliation: sectVal,
     image_url: imageUrlVal,
-    summary: elements.charFormSummary.value.trim()
+    summary: elements.charFormSummary.value.trim(),
+    bnf_dosage: bnfVal
   };
 
   try {
@@ -2692,6 +2718,32 @@ async function autoFillCharacterWithAI() {
   } finally {
     elements.btnAiAutofillChar.disabled = false;
     elements.btnAiAutofillChar.innerHTML = origHtml;
+  }
+}
+
+async function fetchBnfForForm(nameInput, bnfTextarea, btn) {
+  const drugName = nameInput ? nameInput.value.trim() : '';
+  if (!drugName) {
+    showToast('Please enter a drug name first');
+    return;
+  }
+  const oldText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span>Looking up BNF 85...</span>';
+  try {
+    const res = await fetch(`/api/lookup-bnf?drug=${encodeURIComponent(drugName)}`);
+    const data = await res.json();
+    if (data.success && data.data && data.data.found) {
+      if (bnfTextarea) bnfTextarea.value = data.data.indications_and_dose || '';
+      showToast(`Found in BNF 85 (p. ${data.data.pdf_page})!`);
+    } else {
+      showToast(data.data?.error || 'Drug not found in BNF 85');
+    }
+  } catch (err) {
+    showToast('Failed to query BNF 85');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = oldText;
   }
 }
 
@@ -3017,6 +3069,12 @@ function renderSearchResults(data, query, scope) {
           </div>
         ` : ''}
         ${item.summary ? `<div class="search-lore-summary" style="white-space: pre-line;">${escapeHtml(item.summary)}</div>` : ''}
+        ${item.category === 'Drug' && item.bnf_dosage ? `
+          <div class="search-lore-bnf-wrap" style="margin-top: 6px; padding: 6px 8px; background: rgba(59, 130, 246, 0.08); border-left: 3px solid #2563eb; border-radius: 4px; font-size: 0.8rem; line-height: 1.35;">
+            <div style="font-weight: 600; font-size: 0.72rem; text-transform: uppercase; color: #1d4ed8; margin-bottom: 2px;">📋 BNF 85 Indications &amp; Dose</div>
+            <div style="white-space: pre-line; max-height: 130px; overflow-y: auto;">${escapeHtml(item.bnf_dosage)}</div>
+          </div>
+        ` : ''}
         <div style="display: flex; justify-content: flex-end; margin-top: 8px;">
           <button class="btn btn-secondary btn-sm btn-edit-lore-item" data-char-id="${item.id}" style="font-size: 0.76rem; padding: 2px 8px;">Edit Entry</button>
         </div>
@@ -3138,6 +3196,7 @@ function openSearchLoreForm(initialName = '', editCharData = null) {
     if (elements.searchLoreSect) elements.searchLoreSect.value = editCharData.affiliation || editCharData.sect_or_affiliation || '';
     if (elements.searchLoreImage) elements.searchLoreImage.value = editCharData.image_url || '';
     if (elements.searchLoreSummary) elements.searchLoreSummary.value = editCharData.summary || '';
+    if (elements.searchLoreBnf) elements.searchLoreBnf.value = editCharData.bnf_dosage || '';
   } else {
     if (elements.searchLoreFormHeading) elements.searchLoreFormHeading.textContent = 'Add Medical Entry';
     if (elements.searchLoreId) elements.searchLoreId.value = '';
@@ -3152,6 +3211,7 @@ function openSearchLoreForm(initialName = '', editCharData = null) {
     if (elements.searchLoreSect) elements.searchLoreSect.value = '';
     if (elements.searchLoreImage) elements.searchLoreImage.value = '';
     if (elements.searchLoreSummary) elements.searchLoreSummary.value = '';
+    if (elements.searchLoreBnf) elements.searchLoreBnf.value = '';
   }
 
   if (elements.searchAddLorePanel) {
@@ -3187,6 +3247,7 @@ async function saveSearchLoreForm() {
   const sect = elements.searchLoreSect ? elements.searchLoreSect.value.trim() : '';
   const imageUrl = elements.searchLoreImage ? elements.searchLoreImage.value.trim() : '';
   const summary = elements.searchLoreSummary ? elements.searchLoreSummary.value.trim() : '';
+  const bnfVal = elements.searchLoreBnf ? elements.searchLoreBnf.value.trim() : '';
 
   const payload = {
     id: charId || undefined,
@@ -3197,7 +3258,8 @@ async function saveSearchLoreForm() {
     affiliation: sect,
     sect_or_affiliation: sect,
     image_url: imageUrl,
-    summary: summary
+    summary: summary,
+    bnf_dosage: bnfVal
   };
 
   try {
@@ -4418,6 +4480,16 @@ function setupEventListeners() {
   elements.btnSaveCharForm.addEventListener('click', saveCharacterForm);
   if (elements.btnAiAutofillChar) {
     elements.btnAiAutofillChar.addEventListener('click', autoFillCharacterWithAI);
+  }
+  if (elements.btnFetchBnfChar) {
+    elements.btnFetchBnfChar.addEventListener('click', () => {
+      fetchBnfForForm(elements.charFormName, elements.charFormBnf, elements.btnFetchBnfChar);
+    });
+  }
+  if (elements.btnFetchBnfSearch) {
+    elements.btnFetchBnfSearch.addEventListener('click', () => {
+      fetchBnfForForm(elements.searchLoreName, elements.searchLoreBnf, elements.btnFetchBnfSearch);
+    });
   }
 
   elements.btnOpenWikiScraper.addEventListener('click', () => {

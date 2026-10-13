@@ -817,6 +817,12 @@ function renderGlossaryShelves() {
             ` : ''}
           </div>
           ${summaryText ? `<p class="card-summary" style="white-space: pre-line;">${escapeHtml(summaryText)}</p>` : ''}
+          ${char.category === 'Drug' && char.bnf_dosage ? `
+            <div class="card-bnf-badge" style="margin-top: 6px; padding: 4px 6px; background: rgba(59, 130, 246, 0.08); border-left: 2px solid #2563eb; border-radius: 4px; font-size: 0.72rem; line-height: 1.3;">
+              <span style="font-weight: 600; color: #1d4ed8;">📋 BNF 85:</span>
+              <div style="white-space: pre-line; max-height: 80px; overflow-y: auto;">${escapeHtml(char.bnf_dosage)}</div>
+            </div>
+          ` : ''}
         </div>
       `;
     }).join('');
@@ -1646,6 +1652,12 @@ function openLoreSheet(charName, asCenteredModal = false) {
       </div>
     ` : ''}
     <div class="lore-card-summary-box" style="white-space: pre-line;">${escapeHtml(summary || 'No description provided.')}</div>
+    ${normCat === 'Drug' && entry.bnf_dosage ? `
+      <div class="lore-card-bnf-wrap" style="margin-top: 10px; padding: 8px 10px; background: rgba(59, 130, 246, 0.08); border-left: 3px solid #2563eb; border-radius: 6px; font-size: 0.82rem; line-height: 1.4;">
+        <div style="font-weight: 600; font-size: 0.74rem; text-transform: uppercase; color: #1d4ed8; margin-bottom: 4px;">📋 BNF 85 Indications &amp; Dose</div>
+        <div style="white-space: pre-line; max-height: 180px; overflow-y: auto;">${escapeHtml(entry.bnf_dosage)}</div>
+      </div>
+    ` : ''}
     ${containingHl ? `
       <div class="lore-containing-note-pill" id="lore-pill-containing-note">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -2544,6 +2556,7 @@ function openEditLoreSheet(entry = null, defaultName = '') {
   const btnDelete = document.getElementById('btn-edit-delete');
 
   const imageInput = document.getElementById('edit-lore-image');
+  const bnfInput = document.getElementById('edit-lore-bnf');
 
   if (!backdrop) return;
 
@@ -2566,6 +2579,7 @@ function openEditLoreSheet(entry = null, defaultName = '') {
     }
     if (imageInput) imageInput.value = entry.image_url || '';
     if (summaryInput) summaryInput.value = entry.summary || entry.notes || '';
+    if (bnfInput) bnfInput.value = entry.bnf_dosage || '';
     if (wikiInput) wikiInput.value = '';
     if (btnDelete) btnDelete.style.display = 'block';
   } else {
@@ -2582,6 +2596,7 @@ function openEditLoreSheet(entry = null, defaultName = '') {
     }
     if (imageInput) imageInput.value = '';
     if (summaryInput) summaryInput.value = '';
+    if (bnfInput) bnfInput.value = '';
     if (wikiInput) wikiInput.value = '';
     if (btnDelete) btnDelete.style.display = 'none';
   }
@@ -2597,6 +2612,36 @@ function setupEditLoreSheet() {
   const btnDelete = document.getElementById('btn-edit-delete');
   const btnAiFill = document.getElementById('btn-ai-fill');
   const btnWikiImport = document.getElementById('btn-wiki-import');
+  const btnBnfFill = document.getElementById('btn-bnf-mobile-fill');
+
+  if (btnBnfFill) {
+    btnBnfFill.addEventListener('click', async () => {
+      const nameInput = document.getElementById('edit-lore-name');
+      const bnfInput = document.getElementById('edit-lore-bnf');
+      const drugName = nameInput ? nameInput.value.trim() : '';
+      if (!drugName) {
+        showToast('Please enter a drug name first');
+        return;
+      }
+      btnBnfFill.disabled = true;
+      btnBnfFill.textContent = 'Looking up...';
+      try {
+        const res = await fetch(`/api/lookup-bnf?drug=${encodeURIComponent(drugName)}`);
+        const data = await res.json();
+        if (data.success && data.data && data.data.found) {
+          if (bnfInput) bnfInput.value = data.data.indications_and_dose || '';
+          showToast(`Found in BNF 85!`);
+        } else {
+          showToast(data.data?.error || 'Drug not found in BNF 85');
+        }
+      } catch (err) {
+        showToast('Failed to query BNF 85');
+      } finally {
+        btnBnfFill.disabled = false;
+        btnBnfFill.textContent = 'Fetch BNF 85';
+      }
+    });
+  }
 
   // Initialize interactive alias tag manager on mobile
   const aliasContainer = document.getElementById('edit-lore-alias-container');
@@ -2765,13 +2810,16 @@ function setupEditLoreSheet() {
         ? mobileAliasTagManager.getAliases()
         : (aliasesRaw ? aliasesRaw.split(',').map(s => s.trim()).filter(Boolean) : []);
 
+      const bnfDosage = document.getElementById('edit-lore-bnf')?.value.trim() || '';
+
       const entry = {
         name,
         category: normalizeCategory(category),
         affiliation,
         aliases,
         image_url: imageUrl,
-        summary
+        summary,
+        bnf_dosage: bnfDosage
       };
       if (id) entry.id = id;
 

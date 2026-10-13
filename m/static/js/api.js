@@ -549,6 +549,7 @@ export const api = {
       sect_or_affiliation: entry.sect_or_affiliation || entry.affiliation || '',
       image_url: entry.image_url || '',
       summary: entry.summary || entry.notes || '',
+      bnf_dosage: entry.bnf_dosage || '',
       mentions: Number(entry.mentions || 0),
       updated_at: new Date().toISOString()
     };

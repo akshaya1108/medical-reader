@@ -83,6 +83,7 @@
     "sect_or_affiliation": "Emergency Medicine / Anesthesiology / Sedative-Hypnotic",
     "image_url": "",
     "summary": "A short-acting IV sedative-hypnotic that enhances GABA-A signaling, used as a hemodynamically stable induction agent for Rapid Sequence Intubation (RSI).",
+    "bnf_dosage": "Induction of anaesthesia\n\n[BY SLOW INTRAVENOUS INJECTION]\n• Adult: 150–300 micrograms/kg (max. per dose 60 mg), to be administered over 30-60 seconds (60 seconds in patients in whom hypotension might be hazardous)\n• Elderly: 150–200 micrograms/kg (max. per dose 60 mg), to be administered over 30-60 seconds (60 seconds in patients in whom hypotension might be hazardous)",
     "created_at": "2026-10-13T09:56:46.086876+00:00",
     "updated_at": "2026-10-13T09:56:46.086876+00:00"
   },

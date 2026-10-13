@@ -390,6 +390,12 @@
     <div class="char-card-summary" id="char-hover-summary" style="white-space: pre-line;">
       Clinical description and pearls.
     </div>
+    <div class="char-card-bnf-wrap" id="char-hover-bnf-wrap" style="display: none; margin: 8px 0; padding: 8px 10px; background: rgba(59, 130, 246, 0.08); border-left: 3px solid #2563eb; border-radius: 4px; font-size: 0.82rem; line-height: 1.4;">
+      <div style="font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: #1d4ed8; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
+        <span>📋 BNF 85 Indications &amp; Dose</span>
+      </div>
+      <div id="char-hover-bnf" style="white-space: pre-line; color: inherit;"></div>
+    </div>
     <div class="char-card-footer">
       <button class="btn-card-edit" id="btn-hover-edit-char">Edit Note</button>
     </div>
@@ -809,6 +815,15 @@
               <label class="form-label">Clinical Summary &amp; Pearls</label>
               <textarea id="char-form-summary" class="form-textarea" rows="4" placeholder="Comprehensive clinical definition, presentation, diagnostic criteria, and management pearls..."></textarea>
             </div>
+            <div class="form-group" id="group-char-form-bnf">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <label class="form-label" style="margin-bottom: 0;">BNF Indications &amp; Dosage (Drugs)</label>
+                <button type="button" class="btn-ai-autofill-sm" id="btn-fetch-bnf-char" title="Fetch from BNF 85 PDF">
+                  <span>Fetch BNF 85</span>
+                </button>
+              </div>
+              <textarea id="char-form-bnf" class="form-textarea" rows="4" placeholder="Induction of anaesthesia, adult/elderly dose, routes..." style="margin-top: 6px; font-family: monospace; font-size: 0.85rem;"></textarea>
+            </div>
             <div class="char-form-btns">
               <button type="button" class="btn btn-secondary btn-sm" id="btn-cancel-char-form">Cancel</button>
               <button type="button" class="btn btn-rose btn-sm" id="btn-save-char-form">Save Entry</button>
@@ -904,6 +919,15 @@
         <div class="form-group">
           <label class="form-label">Clinical Summary &amp; Pearls</label>
           <textarea id="search-lore-summary" class="form-textarea" rows="4" placeholder="Comprehensive clinical definition, presentation, diagnostic criteria, and management pearls..."></textarea>
+        </div>
+        <div class="form-group" id="group-search-lore-bnf">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <label class="form-label" style="margin-bottom: 0;">BNF Indications &amp; Dosage (Drugs)</label>
+            <button type="button" class="btn-ai-autofill-sm" id="btn-fetch-bnf-search" title="Fetch from BNF 85 PDF">
+              <span>Fetch BNF 85</span>
+            </button>
+          </div>
+          <textarea id="search-lore-bnf" class="form-textarea" rows="4" placeholder="Induction of anaesthesia, adult/elderly dose, routes..." style="margin-top: 6px; font-family: monospace; font-size: 0.85rem;"></textarea>
         </div>
         <div class="search-add-lore-btns">
           <button type="button" class="btn btn-secondary btn-sm" id="btn-close-search-lore-form">Cancel</button>

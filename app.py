@@ -2620,6 +2620,16 @@ def add_or_update_character(book_id):
             target_existing["image_url"] = (data.get("image_url") or "").strip()
         if "summary" in data:
             target_existing["summary"] = data.get("summary", "")
+        if "bnf_dosage" in data:
+            target_existing["bnf_dosage"] = data.get("bnf_dosage", "")
+        elif target_existing.get("category") == "Drug" and not target_existing.get("bnf_dosage"):
+            try:
+                import bnf_engine
+                b_res = bnf_engine.lookup_drug_bnf(name)
+                if b_res.get("found"):
+                    target_existing["bnf_dosage"] = b_res.get("indications_and_dose", "")
+            except Exception:
+                pass
         target_existing["updated_at"] = now_iso
         save_glossary(book_id, glossary)
         return jsonify({"success": True, "glossary": glossary})
@@ -2634,12 +2644,33 @@ def add_or_update_character(book_id):
         "sect_or_affiliation": affiliation,
         "image_url": (data.get("image_url") or "").strip(),
         "summary": data.get("summary", ""),
+        "bnf_dosage": data.get("bnf_dosage", ""),
         "created_at": now_iso,
         "updated_at": now_iso
     }
+    if new_char.get("category") == "Drug" and not new_char.get("bnf_dosage"):
+        try:
+            import bnf_engine
+            b_res = bnf_engine.lookup_drug_bnf(name)
+            if b_res.get("found"):
+                new_char["bnf_dosage"] = b_res.get("indications_and_dose", "")
+        except Exception:
+            pass
     glossary.append(new_char)
     save_glossary(book_id, glossary)
     return jsonify({"success": True, "glossary": glossary})
+
+@app.route("/api/lookup-bnf", methods=["GET"])
+def api_lookup_bnf():
+    drug = request.args.get("drug", "").strip()
+    if not drug:
+        return jsonify({"success": False, "error": "No drug specified"}), 400
+    try:
+        import bnf_engine
+        res = bnf_engine.lookup_drug_bnf(drug)
+        return jsonify({"success": True, "data": res})
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 @app.route("/api/books/<book_id>/glossary/<char_id>", methods=["DELETE"])
 def delete_character(book_id, char_id):
