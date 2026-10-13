@@ -122,6 +122,11 @@ def clean_entry_for_novel(entry: dict, is_chinese: bool = False) -> dict:
         try:
             import bnf_engine
             bnf_res = bnf_engine.lookup_drug_bnf(entry.get("name", ""))
+            if not bnf_res.get("found"):
+                for a in entry.get("aliases", []):
+                    bnf_res = bnf_engine.lookup_drug_bnf(a)
+                    if bnf_res.get("found"):
+                        break
             if bnf_res.get("found"):
                 entry["bnf_dosage"] = bnf_res.get("indications_and_dose", "")
         except Exception:

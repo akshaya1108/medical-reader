@@ -4,17 +4,20 @@
   },
   "last_synced_ids": {
     "tintinalli-s-emergency-medicine-manual-1": [
-      "vallecula",
-      "orotracheal-intubation",
-      "etomidate",
-      "laryngeal-mask-airway",
       "glasgow-coma-scale",
       "end-tidal-co2",
-      "rocuronium",
-      "propofol",
-      "preoxygenation",
+      "midazolam",
+      "laryngeal-mask-airway",
+      "succinylcholine",
+      "hyperkalemia",
       "macintosh-blade",
-      "rapid-sequence-intubation"
+      "rapid-sequence-intubation",
+      "vallecula",
+      "etomidate",
+      "preoxygenation",
+      "propofol",
+      "rocuronium",
+      "orotracheal-intubation"
     ],
     "charlie-and-the-chocolate-factory": [],
     "bailey-love-s-short-practice-of-surgery-chapter-1": []

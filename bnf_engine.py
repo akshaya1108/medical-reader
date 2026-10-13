@@ -117,12 +117,78 @@ def clean_bnf_text(raw_text: str) -> str:
     res = re.sub(r'([a-zA-Z0-9,\-])\n([a-z0-9])', r'\1 \2', res)
     return res.strip()
 
+US_TO_BNF_SYNONYMS = {
+    "succinylcholine": "suxamethonium",
+    "succinylcholine chloride": "suxamethonium",
+    "sux": "suxamethonium",
+    "anectine": "suxamethonium",
+    "quelicin": "suxamethonium",
+    "epinephrine": "adrenaline",
+    "epi": "adrenaline",
+    "norepinephrine": "noradrenaline",
+    "norepi": "noradrenaline",
+    "levophed": "noradrenaline",
+    "acetaminophen": "paracetamol",
+    "tylenol": "paracetamol",
+    "apap": "paracetamol",
+    "albuterol": "salbutamol",
+    "ventolin": "salbutamol",
+    "proventil": "salbutamol",
+    "meperidine": "pethidine",
+    "demerol": "pethidine",
+    "glycopyrrolate": "glycopyrronium",
+    "robinul": "glycopyrronium",
+    "isoproterenol": "isoprenaline",
+    "isuprel": "isoprenaline",
+    "rifampin": "rifampicin",
+    "thiopental": "thiopentone",
+    "thiopental sodium": "thiopentone",
+    "pentothal": "thiopentone",
+    "methohexital": "methohexitone",
+    "brevital": "methohexitone",
+    "frusemide": "furosemide",
+    "lasix": "furosemide",
+    "lignocaine": "lidocaine",
+    "xylocaine": "lidocaine",
+    "bactrim": "co-trimoxazole",
+    "septra": "co-trimoxazole",
+    "sulfamethoxazole/trimethoprim": "co-trimoxazole",
+    "trimethoprim/sulfamethoxazole": "co-trimoxazole",
+    "augmentin": "co-amoxiclav",
+    "amoxicillin-clavulanate": "co-amoxiclav",
+    "amoxicillin/clavulanic acid": "co-amoxiclav",
+    "diphenhydramine": "diphenhydramine",
+    "benadryl": "diphenhydramine",
+    "hydromorphone": "hydromorphone",
+    "dilaudid": "hydromorphone",
+    "fentanyl": "fentanyl",
+    "sublimaze": "fentanyl",
+    "morphine": "morphine",
+    "lorazepam": "lorazepam",
+    "ativan": "lorazepam",
+    "diazepam": "diazepam",
+    "valium": "diazepam",
+    "midazolam": "midazolam",
+    "versed": "midazolam",
+    "propofol": "propofol",
+    "diprivan": "propofol",
+    "etomidate": "etomidate",
+    "amidate": "etomidate",
+    "ketamine": "ketamine",
+    "ketalar": "ketamine",
+    "rocuronium": "rocuronium",
+    "zemuron": "rocuronium",
+    "vecuronium": "vecuronium",
+    "norcuron": "vecuronium",
+    "cisatracurium": "cisatracurium",
+    "nimbex": "cisatracurium",
+}
+
 def lookup_drug_bnf(drug_name: str) -> dict:
     """
     Looks up drug in BNF 85.
     Returns dict:
       {
-         "found": True,
          "drug": "Etomidate",
          "indications_and_dose": "...",
          "safety_info": "...",
@@ -140,7 +206,8 @@ def lookup_drug_bnf(drug_name: str) -> dict:
         return {"found": False, "error": "BNF PDF not found"}
 
     index = build_or_load_index()
-    q = drug_name.strip().lower()
+    raw_q = drug_name.strip().lower()
+    q = US_TO_BNF_SYNONYMS.get(raw_q, raw_q)
 
     # Direct match or cross-reference
     candidate_pages = index.get(q, [])

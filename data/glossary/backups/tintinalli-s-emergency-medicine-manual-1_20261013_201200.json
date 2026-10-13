@@ -158,5 +158,49 @@
     "bnf_dosage": "Neuromuscular blockade (intermediate duration) during surgery and intubation\nINITIALLY BY INTRAVENOUS INJECTION\n• Adult: Initially 600 micrograms/kg; (by intravenous injection) maintenance 150 micrograms/kg, alternatively (by intravenous infusion) maintenance 300–600 micrograms/kg/hour, adjusted according to response",
     "created_at": "2026-10-13T13:08:07.295524+00:00",
     "updated_at": "2026-10-13T13:08:07.295524+00:00"
+  },
+  {
+    "name": "Glasgow Coma Scale",
+    "category": "Concept",
+    "aliases": [
+      "GCS",
+      "Glasgow Coma Score"
+    ],
+    "sect_or_affiliation": "Emergency Medicine / Neurology",
+    "summary": "The Glasgow Coma Scale is a clinical neurological assessment tool that quantifies the level of consciousness based on standardized eye, verbal, and motor responses to evaluate patients following traumatic brain injury or acute neurological decline.",
+    "image_url": "",
+    "id": "glasgow-coma-scale",
+    "pinyin_or_chinese": "",
+    "affiliation": "Emergency Medicine / Neurology",
+    "updated_at": "2026-10-13T14:30:31.634134+00:00"
+  },
+  {
+    "id": "midazolam",
+    "name": "Midazolam",
+    "category": "Drug",
+    "aliases": [],
+    "affiliation": "Pharmacology / BNF 85",
+    "sect_or_affiliation": "Pharmacology / BNF 85",
+    "summary": "Midazolam, sold under the brand name Versed among others, is a benzodiazepine medication used for anesthesia, premedication before surgical anesthesia, and procedural sedation, and to treat severe agitation.",
+    "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Midazolam.svg/500px-Midazolam.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "bnf_dosage": "Status epilepticus | Febrile convulsions\n\n[BY BUCCAL ADMINISTRATION]\n• Child 1–2 months: 300 micrograms/kg (max. per dose 2.5 mg), then 300 micrograms/kg after 5–10 minutes\n(max. per dose 2.5 mg) if required\nUNLICENSED USE Unlicensed oromucosal formulations are\n• Child 3–11 months: 2.5 mg, then 2.5 mg after 5–10 minutes if required\nIn adults Oromucosal solution not licensed for use in adults\n• Child 1–4 years: 5 mg, then 5 mg after 5–10 minutes if required\nIn children Oromucosal solution not licensed for use in\n• Child 5–9 years: 7.5 mg, then 7.5 mg after 5–10 minutes if required\n• Child 10–17 years: 10 mg, then 10 mg after 5–10 minutes if required\n• Adult: 10 mg, then 10 mg after 5–10 minutes if required\nConscious sedation for procedures\n\n[BY SLOW INTRAVENOUS INJECTION]\n• Adult: Initially 2–2.5 mg, to be administered 5–10 minutes before procedure at a rate of approximately 2 mg/minute, increased in steps of 1 mg if required, usual total dose is 3.5–5 mg; maximum 7.5 mg per course\n• Elderly: Initially 0.5–1 mg, to be administered 5–10 minutes before procedure at a rate of approximately 2 mg/minute, increased in steps of 0.5–1 mg if required; maximum 3.5 mg per course\nSedative in combined anaesthesia\nINITIALLY BY INTRAVENOUS INJECTION\n• Adult: 30–100 micrograms/kg, repeated if necessary, alternatively (by continuous intravenous infusion)\n30–100 micrograms/kg/hour\n• Elderly: Lower doses needed\nPremedication\n\n[BY DEEP INTRAMUSCULAR INJECTION]",
+    "pinyin_or_chinese": "",
+    "updated_at": "2026-10-13T14:39:06.381579+00:00"
+  },
+  {
+    "name": "Hyperkalemia",
+    "category": "Pathology / Disease",
+    "aliases": [
+      "high serum potassium",
+      "elevated blood potassium"
+    ],
+    "sect_or_affiliation": "Electrolyte Disturbance / Nephrology",
+    "summary": "Hyperkalemia is an electrolyte disorder characterized by an abnormally high serum potassium concentration exceeding 5.5 mmol/L, which can lead to life-threatening cardiac arrhythmias if left untreated.",
+    "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/ECG_in_hyperkalemia.svg/500px-ECG_in_hyperkalemia.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "id": "hyperkalemia",
+    "pinyin_or_chinese": "",
+    "affiliation": "Electrolyte Disturbance / Nephrology",
+    "updated_at": "2026-10-13T14:41:25.316561+00:00",
+    "bnf_dosage": ""
   }
 ]
