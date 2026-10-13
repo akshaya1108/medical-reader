@@ -13,5 +13,61 @@
     "image_url": "",
     "summary": "End-tidal CO2 refers to the partial pressure or maximal concentration of carbon dioxide exhaled at the end of a breath, serving as a vital monitoring parameter in emergency airway management, confirmation of endotracheal tube placement, and monitoring CPR quality.",
     "updated_at": "2026-10-13T08:23:49.583343+00:00"
+  },
+  {
+    "id": "orotracheal-intubation",
+    "name": "Orotracheal Intubation",
+    "category": "Concept",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "orotracheal intubation"
+    ],
+    "affiliation": "Emergency Airway Management",
+    "sect_or_affiliation": "Emergency Airway Management",
+    "summary": "Orotracheal intubation is a standard emergency airway management technique where a breathing tube is passed through the mouth and vocal cords into the trachea to secure ventilation.",
+    "updated_at": "2026-10-13T08:36:45.781+00:00"
+  },
+  {
+    "id": "rapid-sequence-intubation",
+    "name": "Rapid sequence intubation",
+    "category": "Concept",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "RSI",
+      "Rapid sequence intubation"
+    ],
+    "affiliation": "Emergency Medicine",
+    "sect_or_affiliation": "Emergency Medicine",
+    "summary": "Rapid sequence intubation is an advanced airway management technique involving simultaneous administration of a sedative and a neuromuscular blocking agent to rapidly secure the airway of a patient at high risk of aspiration.",
+    "updated_at": "2026-10-13T08:38:10.216+00:00"
+  },
+  {
+    "id": "macintosh-blade",
+    "name": "Macintosh Blade",
+    "category": "Instrument / Device",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "curved blade",
+      "Mac blade",
+      "Macintosh laryngoscope blade"
+    ],
+    "affiliation": "Emergency Airway Management",
+    "sect_or_affiliation": "Emergency Airway Management",
+    "summary": "A curved laryngoscope blade designed to seat in the vallecula to indirectly elevate the epiglottis and expose the vocal cords during endotracheal intubation.",
+    "updated_at": "2026-10-13T08:44:01.89+00:00"
+  },
+  {
+    "id": "vallecula",
+    "name": "Vallecula",
+    "category": "Anatomy",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Epiglottic vallecula",
+      "vallecula"
+    ],
+    "affiliation": "Upper Airway Anatomy",
+    "sect_or_affiliation": "Upper Airway Anatomy",
+    "summary": "An anatomical depression situated anterior to the epiglottis at the base of the tongue, serving as the key landmark where the tip of a curved laryngoscope blade is engaged during endotracheal intubation.",
+    "updated_at": "2026-10-13T08:47:30.39+00:00"
   }
 ]

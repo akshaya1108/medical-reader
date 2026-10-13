@@ -11,6 +11,5 @@ fi
 
 echo "=================================================="
 echo "  Starting Medical Reader                         "
-echo "  Open in your browser: http://127.0.0.1:5000/5001"
 echo "=================================================="
 $PYTHON app.py

@@ -2884,24 +2884,41 @@ def lookup_character_endpoint(book_id):
 
     return jsonify({"success": False, "found": False, "error": err_msg or "Unavailable in novel glossary"}), 200
 
-def get_server_port():
+def get_local_ip():
+    import socket
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except Exception:
+        return "127.0.0.1"
+
+def get_server_port(start_port=5000, max_port=5020):
     if "PORT" in os.environ:
         return int(os.environ["PORT"])
     import socket
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    try:
-        s.bind(('0.0.0.0', 5000))
-        s.close()
-        port = 5000
-    except Exception:
-        port = 5001
-    os.environ["PORT"] = str(port)
-    return port
+    for port in range(start_port, max_port + 1):
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        try:
+            s.bind(('0.0.0.0', port))
+            s.close()
+            os.environ["PORT"] = str(port)
+            return port
+        except Exception:
+            continue
+    os.environ["PORT"] = "5002"
+    return 5002
 
 if __name__ == "__main__":
     port = get_server_port()
-    print(f"Starting My Library on http://127.0.0.1:{port} ...")
-    print(f"Mobile PWA available on your local Wi-Fi at: http://192.168.29.98:{port}/m")
+    local_ip = get_local_ip()
+    print("=" * 60)
+    print(f"  Starting Medical Reader on: http://127.0.0.1:{port}")
+    print(f"  Mobile PWA on Wi-Fi:       http://{local_ip}:{port}/m")
+    print("=" * 60)
     app.run(
         host="0.0.0.0",
         port=port,
