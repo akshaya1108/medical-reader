@@ -19,13 +19,12 @@
     "name": "Orotracheal Intubation",
     "category": "Concept",
     "pinyin_or_chinese": "",
-    "aliases": [
-      "orotracheal intubation"
-    ],
+    "aliases": [],
     "affiliation": "Emergency Airway Management",
     "sect_or_affiliation": "Emergency Airway Management",
     "summary": "Orotracheal intubation is a standard emergency airway management technique where a breathing tube is passed through the mouth and vocal cords into the trachea to secure ventilation.",
-    "updated_at": "2026-10-13T08:36:45.781+00:00"
+    "updated_at": "2026-10-13T08:36:45.781+00:00",
+    "image_url": ""
   },
   {
     "id": "rapid-sequence-intubation",
@@ -33,13 +32,13 @@
     "category": "Concept",
     "pinyin_or_chinese": "",
     "aliases": [
-      "RSI",
-      "Rapid sequence intubation"
+      "RSI"
     ],
     "affiliation": "Emergency Medicine",
     "sect_or_affiliation": "Emergency Medicine",
     "summary": "Rapid sequence intubation is an advanced airway management technique involving simultaneous administration of a sedative and a neuromuscular blocking agent to rapidly secure the airway of a patient at high risk of aspiration.",
-    "updated_at": "2026-10-13T08:38:10.216+00:00"
+    "updated_at": "2026-10-13T08:38:10.216+00:00",
+    "image_url": ""
   },
   {
     "id": "macintosh-blade",
@@ -54,7 +53,8 @@
     "affiliation": "Emergency Airway Management",
     "sect_or_affiliation": "Emergency Airway Management",
     "summary": "A curved laryngoscope blade designed to seat in the vallecula to indirectly elevate the epiglottis and expose the vocal cords during endotracheal intubation.",
-    "updated_at": "2026-10-13T08:44:01.89+00:00"
+    "updated_at": "2026-10-13T08:44:01.89+00:00",
+    "image_url": ""
   },
   {
     "id": "vallecula",
@@ -62,12 +62,46 @@
     "category": "Anatomy",
     "pinyin_or_chinese": "",
     "aliases": [
-      "Epiglottic vallecula",
-      "vallecula"
+      "Epiglottic vallecula"
     ],
     "affiliation": "Upper Airway Anatomy",
     "sect_or_affiliation": "Upper Airway Anatomy",
     "summary": "An anatomical depression situated anterior to the epiglottis at the base of the tongue, serving as the key landmark where the tip of a curved laryngoscope blade is engaged during endotracheal intubation.",
-    "updated_at": "2026-10-13T08:47:30.39+00:00"
+    "updated_at": "2026-10-13T08:47:30.39+00:00",
+    "image_url": ""
+  },
+  {
+    "id": "etomidate",
+    "name": "Etomidate",
+    "category": "Drug",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Amidate",
+      "Hypnomidate"
+    ],
+    "affiliation": "Emergency Medicine / Anesthesiology / Sedative-Hypnotic",
+    "sect_or_affiliation": "Emergency Medicine / Anesthesiology / Sedative-Hypnotic",
+    "image_url": "",
+    "summary": "Short-acting IV sedative-hypnotic enhancing GABA-A signaling, used as a frontline induction agent for Rapid Sequence Intubation (RSI) at 0.3 mg/kg. Noted for its hemodynamically stable profile with minimal effect on blood pressure or heart rate, ideal for trauma and shock. Considerations include transient myoclonus and reversible adrenocortical suppression via 11-beta-hydroxylase inhibition.",
+    "created_at": "2026-10-13T09:56:46.086876+00:00",
+    "updated_at": "2026-10-13T09:56:46.086876+00:00"
+  },
+  {
+    "id": "preoxygenation",
+    "name": "Preoxygenation",
+    "category": "Concept",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Preoxygenate",
+      "Denitrogenation",
+      "Nitrogen Washout",
+      "Apneic Preoxygenation"
+    ],
+    "affiliation": "Emergency Medicine / Anesthesiology / Critical Care",
+    "sect_or_affiliation": "Emergency Medicine / Anesthesiology / Critical Care",
+    "image_url": "",
+    "summary": "The administration of 100% supplemental oxygen prior to RSI induction to wash out nitrogen from the functional residual capacity (denitrogenation). This creates an intrapulmonary oxygen reservoir that significantly prolongs the duration of safe apnea before arterial desaturation occurs. Often combined with head-up positioning and apneic oxygenation via nasal cannula during intubation.",
+    "created_at": "2026-10-13T12:11:51.811590+00:00",
+    "updated_at": "2026-10-13T12:11:51.811590+00:00"
   }
 ]

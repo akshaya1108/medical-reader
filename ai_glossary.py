@@ -165,7 +165,7 @@ FOR EACH EXTRACTED TERM, PROVIDE:
 - "category": Exactly one of: "Anatomy", "Pathology / Disease", "Concept", "Instrument / Device", "Drug".
 - "aliases": Array of AKAs (Also Known As): Brand names, generic names, common medical abbreviations/acronyms, eponyms, or alternate spellings (e.g. ["EtCO2", "end-tidal carbon dioxide"], ["GCS"], ["Rocephin"], ["needle thoracostomy"]).
 - "sect_or_affiliation": Relevant organ system, anatomical region, drug class, or medical specialty (e.g. "Emergency Medicine / Pulmonology", "Third-generation Cephalosporin", "Cardiovascular").
-- "summary": A comprehensive, high-yield clinical summary. Do NOT restrict to one sentence. Include definition/mechanism, key clinical presentation or indication, and high-yield diagnostic or therapeutic pearls. Keep it concise, structured, and clinically actionable.
+- "summary": A concise, high-yield clinical summary. STRICT CONSTRAINT: MUST BE UNDER 75 WORDS (2-3 sentences max). Include definition/mechanism, primary clinical indication or presentation, and high-yield management pearl without excessive wordiness.
 - "image_url": Optional URL to a public medical diagram/illustration if specifically known, else "".
 
 EXISTING TERMS ALREADY TRACKED (Do not duplicate; only extract new entities or identify new AKAs):
@@ -183,7 +183,7 @@ Return a JSON array of objects with the exact schema:
     "category": "Pathology / Disease",
     "aliases": ["AKA 1", "Abbreviation / Brand"],
     "sect_or_affiliation": "Organ System / Specialty",
-    "summary": "Comprehensive clinical definition, presentation, diagnostic criteria, and management pearls.",
+    "summary": "Concise high-yield clinical definition, presentation, and pearls strictly under 75 words.",
     "image_url": ""
   }}
 ]

@@ -736,7 +736,7 @@ Analyze "${cleanName}" in clinical medicine:
    - "pinyin_or_chinese": ""
    - "aliases": Array of AKAs (Also Known As): Brand names, generic names, common medical abbreviations/acronyms, eponyms (always include "${cleanName}" if different from name).
    - "affiliation": Associated organ system, drug class, or medical specialty (e.g. "Emergency Medicine / Pulmonology", "Third-generation Cephalosporin").
-   - "summary": A comprehensive, high-yield clinical summary. Do NOT restrict to one sentence. Include definition/mechanism, key clinical presentation, and diagnostic or therapeutic pearls.
+   - "summary": A concise, high-yield clinical summary. STRICT CONSTRAINT: MUST BE UNDER 75 WORDS (2-3 sentences max). Include definition/mechanism, primary indication or findings, and high-yield pearl without excessive wordiness.
    - "image_url": Optional URL to an image or diagram if known, else "".
 
 Return a JSON array with 1 object:
@@ -747,7 +747,7 @@ Return a JSON array with 1 object:
     "pinyin_or_chinese": "",
     "aliases": ["AKA 1", "${cleanName}"],
     "affiliation": "Organ System / Specialty",
-    "summary": "Comprehensive clinical definition, presentation, diagnostic criteria, and management pearls.",
+    "summary": "Concise high-yield clinical definition and pearl strictly under 75 words.",
     "image_url": ""
   }
 ]

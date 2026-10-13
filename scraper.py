@@ -128,7 +128,7 @@ Analyze "{q_clean}" in clinical medicine:
    - "category": One of: "Anatomy", "Pathology / Disease", "Concept", "Instrument / Device", "Drug".
    - "aliases": Array of AKAs (Also Known As): Brand names, generic names, common medical abbreviations/acronyms, eponyms (always include "{q_clean}" if different from primary name).
    - "sect_or_affiliation": Relevant organ system, anatomical region, drug class, or medical specialty (e.g. "Emergency Medicine / Neurology", "Cardiovascular", "Third-generation Cephalosporin").
-   - "summary": A comprehensive, high-yield clinical summary. Do NOT restrict to one sentence. Include definition/mechanism, classic clinical presentation/findings, and essential diagnostic or management pearls.
+   - "summary": A concise, high-yield clinical summary. STRICT CONSTRAINT: MUST BE UNDER 75 WORDS (2-3 sentences max). Cover definition/mechanism and primary clinical indication, findings, or high-yield pearl without excessive background fluff.
    - "image_url": {f'"{wiki_thumb}"' if wiki_thumb else '""'}
 
 {f"Reference Extract:\n{context_text[:5000]}" if context_text else ""}
@@ -140,7 +140,7 @@ Return a JSON array with 1 object (or [] if non-medical):
     "category": "Pathology / Disease",
     "aliases": ["{q_clean}", "AKA 1"],
     "sect_or_affiliation": "Organ System / Specialty",
-    "summary": "Comprehensive clinical definition, presentation, diagnostic criteria, and management pearls.",
+    "summary": "Concise high-yield clinical definition, mechanism, and primary clinical pearl under 75 words.",
     "image_url": {f'"{wiki_thumb}"' if wiki_thumb else '""'}
   }}
 ]
