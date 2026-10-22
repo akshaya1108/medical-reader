@@ -9,11 +9,24 @@
 <path d="M47 59V293.167C108.331 293.167 168.171 309.122 200 340V118.041C170.902 77.4399 115.349 59 47 59Z" fill="#805B4A" fill-opacity="0.9"/>
 </g>
 <path d="M294.578 69.7149C283.233 71.0568 275.342 73.6642 263.936 76.873C260.445 77.8552 258 81.0246 258 84.6514V130.342C258 134.037 262.581 135.757 265.012 132.974L277.183 119.044C278.943 117.03 281.975 116.757 284.065 118.424L294.883 127.048C298.158 129.659 303 127.326 303 123.138V77.4498C303 72.8597 299.137 69.1757 294.578 69.7149Z" fill="#F38478" fill-opacity="0.59"/>
+
+        <rect x="175.0" y="142.0" width="50" height="160" rx="25.0" fill="#1C0E07" fill-opacity="0.3"/>
+        <rect x="120.0" y="197.0" width="160" height="50" rx="25.0" fill="#1C0E07" fill-opacity="0.3"/>
+        
+
+    <rect x="175.0" y="138.0" width="50" height="160" rx="25.0" fill="url(#greenCrossGrad)"/>
+    <rect x="120.0" y="193.0" width="160" height="50" rx="25.0" fill="url(#greenCrossGrad)"/>
+    
 <defs>
 <linearGradient id="paint0_linear_20_61" x1="351" y1="199.5" x2="200" y2="199.5" gradientUnits="userSpaceOnUse">
 <stop stop-color="#805B4A"/>
 <stop offset="0.706731" stop-color="#805B4A"/>
 <stop offset="1" stop-color="#784F3E"/>
+</linearGradient>
+<linearGradient id="greenCrossGrad" x1="200" y1="140" x2="200" y2="300" gradientUnits="userSpaceOnUse">
+<stop stop-color="#34D399"/>
+<stop offset="0.25" stop-color="#10B981"/>
+<stop offset="1" stop-color="#059669"/>
 </linearGradient>
 </defs>
 </svg>

@@ -2944,7 +2944,7 @@ def get_local_ip():
     except Exception:
         return "127.0.0.1"
 
-def get_server_port(start_port=5000, max_port=5020):
+def get_server_port(start_port=5002, max_port=5030):
     if "PORT" in os.environ:
         return int(os.environ["PORT"])
     import socket
