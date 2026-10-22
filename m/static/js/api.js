@@ -1144,7 +1144,7 @@ Return a JSON array with 1 object:
                     const bId = sub[1];
                     const fName = sub[2];
                     const relUrl = `../data/chapters/${bId}/images/${fName}`;
-                    const rawUrl = `https://raw.githubusercontent.com/akshaya1108/reader/main/data/chapters/${bId}/images/${fName}`;
+                    const rawUrl = `https://raw.githubusercontent.com/akshaya1108/medical-reader/main/data/chapters/${bId}/images/${fName}`;
                     cache.add(relUrl).catch(() => cache.add(rawUrl).catch(() => {}));
                     continue;
                   }

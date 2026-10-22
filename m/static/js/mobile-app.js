@@ -997,7 +997,7 @@ function renderReaderText(rawHtml) {
 
     if (bookId && filename) {
       const isGithub = window.location.hostname.includes('github.io');
-      const rawGitHubUrl = `https://raw.githubusercontent.com/akshaya1108/reader/main/data/chapters/${bookId}/images/${filename}`;
+      const rawGitHubUrl = `https://raw.githubusercontent.com/akshaya1108/medical-reader/main/data/chapters/${bookId}/images/${filename}`;
       const ghPagesUrl = `../data/chapters/${bookId}/images/${filename}`;
       const localApiUrl = `/api/books/${bookId}/images/${filename}`;
 
