@@ -578,19 +578,15 @@ function setupDesktopSyncPopover() {
       if (data.success) {
         lastSync = new Date();
         updateDisplay();
-        if (!silent) showToast('Synced with Supabase successfully.');
-        await loadBooks();
-        if (state.activeBookId) {
-          await loadChapters(state.activeBookId);
-          await loadGlossary(state.activeBookId);
-          const currentBook = state.books.find(b => b.id === state.activeBookId);
-          if (currentBook) {
-            const lastRead = currentBook.last_read_chapter || 1;
-            if (elements.btnContinueReading) {
-              elements.btnContinueReading.innerHTML = `${ICONS.book} <span>Continue (Ch ${lastRead})</span>`;
-              elements.btnContinueReading.onclick = () => openReader(lastRead);
-            }
-            updateBookmarkButton();
+        if (!silent) {
+          showToast('Synced with Supabase successfully.');
+          const prevPage = state.managePage;
+          await loadBooks();
+          if (state.activeBookId) {
+            await loadChapters(state.activeBookId);
+            await loadGlossary(state.activeBookId);
+            state.managePage = prevPage;
+            renderChapters();
           }
         }
       } else if (!silent) {
@@ -641,7 +637,7 @@ async function loadBooks() {
     renderBooksList();
     renderHomeBooksGrid();
     
-    if (state.books.length > 0) {
+    if (state.books.length > 0 && !state.activeBookId) {
       // Pick first book or persisted book
       const lastBookId = localStorage.getItem('xianxia_last_book') || state.books[0].id;
       const targetBook = state.books.find(b => b.id === lastBookId) || state.books[0];
@@ -1228,10 +1224,12 @@ function applyBookGlossaryState(book) {
 }
 
 async function selectBook(bookId, { recordLastRead = false } = {}) {
-  closeBookMoreMenu();
+  const isDifferentBook = state.activeBookId !== bookId;
   state.activeBookId = bookId;
-  state.managePage = 1;
-  state.seeAll = false;
+  if (isDifferentBook) {
+    state.managePage = 1;
+    state.seeAll = false;
+  }
   localStorage.setItem('xianxia_last_book', bookId);
   
   const book = state.books.find(b => b.id === bookId);

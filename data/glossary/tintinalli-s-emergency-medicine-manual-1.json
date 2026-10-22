@@ -77,14 +77,13 @@
     "pinyin_or_chinese": "",
     "aliases": [
       "Amidate",
-      "Hypnomidate",
-      "RSI"
+      "Hypnomidate"
     ],
     "affiliation": "Emergency Medicine / Anesthesiology / Sedative-Hypnotic",
     "sect_or_affiliation": "Emergency Medicine / Anesthesiology / Sedative-Hypnotic",
     "image_url": "",
     "summary": "A short-acting IV sedative-hypnotic that enhances GABA-A signaling, used as a hemodynamically stable induction agent for Rapid Sequence Intubation (RSI).",
-    "bnf_dosage": "Induction of anaesthesia\n\n[BY SLOW INTRAVENOUS INJECTION]\n• Adult: 150–300 micrograms/kg (max. per dose 60 mg), to be administered over 30-60 seconds (60 seconds in patients in whom hypotension might be hazardous)\n• Elderly: 150–200 micrograms/kg (max. per dose 60 mg), to be administered over 30-60 seconds (60 seconds in patients in whom hypotension might be hazardous)",
+    "bnf_dosage": "Induction of anaesthesia\n\n[BY SLOW INTRAVENOUS INJECTION]\n\u2022 Adult: 150\u2013300 micrograms/kg (max. per dose 60 mg), to be administered over 30-60 seconds (60 seconds in patients in whom hypotension might be hazardous)\n\u2022 Elderly: 150\u2013200 micrograms/kg (max. per dose 60 mg), to be administered over 30-60 seconds (60 seconds in patients in whom hypotension might be hazardous)",
     "created_at": "2026-10-13T09:56:46.086876+00:00",
     "updated_at": "2026-10-13T09:56:46.086876+00:00"
   },
@@ -113,16 +112,13 @@
     "pinyin_or_chinese": "",
     "aliases": [
       "Diprivan",
-      "2,6-diisopropylphenol",
-      "Propofol,",
-      "RSI",
-      "PRIS"
+      "2,6-diisopropylphenol"
     ],
     "affiliation": "Anesthesiology / Emergency Medicine / Intravenous Anesthetic",
     "sect_or_affiliation": "Anesthesiology / Emergency Medicine / Intravenous Anesthetic",
     "image_url": "",
-    "summary": "Propofol is a short-acting, intravenously administered hypnotic and sedative agent widely used in emergency medicine, critical care, and anesthesia for rapid sequence intubation (RSI) induction, procedural sedation, and maintenance of mechanical ventilation sedation. Its primary mechanism of action involves potentiation of GABA-A receptor activity, leading to increased chloride conductance, hyperpolarization of neuronal membranes, and generalized central nervous system depression, along with minor NMDA receptor inhibition. It exhibits rapid onset (30–45 seconds) and a brief duration of clinical effect (5–10 minutes following bolus administration) due to rapid lipophilic tissue redistribution and hepatic metabolism. Major clinical adverse effects include dose-dependent systemic hypotension (caused by decreased systemic vascular resistance and negative inotropy), respiratory depression/apnea, and intense burning pain on peripheral intravenous injection (often mitigated by pretreatment with lidocaine). High-dose (>4–5 mg/kg/h) or prolonged (>48 hours) infusions carry the risk of Propofol-Related Infusion Syndrome (PRIS), a life-threatening condition characterized by severe refractory metabolic acidosis, hyperkalemia, rhabdomyolysis, hyperlipidemia, hepatomegaly, renal failure, and refractory bradyarrhythmias or asystole.",
-    "bnf_dosage": "Induction of anaesthesia using 0.5% or 1% injection\n\n[BY SLOW INTRAVENOUS INJECTION, OR BY INTRAVENOUS]\nINFUSION\nAdult 18–54 years: Usual dose 1.5–2.5 mg/kg, to be administered at a rate of 20–40 mg every 10 seconds until response, for debilitated patients use dose for 55 years and over\nAdult 55 years and over: Usual dose 1–1.5 mg/kg, to be administered at a rate of 20 mg every 10 seconds until response\nInduction of anaesthesia using 2% injection\n\n[BY INTRAVENOUS INFUSION]\nAdult 18–54 years: Usual dose 1.5–2.5 mg/kg, to be administered at a rate of 20–40 mg every 10 seconds until response. For debilitated patients use dose for 55 years and over\nAdult 55 years and over: Usual dose 1–1.5 mg/kg, to be administered at a rate of 20 mg every 10 seconds until response\nMaintenance of anaesthesia using 1% injection\nINITIALLY BY INTRAVENOUS INFUSION\n• Adult: Usual dose 4–12 mg/kg/hour, alternatively (by slow intravenous injection) 25–50 mg, dose may be repeated according to response, for debilitated patients use dose for elderly\n• Elderly: Usual dose 3–6 mg/kg/hour, alternatively (by slow intravenous injection) 25–50 mg, dose may be repeated according to response\nMaintenance of anaesthesia using 2% injection\n\n[BY INTRAVENOUS INFUSION]\n• Adult: Usual dose 4–12 mg/kg/hour, for debilitated patients use dose for elderly\n• Elderly: Usual dose 3–6 mg/kg/hour\nSedation of ventilated patients in intensive care using 1%\nor 2% injection\n\n[BY CONTINUOUS INTRAVENOUS INFUSION]\n• Adult: Usual dose 0.3–4 mg/kg/hour, adjusted according to response",
+    "summary": "Propofol is a short-acting, intravenously administered hypnotic and sedative agent widely used in emergency medicine, critical care, and anesthesia for rapid sequence intubation (RSI) induction, procedural sedation, and maintenance of mechanical ventilation sedation. Its primary mechanism of action involves potentiation of GABA-A receptor activity, leading to increased chloride conductance, hyperpolarization of neuronal membranes, and generalized central nervous system depression, along with minor NMDA receptor inhibition. It exhibits rapid onset (30\u201345 seconds) and a brief duration of clinical effect (5\u201310 minutes following bolus administration) due to rapid lipophilic tissue redistribution and hepatic metabolism. Major clinical adverse effects include dose-dependent systemic hypotension (caused by decreased systemic vascular resistance and negative inotropy), respiratory depression/apnea, and intense burning pain on peripheral intravenous injection (often mitigated by pretreatment with lidocaine). High-dose (>4\u20135 mg/kg/h) or prolonged (>48 hours) infusions carry the risk of Propofol-Related Infusion Syndrome (PRIS), a life-threatening condition characterized by severe refractory metabolic acidosis, hyperkalemia, rhabdomyolysis, hyperlipidemia, hepatomegaly, renal failure, and refractory bradyarrhythmias or asystole.",
+    "bnf_dosage": "Induction of anaesthesia using 0.5% or 1% injection\n\n[BY SLOW INTRAVENOUS INJECTION, OR BY INTRAVENOUS]\nINFUSION\nAdult 18\u201354 years: Usual dose 1.5\u20132.5 mg/kg, to be administered at a rate of 20\u201340 mg every 10 seconds until response, for debilitated patients use dose for 55 years and over\nAdult 55 years and over: Usual dose 1\u20131.5 mg/kg, to be administered at a rate of 20 mg every 10 seconds until response\nInduction of anaesthesia using 2% injection\n\n[BY INTRAVENOUS INFUSION]\nAdult 18\u201354 years: Usual dose 1.5\u20132.5 mg/kg, to be administered at a rate of 20\u201340 mg every 10 seconds until response. For debilitated patients use dose for 55 years and over\nAdult 55 years and over: Usual dose 1\u20131.5 mg/kg, to be administered at a rate of 20 mg every 10 seconds until response\nMaintenance of anaesthesia using 1% injection\nINITIALLY BY INTRAVENOUS INFUSION\n\u2022 Adult: Usual dose 4\u201312 mg/kg/hour, alternatively (by slow intravenous injection) 25\u201350 mg, dose may be repeated according to response, for debilitated patients use dose for elderly\n\u2022 Elderly: Usual dose 3\u20136 mg/kg/hour, alternatively (by slow intravenous injection) 25\u201350 mg, dose may be repeated according to response\nMaintenance of anaesthesia using 2% injection\n\n[BY INTRAVENOUS INFUSION]\n\u2022 Adult: Usual dose 4\u201312 mg/kg/hour, for debilitated patients use dose for elderly\n\u2022 Elderly: Usual dose 3\u20136 mg/kg/hour\nSedation of ventilated patients in intensive care using 1%\nor 2% injection\n\n[BY CONTINUOUS INTRAVENOUS INFUSION]\n\u2022 Adult: Usual dose 0.3\u20134 mg/kg/hour, adjusted according to response",
     "created_at": "2026-10-13T13:05:44.812803+00:00",
     "updated_at": "2026-10-13T13:05:44.812803+00:00"
   },
@@ -152,7 +148,7 @@
     "sect_or_affiliation": "Pharmacology / BNF 85",
     "summary": "Midazolam, sold under the brand name Versed among others, is a benzodiazepine medication used for anesthesia, premedication before surgical anesthesia, and procedural sedation, and to treat severe agitation.",
     "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Midazolam.svg/500px-Midazolam.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-    "bnf_dosage": "Status epilepticus | Febrile convulsions\n\n[BY BUCCAL ADMINISTRATION]\n• Child 1–2 months: 300 micrograms/kg (max. per dose 2.5 mg), then 300 micrograms/kg after 5–10 minutes\n(max. per dose 2.5 mg) if required\nUNLICENSED USE Unlicensed oromucosal formulations are\n• Child 3–11 months: 2.5 mg, then 2.5 mg after 5–10 minutes if required\nIn adults Oromucosal solution not licensed for use in adults\n• Child 1–4 years: 5 mg, then 5 mg after 5–10 minutes if required\nIn children Oromucosal solution not licensed for use in\n• Child 5–9 years: 7.5 mg, then 7.5 mg after 5–10 minutes if required\n• Child 10–17 years: 10 mg, then 10 mg after 5–10 minutes if required\n• Adult: 10 mg, then 10 mg after 5–10 minutes if required\nConscious sedation for procedures\n\n[BY SLOW INTRAVENOUS INJECTION]\n• Adult: Initially 2–2.5 mg, to be administered 5–10 minutes before procedure at a rate of approximately 2 mg/minute, increased in steps of 1 mg if required, usual total dose is 3.5–5 mg; maximum 7.5 mg per course\n• Elderly: Initially 0.5–1 mg, to be administered 5–10 minutes before procedure at a rate of approximately 2 mg/minute, increased in steps of 0.5–1 mg if required; maximum 3.5 mg per course\nSedative in combined anaesthesia\nINITIALLY BY INTRAVENOUS INJECTION\n• Adult: 30–100 micrograms/kg, repeated if necessary, alternatively (by continuous intravenous infusion)\n30–100 micrograms/kg/hour\n• Elderly: Lower doses needed\nPremedication\n\n[BY DEEP INTRAMUSCULAR INJECTION]",
+    "bnf_dosage": "Status epilepticus | Febrile convulsions\n\n[BY BUCCAL ADMINISTRATION]\n\u2022 Child 1\u20132 months: 300 micrograms/kg (max. per dose 2.5 mg), then 300 micrograms/kg after 5\u201310 minutes\n(max. per dose 2.5 mg) if required\nUNLICENSED USE Unlicensed oromucosal formulations are\n\u2022 Child 3\u201311 months: 2.5 mg, then 2.5 mg after 5\u201310 minutes if required\nIn adults Oromucosal solution not licensed for use in adults\n\u2022 Child 1\u20134 years: 5 mg, then 5 mg after 5\u201310 minutes if required\nIn children Oromucosal solution not licensed for use in\n\u2022 Child 5\u20139 years: 7.5 mg, then 7.5 mg after 5\u201310 minutes if required\n\u2022 Child 10\u201317 years: 10 mg, then 10 mg after 5\u201310 minutes if required\n\u2022 Adult: 10 mg, then 10 mg after 5\u201310 minutes if required\nConscious sedation for procedures\n\n[BY SLOW INTRAVENOUS INJECTION]\n\u2022 Adult: Initially 2\u20132.5 mg, to be administered 5\u201310 minutes before procedure at a rate of approximately 2 mg/minute, increased in steps of 1 mg if required, usual total dose is 3.5\u20135 mg; maximum 7.5 mg per course\n\u2022 Elderly: Initially 0.5\u20131 mg, to be administered 5\u201310 minutes before procedure at a rate of approximately 2 mg/minute, increased in steps of 0.5\u20131 mg if required; maximum 3.5 mg per course\nSedative in combined anaesthesia\nINITIALLY BY INTRAVENOUS INJECTION\n\u2022 Adult: 30\u2013100 micrograms/kg, repeated if necessary, alternatively (by continuous intravenous infusion)\n30\u2013100 micrograms/kg/hour\n\u2022 Elderly: Lower doses needed\nPremedication\n\n[BY DEEP INTRAMUSCULAR INJECTION]",
     "pinyin_or_chinese": "",
     "updated_at": "2026-10-13T14:39:06.381579+00:00"
   },
@@ -179,8 +175,7 @@
       "Suxamethonium chloride",
       "Sux",
       "Scoline",
-      "Sucostrin",
-      "RSI"
+      "Sucostrin"
     ],
     "sect_or_affiliation": "Neuromuscular blocking agents / Emergency Medicine",
     "summary": "Succinylcholine is a rapid-onset, short-acting depolarizing neuromuscular blocker frequently used in emergency medicine to facilitate rapid sequence intubation (RSI).",
@@ -189,7 +184,7 @@
     "pinyin_or_chinese": "",
     "affiliation": "Neuromuscular blocking agents / Emergency Medicine",
     "updated_at": "2026-10-13T14:42:02.276894+00:00",
-    "bnf_dosage": "Neuromuscular blockade (short duration) during surgery and intubation\n\n[BY INTRAVENOUS INJECTION]\n• Adult: 1–1.5 mg/kg\nUNLICENSED USE Doses of suxamethonium in BNF may differ from those in product literature."
+    "bnf_dosage": "Neuromuscular blockade (short duration) during surgery and intubation\n\n[BY INTRAVENOUS INJECTION]\n\u2022 Adult: 1\u20131.5 mg/kg\nUNLICENSED USE Doses of suxamethonium in BNF may differ from those in product literature."
   },
   {
     "id": "ketamine",
@@ -200,7 +195,7 @@
     "sect_or_affiliation": "Pharmacology / BNF 85",
     "summary": "Ketamine is a cyclohexanone-derived dissociative general anesthetic and NMDA receptor antagonist with analgesic and hallucinogenic properties, used medically for anesthesia, depression, and pain management.",
     "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Ketamine2DCSD.svg/500px-Ketamine2DCSD.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-    "bnf_dosage": "Induction and maintenance of anaesthesia for short procedures\n\n[BY INTRAMUSCULAR INJECTION]\nPATIENT AND CARER ADVICE\n• Adult: Initially 6.5–13 mg/kg, adjusted according to response, a dose of 10 mg/kg usually produces 12–25 minutes of surgical anaesthesia\n\n[BY INTRAVENOUS INJECTION]\n• Adult: Initially 1–4.5 mg/kg, adjusted according to response, to be administered over at least 60 seconds, a dose of 2 mg/kg usually produces 5–10 minutes of surgical anaesthesia\nDiagnostic manoeuvres and procedures not involving intense pain\n\n[BY INTRAMUSCULAR INJECTION]\n• Adult: Initially 4 mg/kg\n• Adult: Initially 0.5–2 mg/kg, using an infusion solution containing 1 mg/ml; maintenance 10–45 micrograms/kg/minute, adjusted according to response",
+    "bnf_dosage": "Induction and maintenance of anaesthesia for short procedures\n\n[BY INTRAMUSCULAR INJECTION]\nPATIENT AND CARER ADVICE\n\u2022 Adult: Initially 6.5\u201313 mg/kg, adjusted according to response, a dose of 10 mg/kg usually produces 12\u201325 minutes of surgical anaesthesia\n\n[BY INTRAVENOUS INJECTION]\n\u2022 Adult: Initially 1\u20134.5 mg/kg, adjusted according to response, to be administered over at least 60 seconds, a dose of 2 mg/kg usually produces 5\u201310 minutes of surgical anaesthesia\nDiagnostic manoeuvres and procedures not involving intense pain\n\n[BY INTRAMUSCULAR INJECTION]\n\u2022 Adult: Initially 4 mg/kg\n\u2022 Adult: Initially 0.5\u20132 mg/kg, using an infusion solution containing 1 mg/ml; maintenance 10\u201345 micrograms/kg/minute, adjusted according to response",
     "pinyin_or_chinese": "",
     "updated_at": "2026-10-13T14:48:16.690309+00:00"
   },
@@ -215,7 +210,7 @@
     "sect_or_affiliation": "Pharmacology / BNF 85",
     "summary": "Alprazolam, sold under the brand name Xanax among others, is a fast-acting, potent tranquilizer of moderate duration within the triazolobenzodiazepine group of chemicals called benzodiazepines.",
     "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Alprazolam_structure.svg/500px-Alprazolam_structure.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-    "bnf_dosage": "Short-term use in anxiety\n\n[BY MOUTH]\n• Adult: 250–500 micrograms 3 times a day, increased if necessary up to 3 mg daily, for debilitated patients, use elderly dose\n• Elderly: 250 micrograms 2–3 times a day, increased if necessary up to 3 mg daily",
+    "bnf_dosage": "Short-term use in anxiety\n\n[BY MOUTH]\n\u2022 Adult: 250\u2013500 micrograms 3 times a day, increased if necessary up to 3 mg daily, for debilitated patients, use elderly dose\n\u2022 Elderly: 250 micrograms 2\u20133 times a day, increased if necessary up to 3 mg daily",
     "pinyin_or_chinese": "",
     "updated_at": "2026-10-13T15:04:19.198324+00:00"
   },
@@ -233,8 +228,23 @@
     "sect_or_affiliation": "Pharmacology / BNF 85",
     "summary": "Rocuronium bromide (brand names Zemuron, Esmeron), also referred to as \"roc\", is an aminosteroid non-depolarizing neuromuscular blocker or muscle relaxant used in modern anaesthesia to facilitate tracheal intubation by providing skeletal muscle relaxation for surgery or mechanical ventilation.",
     "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Rocuronium.svg/500px-Rocuronium.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-    "bnf_dosage": "Neuromuscular blockade (intermediate duration) during surgery and intubation\nINITIALLY BY INTRAVENOUS INJECTION\n• Adult: Initially 600 micrograms/kg; (by intravenous injection) maintenance 150 micrograms/kg, alternatively (by intravenous infusion) maintenance 300–600 micrograms/kg/hour, adjusted according to response",
+    "bnf_dosage": "Neuromuscular blockade (intermediate duration) during surgery and intubation\nINITIALLY BY INTRAVENOUS INJECTION\n\u2022 Adult: Initially 600 micrograms/kg; (by intravenous injection) maintenance 150 micrograms/kg, alternatively (by intravenous infusion) maintenance 300\u2013600 micrograms/kg/hour, adjusted according to response",
     "pinyin_or_chinese": "",
     "updated_at": "2026-10-13T15:08:07.641344+00:00"
+  },
+  {
+    "id": "ett",
+    "name": "ETT",
+    "category": "Instrument / Device",
+    "aliases": [
+      "Endotracheal Tube"
+    ],
+    "affiliation": "Pharmacology / BNF 85",
+    "sect_or_affiliation": "Pharmacology / BNF 85",
+    "summary": "Ett or ETT may refer to:.",
+    "image_url": "",
+    "bnf_dosage": "Bladder instillation for the treatment of primary or recurrent bladder carcinoma and for the prevention of recurrence following transurethral resection\n\n[BY INTRAVESICAL INSTILLATION]\n\u2022 Adult: (consult product literature)",
+    "pinyin_or_chinese": "",
+    "updated_at": "2026-10-22T18:10:06.894664+00:00"
   }
 ]

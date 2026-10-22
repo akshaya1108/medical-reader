@@ -1054,22 +1054,41 @@ body.theme-dark .badge-category {
   display: none;
 }
 
-/* Lore Card Boxes on Shelves (Exact Desktop Web App Colors & Fonts) */
+/* Lore Card Boxes on Shelves (Exact Desktop Web App Colors & Fonts) - Static uniform size */
 .glossary-card-item {
-  flex: 0 0 250px;
+  flex: 0 0 260px;
+  width: 260px;
+  height: 230px;
+  max-height: 230px;
   scroll-snap-align: start;
   border-radius: 12px;
   padding: 14px 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-sm);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition: transform 0.12s ease;
+}
+
+.card-item-header {
+  flex-shrink: 0;
+}
+
+.card-item-body {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  margin-top: 6px;
+}
+
+.card-item-body::-webkit-scrollbar {
+  display: none;
 }
 
 .glossary-card-item:active {

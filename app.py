@@ -2450,7 +2450,9 @@ def norm_alias(s: str) -> str:
 GENERIC_ALIAS_IGNORE = {
     "location", "locations", "character", "characters", "weapon", "weapons",
     "item", "items", "clan", "clans", "sect", "sects", "concept", "concepts",
-    "lore", "cast", "all", "wiki", "novel", "realm", "place", "mountains", "mountain"
+    "lore", "cast", "all", "wiki", "novel", "realm", "place", "mountains", "mountain",
+    "rsi", "cpr", "iv", "im", "po", "pr", "icu", "ed", "er", "or", "stat", "dose",
+    "drug", "medication", "protocol", "intubation", "procedure", "syndrome", "treatment"
 }
 
 def find_matching_glossary_entry(glossary: list, query_name: str, incoming_item: dict = None) -> dict | None:
@@ -2532,10 +2534,8 @@ def merge_glossary_entry(existing: dict, incoming: dict, query_name: str = None,
     seen_lower = {norm_alias(a): a for a in merged_aliases if a}
     primary_name_norm = norm_alias(existing.get("name", ""))
 
-    # Candidate aliases to merge
+    # Candidate aliases to merge (only explicit incoming aliases, not query terms)
     candidates = []
-    if query_name and query_name.strip() and norm_alias(query_name) not in GENERIC_ALIAS_IGNORE:
-        candidates.append(query_name.strip())
     
     if incoming:
         inc_name = incoming.get("name", "").strip()

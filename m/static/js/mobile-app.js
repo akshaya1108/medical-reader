@@ -793,7 +793,7 @@ function renderGlossaryShelves() {
       const mentions = Number(char.mentions || char.mentions_count || char.mention_count || 0);
 
       let allAliases = Array.isArray(char.aliases) ? [...char.aliases] : [];
-      if (char.pinyin_or_chinese && !allAliases.some(a => (a || '').toLowerCase() === char.pinyin_or_chinese.toLowerCase())) {
+      if (isCurrentBookChinese() && char.pinyin_or_chinese && !char.pinyin_or_chinese.trim().startsWith('{') && !allAliases.some(a => (a || '').toLowerCase() === char.pinyin_or_chinese.toLowerCase())) {
         allAliases.push(char.pinyin_or_chinese);
       }
       const aliasesHtml = allAliases
@@ -802,7 +802,7 @@ function renderGlossaryShelves() {
 
       return `
         <div class="glossary-card-item cat-box-${catSlug}" data-char-name="${escapeHtml(char.name)}">
-          <div>
+          <div class="card-item-header">
             <div class="card-top-row">
               <span class="card-cat-badge ${badgeClass}">${escapeHtml(normCat)}</span>
               ${mentions > 0 ? `<span class="card-mentions has-mentions">${mentions.toLocaleString()} ${mentions === 1 ? 'mention' : 'mentions'}</span>` : ''}
@@ -810,19 +810,16 @@ function renderGlossaryShelves() {
             <h4 class="card-name">${escapeHtml(char.name)}</h4>
             ${affilText ? `<div class="card-affiliation">${escapeHtml(affilText)}</div>` : ''}
             ${aliasesHtml ? `<div class="card-aliases-row">${aliasesHtml}</div>` : ''}
-            ${char.image_url ? `
-              <div class="card-img-wrap" style="margin: 6px 0; text-align: center;">
-                <img src="${escapeHtml(char.image_url)}" alt="${escapeHtml(char.name)}" style="max-width: 100%; max-height: 100px; border-radius: 4px; object-fit: contain; background: #fff; border: 1px solid rgba(0,0,0,0.08); display: inline-block;">
+          </div>
+          <div class="card-item-body">
+            ${summaryText ? `<p class="card-summary" style="white-space: pre-line;">${escapeHtml(summaryText)}</p>` : ''}
+            ${(normCat === 'Drug' || char.category === 'Drug') && char.bnf_dosage ? `
+              <div class="card-bnf-badge" style="margin-top: 6px; padding: 4px 6px; background: rgba(59, 130, 246, 0.08); border-left: 2px solid #2563eb; border-radius: 4px; font-size: 0.72rem; line-height: 1.3;">
+                <span style="font-weight: 600; color: #1d4ed8;">📋 BNF 85:</span>
+                <div style="white-space: pre-line; max-height: 80px; overflow-y: auto;">${escapeHtml(char.bnf_dosage)}</div>
               </div>
             ` : ''}
           </div>
-          ${summaryText ? `<p class="card-summary" style="white-space: pre-line;">${escapeHtml(summaryText)}</p>` : ''}
-          ${(normCat === 'Drug' || char.category === 'Drug') && char.bnf_dosage ? `
-            <div class="card-bnf-badge" style="margin-top: 6px; padding: 4px 6px; background: rgba(59, 130, 246, 0.08); border-left: 2px solid #2563eb; border-radius: 4px; font-size: 0.72rem; line-height: 1.3;">
-              <span style="font-weight: 600; color: #1d4ed8;">📋 BNF 85:</span>
-              <div style="white-space: pre-line; max-height: 80px; overflow-y: auto;">${escapeHtml(char.bnf_dosage)}</div>
-            </div>
-          ` : ''}
         </div>
       `;
     }).join('');

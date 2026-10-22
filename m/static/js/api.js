@@ -711,14 +711,6 @@ export const api = {
 
     if (existing) {
       if (add) {
-        const isDiff = (existing.name || '').toLowerCase() !== lowerName;
-        if (isDiff) {
-          const arr = Array.isArray(existing.aliases) ? [...existing.aliases] : [];
-          if (!arr.some(a => (a || '').toLowerCase() === lowerName)) {
-            existing.aliases = [...arr, cleanName];
-            await this.saveGlossaryEntry(targetBookId, existing);
-          }
-        }
         return {
           found: true,
           already_existed: true,
@@ -786,7 +778,7 @@ Analyze "${cleanName}" in clinical medicine:
    - "name": Standard canonical medical name (e.g. "Tension Pneumothorax", "Ceftriaxone", "Glasgow Coma Scale", "Femoral Artery").
    - "category": One of "Anatomy", "Pathology / Disease", "Concept", "Instrument / Device", "Drug".
    - "pinyin_or_chinese": ""
-   - "aliases": Array of AKAs (Also Known As): Brand names, generic names, common medical abbreviations/acronyms, eponyms (always include "${cleanName}" if different from name).
+   - "aliases": Array of true AKAs (Also Known As) for the EXACT same entity (e.g. brand names, chemical names, direct abbreviations like "GCS" for Glasgow Coma Scale). STRICT RULE: Do NOT include procedures, protocols, indications, diseases, or related concepts as aliases (e.g. NEVER add "RSI" or "intubation" as an alias for a drug).
    - "affiliation": Associated organ system, drug class, or medical specialty (e.g. "Emergency Medicine / Pulmonology", "Third-generation Cephalosporin").
    - "summary": Exactly ONE concise sentence (1 line). A clear, punchy, high-yield clinical definition and primary indication or role. STRICT: Must be a single sentence.
    - "image_url": ${wikiData?.thumbnail?.source ? `"${wikiData.thumbnail.source}"` : '""'}
@@ -800,7 +792,7 @@ Return a JSON array with 1 object:
     "name": "Standard Name",
     "category": "Pathology / Disease",
     "pinyin_or_chinese": "",
-    "aliases": ["AKA 1", "${cleanName}"],
+    "aliases": ["True Alias 1", "True Alias 2"],
     "affiliation": "Organ System / Specialty",
     "summary": "One sentence high-yield clinical definition and indication.",
     "image_url": "${wikiData?.thumbnail?.source || ''}",
@@ -821,10 +813,6 @@ Return a JSON array with 1 object:
             );
 
             if (matchInGlossary) {
-              const curAliases = Array.isArray(matchInGlossary.aliases) ? matchInGlossary.aliases : [];
-              if (!curAliases.some(a => (a || '').toLowerCase() === lowerName)) {
-                matchInGlossary.aliases = [...curAliases, cleanName];
-              }
               if (raw.image_url && !matchInGlossary.image_url) {
                 matchInGlossary.image_url = raw.image_url;
               }
