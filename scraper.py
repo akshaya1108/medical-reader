@@ -102,35 +102,13 @@ def lookup_single_entity(query: str, novel_title: str = "", raw_text: str = "", 
     book_title = novel_title or "Medical Textbook"
 
     # 1. Instant check in local BNF 85 for drugs (< 5ms)
+    # 1. Check local BNF 85 for drugs (< 5ms)
+    bnf_dose_info = ""
     try:
         import bnf_engine
         bnf_res = bnf_engine.lookup_drug_bnf(q_clean)
         if bnf_res.get("found"):
-            drug_name = bnf_res.get("drug", q_clean)
-            dose_info = bnf_res.get("indications_and_dose", "")
-            first_dose_line = dose_info.split('\n')[0].strip() if dose_info else ""
-            
-            # Quick Wikipedia check for diagram & clean summary (< 0.4s)
-            wiki_extract, wiki_thumb, verified_title = fetch_wikipedia_content(q_clean)
-            summary_sent = ""
-            if wiki_extract:
-                summary_sent = wiki_extract.split('.')[0].strip() + '.'
-            if not summary_sent:
-                summary_sent = f"{drug_name}: indicated for {first_dose_line.lower()}." if first_dose_line else f"Pharmaceutical agent listed in BNF 85."
-
-            entry = {
-                "id": slugify(drug_name),
-                "name": drug_name,
-                "category": "Drug",
-                "aliases": [q_clean] if q_clean.lower() != drug_name.lower() else [],
-                "affiliation": "Pharmacology / BNF 85",
-                "sect_or_affiliation": "Pharmacology / BNF 85",
-                "summary": summary_sent,
-                "image_url": wiki_thumb or "",
-                "bnf_dosage": dose_info
-            }
-            clean_entry_for_novel(entry)
-            return [entry], "Matched from BNF 85"
+            bnf_dose_info = bnf_res.get("indications_and_dose", "")
     except Exception as e:
         print(f"Notice: BNF pre-check skipped: {e}")
 
@@ -206,6 +184,8 @@ Only return a valid JSON array.
                     for item in parsed:
                         if not item.get("id"):
                             item["id"] = slugify(item.get("name", q_clean))
+                        if bnf_dose_info and item.get("category") == "Drug" and not item.get("bnf_dosage"):
+                            item["bnf_dosage"] = bnf_dose_info
                         clean_entry_for_novel(item)
                         if not item.get("image_url") and wiki_thumb:
                             item["image_url"] = wiki_thumb
@@ -219,15 +199,24 @@ Only return a valid JSON array.
     if wiki_extract:
         clean_summary = wiki_first_sentence if len(wiki_first_sentence) > 15 else wiki_extract[:250].strip()
         entry_name = verified_title or q_clean
+        is_drug = bool(bnf_dose_info) or any(w in (wiki_extract or "").lower() for w in ["medication", "pharmaceutical", "drug", "dosage"])
+        found_aliases = [q_clean] if q_clean.lower() != entry_name.lower() else []
+        brand_match = re.search(r'sold under the (?:brand|trade) names?\s+([A-Za-z0-9\-\s]+?)(?:\s+among others|\s*,|\.|$)', wiki_extract, re.IGNORECASE)
+        if brand_match:
+            b_name = brand_match.group(1).strip()
+            if b_name and b_name.lower() not in [entry_name.lower(), q_clean.lower()]:
+                found_aliases.append(b_name)
+
         entry = {
             "id": slugify(entry_name),
             "name": entry_name,
-            "category": normalize_category(target_category or "Concept"),
-            "aliases": [q_clean] if q_clean.lower() != entry_name.lower() else [],
-            "affiliation": "Clinical Reference",
-            "sect_or_affiliation": "Clinical Reference",
+            "category": "Drug" if is_drug else normalize_category(target_category or "Concept"),
+            "aliases": found_aliases,
+            "affiliation": "Pharmacology / BNF 85" if is_drug else "Clinical Reference",
+            "sect_or_affiliation": "Pharmacology / BNF 85" if is_drug else "Clinical Reference",
             "summary": clean_summary,
-            "image_url": wiki_thumb or ""
+            "image_url": wiki_thumb or "",
+            "bnf_dosage": bnf_dose_info
         }
         clean_entry_for_novel(entry)
         return [entry], "Extracted from clinical reference"

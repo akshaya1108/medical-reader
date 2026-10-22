@@ -1,7 +1,7 @@
 {
-  "name": "My Library - Xianxia Reader",
-  "short_name": "Library",
-  "description": "Mobile reader and lore companion for translated Xianxia and Danmei web novels",
+  "name": "Medical Library & Reader",
+  "short_name": "MedReader",
+  "description": "Mobile medical textbook and pharmacology companion reader",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

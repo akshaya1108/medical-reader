@@ -41,8 +41,8 @@ os.makedirs(TRASH_CHAPTERS_DIR, exist_ok=True)
 os.makedirs(TRASH_BOOKS_DIR, exist_ok=True)
 
 
-SUPABASE_URL = "https://giqhugtncggxansflxaz.supabase.co"
-SUPABASE_KEY = "sb_publishable_qfLGtg3uwojI-ITrA_t2ig_Wc-MpjuJ"
+SUPABASE_URL = os.getenv("MEDICAL_SUPABASE_URL", "https://fvzgfmevitamzdnoyapy.supabase.co")
+SUPABASE_KEY = os.getenv("MEDICAL_SUPABASE_KEY", "sb_publishable_IXs71vd29omNELcA2y3dwQ_swGhi--9")
 
 def delete_glossary_from_supabase_sync(book_id, char_id=None, char_name=None):
     try:

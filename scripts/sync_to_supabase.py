@@ -8,8 +8,8 @@ import glob
 import time
 import requests
 
-SUPABASE_URL = "https://giqhugtncggxansflxaz.supabase.co"
-SUPABASE_KEY = "sb_publishable_qfLGtg3uwojI-ITrA_t2ig_Wc-MpjuJ"
+SUPABASE_URL = os.getenv("MEDICAL_SUPABASE_URL", "https://fvzgfmevitamzdnoyapy.supabase.co")
+SUPABASE_KEY = os.getenv("MEDICAL_SUPABASE_KEY", "sb_publishable_IXs71vd29omNELcA2y3dwQ_swGhi--9")
 
 HEADERS = {
     "apikey": SUPABASE_KEY,

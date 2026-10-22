@@ -6,8 +6,8 @@
 
 import { offlineDB } from './db.js';
 
-const SUPABASE_URL = 'https://giqhugtncggxansflxaz.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_qfLGtg3uwojI-ITrA_t2ig_Wc-MpjuJ';
+const SUPABASE_URL = (typeof localStorage !== 'undefined' && localStorage.getItem('medical_supabase_url')) || 'https://fvzgfmevitamzdnoyapy.supabase.co';
+const SUPABASE_KEY = (typeof localStorage !== 'undefined' && localStorage.getItem('medical_supabase_key')) || 'sb_publishable_IXs71vd29omNELcA2y3dwQ_swGhi--9';
 
 const HEADERS = {
   'apikey': SUPABASE_KEY,

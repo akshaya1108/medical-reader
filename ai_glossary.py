@@ -92,6 +92,43 @@ def is_chinese_novel(novel_title: str = "", genre: str = "") -> bool:
     """Retained for signature compatibility; always False in medical reader."""
     return False
 
+def extract_akas_from_text(text: str) -> List[str]:
+    """Extracts brand names, abbreviations, and AKAs from clinical/Wikipedia text."""
+    if not text:
+        return []
+    found = []
+    # 1. Parenthetical brand names: (brand names Zemuron, Esmeron)
+    m_paren = re.search(r'\((?:brand|trade) names?\s+([^,\.\(\)]+(?:,\s*[^,\.\(\)]+)*)\)', text, re.IGNORECASE)
+    if m_paren:
+        for b in m_paren.group(1).split(','):
+            b = b.strip()
+            if b and len(b) >= 2 and b not in found:
+                found.append(b)
+
+    # 2. "sold under the brand name Versed among others"
+    m1 = re.search(r'(?:sold under the\s+)?(?:brand|trade) names?\s+([^,\.\(\)]+?(?:\s*,\s*[^,\.\(\)]+?)*?)(?:\s+among others|\s*,\s*(?:among|and|is|which)|\.|\(|$)', text, re.IGNORECASE)
+    if m1:
+        raw_brands = m1.group(1).replace('among others', '').strip()
+        for b in raw_brands.split(','):
+            b = b.strip()
+            if b and len(b) >= 2 and b.lower() not in ['among others', 'others'] and b not in found:
+                found.append(b)
+
+    # 3. "also referred to as X" or "also known as X"
+    m2 = re.search(r'(?:also\s+)?(?:referred to as|known as|abbreviated as?|shortened to)\s+[\"\']?([^\"\'\.,\(\)]+)[\"\']?', text, re.IGNORECASE)
+    if m2:
+        val = m2.group(1).strip()
+        if val and len(val) >= 2 and val not in found:
+            found.append(val)
+
+    # 4. Acronyms in parentheses: (GCS), (EtCO2), (RSI)
+    m3 = re.findall(r'\(([A-Za-z0-9\-_]{2,10})\)', text)
+    for acr in m3:
+        if acr not in found and acr.lower() not in ['brand', 'trade']:
+            found.append(acr)
+
+    return found
+
 def clean_entry_for_novel(entry: dict, is_chinese: bool = False) -> dict:
     """Normalizes medical glossary entry fields."""
     if not entry.get("id"):
@@ -115,6 +152,13 @@ def clean_entry_for_novel(entry: dict, is_chinese: bool = False) -> dict:
             continue
         if a_strip not in filtered:
             filtered.append(a_strip)
+
+    # Automatically extract brand names and abbreviations from summary if not already present
+    summary_text = entry.get("summary", "")
+    for aka in extract_akas_from_text(summary_text):
+        if aka.lower() != name_lower and aka not in filtered:
+            filtered.append(aka)
+
     entry["aliases"] = filtered
     if "image_url" not in entry:
         entry["image_url"] = ""
