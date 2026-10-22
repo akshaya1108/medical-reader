@@ -26,7 +26,7 @@ const KNOWN_CLUSTERS = [
   ['the-fellowship-of-the-ring', 'the-two-towers', 'the-return-of-the-king']
 ];
 
-const GEMINI_API_KEY = (typeof localStorage !== 'undefined' && localStorage.getItem('xianxia_gemini_api_key')) ||
+const GEMINI_API_KEY = (typeof localStorage !== 'undefined' && (localStorage.getItem('medical_gemini_api_key') || localStorage.getItem('xianxia_gemini_api_key'))) ||
   atob('QVEuQWI4Uk42Sk11R1p3VHgzRTVWa3hwdlZMRlBhU0xzWk1zcEZldXlfSHR4aDZCei1xZWc=');
 const GEMINI_MODELS = [
   'gemini-3.1-flash-lite',
