@@ -69,9 +69,13 @@ def sync_books():
             "title": b.get("title", "Untitled"),
             "author": b.get("author", "Unknown"),
             "genre": b.get("genre", ""),
+            "color": b.get("color", "#647b9a"),
             "total_chapters": actual_ch_count or b.get("chapters_count") or b.get("total_chapters") or 0,
+            "chapters_count": actual_ch_count or b.get("chapters_count") or b.get("total_chapters") or 0,
             "word_count": b.get("total_words") or b.get("word_count") or 0,
+            "total_words": b.get("total_words") or b.get("word_count") or 0,
             "cover_image": b.get("cover") or b.get("cover_image") or "",
+            "cover": b.get("cover") or b.get("cover_image") or "",
             "last_read_chapter": b.get("last_read_chapter") or 1,
             "last_read_at": last_read_at,
             "bookmark": {
@@ -253,7 +257,8 @@ def sync_glossary(book_id):
             "aliases": aliases,
             "affiliation": item.get("affiliation") or item.get("sect_or_affiliation", ""),
             "sect_or_affiliation": item.get("sect_or_affiliation") or item.get("affiliation", ""),
-            "summary": item.get("summary", ""),
+            "summary": item.get("summary") or item.get("description", ""),
+            "description": item.get("summary") or item.get("description", ""),
             "mentions": int(item.get("mentions") or 0)
         }
         payload.append(row)
