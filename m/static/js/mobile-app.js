@@ -817,7 +817,7 @@ function renderGlossaryShelves() {
             ` : ''}
           </div>
           ${summaryText ? `<p class="card-summary" style="white-space: pre-line;">${escapeHtml(summaryText)}</p>` : ''}
-          ${char.category === 'Drug' && char.bnf_dosage ? `
+          ${(normCat === 'Drug' || char.category === 'Drug') && char.bnf_dosage ? `
             <div class="card-bnf-badge" style="margin-top: 6px; padding: 4px 6px; background: rgba(59, 130, 246, 0.08); border-left: 2px solid #2563eb; border-radius: 4px; font-size: 0.72rem; line-height: 1.3;">
               <span style="font-weight: 600; color: #1d4ed8;">📋 BNF 85:</span>
               <div style="white-space: pre-line; max-height: 80px; overflow-y: auto;">${escapeHtml(char.bnf_dosage)}</div>

@@ -1402,8 +1402,10 @@ function renderChapters() {
 
       card.innerHTML = `
         <div class="ch-card-header">
-          <span class="ch-pill-badge">CHAPTER ${ch.chapter_number}</span>
-          ${lastReadBadge}
+          <div class="ch-card-badges">
+            <span class="ch-pill-badge">CHAPTER ${ch.chapter_number}</span>
+            ${lastReadBadge}
+          </div>
           <h3 class="ch-card-title">${ch.title}</h3>
         </div>
         <div class="ch-card-meta">
@@ -2467,7 +2469,7 @@ function renderGlossary(filterText = null) {
       const mentions = getGlossaryMentionCount(char);
 
       card.innerHTML = `
-        <div>
+        <div class="glossary-card-header">
           <div class="glossary-card-top">
             <div class="glossary-card-title-group">
               <span class="glossary-char-name">${escapeHtml(char.name)}</span>
@@ -2479,16 +2481,18 @@ function renderGlossary(filterText = null) {
           </div>
           ${aff ? `<div class="glossary-char-sect">${escapeHtml(aff)}</div>` : ''}
           ${aliasesHtml ? `<div class="glossary-char-aliases">${aliasesHtml}</div>` : ''}
+        </div>
+        <div class="glossary-card-scroll-body">
           ${char.image_url ? `
-            <div class="glossary-card-img-wrap" style="margin: 8px 0;">
-              <img src="${escapeHtml(char.image_url)}" alt="${escapeHtml(char.name)}" style="max-width: 100%; max-height: 140px; border-radius: 6px; object-fit: contain; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); display: block;">
+            <div class="glossary-card-img-wrap" style="margin: 6px 0; text-align: center;">
+              <img src="${escapeHtml(char.image_url)}" alt="${escapeHtml(char.name)}" style="max-width: 100%; max-height: 120px; border-radius: 6px; object-fit: contain; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); display: inline-block;">
             </div>
           ` : ''}
           <div class="glossary-char-summary" style="white-space: pre-line;">${escapeHtml(char.summary || 'No summary')}</div>
-          ${char.category === 'Drug' && char.bnf_dosage ? `
+          ${(normCat === 'Drug' || char.category === 'Drug') && char.bnf_dosage ? `
             <div class="glossary-bnf-block" style="margin-top: 8px; padding: 6px 8px; background: rgba(59, 130, 246, 0.08); border-left: 3px solid #2563eb; border-radius: 4px; font-size: 0.8rem; line-height: 1.35;">
               <div style="font-weight: 600; font-size: 0.72rem; text-transform: uppercase; color: #1d4ed8; margin-bottom: 2px;">📋 BNF 85 Indications &amp; Dose</div>
-              <div style="white-space: pre-line; max-height: 140px; overflow-y: auto;">${escapeHtml(char.bnf_dosage)}</div>
+              <div style="white-space: pre-line;">${escapeHtml(char.bnf_dosage)}</div>
             </div>
           ` : ''}
         </div>
