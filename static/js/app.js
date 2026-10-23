@@ -1932,7 +1932,7 @@ function showCharacterTooltip(targetElement, char, triggerType) {
     elements.charHoverAliasesRow.style.display = 'none';
   }
 
-  if (char.image_url && elements.charHoverImageWrap && elements.charHoverImage) {
+  if (char.image_url && isImageAllowedCategory(char.category) && elements.charHoverImageWrap && elements.charHoverImage) {
     elements.charHoverImage.src = char.image_url;
     elements.charHoverImageWrap.style.display = 'block';
   } else if (elements.charHoverImageWrap) {
@@ -2204,6 +2204,11 @@ function normalizeCategory(cat) {
   if (!cat) return 'Concept';
   const key = String(cat).trim().toLowerCase();
   return CATEGORY_NORMALIZATION_MAP[key] || 'Concept';
+}
+
+function isImageAllowedCategory(cat) {
+  const norm = normalizeCategory(cat);
+  return ['Anatomy', 'Pathology / Disease', 'Instrument / Device'].includes(norm);
 }
 
 function getCategorySlug(category) {
@@ -2481,7 +2486,7 @@ function renderGlossary(filterText = null) {
           ${aliasesHtml ? `<div class="glossary-char-aliases">${aliasesHtml}</div>` : ''}
         </div>
         <div class="glossary-card-scroll-body">
-          ${char.image_url ? `
+          ${(char.image_url && isImageAllowedCategory(char.category)) ? `
             <div class="glossary-card-img-wrap" style="margin: 6px 0; text-align: center;">
               <img src="${escapeHtml(char.image_url)}" alt="${escapeHtml(char.name)}" style="max-width: 100%; max-height: 120px; border-radius: 6px; object-fit: contain; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); display: inline-block;">
             </div>
@@ -2588,15 +2593,16 @@ async function saveCharacterForm() {
   const imageUrlVal = elements.charFormImage ? elements.charFormImage.value.trim() : '';
   const bnfVal = elements.charFormBnf ? elements.charFormBnf.value.trim() : '';
 
+  const normCat = elements.charFormCategory ? normalizeCategory(elements.charFormCategory.value) : 'Concept';
   const payload = {
     id: elements.charFormId.value || undefined,
     name: name,
-    category: elements.charFormCategory ? normalizeCategory(elements.charFormCategory.value) : 'Concept',
+    category: normCat,
     pinyin_or_chinese: pinyinVal,
     aliases: aliases,
     affiliation: sectVal,
     sect_or_affiliation: sectVal,
-    image_url: imageUrlVal,
+    image_url: isImageAllowedCategory(normCat) ? imageUrlVal : '',
     summary: elements.charFormSummary.value.trim(),
     bnf_dosage: bnfVal
   };
@@ -3065,7 +3071,7 @@ function renderSearchResults(data, query, scope) {
             ${item.matched_alias ? `<span style="color: var(--color-gold); font-weight: 600;"> (Matched: "${escapeHtml(item.matched_alias)}")</span>` : ''}
           </div>
         ` : ''}
-        ${item.image_url ? `
+        ${(item.image_url && isImageAllowedCategory(item.category)) ? `
           <div class="search-lore-img-wrap" style="margin: 8px 0;">
             <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(item.name || '')}" style="max-width: 100%; max-height: 130px; border-radius: 6px; object-fit: contain; background: #fff; border: 1px solid rgba(0,0,0,0.08); display: block;">
           </div>
@@ -3259,7 +3265,7 @@ async function saveSearchLoreForm() {
     aliases: aliases,
     affiliation: sect,
     sect_or_affiliation: sect,
-    image_url: imageUrl,
+    image_url: isImageAllowedCategory(category) ? imageUrl : '',
     summary: summary,
     bnf_dosage: bnfVal
   };

@@ -35,10 +35,17 @@ const GEMINI_MODELS = [
   'gemini-2.5-flash-lite'
 ];
 
+export function isImageAllowedCategory(category) {
+  if (!category) return false;
+  const c = String(category).toLowerCase().trim();
+  if (c.includes('drug') || c.includes('concept') || c.includes('pharmacology')) return false;
+  return c.includes('anat') || c.includes('path') || c.includes('disease') || c.includes('instrument') || c.includes('device') || c.includes('item');
+}
+
 function sanitizeForSupabase(row) {
   let extraMeta = {};
   if (row.bnf_dosage) extraMeta.bnf_dosage = row.bnf_dosage;
-  if (row.image_url) extraMeta.image_url = row.image_url;
+  if (row.image_url && isImageAllowedCategory(row.category)) extraMeta.image_url = row.image_url;
   
   let pinyinVal = Object.keys(extraMeta).length > 0 
     ? JSON.stringify(extraMeta) 
@@ -64,7 +71,9 @@ function unpackSupabaseRow(row) {
     try {
       const extra = JSON.parse(row.pinyin_or_chinese);
       if (extra.bnf_dosage && !row.bnf_dosage) row.bnf_dosage = extra.bnf_dosage;
-      if (extra.image_url && !row.image_url) row.image_url = extra.image_url;
+      if (extra.image_url && !row.image_url && isImageAllowedCategory(row.category)) {
+        row.image_url = extra.image_url;
+      }
     } catch (_) {}
   }
   return row;
@@ -781,7 +790,7 @@ Analyze "${cleanName}" in clinical medicine:
    - "aliases": Array of true AKAs (Also Known As) for the EXACT same entity (e.g. brand names, chemical names, direct abbreviations like "GCS" for Glasgow Coma Scale). STRICT RULE: Do NOT include procedures, protocols, indications, diseases, or related concepts as aliases (e.g. NEVER add "RSI" or "intubation" as an alias for a drug).
    - "affiliation": Associated organ system, drug class, or medical specialty (e.g. "Emergency Medicine / Pulmonology", "Third-generation Cephalosporin").
    - "summary": Exactly ONE concise sentence (1 line). A clear, punchy, high-yield clinical definition and primary indication or role. STRICT: Must be a single sentence.
-   - "image_url": ${wikiData?.thumbnail?.source ? `"${wikiData.thumbnail.source}"` : '""'}
+   - "image_url": Only for "Anatomy", "Pathology / Disease", or "Instrument / Device" if a relevant diagram or photo exists. For "Drug" or "Concept", ALWAYS set to empty string "".
    - "bnf_dosage": For Drug entries, standard indications and adult dosage (or empty string if not a drug).
 
 ${wikiData?.extract ? `Reference text:\n${wikiData.extract}` : ''}
@@ -795,7 +804,7 @@ Return a JSON array with 1 object:
     "aliases": ["True Alias 1", "True Alias 2"],
     "affiliation": "Organ System / Specialty",
     "summary": "One sentence high-yield clinical definition and indication.",
-    "image_url": "${wikiData?.thumbnail?.source || ''}",
+    "image_url": "",
     "bnf_dosage": ""
   }
 ]
@@ -806,6 +815,10 @@ Return a JSON array with 1 object:
           const raw = dataArr[0];
           const standardName = (raw.name || cleanName).trim();
           if (standardName) {
+            const normCat = raw.category || 'Concept';
+            const imgAllowed = isImageAllowedCategory(normCat);
+            const candidateImg = imgAllowed ? (raw.image_url || wikiData?.thumbnail?.source || '') : '';
+
             // Check if AI resolved term to an existing character in glossary
             const matchInGlossary = entries.find(e =>
               (e.name || '').toLowerCase() === standardName.toLowerCase() ||
@@ -813,8 +826,8 @@ Return a JSON array with 1 object:
             );
 
             if (matchInGlossary) {
-              if (raw.image_url && !matchInGlossary.image_url) {
-                matchInGlossary.image_url = raw.image_url;
+              if (imgAllowed && candidateImg && !matchInGlossary.image_url) {
+                matchInGlossary.image_url = candidateImg;
               }
               if (raw.bnf_dosage && !matchInGlossary.bnf_dosage) {
                 matchInGlossary.bnf_dosage = raw.bnf_dosage;
@@ -831,21 +844,21 @@ Return a JSON array with 1 object:
             }
 
             // Brand new character / entity
-            const newAliases = Array.isArray(raw.aliases) ? [...raw.aliases] : [];
-            if (!newAliases.some(a => (a || '').toLowerCase() === lowerName) && lowerName !== standardName.toLowerCase()) {
-              newAliases.push(cleanName);
-            }
+            // Aliases must be verified AKAs from clinical AI, deduplicated
+            const newAliases = Array.isArray(raw.aliases)
+              ? raw.aliases.map(a => String(a || '').trim()).filter(a => a && a.toLowerCase() !== standardName.toLowerCase())
+              : [];
 
             const cleanId = standardName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `entity-${Date.now()}`;
             const newChar = {
               id: cleanId,
               name: standardName,
-              category: raw.category || 'Concept',
+              category: normCat,
               affiliation: raw.affiliation || raw.sect_or_affiliation || '',
               sect_or_affiliation: raw.affiliation || raw.sect_or_affiliation || '',
               pinyin_or_chinese: '',
               aliases: newAliases,
-              image_url: raw.image_url || wikiData?.thumbnail?.source || '',
+              image_url: imgAllowed ? candidateImg : '',
               summary: raw.summary || '',
               bnf_dosage: raw.bnf_dosage || '',
               mentions: 0
@@ -872,15 +885,16 @@ Return a JSON array with 1 object:
         const firstSentence = wikiData.extract.split('.')[0].trim() + '.';
         const isDrug = /medication|drug|pharmaceutical|indicated for|dosage|antagonist|agonist/i.test(wikiData.extract);
         const cleanId = stdName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `entity-${Date.now()}`;
+        const fallbackCat = isDrug ? 'Drug' : 'Concept';
         const fallbackChar = {
           id: cleanId,
           name: stdName,
-          category: isDrug ? 'Drug' : 'Concept',
+          category: fallbackCat,
           affiliation: isDrug ? 'Pharmacology' : 'Clinical Medicine',
           sect_or_affiliation: isDrug ? 'Pharmacology' : 'Clinical Medicine',
           pinyin_or_chinese: '',
-          aliases: stdName.toLowerCase() !== lowerName ? [cleanName] : [],
-          image_url: wikiData.thumbnail?.source || '',
+          aliases: [],
+          image_url: isImageAllowedCategory(fallbackCat) ? (wikiData.thumbnail?.source || '') : '',
           summary: firstSentence,
           bnf_dosage: '',
           mentions: 0

@@ -681,7 +681,9 @@ def load_glossary(book_id, sync_remote=True):
                     if extra_meta.get("bnf_dosage") and not entry.get("bnf_dosage"):
                         entry["bnf_dosage"] = extra_meta["bnf_dosage"]
                     if extra_meta.get("image_url") and not entry.get("image_url"):
-                        entry["image_url"] = extra_meta["image_url"]
+                        norm_c = normalize_category(entry.get("category", "Concept"))
+                        if norm_c in ["Anatomy", "Pathology / Disease", "Instrument / Device"]:
+                            entry["image_url"] = extra_meta["image_url"]
             except Exception:
                 pass
 
@@ -696,9 +698,6 @@ def load_glossary(book_id, sync_remote=True):
                     aliases.append(pinyin)
                 entry["aliases"] = aliases
     return data
-
-SUPABASE_URL = "https://giqhugtncggxansflxaz.supabase.co"
-SUPABASE_KEY = "sb_publishable_qfLGtg3uwojI-ITrA_t2ig_Wc-MpjuJ"
 
 def push_glossary_to_supabase_async(book_id, entries):
     import threading
@@ -731,9 +730,10 @@ def push_glossary_to_supabase_async(book_id, entries):
                 if isinstance(aliases, str):
                     aliases = [a.strip() for a in aliases.split(",") if a.strip()]
                 extra_meta = {}
+                norm_c = normalize_category(item.get("category", "Concept"))
                 if item.get("bnf_dosage"):
                     extra_meta["bnf_dosage"] = item["bnf_dosage"]
-                if item.get("image_url"):
+                if item.get("image_url") and norm_c in ["Anatomy", "Pathology / Disease", "Instrument / Device"]:
                     extra_meta["image_url"] = item["image_url"]
                 pinyin_val = json.dumps(extra_meta) if extra_meta else (item.get("pinyin_or_chinese", "") or "")
                 payload.append({
@@ -2628,14 +2628,15 @@ def add_or_update_character(book_id):
 
     if target_existing:
         target_existing["name"] = name
-        target_existing["category"] = normalize_category(data.get("category", target_existing.get("category", "Concept")))
+        norm_cat = normalize_category(data.get("category", target_existing.get("category", "Concept")))
+        target_existing["category"] = norm_cat
         if "pinyin_or_chinese" in data:
             target_existing["pinyin_or_chinese"] = data.get("pinyin_or_chinese", "")
         target_existing["aliases"] = aliases
         target_existing["affiliation"] = affiliation
         target_existing["sect_or_affiliation"] = affiliation
         if "image_url" in data:
-            target_existing["image_url"] = (data.get("image_url") or "").strip()
+            target_existing["image_url"] = (data.get("image_url") or "").strip() if norm_cat in ["Anatomy", "Pathology / Disease", "Instrument / Device"] else ""
         if "summary" in data:
             target_existing["summary"] = data.get("summary", "")
         if "bnf_dosage" in data:
@@ -2652,15 +2653,16 @@ def add_or_update_character(book_id):
         save_glossary(book_id, glossary)
         return jsonify({"success": True, "glossary": glossary})
 
+    norm_cat = normalize_category(data.get("category", "Concept"))
     new_char = {
         "id": slugify(name),
         "name": name,
-        "category": normalize_category(data.get("category", "Concept")),
+        "category": norm_cat,
         "pinyin_or_chinese": data.get("pinyin_or_chinese", ""),
         "aliases": aliases,
         "affiliation": affiliation,
         "sect_or_affiliation": affiliation,
-        "image_url": (data.get("image_url") or "").strip(),
+        "image_url": (data.get("image_url") or "").strip() if norm_cat in ["Anatomy", "Pathology / Disease", "Instrument / Device"] else "",
         "summary": data.get("summary", ""),
         "bnf_dosage": data.get("bnf_dosage", ""),
         "created_at": now_iso,

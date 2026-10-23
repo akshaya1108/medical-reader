@@ -19,3 +19,7 @@ scratch_chrome/
 
 # System logs
 *.log
+
+# Backups & Temp data
+data/glossary/backups/
+*.bak

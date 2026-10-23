@@ -25,6 +25,11 @@ function normalizeCategory(raw) {
   return 'Concept';
 }
 
+function isImageAllowedCategory(raw) {
+  const norm = normalizeCategory(raw);
+  return ['Anatomy', 'Pathology / Disease', 'Instrument / Device'].includes(norm);
+}
+
 function getCategorySlug(category) {
   const norm = normalizeCategory(category);
   const found = CATEGORIES.find(cfg => cfg.key === norm);
@@ -1643,7 +1648,7 @@ function openLoreSheet(charName, asCenteredModal = false) {
     </div>
     ${affil ? `<div class="lore-card-affiliation">${escapeHtml(affil)}</div>` : ''}
     ${aliasesHtml ? `<div class="lore-card-aliases"><span class="lore-card-aliases-label">AKA:</span> <div class="card-aliases-row" style="margin-top: 4px;">${aliasesHtml}</div></div>` : ''}
-    ${entry.image_url ? `
+    ${(entry.image_url && isImageAllowedCategory(normCat)) ? `
       <div class="lore-card-img-wrap" style="margin: 10px 0; text-align: center;">
         <img src="${escapeHtml(entry.image_url)}" alt="${escapeHtml(entry.name || charName)}" style="max-width: 100%; max-height: 180px; border-radius: 6px; object-fit: contain; background: #fff; border: 1px solid rgba(0,0,0,0.08); display: inline-block;">
       </div>
@@ -2809,12 +2814,13 @@ function setupEditLoreSheet() {
 
       const bnfDosage = document.getElementById('edit-lore-bnf')?.value.trim() || '';
 
+      const normCat = normalizeCategory(category);
       const entry = {
         name,
-        category: normalizeCategory(category),
+        category: normCat,
         affiliation,
         aliases,
-        image_url: imageUrl,
+        image_url: isImageAllowedCategory(normCat) ? imageUrl : '',
         summary,
         bnf_dosage: bnfDosage
       };

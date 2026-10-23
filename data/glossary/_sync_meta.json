@@ -11,20 +11,23 @@
   },
   "last_synced_ids": {
     "tintinalli-s-emergency-medicine-manual-1": [
-      "propofol",
-      "etomidate",
+      "vallecula",
       "hyperkalemia",
-      "end-tidal-co2",
-      "midazolam",
-      "succinylcholine",
-      "rapid-sequence-intubation",
-      "alprazolam",
       "glasgow-coma-scale",
-      "orotracheal-intubation",
-      "ketamine",
+      "etomidate",
+      "fentanyl",
+      "propofol",
+      "end-tidal-co2",
       "macintosh-blade",
+      "midazolam",
       "preoxygenation",
-      "vallecula"
+      "succinylcholine",
+      "alprazolam",
+      "ett",
+      "rapid-sequence-intubation",
+      "ketamine",
+      "orotracheal-intubation",
+      "rocuronium-bromide"
     ],
     "charlie-and-the-chocolate-factory": [],
     "bailey-love-s-short-practice-of-surgery-chapter-1": []
