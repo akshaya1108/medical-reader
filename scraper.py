@@ -201,6 +201,8 @@ Only return a valid JSON array.
                                                 break
                                 except Exception as e:
                                     print(f"Notice: BNF lookup error for {c_name}: {e}")
+                            if not item.get("bnf_dosage"):
+                                item["bnf_dosage"] = "Unavailable"
                         clean_entry_for_novel(item)
                         if not item.get("image_url") and wiki_thumb:
                             item["image_url"] = wiki_thumb
@@ -231,7 +233,7 @@ Only return a valid JSON array.
             "sect_or_affiliation": "Pharmacology / BNF 85" if is_drug else "Clinical Reference",
             "summary": clean_summary,
             "image_url": wiki_thumb or "",
-            "bnf_dosage": bnf_dose_info
+            "bnf_dosage": bnf_dose_info if (is_drug and bnf_dose_info) else ("Unavailable" if is_drug else "")
         }
         clean_entry_for_novel(entry)
         return [entry], "Extracted from clinical reference"

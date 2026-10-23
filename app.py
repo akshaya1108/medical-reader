@@ -2671,8 +2671,10 @@ def add_or_update_character(book_id):
                 b_res = bnf_engine.lookup_drug_bnf(name)
                 if b_res.get("found"):
                     target_existing["bnf_dosage"] = b_res.get("indications_and_dose", "")
+                else:
+                    target_existing["bnf_dosage"] = "Unavailable"
             except Exception:
-                pass
+                target_existing["bnf_dosage"] = "Unavailable"
         target_existing["updated_at"] = now_iso
         save_glossary(book_id, glossary)
         return jsonify({"success": True, "glossary": glossary})
@@ -2698,8 +2700,10 @@ def add_or_update_character(book_id):
             b_res = bnf_engine.lookup_drug_bnf(name)
             if b_res.get("found"):
                 new_char["bnf_dosage"] = b_res.get("indications_and_dose", "")
+            else:
+                new_char["bnf_dosage"] = "Unavailable"
         except Exception:
-            pass
+            new_char["bnf_dosage"] = "Unavailable"
     glossary.append(new_char)
     save_glossary(book_id, glossary)
     return jsonify({"success": True, "glossary": glossary})

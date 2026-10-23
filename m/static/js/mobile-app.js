@@ -4,7 +4,7 @@
  * reliable paragraph bookmarking, and complete glossary management.
  */
 
-import { api } from './api.js?v=49';
+import { api, lookupBnfDosage } from './api.js?v=56';
 
 // --- Category Display Configuration ---
 const CATEGORIES = [
@@ -91,6 +91,9 @@ function escapeHtml(str) {
 
 function formatBnfDosage(rawText) {
   if (!rawText) return '';
+  if (rawText.trim().toLowerCase() === 'unavailable') {
+    return `<div class="bnf-dosage-container"><div class="bnf-unavailable-note" style="color: var(--text-muted, #8e8e93); font-style: italic; padding: 4px 0;">Unavailable in BNF 85</div></div>`;
+  }
   const lines = rawText.split('\n').map(l => l.trim()).filter(Boolean);
   const normalized = [];
 
@@ -2707,6 +2710,8 @@ function setupEditLoreSheet() {
     btnBnfFill.addEventListener('click', async () => {
       const nameInput = document.getElementById('edit-lore-name');
       const bnfInput = document.getElementById('edit-lore-bnf');
+      const catInput = document.getElementById('edit-lore-category');
+      const aliasesInput = document.getElementById('edit-lore-aliases');
       const drugName = nameInput ? nameInput.value.trim() : '';
       if (!drugName) {
         showToast('Please enter a drug name first');
@@ -2715,15 +2720,44 @@ function setupEditLoreSheet() {
       btnBnfFill.disabled = true;
       btnBnfFill.textContent = 'Looking up...';
       try {
-        const res = await fetch(`/api/lookup-bnf?drug=${encodeURIComponent(drugName)}`);
-        const data = await res.json();
-        if (data.success && data.data && data.data.found) {
-          if (bnfInput) bnfInput.value = data.data.indications_and_dose || '';
+        // Collect primary name and all aliases (from tag manager if active, or input)
+        let aliasesArr = [];
+        if (mobileAliasTagManager && typeof mobileAliasTagManager.getAliases === 'function') {
+          aliasesArr = mobileAliasTagManager.getAliases();
+        } else if (aliasesInput && aliasesInput.value) {
+          aliasesArr = aliasesInput.value.split(',').map(a => a.trim()).filter(Boolean);
+        }
+
+        // 1. Fast offline client-side lookup from bnf_drugs.json
+        let dose = await lookupBnfDosage(drugName, aliasesArr);
+
+        // 2. Fallback to server endpoint if online / local Flask
+        if (!dose) {
+          try {
+            const res = await fetch(`/api/lookup-bnf?drug=${encodeURIComponent(drugName)}`);
+            if (res.ok) {
+              const data = await res.json();
+              if (data.success && data.data && data.data.found) {
+                dose = data.data.indications_and_dose || '';
+              }
+            }
+          } catch (_) {}
+        }
+
+        const isDrug = catInput && normalizeCategory(catInput.value) === 'Drug';
+        if (dose) {
+          if (bnfInput) bnfInput.value = dose;
           showToast(`Found in BNF 85!`);
         } else {
-          showToast(data.data?.error || 'Drug not found in BNF 85');
+          if (isDrug && bnfInput) {
+            bnfInput.value = 'Unavailable';
+            showToast('Drug not found in BNF 85 (set to Unavailable)');
+          } else {
+            showToast('Drug not found in BNF 85');
+          }
         }
       } catch (err) {
+        console.error('BNF fetch error:', err);
         showToast('Failed to query BNF 85');
       } finally {
         btnBnfFill.disabled = false;
@@ -2774,7 +2808,8 @@ function setupEditLoreSheet() {
         const res = await api.lookupCharacter(state.activeBookId, name, false);
         if (res && res.character) {
           const c = res.character;
-          if (c.category) document.getElementById('edit-lore-category').value = normalizeCategory(c.category);
+          const normCat = c.category ? normalizeCategory(c.category) : 'Concept';
+          if (c.category) document.getElementById('edit-lore-category').value = normCat;
           if (c.affiliation) document.getElementById('edit-lore-affiliation').value = c.affiliation;
 
           const aliasesArr = Array.isArray(c.aliases) ? [...c.aliases] : (c.aliases ? [c.aliases] : []);
@@ -2790,6 +2825,19 @@ function setupEditLoreSheet() {
           if (c.image_url && isImageAllowedCategory(c.category)) {
             const imgInput = document.getElementById('edit-lore-image');
             if (imgInput) imgInput.value = c.image_url;
+          }
+          
+          const bnfInput = document.getElementById('edit-lore-bnf');
+          if (bnfInput) {
+            if (normCat === 'Drug') {
+              let dose = c.bnf_dosage;
+              if (!dose || dose === 'Unavailable') {
+                dose = await lookupBnfDosage(c.name || name, aliasesArr) || 'Unavailable';
+              }
+              bnfInput.value = dose;
+            } else {
+              bnfInput.value = '';
+            }
           }
           showToast(`Autofilled details for "${name}"`);
         } else {

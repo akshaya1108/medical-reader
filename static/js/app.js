@@ -298,6 +298,9 @@ function escapeHtml(str) {
 
 function formatBnfDosage(rawText) {
   if (!rawText) return '';
+  if (rawText.trim().toLowerCase() === 'unavailable') {
+    return `<div class="bnf-dosage-container"><div class="bnf-unavailable-note" style="color: var(--text-muted, #8e8e93); font-style: italic; padding: 4px 0;">Unavailable in BNF 85</div></div>`;
+  }
   const lines = rawText.split('\n').map(l => l.trim()).filter(Boolean);
   const normalized = [];
 
@@ -2799,17 +2802,49 @@ async function fetchBnfForForm(nameInput, bnfTextarea, btn) {
     showToast('Please enter a drug name first');
     return;
   }
+
+  // Find aliases and category from the active form
+  let aliases = [];
+  const form = nameInput.closest('form') || nameInput.closest('.modal-card') || nameInput.closest('.reader-search-drawer') || document;
+  const aliasInput = form.querySelector('#char-form-aliases, #search-lore-aliases');
+  if (aliasInput && aliasInput.value) {
+    aliases = aliasInput.value.split(',').map(a => a.trim()).filter(Boolean);
+  }
+  const catInput = form.querySelector('#char-form-category, #search-lore-category');
+  const isDrug = catInput && normalizeCategory(catInput.value) === 'Drug';
+
   const oldText = btn.innerHTML;
   btn.disabled = true;
   btn.innerHTML = '<span>Looking up BNF 85...</span>';
   try {
+    let foundDose = '';
     const res = await fetch(`/api/lookup-bnf?drug=${encodeURIComponent(drugName)}`);
     const data = await res.json();
     if (data.success && data.data && data.data.found) {
-      if (bnfTextarea) bnfTextarea.value = data.data.indications_and_dose || '';
-      showToast(`Found in BNF 85 (p. ${data.data.pdf_page})!`);
+      foundDose = data.data.indications_and_dose || '';
     } else {
-      showToast(data.data?.error || 'Drug not found in BNF 85');
+      for (const al of aliases) {
+        try {
+          const aRes = await fetch(`/api/lookup-bnf?drug=${encodeURIComponent(al)}`);
+          const aData = await aRes.json();
+          if (aData.success && aData.data && aData.data.found) {
+            foundDose = aData.data.indications_and_dose || '';
+            break;
+          }
+        } catch (_) {}
+      }
+    }
+
+    if (foundDose) {
+      if (bnfTextarea) bnfTextarea.value = foundDose;
+      showToast(`Found in BNF 85!`);
+    } else {
+      if (isDrug && bnfTextarea) {
+        bnfTextarea.value = 'Unavailable';
+        showToast('Drug not found in BNF 85 (set to Unavailable)');
+      } else {
+        showToast('Drug not found in BNF 85');
+      }
     }
   } catch (err) {
     showToast('Failed to query BNF 85');

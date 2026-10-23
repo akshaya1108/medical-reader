@@ -936,6 +936,9 @@ Return a JSON array with 1 object:
               if (!verifiedBnfDosage && standardName.toLowerCase() !== cleanName.toLowerCase()) {
                 verifiedBnfDosage = await lookupBnfDosage(cleanName);
               }
+              if (!verifiedBnfDosage) {
+                verifiedBnfDosage = 'Unavailable';
+              }
             }
 
             // Check if AI resolved term to an existing character in glossary
@@ -1011,6 +1014,9 @@ Return a JSON array with 1 object:
           fallbackBnf = await lookupBnfDosage(stdName);
           if (!fallbackBnf && stdName.toLowerCase() !== cleanName.toLowerCase()) {
             fallbackBnf = await lookupBnfDosage(cleanName);
+          }
+          if (!fallbackBnf) {
+            fallbackBnf = 'Unavailable';
           }
         }
         const fallbackChar = {
@@ -1383,7 +1389,9 @@ Return a JSON array with 1 object:
         lastSync: lastSyncTimestamp
       };
     }
-  }
+  },
+
+  lookupBnfDosage: lookupBnfDosage
 };
 
 // Auto flush queue when phone reconnects to internet

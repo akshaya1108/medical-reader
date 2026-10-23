@@ -480,5 +480,72 @@
     "bnf_dosage": "Cardiopulmonary resuscitation (as an alternative if amiodarone is not available)\n\n[BY INTRAVENOUS INJECTION]\n• Adult: 1 mg/kg, do not exceed 3 mg/kg over the ﬁrst hour\n\nVentricular arrhythmias, especially after myocardial infarction in patients without gross circulatory impairment\n\n[INITIALLY BY INTRAVENOUS INJECTION]\n• Adult: 100 mg, to be given as a bolus dose over a few minutes, followed immediately by (by intravenous infusion) 4 mg/minute for 30 minutes, then (by intravenous infusion) 2 mg/minute for 2 hours, then (by intravenous infusion) 1 mg/minute, reduce concentration further if infusion continued beyond 24 hours (ECG monitoring and specialist advice for infusion), following intravenous injection lidocaine has a short duration of action (lasting for 15–20 minutes). If an intravenous infusion is not immediately available the initial intravenous injection of 100 mg can be repeated if necessary once or twice at intervals of not less than 10 minutes\n\nVentricular arrhythmias, especially after myocardial infarction in lighter patients or those whose circulation is severely impaired\n\n[INITIALLY BY INTRAVENOUS INJECTION]\n• Adult: Initially 50 mg, to be given as a bolus dose over a few minutes, followed immediately by (by intravenous infusion) 4 mg/minute for 30 minutes, then (by intravenous infusion) 2 mg/minute for 2 hours, then (by intravenous infusion) 1 mg/minute, reduce concentration further if infusion continued beyond 24 hours (ECG monitoring and specialist advice for infusion), following intravenous injection lidocaine has a short duration of action (lasting for 15–20 minutes). If an intravenous infusion is not immediately available the initial intravenous injection of 50 mg can be repeated if necessary once or twice at intervals of not less than 10 minutes\n\nDental practice\n\n[BY BUCCAL ADMINISTRATION USING OINTMENT]\n• Adult: Rub gently into dry gum\n\nRelief of pain in oral lesions\n\n[TO THE LESION USING OINTMENT]\n• Adult: Apply as required, rub sparingly and gently on affected areas\n\n[XYLOCAINE ®] Bronchoscopy | Laryngoscopy | Oesophagoscopy | Endotracheal intubation\n\n[TO MUCOUS MEMBRANES]\n• Adult: Up to 20 doses\n\n[XYLOCAINE ®] Dental practice\n\n[TO MUCOUS MEMBRANES]\n• Adult: 1–5 doses\n\n[XYLOCAINE ®] Maxillary sinus puncture\n\n[TO MUCOUS MEMBRANES]\n• Adult: 3 doses\n\n[XYLOCAINE ®] Relief of pain in oral lesions\n\n[TO THE LESION]\n• Adult: Apply thinly to the ulcer using a cotton bud\n\nInfiltration anaesthesia\n\n[BY LOCAL INFILTRATION]\n• Adult: Dose to be given according to patient’s weight and nature of procedure; max. 200 mg, maximum dose 500 mg if given in solutions containing adrenaline\n\nDoses At Extremes Of Body-Weight\n\nWhen used by local infiltration To avoid excessive dosage in obese patients, weight-based doses for non-emergency indications may need to be calculated on the basis of ideal body-weight.\n\nIntravenous regional anaesthesia and nerve block\n\n[BY REGIONAL ADMINISTRATION]\n• Adult: Seek expert advice\n\nPain relief (in anal fissures, haemorrhoids, pruritus ani, pruritus vulvae, herpes zoster, or herpes labialis) | Lubricant in cystoscopy | Lubricant in proctoscopy\n\n[TO THE SKIN USING OINTMENT]\n• Adult: Apply 1–2 mL as required, avoid long-term use\n\nSore nipples from breast-feeding\n\n[TO THE SKIN USING OINTMENT]\n• Adult: Apply using gauze and wash off immediately before next feed\n\n[LMX 4 ®] Anaesthesia before venous cannulation or venepuncture\n\n[TO THE SKIN]\n• Child 1–2 months: Apply up to 1 g, apply thick layer to small area (2.5 cm 6 2.5 cm) of non-irritated skin at least 30 minutes before procedure; may be applied under an occlusive dressing; max. application time 60 minutes, remove cream with gauze and perform procedure after approximately 5 minutes\n• Child 3–11 months: Apply up to 1 g, apply thick layer to small area (2.5 cm 6 2.5 cm) of non-irritated skin at least 30 minutes before procedure; may be applied under an occlusive dressing; max. application time 4 hours, remove cream with gauze and perform procedure after approximately 5 minutes\n• Child 1–17 years: Apply 1–2.5 g, apply thick layer to small area (2.5 cm 6 2.5 cm) of non-irritated skin at least 30 minutes before procedure; may be applied under an occlusive dressing; max. application time 5 hours, remove cream with gauze and perform procedure after approximately 5 minutes\n• Adult: Apply 1–2.5 g, apply thick layer to small area (2.5 cm 6 2.5 cm) of non-irritated skin at least 30 minutes before procedure; may be applied under an occlusive dressing; max. application time 5 hours, remove cream with gauze and perform procedure after approximately 5 minutes\n\n[VERSATIS ®] Postherpetic neuralgia\n\n[TO THE SKIN]\n• Adult: Apply once daily for up to 12 hours, followed by a 12-hour plaster-free period; discontinue if no response after 4 weeks, to be applied to intact, dry, non-hairy, non-irritated skin, up to 3 plasters may be used to cover large areas; plasters may be cut\n\n[XYLOCAINE ®] During delivery in obstetrics\n\n[TO THE SKIN]\n• Adult: Up to 20 doses",
     "pinyin_or_chinese": "",
     "updated_at": "2026-10-23T18:57:36.326577+00:00"
+  },
+  {
+    "id": "supraventricular-tachycardia",
+    "name": "Supraventricular Tachycardia",
+    "category": "Pathology / Disease",
+    "pinyin_or_chinese": "{\"image_url\":\"https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/SVT_Lead_II-2.JPG/500px-SVT_Lead_II-2.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail\"}",
+    "aliases": [
+      "SVT"
+    ],
+    "affiliation": "Cardiology / Emergency Medicine",
+    "sect_or_affiliation": "Cardiology / Emergency Medicine",
+    "summary": "Supraventricular tachycardia is an umbrella term for rapid heart rhythms originating from above the ventricles, typically managed with vagal maneuvers, adenosine, or rate-control medications in the emergency setting.",
+    "updated_at": "2026-10-24T01:06:45.386967"
+  },
+  {
+    "id": "his-bundle",
+    "name": "His Bundle",
+    "category": "Anatomy",
+    "pinyin_or_chinese": "{\"image_url\":\"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/ConductionsystemoftheheartwithouttheHeart-en.svg/500px-ConductionsystemoftheheartwithouttheHeart-en.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail\"}",
+    "aliases": [
+      "Bundle of His",
+      "BH",
+      "HB"
+    ],
+    "affiliation": "Cardiology / Electrophysiology",
+    "sect_or_affiliation": "Cardiology / Electrophysiology",
+    "summary": "The His bundle is a specialized collection of heart muscle cells that transmits electrical impulses from the atrioventricular node down to the bundle branches to coordinate ventricular contraction.",
+    "updated_at": "2026-10-24T01:06:45.386967"
+  },
+  {
+    "id": "digoxin-toxicity",
+    "name": "Digoxin Toxicity",
+    "category": "Pathology / Disease",
+    "pinyin_or_chinese": "{\"image_url\":\"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Digitalis_purpurea_Koehler_drawing.jpg/500px-Digitalis_purpurea_Koehler_drawing.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail\"}",
+    "aliases": [
+      "Digoxin Poisoning",
+      "Digitalis Toxicity"
+    ],
+    "affiliation": "Emergency Medicine / Toxicology",
+    "sect_or_affiliation": "Emergency Medicine / Toxicology",
+    "summary": "Digoxin toxicity is a potentially life-threatening adverse condition caused by acute or chronic overdose of cardiac glycosides, characterized by gastrointestinal symptoms, visual disturbances, and diverse cardiac arrhythmias managed with specific antibody fragments.",
+    "updated_at": "2026-10-24T01:06:45.386967"
+  },
+  {
+    "id": "dobutamine",
+    "name": "Dobutamine",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"Inotropic support in infarction, cardiac surgery, cardiomyopathies, septic shock, cardiogenic shock, and during positive end expiratory pressure ventilation\\n\\n[BY INTRAVENOUS INFUSION]\\n• Adult: Usual dose 2.5–10 micrograms/kg/minute, adjusted according to response, alternatively 0.5–40 micrograms/kg/minute\\n\\nCardiac stress testing\\n\\n[BY INTRAVENOUS INFUSION]\\n• Adult: (consult product literature)\"}",
+    "aliases": [],
+    "affiliation": "Inotropic Agent / Sympathomimetic",
+    "sect_or_affiliation": "Inotropic Agent / Sympathomimetic",
+    "summary": "Dobutamine is a direct-acting beta-1 adrenergic agonist used for short-term intravenous management of cardiogenic shock and severe heart failure to provide positive inotropic support.",
+    "updated_at": "2026-10-24T01:06:45.386967"
+  },
+  {
+    "id": "acetylcysteine",
+    "name": "Acetylcysteine",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"[NACSYS ® EFFERVESCENT TABLETS] Reduction of sputum viscosity\\n\\n[BY MOUTH]\\n• Adult: 600 mg once daily\\n\\nTear deficiency | Impaired or abnormal mucus production\\n\\n[TO THE EYE]\\n• Adult: Apply 3–4 times a day\\n\\nParacetamol overdosage\\n\\n[BY INTRAVENOUS INFUSION]\\n• Child (body-weight up to 20 kg): Initially 150 mg/kg over 1 hour, dose to be administered in 3 mL/kg glucose 5%, followed by 50 mg/kg over 4 hours, dose to be administered in 7 mL/kg glucose 5%, then 100 mg/kg over 16 hours, dose to be administered in 14 mL/kg glucose 5%\\n• Child (body-weight 20–39 kg): Initially 150 mg/kg over 1 hour, dose to be administered in 100 mL glucose 5%, followed by 50 mg/kg over 4 hours, dose to be administered in 250 mL glucose 5%, then 100 mg/kg over 16 hours, dose to be administered in 500 mL glucose 5%\\n• Child (body-weight 40 kg and above): 150 mg/kg over 1 hour, dose to be administered in 200 mL glucose 5%, then 50 mg/kg over 4 hours, to be started immediately after completion of ﬁrst infusion, dose to be administered in 500 mL glucose 5%, then 100 mg/kg over 16 hours, to be started immediately after completion of second infusion, dose to be administered in 1 litre glucose 5%\\n• Adult (body-weight 40 kg and above): 150 mg/kg over 1 hour, dose to be administered in 200 mL glucose 5%, then 50 mg/kg over 4 hours, to be started immediately after completion of ﬁrst infusion, dose to be administered in 500 mL glucose 5%, then 100 mg/kg over 16 hours, to be started immediately after completion of second infusion, dose to be administered in 1 litre glucose 5%\\n\\nDoses At Extremes Of Body-Weight\\n\\nTo avoid excessive dosage in obese patients, a ceiling weight of 110 kg should be used when calculating the dose for paracetamol overdosage.\"}",
+    "aliases": [
+      "N-acetylcysteine",
+      "NAC"
+    ],
+    "affiliation": "Antidote / Mucolytic",
+    "sect_or_affiliation": "Antidote / Mucolytic",
+    "summary": "Acetylcysteine is a mucolytic agent primarily used as the definitive antidote for acetaminophen (paracetamol) overdose by restoring hepatic glutathione stores.",
+    "updated_at": "2026-10-24T01:06:45.386967"
   }
 ]
