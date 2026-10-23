@@ -296,6 +296,65 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
+function formatBnfDosage(rawText) {
+  if (!rawText) return '';
+  const lines = rawText.split('\n').map(l => l.trim()).filter(Boolean);
+  const normalized = [];
+
+  for (const l of lines) {
+    if (normalized.length > 0) {
+      const prev = normalized[normalized.length - 1];
+      if (prev.startsWith('[') && !prev.endsWith(']')) {
+        normalized[normalized.length - 1] = prev + ' ' + l;
+        continue;
+      }
+      if (/^(OR\s+BY|AND\s+BY|INFUSION|INJECTION|APPLICATION|INHALATION)\b/i.test(l) && (prev.includes('BY ') || prev.startsWith('['))) {
+        const cleanPrev = prev.replace(/\]+$/, '');
+        const cleanCurr = l.replace(/^\[+/, '');
+        let combined = cleanPrev + ' ' + cleanCurr;
+        if (!combined.endsWith(']')) combined += ']';
+        normalized[normalized.length - 1] = combined;
+        continue;
+      }
+      if (/^[a-z0-9,\(\)\]\—\–]/.test(l) && !/^\d+\s*(mg|g|microgram|mL|tablet)/i.test(l)) {
+        normalized[normalized.length - 1] = prev + ' ' + l;
+        continue;
+      }
+      if (/[,–\-\/;\:]\s*$/.test(prev) || /\b(and|or|with|to|in|of|for|by|at|from|repeat|dose)\s*$/i.test(prev)) {
+        normalized[normalized.length - 1] = prev + ' ' + l;
+        continue;
+      }
+    }
+    normalized.push(l);
+  }
+
+  const out = [];
+  for (const l of normalized) {
+    // Route line
+    if (/^\[?(BY|INITIALLY BY|MAINTENANCE BY|TO THE)\s+[^\]]+\]?$/i.test(l)) {
+      const cleanRoute = l.replace(/^[\[\s]+|[\]\s]+$/g, '');
+      out.push(`<div class="bnf-route-tag">[${escapeHtml(cleanRoute)}]</div>`);
+    }
+    // Dose bullet
+    else if (/^[•\-\*]\s*(Adult|Child|Elderly|Neonate|Patient|Body-weight|\d+)/i.test(l) || /^(Adult|Child|Elderly|Neonate)\b/i.test(l)) {
+      let cleanDose = l;
+      if (!cleanDose.startsWith('•')) cleanDose = '• ' + cleanDose;
+      const safeDose = escapeHtml(cleanDose).replace(/^([•\-\*]\s*)(Adult|Child|Elderly|Neonate|Patient|Body-weight[^:]*):/i, '$1<strong>$2:</strong>');
+      out.push(`<div class="bnf-dose-bullet">${safeDose}</div>`);
+    }
+    // Note
+    else if (/^(UNLICENSED USE|IMPORTANT SAFETY INFORMATION|DOSE EQUIVALENCE|CAUTIONS|DIRECTIONS FOR ADMINISTRATION)/i.test(l)) {
+      out.push(`<div class="bnf-note-box"><strong>${escapeHtml(l)}</strong></div>`);
+    }
+    // Indication
+    else {
+      out.push(`<div class="bnf-indication-header"><strong>${escapeHtml(l)}</strong></div>`);
+    }
+  }
+
+  return `<div class="bnf-dosage-container">${out.join('')}</div>`;
+}
+
 // --- Interactive Alias Tag Manager ---
 let charAliasManager = null;
 let searchLoreAliasManager = null;
@@ -1945,7 +2004,7 @@ function showCharacterTooltip(targetElement, char, triggerType) {
   elements.charHoverSummary.textContent = char.summary || 'No description available yet.';
 
   if (char.category === 'Drug' && char.bnf_dosage && elements.charHoverBnfWrap && elements.charHoverBnf) {
-    elements.charHoverBnf.textContent = char.bnf_dosage;
+    elements.charHoverBnf.innerHTML = formatBnfDosage(char.bnf_dosage);
     elements.charHoverBnfWrap.style.display = 'block';
   } else if (elements.charHoverBnfWrap) {
     elements.charHoverBnfWrap.style.display = 'none';
@@ -2500,7 +2559,7 @@ function renderGlossary(filterText = null) {
           ${(normCat === 'Drug' || char.category === 'Drug') && char.bnf_dosage ? `
             <div class="glossary-bnf-block" style="margin-top: 8px; padding: 6px 8px; background: rgba(59, 130, 246, 0.08); border-left: 3px solid #2563eb; border-radius: 4px; font-size: 0.8rem; line-height: 1.35;">
               <div style="font-weight: 600; font-size: 0.72rem; text-transform: uppercase; color: #1d4ed8; margin-bottom: 2px;">📋 BNF 85 Indications &amp; Dose</div>
-              <div style="white-space: pre-line;">${escapeHtml(char.bnf_dosage)}</div>
+              <div style="max-height: 130px; overflow-y: auto;">${formatBnfDosage(char.bnf_dosage)}</div>
             </div>
           ` : ''}
         </div>
@@ -3085,7 +3144,7 @@ function renderSearchResults(data, query, scope) {
         ${item.category === 'Drug' && item.bnf_dosage ? `
           <div class="search-lore-bnf-wrap" style="margin-top: 6px; padding: 6px 8px; background: rgba(59, 130, 246, 0.08); border-left: 3px solid #2563eb; border-radius: 4px; font-size: 0.8rem; line-height: 1.35;">
             <div style="font-weight: 600; font-size: 0.72rem; text-transform: uppercase; color: #1d4ed8; margin-bottom: 2px;">📋 BNF 85 Indications &amp; Dose</div>
-            <div style="white-space: pre-line; max-height: 130px; overflow-y: auto;">${escapeHtml(item.bnf_dosage)}</div>
+            <div style="max-height: 140px; overflow-y: auto;">${formatBnfDosage(item.bnf_dosage)}</div>
           </div>
         ` : ''}
         <div style="display: flex; justify-content: flex-end; margin-top: 8px;">

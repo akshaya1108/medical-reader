@@ -23,13 +23,15 @@
     "aliases": [
       "Rapid sequence induction",
       "RSII",
-      "Crash induction"
+      "Crash induction",
+      "RSI"
     ],
     "affiliation": "Emergency Medicine / Critical Care",
     "sect_or_affiliation": "Emergency Medicine / Critical Care",
     "summary": "Rapid sequence intubation is an advanced airway management technique utilizing near-simultaneous administration of a sedative and a neuromuscular blocker to rapidly secure the airway while minimizing the risk of pulmonary aspiration.",
-    "updated_at": "2026-10-23T20:30:48.669586",
-    "image_url": ""
+    "updated_at": "2026-10-23T16:37:23.822907+00:00",
+    "image_url": "",
+    "bnf_dosage": ""
   },
   {
     "id": "preoxygenation",
@@ -61,7 +63,7 @@
     "summary": "Fentanyl is a highly potent, short-acting synthetic piperidine opioid that acts on mu-opioid receptors for the management of severe acute pain and procedural sedation.",
     "updated_at": "2026-10-23T20:30:48.669586",
     "image_url": "",
-    "bnf_dosage": "Chronic intractable pain not currently treated with a strong opioid analgesic (not opioid-naive patients)\n\n[BY TRANSDERMAL APPLICATION]\n\u2022 Child 16\u201317 years: Initially 12 micrograms/hour every 72 hours, alternatively initially 25 micrograms/hour every 72 hours, when starting, evaluation of the analgesic effect should not be made before the system has been worn for 24 hours (to allow for the gradual increase in plasma-fentanyl concentration)\u2014previous analgesic therapy should be phased out gradually from time of \ufb01rst patch application, dose should be adjusted at 72 hour intervals in steps of 12\u201325 micrograms/hour if necessary. After a dose increase, the system should be worn through two 72-hour applications before any further increase in dose, more than one patch may be used at a time (but applied at the same time to avoid confusion)\u2014consider additional or alternative analgesic therapy if dose required exceeds 300 micrograms/hour (important: it takes 20 hours or more for the plasma-fentanyl concentration to decrease by 50%\u2014replacement opioid therapy should be initiated at a low dose and increased gradually)\n\u2022 Adult: Initially 12 micrograms/hour every 72 hours, alternatively initially 25 micrograms/hour every 72 hours, when starting, evaluation of the analgesic effect should not be made before the system has been\n\u2022 Child 2\u201317 years: Initial dose based on previous 24-hour opioid requirement\u2014consult product literature, for evaluating analgesic ef\ufb01cacy and dose increments\u2014\nconsult product literature, for conversion from long term oral morphine to transdermal fentanyl, see Pain management with opioids under Prescribing in palliative care p. 25.\n\u2022 Adult: Initial dose based on previous 24-hour opioid requirement\u2014consult product literature, for evaluating analgesic ef\ufb01cacy and dose increments, see under\nChronic intractable pain not currently treated with a strong opioid analgesic (not opioid-naive patients), for conversion from long term oral morphine to transdermal fentanyl, see Pain management with opioids under Prescribing in palliative care p. 25.\nSpontaneous respiration: analgesia and enhancement of anaesthesia, during operation\n\n[BY SLOW INTRAVENOUS INJECTION]\n\u2022 Adult: Initially 50\u2013100 micrograms (max. per dose 200 micrograms), dose maximum on specialist advice, then 25\u201350 micrograms as required\n\n[BY INTRAVENOUS INFUSION]\n\u2022 Adult: 3\u20134.8 micrograms/kg/hour, adjusted according to response\nAssisted ventilation: analgesia and enhancement of anaesthesia during operation\n\n[BY SLOW INTRAVENOUS INJECTION]\n\u2022 Adult: Initially 300\u20133500 micrograms, then 100\u2013200 micrograms as required\n\n[BY INTRAVENOUS INFUSION]\n\u2022 Adult: Initially 10 micrograms/kg, dose to be given over 10 minutes, then 6 micrograms/kg/hour, adjusted according to response, may require up to 180 micrograms/kg/hour during cardiac surgery\nAssisted ventilation: analgesia and respiratory depression in intensive care\n\n[BY SLOW INTRAVENOUS INJECTION]\n\u2022 Adult: Initially 300\u20133500 micrograms, then 100\u2013200 micrograms as required\n\n[BY INTRAVENOUS INFUSION]\n\u2022 Adult: Initially 10 micrograms/kg, dose to be given over 10 minutes, then 6 micrograms/kg/hour, adjusted according to response, may require up to 180 micrograms/kg/hour during cardiac surgery\nBreakthrough pain in patients receiving opioid therapy for chronic cancer pain\n\n[BY BUCCAL ADMINISTRATION USING LOZENGES]\n\u2022 Child 16\u201317 years: Initially 200 micrograms, dose to be given over 15 minutes, then 200 micrograms after 15 minutes if required, no more than 2 dose units for each pain episode; if adequate pain relief not achieved with 1 dose unit for consecutive breakthrough pain episodes, increase the strength of the dose continued \u2192"
+    "bnf_dosage": "Chronic intractable pain not currently treated with a strong opioid analgesic (not opioid-naive patients)\n\n[BY TRANSDERMAL APPLICATION]\n• Child 16–17 years: Initially 12 micrograms/hour every 72 hours, alternatively initially 25 micrograms/hour every 72 hours, when starting, evaluation of the analgesic effect should not be made before the system has been worn for 24 hours (to allow for the gradual increase in plasma-fentanyl concentration)—previous analgesic therapy should be phased out gradually from time of ﬁrst patch application, dose should be adjusted at 72 hour intervals in steps of 12–25 micrograms/hour if necessary. After a dose increase, the system should be worn through two 72-hour applications before any further increase in dose, more than one patch may be used at a time (but applied at the same time to avoid confusion)—consider additional or alternative analgesic therapy if dose required exceeds 300 micrograms/hour (important: it takes 20 hours or more for the plasma-fentanyl concentration to decrease by 50%—replacement opioid therapy should be initiated at a low dose and increased gradually)\n• Adult: Initially 12 micrograms/hour every 72 hours, alternatively initially 25 micrograms/hour every 72 hours, when starting, evaluation of the analgesic effect should not be made before the system has been\n• Child 2–17 years: Initial dose based on previous 24-hour opioid requirement—consult product literature, for evaluating analgesic efﬁcacy and dose increments—\nconsult product literature, for conversion from long term oral morphine to transdermal fentanyl, see Pain management with opioids under Prescribing in palliative care p. 25.\n• Adult: Initial dose based on previous 24-hour opioid requirement—consult product literature, for evaluating analgesic efﬁcacy and dose increments, see under\nChronic intractable pain not currently treated with a strong opioid analgesic (not opioid-naive patients), for conversion from long term oral morphine to transdermal fentanyl, see Pain management with opioids under Prescribing in palliative care p. 25.\nSpontaneous respiration: analgesia and enhancement of anaesthesia, during operation\n\n[BY SLOW INTRAVENOUS INJECTION]\n• Adult: Initially 50–100 micrograms (max. per dose 200 micrograms), dose maximum on specialist advice, then 25–50 micrograms as required\n\n[BY INTRAVENOUS INFUSION]\n• Adult: 3–4.8 micrograms/kg/hour, adjusted according to response\nAssisted ventilation: analgesia and enhancement of anaesthesia during operation\n\n[BY SLOW INTRAVENOUS INJECTION]\n• Adult: Initially 300–3500 micrograms, then 100–200 micrograms as required\n\n[BY INTRAVENOUS INFUSION]\n• Adult: Initially 10 micrograms/kg, dose to be given over 10 minutes, then 6 micrograms/kg/hour, adjusted according to response, may require up to 180 micrograms/kg/hour during cardiac surgery\nAssisted ventilation: analgesia and respiratory depression in intensive care\n\n[BY SLOW INTRAVENOUS INJECTION]\n• Adult: Initially 300–3500 micrograms, then 100–200 micrograms as required\n\n[BY INTRAVENOUS INFUSION]\n• Adult: Initially 10 micrograms/kg, dose to be given over 10 minutes, then 6 micrograms/kg/hour, adjusted according to response, may require up to 180 micrograms/kg/hour during cardiac surgery\nBreakthrough pain in patients receiving opioid therapy for chronic cancer pain\n\n[BY BUCCAL ADMINISTRATION USING LOZENGES]\n• Child 16–17 years: Initially 200 micrograms, dose to be given over 15 minutes, then 200 micrograms after 15 minutes if required, no more than 2 dose units for each pain episode; if adequate pain relief not achieved with 1 dose unit for consecutive breakthrough pain episodes, increase the strength of the dose continued →"
   },
   {
     "id": "etomidate",
@@ -76,7 +78,7 @@
     "summary": "Etomidate is a short-acting intravenous sedative-hypnotic agent commonly used for rapid sequence intubation and procedural sedation due to its favorable hemodynamic stability.",
     "updated_at": "2026-10-23T20:30:48.669586",
     "image_url": "",
-    "bnf_dosage": "Induction of anaesthesia\n\n[BY SLOW INTRAVENOUS INJECTION]\n\u2022 Adult: 150\u2013300 micrograms/kg (max. per dose 60 mg), to be administered over 30-60 seconds (60 seconds in patients in whom hypotension might be hazardous)\n\u2022 Elderly: 150\u2013200 micrograms/kg (max. per dose 60 mg), to be administered over 30-60 seconds (60 seconds in patients in whom hypotension might be hazardous)"
+    "bnf_dosage": "Induction of anaesthesia\n\n[BY SLOW INTRAVENOUS INJECTION]\n• Adult: 150–300 micrograms/kg (max. per dose 60 mg), to be administered over 30-60 seconds (60 seconds in patients in whom hypotension might be hazardous)\n• Elderly: 150–200 micrograms/kg (max. per dose 60 mg), to be administered over 30-60 seconds (60 seconds in patients in whom hypotension might be hazardous)"
   },
   {
     "id": "propofol",
@@ -92,7 +94,7 @@
     "summary": "Propofol is a rapid-onset, short-acting intravenous sedative-hypnotic agent frequently utilized for procedural sedation and the induction of general anesthesia in emergency medicine.",
     "updated_at": "2026-10-23T20:30:48.669586",
     "image_url": "",
-    "bnf_dosage": "Induction of anaesthesia using 0.5% or 1% injection\n\n[BY SLOW INTRAVENOUS INJECTION, OR BY INTRAVENOUS]\nINFUSION\nAdult 18\u201354 years: Usual dose 1.5\u20132.5 mg/kg, to be administered at a rate of 20\u201340 mg every 10 seconds until response, for debilitated patients use dose for 55 years and over\nAdult 55 years and over: Usual dose 1\u20131.5 mg/kg, to be administered at a rate of 20 mg every 10 seconds until response\nInduction of anaesthesia using 2% injection\n\n[BY INTRAVENOUS INFUSION]\nAdult 18\u201354 years: Usual dose 1.5\u20132.5 mg/kg, to be administered at a rate of 20\u201340 mg every 10 seconds until response. For debilitated patients use dose for 55 years and over\nAdult 55 years and over: Usual dose 1\u20131.5 mg/kg, to be administered at a rate of 20 mg every 10 seconds until response\nMaintenance of anaesthesia using 1% injection\nINITIALLY BY INTRAVENOUS INFUSION\n\u2022 Adult: Usual dose 4\u201312 mg/kg/hour, alternatively (by slow intravenous injection) 25\u201350 mg, dose may be repeated according to response, for debilitated patients use dose for elderly\n\u2022 Elderly: Usual dose 3\u20136 mg/kg/hour, alternatively (by slow intravenous injection) 25\u201350 mg, dose may be repeated according to response\nMaintenance of anaesthesia using 2% injection\n\n[BY INTRAVENOUS INFUSION]\n\u2022 Adult: Usual dose 4\u201312 mg/kg/hour, for debilitated patients use dose for elderly\n\u2022 Elderly: Usual dose 3\u20136 mg/kg/hour\nSedation of ventilated patients in intensive care using 1%\nor 2% injection\n\n[BY CONTINUOUS INTRAVENOUS INFUSION]\n\u2022 Adult: Usual dose 0.3\u20134 mg/kg/hour, adjusted according to response"
+    "bnf_dosage": "Induction of anaesthesia using 0.5% or 1% injection\n\n[BY SLOW INTRAVENOUS INJECTION, OR BY INTRAVENOUS]\nINFUSION\nAdult 18–54 years: Usual dose 1.5–2.5 mg/kg, to be administered at a rate of 20–40 mg every 10 seconds until response, for debilitated patients use dose for 55 years and over\nAdult 55 years and over: Usual dose 1–1.5 mg/kg, to be administered at a rate of 20 mg every 10 seconds until response\nInduction of anaesthesia using 2% injection\n\n[BY INTRAVENOUS INFUSION]\nAdult 18–54 years: Usual dose 1.5–2.5 mg/kg, to be administered at a rate of 20–40 mg every 10 seconds until response. For debilitated patients use dose for 55 years and over\nAdult 55 years and over: Usual dose 1–1.5 mg/kg, to be administered at a rate of 20 mg every 10 seconds until response\nMaintenance of anaesthesia using 1% injection\nINITIALLY BY INTRAVENOUS INFUSION\n• Adult: Usual dose 4–12 mg/kg/hour, alternatively (by slow intravenous injection) 25–50 mg, dose may be repeated according to response, for debilitated patients use dose for elderly\n• Elderly: Usual dose 3–6 mg/kg/hour, alternatively (by slow intravenous injection) 25–50 mg, dose may be repeated according to response\nMaintenance of anaesthesia using 2% injection\n\n[BY INTRAVENOUS INFUSION]\n• Adult: Usual dose 4–12 mg/kg/hour, for debilitated patients use dose for elderly\n• Elderly: Usual dose 3–6 mg/kg/hour\nSedation of ventilated patients in intensive care using 1%\nor 2% injection\n\n[BY CONTINUOUS INTRAVENOUS INFUSION]\n• Adult: Usual dose 0.3–4 mg/kg/hour, adjusted according to response"
   },
   {
     "id": "ketamine",
@@ -108,7 +110,7 @@
     "summary": "A rapid-acting dissociative anesthetic and analgesic used in emergency medicine for procedural sedation, induction for rapid sequence intubation, and management of severe pain.",
     "updated_at": "2026-10-23T20:34:14.169824",
     "image_url": "",
-    "bnf_dosage": "Induction and maintenance of anaesthesia for short procedures\n\n[BY INTRAMUSCULAR INJECTION]\nPATIENT AND CARER ADVICE\n\u2022 Adult: Initially 6.5\u201313 mg/kg, adjusted according to response, a dose of 10 mg/kg usually produces 12\u201325 minutes of surgical anaesthesia\n\n[BY INTRAVENOUS INJECTION]\n\u2022 Adult: Initially 1\u20134.5 mg/kg, adjusted according to response, to be administered over at least 60 seconds, a dose of 2 mg/kg usually produces 5\u201310 minutes of surgical anaesthesia\nDiagnostic manoeuvres and procedures not involving intense pain\n\n[BY INTRAMUSCULAR INJECTION]\n\u2022 Adult: Initially 4 mg/kg\n\u2022 Adult: Initially 0.5\u20132 mg/kg, using an infusion solution containing 1 mg/ml; maintenance 10\u201345 micrograms/kg/minute, adjusted according to response"
+    "bnf_dosage": "Induction and maintenance of anaesthesia for short procedures\n\n[BY INTRAMUSCULAR INJECTION]\nPATIENT AND CARER ADVICE\n• Adult: Initially 6.5–13 mg/kg, adjusted according to response, a dose of 10 mg/kg usually produces 12–25 minutes of surgical anaesthesia\n\n[BY INTRAVENOUS INJECTION]\n• Adult: Initially 1–4.5 mg/kg, adjusted according to response, to be administered over at least 60 seconds, a dose of 2 mg/kg usually produces 5–10 minutes of surgical anaesthesia\nDiagnostic manoeuvres and procedures not involving intense pain\n\n[BY INTRAMUSCULAR INJECTION]\n• Adult: Initially 4 mg/kg\n• Adult: Initially 0.5–2 mg/kg, using an infusion solution containing 1 mg/ml; maintenance 10–45 micrograms/kg/minute, adjusted according to response"
   },
   {
     "name": "Gum Elastic Bougie",
@@ -222,45 +224,10 @@
     "image_url": ""
   },
   {
-    "id": "succinylcholine",
-    "name": "Succinylcholine",
-    "category": "Drug",
-    "pinyin_or_chinese": "{\"bnf_dosage\": \"Neuromuscular blockade (short duration) during surgery and intubation\\n\\n[BY INTRAVENOUS INJECTION]\\n\\u2022 Adult: 1\\u20131.5 mg/kg\\nUNLICENSED USE Doses of suxamethonium in BNF may differ from those in product literature.\"}",
-    "aliases": [
-      "Suxamethonium",
-      "Suxamethonium chloride",
-      "Sux"
-    ],
-    "affiliation": "Neuromuscular blocking agent / Anesthesiology",
-    "sect_or_affiliation": "Neuromuscular blocking agent / Anesthesiology",
-    "image_url": "",
-    "summary": "Succinylcholine is a short-acting depolarizing neuromuscular blocking agent used to induce paralysis for rapid sequence intubation and other medical procedures.",
-    "bnf_dosage": "Neuromuscular blockade (short duration) during surgery and intubation\n\n[BY INTRAVENOUS INJECTION]\n\u2022 Adult: 1\u20131.5 mg/kg\nUNLICENSED USE Doses of suxamethonium in BNF may differ from those in product literature.",
-    "mentions": 0
-  },
-  {
-    "id": "rocuronium",
-    "name": "Rocuronium",
-    "category": "Drug",
-    "pinyin_or_chinese": "{\"bnf_dosage\": \"Neuromuscular blockade (intermediate duration) during surgery and intubation\\nINITIALLY BY INTRAVENOUS INJECTION\\n\\u2022 Adult: Initially 600 micrograms/kg; (by intravenous injection) maintenance 150 micrograms/kg, alternatively (by intravenous infusion) maintenance 300\\u2013600 micrograms/kg/hour, adjusted according to response\"}",
-    "aliases": [
-      "Rocuronium bromide",
-      "Zemuron",
-      "Esmeron",
-      "roc"
-    ],
-    "affiliation": "Neuromuscular Blocker / Emergency Medicine",
-    "sect_or_affiliation": "Neuromuscular Blocker / Emergency Medicine",
-    "image_url": "",
-    "summary": "Rocuronium is an intermediate-acting non-depolarizing neuromuscular blocking agent used to facilitate endotracheal intubation and skeletal muscle relaxation during surgery and rapid sequence induction.",
-    "bnf_dosage": "Neuromuscular blockade (intermediate duration) during surgery and intubation\nINITIALLY BY INTRAVENOUS INJECTION\n\u2022 Adult: Initially 600 micrograms/kg; (by intravenous injection) maintenance 150 micrograms/kg, alternatively (by intravenous infusion) maintenance 300\u2013600 micrograms/kg/hour, adjusted according to response",
-    "mentions": 0
-  },
-  {
     "id": "atropine",
     "name": "Atropine",
     "category": "Drug",
-    "pinyin_or_chinese": "{\"bnf_dosage\": \"Symptomatic bradycardia due to acute overdosage of beta-blockers\\n\\n[BY INTRAVENOUS INJECTION]\\nChild: 0.02 mg/kg (max. per dose 1.2 mg), repeat doses may be necessary\\n\\u2022 Adult: 0.5\\u20131.2 mg, repeat doses may be necessary\\nTreatment of poisoning by organophosphorus insecticide or nerve agent (in combination with pralidoxime chloride)\\n\\n[BY INTRAVENOUS INJECTION]\\nChild: 20 micrograms/kg every 5\\u201310 minutes (max. per dose 2 mg) until the skin becomes \\ufb02ushed and dry, the pupils dilate, and bradycardia is abolished, frequency of administration dependent on the severity of poisoning\\n\\u2022 Adult: 2 mg every 5\\u201310 minutes until the skin becomes\\n\\ufb02ushed and dry, the pupils dilate, and bradycardia is abolished, frequency of administration dependent on the severity of poisoning\\nSymptomatic relief of gastro-intestinal disorders characterised by smooth muscle spasm\\n\\n[BY MOUTH]\\n\\u2022 Adult: 0.6\\u20131.2 mg daily, dose to be taken at night\\n\\u2022 Child 12\\u201317 years: 300\\u2013600 micrograms, to be administered immediately before induction of anaesthesia\\n\\u2022 Adult: 300\\u2013600 micrograms, to be administered\\nLESS SUITABLE FOR PRESCRIBING immediately before induction of anaesthesia\\n\\n[BY SUBCUTANEOUS INJECTION, OR BY INTRAMUSCULAR]\\nWith oral use Atropine tablets less suitable for prescribing.\"}",
+    "pinyin_or_chinese": "",
     "aliases": [
       "Atropine sulfate",
       "dl-hyoscyamine"
@@ -269,7 +236,105 @@
     "sect_or_affiliation": "Emergency Medicine / Anticholinergic agent",
     "image_url": "",
     "summary": "Atropine is a competitive muscarinic acetylcholine receptor antagonist indicated for the management of symptomatic bradycardia and organophosphate poisoning.",
-    "bnf_dosage": "Symptomatic bradycardia due to acute overdosage of beta-blockers\n\n[BY INTRAVENOUS INJECTION]\nChild: 0.02 mg/kg (max. per dose 1.2 mg), repeat doses may be necessary\n\u2022 Adult: 0.5\u20131.2 mg, repeat doses may be necessary\nTreatment of poisoning by organophosphorus insecticide or nerve agent (in combination with pralidoxime chloride)\n\n[BY INTRAVENOUS INJECTION]\nChild: 20 micrograms/kg every 5\u201310 minutes (max. per dose 2 mg) until the skin becomes \ufb02ushed and dry, the pupils dilate, and bradycardia is abolished, frequency of administration dependent on the severity of poisoning\n\u2022 Adult: 2 mg every 5\u201310 minutes until the skin becomes\n\ufb02ushed and dry, the pupils dilate, and bradycardia is abolished, frequency of administration dependent on the severity of poisoning\nSymptomatic relief of gastro-intestinal disorders characterised by smooth muscle spasm\n\n[BY MOUTH]\n\u2022 Adult: 0.6\u20131.2 mg daily, dose to be taken at night\n\u2022 Child 12\u201317 years: 300\u2013600 micrograms, to be administered immediately before induction of anaesthesia\n\u2022 Adult: 300\u2013600 micrograms, to be administered\nLESS SUITABLE FOR PRESCRIBING immediately before induction of anaesthesia\n\n[BY SUBCUTANEOUS INJECTION, OR BY INTRAMUSCULAR]\nWith oral use Atropine tablets less suitable for prescribing.",
-    "mentions": 0
+    "bnf_dosage": "Symptomatic bradycardia due to acute overdosage of beta-blockers\n\n[BY INTRAVENOUS INJECTION]\nChild: 0.02 mg/kg (max. per dose 1.2 mg), repeat doses may be necessary\n• Adult: 0.5–1.2 mg, repeat doses may be necessary\nTreatment of poisoning by organophosphorus insecticide or nerve agent (in combination with pralidoxime chloride)\n\n[BY INTRAVENOUS INJECTION]\nChild: 20 micrograms/kg every 5–10 minutes (max. per dose 2 mg) until the skin becomes ﬂushed and dry, the pupils dilate, and bradycardia is abolished, frequency of administration dependent on the severity of poisoning\n• Adult: 2 mg every 5–10 minutes until the skin becomes\nﬂushed and dry, the pupils dilate, and bradycardia is abolished, frequency of administration dependent on the severity of poisoning\nSymptomatic relief of gastro-intestinal disorders characterised by smooth muscle spasm\n\n[BY MOUTH]\n• Adult: 0.6–1.2 mg daily, dose to be taken at night\n• Child 12–17 years: 300–600 micrograms, to be administered immediately before induction of anaesthesia\n• Adult: 300–600 micrograms, to be administered\nLESS SUITABLE FOR PRESCRIBING immediately before induction of anaesthesia\n\n[BY SUBCUTANEOUS INJECTION, OR BY INTRAMUSCULAR]\nWith oral use Atropine tablets less suitable for prescribing.",
+    "mentions": 0,
+    "updated_at": "2026-10-23T16:35:00.547481+00:00"
+  },
+  {
+    "id": "dopamine",
+    "name": "Dopamine",
+    "category": "Drug",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "DA",
+      "3,4-dihydroxyphenethylamine"
+    ],
+    "affiliation": "Catecholamine / Vasopressor / Inotrope",
+    "sect_or_affiliation": "Catecholamine / Vasopressor / Inotrope",
+    "summary": "Dopamine is an endogenous catecholamine and intravenous medication utilized primarily for the treatment of severe heart failure, cardiogenic shock, and neonatal hypotension or septic shock.",
+    "updated_at": "2026-10-23T22:04:42.335570",
+    "image_url": "",
+    "bnf_dosage": "Cardiogenic shock in infarction or cardiac surgery\n\n[BY INTRAVENOUS INFUSION]\n• Adult: Initially 2–5 micrograms/kg/minute"
+  },
+  {
+    "id": "adenosine",
+    "name": "Adenosine",
+    "category": "Drug",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Adenocard",
+      "PSVT"
+    ],
+    "affiliation": "Antiarrhythmic Agent / Cardiology",
+    "sect_or_affiliation": "Antiarrhythmic Agent / Cardiology",
+    "summary": "Adenosine is an endogenous purine nucleoside and intravenous antiarrhythmic agent primarily used for the rapid conversion of paroxysmal supraventricular tachycardia (PSVT) to sinus rhythm due to its transiently blocking effect on the AV node.",
+    "updated_at": "2026-10-23T22:04:42.335570",
+    "image_url": "",
+    "bnf_dosage": "Rapid reversion to sinus rhythm of paroxysmal supraventricular tachycardias, including those associated with accessory conducting pathways (e.g.\nWolff-Parkinson-White syndrome) | Used to aid to diagnosis of broad or narrow complex supraventricular tachycardias\n\n[BY RAPID INTRAVENOUS INJECTION]\n• Adult: Initially 6 mg, administer into central or large peripheral vein and give over 2 seconds, cardiac monitoring required, followed by 12 mg after 1–2 minutes if required, then 12 mg after 1–2 minutes if required, increments should not be given if high level\nAV block develops at any particular dose\nRapid reversion to sinus rhythm of paroxysmal supraventricular tachycardias, including those associated with accessory conducting pathways (e.g.\nWolff-Parkinson-White syndrome) in patients with a heart transplant | Aid to diagnosis of broad or narrow complex supraventricular tachycardias in patients with a heart transplant\n\n[BY RAPID INTRAVENOUS INJECTION]\n• Adult: Initially 3 mg, administer into a central or large peripheral vein and give over 2 seconds, followed by 6 mg after 1–2 minutes if required, then 12 mg after 1–2 minutes if required, patients with a heart transplant are very sensitive to the effects of adenosine\nUsed in conjunction with radionuclide myocardial perfusion imaging in patients who cannot exercise adequately or for whom exercise is inappropriate\n\n[BY INTRAVENOUS INFUSION]\n• Adult: (consult product literature)\nfrom those in the product literature."
+  },
+  {
+    "id": "epinephrine",
+    "name": "Epinephrine",
+    "category": "Drug",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Adrenaline",
+      "L-epinephrine"
+    ],
+    "affiliation": "Catecholamine / Emergency Medicine",
+    "sect_or_affiliation": "Catecholamine / Emergency Medicine",
+    "summary": "Epinephrine is a potent alpha- and beta-adrenergic agonist that serves as the primary treatment for cardiac arrest, severe anaphylaxis, and acute symptomatic bradycardia.",
+    "updated_at": "2026-10-23T22:04:42.335570",
+    "image_url": "",
+    "bnf_dosage": "Cardiopulmonary resuscitation (specialist use only)\n\n[BY SLOW INTRAVENOUS INJECTION]\nChild: 10 micrograms/kg every 3–5 minutes (max. per dose 1 mg) as required, a 1 in 10 000\n(100 micrograms/mL) solution is recommended, suitable syringe to be used for measuring small volume\n• Adult: 1 mg every 3–5 minutes as required, a 1 in 10 000 (100 micrograms/mL) solution is recommended\nAcute hypotension\n\n[BY CONTINUOUS INTRAVENOUS INFUSION]\n• Neonate: Initially 100 nanograms/kg/minute, adjusted according to response, higher doses up to 1.5 micrograms/kg/minute have been used in acute hypotension.\nChild: Initially 100 nanograms/kg/minute, adjusted according to response, higher doses up to 1.5 micrograms/kg/minute have been used in acute hypotension\nEmergency treatment of acute anaphylaxis (under expert supervision)\n\n[BY INTRAMUSCULAR INJECTION]\n• Child up to 6 months: 100–150 micrograms, using adrenaline 1 in 1000 (1 mg/mL) injection, repeat dose after 5 minutes if no response; if life-threatening features persist, further doses can be given every 5 minutes until specialist critical care available, suitable syringe to be used for measuring small volume; injected preferably into the anterolateral aspect of the middle third of the thigh\n• Child 6 months–5 years: 150 micrograms, using adrenaline 1 in 1000 (1 mg/mL) injection, repeat dose after 5 minutes if no response; if life-threatening features persist, further doses can be given every 5 minutes until specialist critical care available, suitable syringe to be used for measuring small volume; injected preferably into the anterolateral aspect of the middle third of the thigh\n• Child 6–11 years: 300 micrograms, using adrenaline 1 in 1000 (1 mg/mL) injection, repeat dose after 5 minutes if no response; if life-threatening features persist, further doses can be given every 5 minutes until specialist critical care available, to be injected preferably into the anterolateral aspect of the middle third of the thigh\n• Child 12–17 years: 500 micrograms, using adrenaline 1 in 1000 (1 mg/mL) injection, repeat dose after 5 minutes if no response; if life-threatening features persist, further doses can be given every 5 minutes until specialist critical care available, to be injected preferably into the anterolateral aspect of the middle third of the thigh,\n• Adult: 500 micrograms, using adrenaline 1 in 1000\n(1 mg/mL) injection, repeat dose after 5 minutes if no response; if life-threatening features persist, further doses can be given every 5 minutes until specialist critical care available, to be injected preferably into the anterolateral aspect of the middle third of the thigh\nRefractory anaphylaxis [persistent symptoms despite at east 2 appropriate doses of intramuscular adrenaline/epinephrine] (specialist use only)\n\n[BY INTRAVENOUS INFUSION]\n• Adult: Consult Resuscitation Council (UK) emergency treatment of anaphylaxis guideline or local protocols\nControl of bradycardia in patients with arrhythmias after myocardial infarction, if there is a risk of asystole, or if the patient is unstable and has failed to respond to atropine\n\n[BY INTRAVENOUS INFUSION]\n• Adult: 2–10 micrograms/minute, adjusted according to response"
+  },
+  {
+    "name": "End-tidal CO2",
+    "category": "Concept",
+    "aliases": [
+      "PetCO2",
+      "end-tidal carbon dioxide",
+      "capnography",
+      "partial pressure of end-tidal CO2"
+    ],
+    "sect_or_affiliation": "Emergency Medicine / Pulmonology / Critical Care",
+    "summary": "End-tidal CO2 represents the partial pressure of carbon dioxide at the end of exhalation, serving as a non-invasive surrogate for arterial CO2 levels and a critical indicator of ventilation, perfusion, and metabolic status.",
+    "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Capnogram.png/500px-Capnogram.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "id": "end-tidal-co2",
+    "pinyin_or_chinese": "",
+    "affiliation": "Emergency Medicine / Pulmonology / Critical Care",
+    "updated_at": "2026-10-23T16:36:34.583981+00:00"
+  },
+  {
+    "name": "Bag-mask ventilation",
+    "category": "Instrument / Device",
+    "aliases": [
+      "BMV",
+      "BVM",
+      "Bag-valve-mask ventilation",
+      "Manual ventilation"
+    ],
+    "sect_or_affiliation": "Emergency Medicine / Airway Management",
+    "summary": "A manual ventilation technique utilizing a self-inflating bag attached to a face mask to deliver positive pressure oxygenation to patients with inadequate spontaneous respiratory effort.",
+    "image_url": "",
+    "id": "bag-mask-ventilation",
+    "pinyin_or_chinese": "",
+    "affiliation": "Emergency Medicine / Airway Management",
+    "updated_at": "2026-10-23T16:37:37.577277+00:00"
+  },
+  {
+    "id": "diltiazem",
+    "name": "Diltiazem",
+    "category": "Drug",
+    "aliases": [
+      "Cardizem"
+    ],
+    "affiliation": "Pharmacology / BNF 85",
+    "sect_or_affiliation": "Pharmacology / BNF 85",
+    "summary": "Diltiazem, sold under the brand name Cardizem among others, is a nondihydropyridine calcium channel blocker medication used to treat high blood pressure, angina, and certain heart arrhythmias.",
+    "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Diltiazem_structure.svg/500px-Diltiazem_structure.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "bnf_dosage": "Prophylaxis and treatment of angina\n\n[BY MOUTH]\n• Adult: Initially 60 mg 3 times a day, adjusted according to response; maximum 360 mg per day\n• Elderly: Initially 60 mg twice daily, adjusted according to response; maximum 360 mg per day\nChronic anal fissure\n\n[BY RECTUM USING CREAM, OR BY RECTUM USING OINTMENT]\n• Adult: Apply twice daily until pain stops. Max. duration of use 8 weeks, apply to the anal canal, using 2% topical preparation\n\n[BY MOUTH]\n• Adult: 60 mg twice daily until pain stops. Max. duration of use 8 weeks\nADIZEM-SR ® CAPSULES\nMild to moderate hypertension\n\n[BY MOUTH]\n• Adult: 120 mg twice daily, dose form not appropriate for initial dose titration\nAngina\n\n[BY MOUTH]\n• Adult: Initially 90 mg twice daily; increased if necessary to 180 mg twice daily, dose form not appropriate for initial dose titration in the elderly\nADIZEM-XL ®\nAngina | Mild to moderate hypertension\n\n[BY MOUTH]\n• Adult: Initially 240 mg once daily, increased if necessary to 300 mg once daily\n• Elderly: Initially 120 mg once daily, increased if necessary up to 300 mg once daily\nANGITIL ® SR\nAngina | Mild to moderate hypertension\n\n[BY MOUTH]\n• Adult: Initially 90 mg twice daily; increased if necessary to 120–180 mg twice daily\nANGITIL ® XL\nAngina | Mild to moderate hypertension\n\n[BY MOUTH]\n• Adult: Initially 240 mg once daily; increased if necessary to 300 mg once daily, dose form not appropriate for initial dose titration in the elderly\nDILCARDIA ® SR\nAngina | Mild to moderate hypertension\n\n[BY MOUTH]\n• Adult: Initially 90 mg twice daily; increased if necessary to 180 mg twice daily\n• Elderly: Initially 60 mg twice daily; increased if necessary to 90 mg twice daily\nDILZEM ® SR\nAngina | Mild to moderate hypertension\n\n[BY MOUTH]\n• Adult: Initially 90 mg twice daily; increased if necessary up to 180 mg twice daily necessary up to 180 mg twice daily",
+    "pinyin_or_chinese": "",
+    "updated_at": "2026-10-23T16:38:56.798975+00:00"
   }
 ]

@@ -1,24 +1,31 @@
 {
-  "tombstones": {},
+  "tombstones": {
+    "succinylcholine": "2026-10-23T22:07:58.148540",
+    "rocuronium": "2026-10-23T22:08:05.395608"
+  },
   "last_synced_ids": {
     "tintinalli-s-emergency-medicine-manual-1": [
-      "succinylcholine",
-      "rocuronium",
-      "atropine",
-      "macintosh-laryngoscope-blade",
-      "laryngeal-mask-airway",
-      "propofol",
+      "dopamine",
+      "adenosine",
       "mechanical-ventilation",
-      "fentanyl",
+      "propofol",
       "gum-elastic-bougie",
       "trachea",
-      "cricothyroid-membrane",
       "ketamine",
+      "end-tidal-co2",
       "preoxygenation",
+      "atropine",
+      "diltiazem",
+      "fentanyl",
+      "cricothyroid-membrane",
+      "glottis",
       "rapid-sequence-intubation",
+      "macintosh-laryngoscope-blade",
+      "laryngeal-mask-airway",
       "thyroid-gland",
       "etomidate",
-      "glottis"
+      "epinephrine",
+      "bag-mask-ventilation"
     ],
     "bailey-love-s-short-practice-of-surgery-chapter-1": []
   }

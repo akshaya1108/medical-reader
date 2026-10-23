@@ -105,9 +105,9 @@ def clean_bnf_text(raw_text: str) -> str:
         # Clean section titles
         if l == "INDICATIONS AND DOSE":
             continue
-        if l.startswith("BY "):
+        if re.match(r'^(BY|INITIALLY BY|MAINTENANCE BY|TO THE)\s+', l, re.I):
             cleaned_lines.append(f"\n[{l}]")
-        elif l.startswith("Adult:") or l.startswith("Elderly:") or l.startswith("Child ") or l.startswith("Neonate:"):
+        elif re.match(r'^(Adult|Child|Elderly|Neonate)\b', l, re.I):
             cleaned_lines.append(f"• {l}")
         else:
             cleaned_lines.append(l)

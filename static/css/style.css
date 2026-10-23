@@ -2165,6 +2165,92 @@ body.font-sans {
   scrollbar-color: rgba(96, 165, 250, 0.4) transparent;
 }
 
+/* BNF Indications & Dosage Visual Hierarchy */
+.bnf-dosage-container {
+  font-family: inherit;
+  font-size: 0.8rem;
+  line-height: 1.42;
+  color: inherit;
+  text-align: left;
+}
+
+.bnf-indication-header {
+  font-weight: 700;
+  font-size: 0.84rem;
+  color: #1e3a8a;
+  margin-top: 9px;
+  margin-bottom: 2px;
+  display: block;
+  letter-spacing: -0.01em;
+}
+
+.bnf-indication-header:first-child {
+  margin-top: 0;
+}
+
+.bnf-route-tag {
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: #4b5563;
+  margin: 2px 0 3px 0;
+  display: block;
+  letter-spacing: 0.02em;
+}
+
+.bnf-dose-bullet {
+  margin: 1px 0 2px 4px;
+  color: #1f2937;
+  display: block;
+}
+
+.bnf-dose-bullet strong {
+  font-weight: 700;
+  color: #111827;
+}
+
+.bnf-note-box {
+  margin-top: 7px;
+  padding: 3px 6px;
+  background: rgba(245, 158, 11, 0.1);
+  border-left: 2px solid #d97706;
+  border-radius: 4px;
+  font-size: 0.74rem;
+  color: #92400e;
+}
+
+/* Theme dark overrides for BNF */
+body.theme-dark .bnf-indication-header,
+[data-theme="dark"] .bnf-indication-header,
+.reader-overlay.theme-dark .bnf-indication-header {
+  color: #93c5fd !important;
+}
+
+body.theme-dark .bnf-route-tag,
+[data-theme="dark"] .bnf-route-tag,
+.reader-overlay.theme-dark .bnf-route-tag {
+  color: #94a3b8 !important;
+}
+
+body.theme-dark .bnf-dose-bullet,
+[data-theme="dark"] .bnf-dose-bullet,
+.reader-overlay.theme-dark .bnf-dose-bullet {
+  color: #cbd5e1 !important;
+}
+
+body.theme-dark .bnf-dose-bullet strong,
+[data-theme="dark"] .bnf-dose-bullet strong,
+.reader-overlay.theme-dark .bnf-dose-bullet strong {
+  color: #f8fafc !important;
+}
+
+body.theme-dark .bnf-note-box,
+[data-theme="dark"] .bnf-note-box,
+.reader-overlay.theme-dark .bnf-note-box {
+  background: rgba(245, 158, 11, 0.18) !important;
+  color: #fde68a !important;
+}
+
 .char-card-header {
   display: flex;
   align-items: flex-start;
