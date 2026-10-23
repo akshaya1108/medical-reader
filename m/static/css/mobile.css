@@ -2483,19 +2483,23 @@ body.theme-dark .notes-list-type-pill.type-highlight {
 /* ==========================================================================
    EXACT DESKTOP LORE CARD STYLING (Color-Coded Entry Boxes)
    ========================================================================== */
-.sheet-card.cat-box-character {
+.sheet-card.cat-box-character,
+.sheet-card.cat-box-anatomy {
   background-color: #fdf6f7;
   border-top: 4px solid #a64b58;
 }
-.sheet-card.cat-box-race-creature {
+.sheet-card.cat-box-race-creature,
+.sheet-card.cat-box-instrument {
   background-color: #f2f8fc;
   border-top: 4px solid #257e9f;
 }
-.sheet-card.cat-box-weapon-item {
+.sheet-card.cat-box-weapon-item,
+.sheet-card.cat-box-pathology {
   background-color: #fdf9f4;
-  border-top: 4px solid #a06429;
+  border-top: 4px solid #b05c28;
 }
-.sheet-card.cat-box-clan-sect {
+.sheet-card.cat-box-clan-sect,
+.sheet-card.cat-box-drug {
   background-color: #f5f9f6;
   border-top: 4px solid #3d6652;
 }
@@ -2503,24 +2507,29 @@ body.theme-dark .notes-list-type-pill.type-highlight {
   background-color: #f5f8fc;
   border-top: 4px solid #425c7e;
 }
-.sheet-card.cat-box-concept-lore {
+.sheet-card.cat-box-concept-lore,
+.sheet-card.cat-box-concept {
   background-color: #f9f5fa;
   border-top: 4px solid #70487b;
 }
 
-body.theme-dark .sheet-card.cat-box-character {
+body.theme-dark .sheet-card.cat-box-character,
+body.theme-dark .sheet-card.cat-box-anatomy {
   background-color: #281e21;
   border-top: 4px solid #a64b58;
 }
-body.theme-dark .sheet-card.cat-box-race-creature {
+body.theme-dark .sheet-card.cat-box-race-creature,
+body.theme-dark .sheet-card.cat-box-instrument {
   background-color: #16232d;
   border-top: 4px solid #257e9f;
 }
-body.theme-dark .sheet-card.cat-box-weapon-item {
+body.theme-dark .sheet-card.cat-box-weapon-item,
+body.theme-dark .sheet-card.cat-box-pathology {
   background-color: #29221a;
-  border-top: 4px solid #a06429;
+  border-top: 4px solid #b05c28;
 }
-body.theme-dark .sheet-card.cat-box-clan-sect {
+body.theme-dark .sheet-card.cat-box-clan-sect,
+body.theme-dark .sheet-card.cat-box-drug {
   background-color: #1c2721;
   border-top: 4px solid #3d6652;
 }
@@ -2528,7 +2537,8 @@ body.theme-dark .sheet-card.cat-box-location-realm {
   background-color: #1c242d;
   border-top: 4px solid #425c7e;
 }
-body.theme-dark .sheet-card.cat-box-concept-lore {
+body.theme-dark .sheet-card.cat-box-concept-lore,
+body.theme-dark .sheet-card.cat-box-concept {
   background-color: #261e29;
   border-top: 4px solid #70487b;
 }
@@ -2598,29 +2608,74 @@ body.theme-dark .sheet-card.cat-box-concept-lore {
   margin-bottom: 10px;
 }
 
-.cat-box-character .lore-card-summary-box {
+.cat-box-character .lore-card-summary-box,
+.cat-box-anatomy .lore-card-summary-box,
+.lore-card-summary-box.cat-summary-anatomy {
   border-left: 3px solid #a64b58;
-  background-color: rgba(166, 75, 88, 0.05);
+  background-color: rgba(166, 75, 88, 0.08);
 }
-.cat-box-race-creature .lore-card-summary-box {
+.cat-box-weapon-item .lore-card-summary-box,
+.cat-box-pathology .lore-card-summary-box,
+.lore-card-summary-box.cat-summary-pathology {
+  border-left: 3px solid #b05c28;
+  background-color: rgba(176, 92, 40, 0.08);
+}
+.cat-box-concept-lore .lore-card-summary-box,
+.cat-box-concept .lore-card-summary-box,
+.lore-card-summary-box.cat-summary-concept {
+  border-left: 3px solid #70487b;
+  background-color: rgba(112, 72, 123, 0.08);
+}
+.cat-box-race-creature .lore-card-summary-box,
+.cat-box-instrument .lore-card-summary-box,
+.lore-card-summary-box.cat-summary-instrument {
   border-left: 3px solid #257e9f;
-  background-color: rgba(37, 126, 159, 0.05);
+  background-color: rgba(37, 126, 159, 0.08);
 }
-.cat-box-weapon-item .lore-card-summary-box {
-  border-left: 3px solid #a06429;
-  background-color: rgba(160, 100, 41, 0.05);
-}
-.cat-box-clan-sect .lore-card-summary-box {
+.cat-box-clan-sect .lore-card-summary-box,
+.cat-box-drug .lore-card-summary-box,
+.lore-card-summary-box.cat-summary-drug {
   border-left: 3px solid #3d6652;
-  background-color: rgba(61, 102, 82, 0.05);
+  background-color: rgba(61, 102, 82, 0.08);
 }
 .cat-box-location-realm .lore-card-summary-box {
   border-left: 3px solid #425c7e;
-  background-color: rgba(66, 92, 126, 0.05);
+  background-color: rgba(66, 92, 126, 0.08);
 }
-.cat-box-concept-lore .lore-card-summary-box {
-  border-left: 3px solid #70487b;
-  background-color: rgba(112, 72, 123, 0.05);
+
+body.theme-dark .cat-box-character .lore-card-summary-box,
+body.theme-dark .cat-box-anatomy .lore-card-summary-box,
+body.theme-dark .lore-card-summary-box.cat-summary-anatomy {
+  border-left-color: #b65362;
+  background-color: rgba(182, 83, 98, 0.16);
+}
+body.theme-dark .cat-box-weapon-item .lore-card-summary-box,
+body.theme-dark .cat-box-pathology .lore-card-summary-box,
+body.theme-dark .lore-card-summary-box.cat-summary-pathology {
+  border-left-color: #b07032;
+  background-color: rgba(176, 112, 50, 0.16);
+}
+body.theme-dark .cat-box-concept-lore .lore-card-summary-box,
+body.theme-dark .cat-box-concept .lore-card-summary-box,
+body.theme-dark .lore-card-summary-box.cat-summary-concept {
+  border-left-color: #7f538c;
+  background-color: rgba(127, 83, 140, 0.16);
+}
+body.theme-dark .cat-box-race-creature .lore-card-summary-box,
+body.theme-dark .cat-box-instrument .lore-card-summary-box,
+body.theme-dark .lore-card-summary-box.cat-summary-instrument {
+  border-left-color: #2c8cb2;
+  background-color: rgba(44, 140, 178, 0.16);
+}
+body.theme-dark .cat-box-clan-sect .lore-card-summary-box,
+body.theme-dark .cat-box-drug .lore-card-summary-box,
+body.theme-dark .lore-card-summary-box.cat-summary-drug {
+  border-left-color: #45775f;
+  background-color: rgba(69, 119, 95, 0.16);
+}
+body.theme-dark .cat-box-location-realm .lore-card-summary-box {
+  border-left-color: #4d6c94;
+  background-color: rgba(77, 108, 148, 0.16);
 }
 
 /* Settings Options */

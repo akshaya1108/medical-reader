@@ -1,1 +1,189 @@
-[]
+[
+  {
+    "id": "macintosh-laryngoscope-blade",
+    "name": "Macintosh Laryngoscope Blade",
+    "category": "Instrument / Device",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Macintosh blade",
+      "Curved laryngoscope blade",
+      "curved blade"
+    ],
+    "affiliation": "Emergency Medicine / Anesthesiology",
+    "sect_or_affiliation": "Emergency Medicine / Anesthesiology",
+    "summary": "A curved laryngoscope blade designed to be inserted into the vallecula to indirectly lift the epiglottis, facilitating visualization of the glottic opening during endotracheal intubation.",
+    "updated_at": "2026-10-23T20:30:48.669586",
+    "image_url": ""
+  },
+  {
+    "id": "rapid-sequence-intubation",
+    "name": "Rapid sequence intubation",
+    "category": "Concept",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Rapid sequence induction",
+      "RSII",
+      "Crash induction"
+    ],
+    "affiliation": "Emergency Medicine / Critical Care",
+    "sect_or_affiliation": "Emergency Medicine / Critical Care",
+    "summary": "Rapid sequence intubation is an advanced airway management technique utilizing near-simultaneous administration of a sedative and a neuromuscular blocker to rapidly secure the airway while minimizing the risk of pulmonary aspiration.",
+    "updated_at": "2026-10-23T20:30:48.669586",
+    "image_url": ""
+  },
+  {
+    "id": "preoxygenation",
+    "name": "Preoxygenation",
+    "category": "Concept",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Denitrogenation",
+      "Preoxygenate"
+    ],
+    "affiliation": "Emergency Medicine / Anesthesiology",
+    "sect_or_affiliation": "Emergency Medicine / Anesthesiology",
+    "summary": "The process of replacing functional residual capacity nitrogen with oxygen to increase the duration of safe apnea during rapid sequence intubation.",
+    "updated_at": "2026-10-23T20:30:48.669586",
+    "image_url": ""
+  },
+  {
+    "id": "fentanyl",
+    "name": "Fentanyl",
+    "category": "Drug",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Sublimaze",
+      "Actiq",
+      "Duragesic"
+    ],
+    "affiliation": "Synthetic Opioid / Analgesic",
+    "sect_or_affiliation": "Synthetic Opioid / Analgesic",
+    "summary": "Fentanyl is a highly potent, short-acting synthetic piperidine opioid that acts on mu-opioid receptors for the management of severe acute pain and procedural sedation.",
+    "updated_at": "2026-10-23T20:30:48.669586",
+    "image_url": "",
+    "bnf_dosage": "Chronic intractable pain not currently treated with a strong opioid analgesic (not opioid-naive patients)\n\n[BY TRANSDERMAL APPLICATION]\n• Child 16–17 years: Initially 12 micrograms/hour every 72 hours, alternatively initially 25 micrograms/hour every 72 hours, when starting, evaluation of the analgesic effect should not be made before the system has been worn for 24 hours (to allow for the gradual increase in plasma-fentanyl concentration)—previous analgesic therapy should be phased out gradually from time of ﬁrst patch application, dose should be adjusted at 72 hour intervals in steps of 12–25 micrograms/hour if necessary. After a dose increase, the system should be worn through two 72-hour applications before any further increase in dose, more than one patch may be used at a time (but applied at the same time to avoid confusion)—consider additional or alternative analgesic therapy if dose required exceeds 300 micrograms/hour (important: it takes 20 hours or more for the plasma-fentanyl concentration to decrease by 50%—replacement opioid therapy should be initiated at a low dose and increased gradually)\n• Adult: Initially 12 micrograms/hour every 72 hours, alternatively initially 25 micrograms/hour every 72 hours, when starting, evaluation of the analgesic effect should not be made before the system has been\n• Child 2–17 years: Initial dose based on previous 24-hour opioid requirement—consult product literature, for evaluating analgesic efﬁcacy and dose increments—\nconsult product literature, for conversion from long term oral morphine to transdermal fentanyl, see Pain management with opioids under Prescribing in palliative care p. 25.\n• Adult: Initial dose based on previous 24-hour opioid requirement—consult product literature, for evaluating analgesic efﬁcacy and dose increments, see under\nChronic intractable pain not currently treated with a strong opioid analgesic (not opioid-naive patients), for conversion from long term oral morphine to transdermal fentanyl, see Pain management with opioids under Prescribing in palliative care p. 25.\nSpontaneous respiration: analgesia and enhancement of anaesthesia, during operation\n\n[BY SLOW INTRAVENOUS INJECTION]\n• Adult: Initially 50–100 micrograms (max. per dose 200 micrograms), dose maximum on specialist advice, then 25–50 micrograms as required\n\n[BY INTRAVENOUS INFUSION]\n• Adult: 3–4.8 micrograms/kg/hour, adjusted according to response\nAssisted ventilation: analgesia and enhancement of anaesthesia during operation\n\n[BY SLOW INTRAVENOUS INJECTION]\n• Adult: Initially 300–3500 micrograms, then 100–200 micrograms as required\n\n[BY INTRAVENOUS INFUSION]\n• Adult: Initially 10 micrograms/kg, dose to be given over 10 minutes, then 6 micrograms/kg/hour, adjusted according to response, may require up to 180 micrograms/kg/hour during cardiac surgery\nAssisted ventilation: analgesia and respiratory depression in intensive care\n\n[BY SLOW INTRAVENOUS INJECTION]\n• Adult: Initially 300–3500 micrograms, then 100–200 micrograms as required\n\n[BY INTRAVENOUS INFUSION]\n• Adult: Initially 10 micrograms/kg, dose to be given over 10 minutes, then 6 micrograms/kg/hour, adjusted according to response, may require up to 180 micrograms/kg/hour during cardiac surgery\nBreakthrough pain in patients receiving opioid therapy for chronic cancer pain\n\n[BY BUCCAL ADMINISTRATION USING LOZENGES]\n• Child 16–17 years: Initially 200 micrograms, dose to be given over 15 minutes, then 200 micrograms after 15 minutes if required, no more than 2 dose units for each pain episode; if adequate pain relief not achieved with 1 dose unit for consecutive breakthrough pain episodes, increase the strength of the dose continued →"
+  },
+  {
+    "id": "etomidate",
+    "name": "Etomidate",
+    "category": "Drug",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Amidate"
+    ],
+    "affiliation": "Intravenous Anesthetic / Emergency Medicine",
+    "sect_or_affiliation": "Intravenous Anesthetic / Emergency Medicine",
+    "summary": "Etomidate is a short-acting intravenous sedative-hypnotic agent commonly used for rapid sequence intubation and procedural sedation due to its favorable hemodynamic stability.",
+    "updated_at": "2026-10-23T20:30:48.669586",
+    "image_url": "",
+    "bnf_dosage": "Induction of anaesthesia\n\n[BY SLOW INTRAVENOUS INJECTION]\n• Adult: 150–300 micrograms/kg (max. per dose 60 mg), to be administered over 30-60 seconds (60 seconds in patients in whom hypotension might be hazardous)\n• Elderly: 150–200 micrograms/kg (max. per dose 60 mg), to be administered over 30-60 seconds (60 seconds in patients in whom hypotension might be hazardous)"
+  },
+  {
+    "id": "propofol",
+    "name": "Propofol",
+    "category": "Drug",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Diprivan",
+      "2,6-diisopropylphenol"
+    ],
+    "affiliation": "Emergency Medicine / Anesthesiology / General Anesthetic",
+    "sect_or_affiliation": "Emergency Medicine / Anesthesiology / General Anesthetic",
+    "summary": "Propofol is a rapid-onset, short-acting intravenous sedative-hypnotic agent frequently utilized for procedural sedation and the induction of general anesthesia in emergency medicine.",
+    "updated_at": "2026-10-23T20:30:48.669586",
+    "image_url": "",
+    "bnf_dosage": "Induction of anaesthesia using 0.5% or 1% injection\n\n[BY SLOW INTRAVENOUS INJECTION, OR BY INTRAVENOUS]\nINFUSION\nAdult 18–54 years: Usual dose 1.5–2.5 mg/kg, to be administered at a rate of 20–40 mg every 10 seconds until response, for debilitated patients use dose for 55 years and over\nAdult 55 years and over: Usual dose 1–1.5 mg/kg, to be administered at a rate of 20 mg every 10 seconds until response\nInduction of anaesthesia using 2% injection\n\n[BY INTRAVENOUS INFUSION]\nAdult 18–54 years: Usual dose 1.5–2.5 mg/kg, to be administered at a rate of 20–40 mg every 10 seconds until response. For debilitated patients use dose for 55 years and over\nAdult 55 years and over: Usual dose 1–1.5 mg/kg, to be administered at a rate of 20 mg every 10 seconds until response\nMaintenance of anaesthesia using 1% injection\nINITIALLY BY INTRAVENOUS INFUSION\n• Adult: Usual dose 4–12 mg/kg/hour, alternatively (by slow intravenous injection) 25–50 mg, dose may be repeated according to response, for debilitated patients use dose for elderly\n• Elderly: Usual dose 3–6 mg/kg/hour, alternatively (by slow intravenous injection) 25–50 mg, dose may be repeated according to response\nMaintenance of anaesthesia using 2% injection\n\n[BY INTRAVENOUS INFUSION]\n• Adult: Usual dose 4–12 mg/kg/hour, for debilitated patients use dose for elderly\n• Elderly: Usual dose 3–6 mg/kg/hour\nSedation of ventilated patients in intensive care using 1%\nor 2% injection\n\n[BY CONTINUOUS INTRAVENOUS INFUSION]\n• Adult: Usual dose 0.3–4 mg/kg/hour, adjusted according to response"
+  },
+  {
+    "id": "ketamine",
+    "name": "Ketamine",
+    "category": "Drug",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Ketamine hydrochloride",
+      "Ketalar"
+    ],
+    "affiliation": "Dissociative anesthetic / NMDA receptor antagonist",
+    "sect_or_affiliation": "Dissociative anesthetic / NMDA receptor antagonist",
+    "summary": "A rapid-acting dissociative anesthetic and analgesic used in emergency medicine for procedural sedation, induction for rapid sequence intubation, and management of severe pain.",
+    "updated_at": "2026-10-23T20:34:14.169824",
+    "image_url": "",
+    "bnf_dosage": "Induction and maintenance of anaesthesia for short procedures\n\n[BY INTRAMUSCULAR INJECTION]\nPATIENT AND CARER ADVICE\n• Adult: Initially 6.5–13 mg/kg, adjusted according to response, a dose of 10 mg/kg usually produces 12–25 minutes of surgical anaesthesia\n\n[BY INTRAVENOUS INJECTION]\n• Adult: Initially 1–4.5 mg/kg, adjusted according to response, to be administered over at least 60 seconds, a dose of 2 mg/kg usually produces 5–10 minutes of surgical anaesthesia\nDiagnostic manoeuvres and procedures not involving intense pain\n\n[BY INTRAMUSCULAR INJECTION]\n• Adult: Initially 4 mg/kg\n• Adult: Initially 0.5–2 mg/kg, using an infusion solution containing 1 mg/ml; maintenance 10–45 micrograms/kg/minute, adjusted according to response"
+  },
+  {
+    "name": "Gum Elastic Bougie",
+    "category": "Instrument / Device",
+    "aliases": [
+      "gum elastic bougies",
+      "GEB",
+      "Eschmann tracheal tube introducer",
+      "tracheal tube introducer"
+    ],
+    "sect_or_affiliation": "Emergency Medicine / Airway Management",
+    "summary": "A flexible, semi-rigid, single-use stylet used as a blind or visual aid to facilitate endotracheal intubation, particularly in cases of difficult or unanticipated airway anatomy.",
+    "image_url": "",
+    "id": "gum-elastic-bougie",
+    "pinyin_or_chinese": "",
+    "affiliation": "Emergency Medicine / Airway Management",
+    "updated_at": "2026-10-23T15:13:52.441983+00:00"
+  },
+  {
+    "id": "laryngeal-mask-airway",
+    "name": "Laryngeal mask airway",
+    "category": "Instrument / Device",
+    "aliases": [
+      "laryngeal mask",
+      "LMA"
+    ],
+    "affiliation": "Clinical Reference",
+    "sect_or_affiliation": "Clinical Reference",
+    "summary": "A laryngeal mask airway (LMA), also known as laryngeal mask, is a medical device that keeps a patient's airway open during anaesthesia or while they are unconscious.",
+    "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Laryngeal_mask_100.jpg/500px-Laryngeal_mask_100.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "bnf_dosage": "",
+    "pinyin_or_chinese": "",
+    "updated_at": "2026-10-23T15:15:36.697021+00:00"
+  },
+  {
+    "id": "mechanical-ventilation",
+    "name": "Mechanical ventilation",
+    "category": "Concept",
+    "aliases": [
+      "Noninvasive positive pressure ventilation"
+    ],
+    "affiliation": "Clinical Reference",
+    "sect_or_affiliation": "Clinical Reference",
+    "summary": "Mechanical ventilation or assisted ventilation is the medical term for using a ventilator machine to fully or partially provide artificial ventilation.",
+    "image_url": "",
+    "bnf_dosage": "",
+    "pinyin_or_chinese": "",
+    "updated_at": "2026-10-23T15:18:27.595264+00:00"
+  },
+  {
+    "id": "intubating-stylet",
+    "name": "Intubating stylet",
+    "category": "Instrument / Device",
+    "pinyin_or_chinese": "{\"image_url\":\"https://upload.wikimedia.org/wikipedia/commons/e/e0/Intubating_stylet.jpg\"}",
+    "aliases": [
+      "Endotracheal tube stylet",
+      "ETT stylet"
+    ],
+    "affiliation": "Emergency Medicine / Anesthesiology",
+    "sect_or_affiliation": "Emergency Medicine / Anesthesiology",
+    "summary": "A malleable metal rod inserted into an endotracheal tube to provide structural rigidity and allow for the shaping of the tube to facilitate tracheal intubation.",
+    "updated_at": "2026-10-23T20:51:52.152588"
+  },
+  {
+    "id": "trachea",
+    "name": "Trachea",
+    "category": "Anatomy",
+    "pinyin_or_chinese": "{\"image_url\":\"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Trachea_diagram.svg/500px-Trachea_diagram.svg.png\"}",
+    "aliases": [
+      "Windpipe"
+    ],
+    "affiliation": "Respiratory System / Otolaryngology",
+    "sect_or_affiliation": "Respiratory System / Otolaryngology",
+    "summary": "The trachea is a cartilaginous tube connecting the larynx to the bronchi that serves as the primary conduit for airflow to and from the lungs.",
+    "updated_at": "2026-10-23T20:51:52.152588",
+    "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Illu_conducting_passages.svg/500px-Illu_conducting_passages.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  }
+]

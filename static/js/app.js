@@ -2490,7 +2490,7 @@ function renderGlossary(filterText = null) {
         <div class="glossary-card-scroll-body">
           ${(char.image_url && isImageAllowedCategory(char.category)) ? `
             <div class="glossary-card-img-wrap" style="margin: 6px 0; text-align: center;">
-              <img src="${escapeHtml(char.image_url)}" alt="${escapeHtml(char.name)}" style="max-width: 100%; max-height: 120px; border-radius: 6px; object-fit: contain; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); display: inline-block;">
+              <img src="${escapeHtml(char.image_url)}" alt="${escapeHtml(char.name)}" referrerpolicy="no-referrer" onerror="this.parentElement.style.display='none';" style="max-width: 100%; max-height: 120px; border-radius: 6px; object-fit: contain; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); display: inline-block;">
             </div>
           ` : ''}
           <div class="glossary-char-summary" style="white-space: pre-line;">${escapeHtml(char.summary || 'No summary')}</div>
@@ -3075,7 +3075,7 @@ function renderSearchResults(data, query, scope) {
         ` : ''}
         ${(item.image_url && isImageAllowedCategory(item.category)) ? `
           <div class="search-lore-img-wrap" style="margin: 8px 0;">
-            <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(item.name || '')}" style="max-width: 100%; max-height: 130px; border-radius: 6px; object-fit: contain; background: #fff; border: 1px solid rgba(0,0,0,0.08); display: block;">
+            <img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(item.name || '')}" referrerpolicy="no-referrer" onerror="this.parentElement.style.display='none';" style="max-width: 100%; max-height: 130px; border-radius: 6px; object-fit: contain; background: #fff; border: 1px solid rgba(0,0,0,0.08); display: block;">
           </div>
         ` : ''}
         ${item.summary ? `<div class="search-lore-summary" style="white-space: pre-line;">${escapeHtml(item.summary)}</div>` : ''}

@@ -29,10 +29,9 @@ const KNOWN_CLUSTERS = [
 const GEMINI_API_KEY = (typeof localStorage !== 'undefined' && (localStorage.getItem('medical_gemini_api_key') || localStorage.getItem('xianxia_gemini_api_key'))) ||
   atob('QVEuQWI4Uk42Sk11R1p3VHgzRTVWa3hwdlZMRlBhU0xzWk1zcEZldXlfSHR4aDZCei1xZWc=');
 const GEMINI_MODELS = [
-  'gemini-3.1-flash-lite',
   'gemini-flash-lite-latest',
-  'gemini-3-flash-preview',
-  'gemini-2.5-flash-lite'
+  'gemini-3.1-flash-lite',
+  'gemini-3-flash-preview'
 ];
 
 export function isImageAllowedCategory(category) {
@@ -777,12 +776,40 @@ export const api = {
     // 3. Direct Gemini AI & Wikipedia lookup fallback (runs on GitHub Pages and standalone mobile PWA)
     if (this.isOnline()) {
       let wikiData = null;
+      let wikiThumb = '';
+      let wikiExtract = '';
+      let wikiTitle = cleanName;
+
       try {
-        const wikiRes = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(cleanName)}`);
+        const apiUrl = `https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&prop=extracts|pageimages&exintro=1&explaintext=1&titles=${encodeURIComponent(cleanName)}&redirects=1&pithumbsize=500`;
+        const wikiRes = await fetch(apiUrl);
         if (wikiRes.ok) {
-          wikiData = await wikiRes.json();
+          const wJson = await wikiRes.json();
+          const pages = wJson?.query?.pages || {};
+          for (const pid of Object.keys(pages)) {
+            if (pid !== '-1') {
+              const p = pages[pid];
+              if (p.extract) wikiExtract = p.extract;
+              if (p.title) wikiTitle = p.title;
+              if (p.thumbnail?.source) wikiThumb = p.thumbnail.source;
+              break;
+            }
+          }
         }
       } catch (_) {}
+
+      // Fallback to rest_v1 summary if action=query didn't yield extract/thumb
+      if (!wikiExtract || !wikiThumb) {
+        try {
+          const restRes = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(cleanName)}`);
+          if (restRes.ok) {
+            wikiData = await restRes.json();
+            if (!wikiExtract && wikiData?.extract) wikiExtract = wikiData.extract;
+            if (!wikiThumb && wikiData?.thumbnail?.source) wikiThumb = wikiData.thumbnail.source;
+            if (wikiData?.title) wikiTitle = wikiData.title;
+          }
+        } catch (_) {}
+      }
 
       try {
         const books = await this.getBooks();
@@ -802,10 +829,10 @@ Analyze "${cleanName}" in clinical medicine:
    - "aliases": Array of true AKAs (Also Known As) for the EXACT same entity (e.g. brand names, chemical names, direct abbreviations like "GCS" for Glasgow Coma Scale). STRICT RULE: Do NOT include procedures, protocols, indications, diseases, or related concepts as aliases (e.g. NEVER add "RSI" or "intubation" as an alias for a drug).
    - "affiliation": Associated organ system, drug class, or medical specialty (e.g. "Emergency Medicine / Pulmonology", "Third-generation Cephalosporin").
    - "summary": Exactly ONE concise sentence (1 line). A clear, punchy, high-yield clinical definition and primary indication or role. STRICT: Must be a single sentence.
-   - "image_url": Only for "Anatomy", "Pathology / Disease", or "Instrument / Device" if a relevant diagram or photo exists. For "Drug" or "Concept", ALWAYS set to empty string "".
+   - "image_url": ${wikiThumb ? `"${wikiThumb}"` : `""`}
    - "bnf_dosage": For Drug entries, standard indications and adult dosage (or empty string if not a drug).
 
-${wikiData?.extract ? `Reference text:\n${wikiData.extract}` : ''}
+${wikiExtract ? `Reference text:\n${wikiExtract.slice(0, 5000)}` : ''}
 
 Return a JSON array with 1 object:
 [
@@ -816,7 +843,7 @@ Return a JSON array with 1 object:
     "aliases": ["True Alias 1", "True Alias 2"],
     "affiliation": "Organ System / Specialty",
     "summary": "One sentence high-yield clinical definition and indication.",
-    "image_url": "",
+    "image_url": ${wikiThumb ? `"${wikiThumb}"` : `""`},
     "bnf_dosage": ""
   }
 ]
@@ -829,7 +856,25 @@ Return a JSON array with 1 object:
           if (standardName) {
             const normCat = raw.category || 'Concept';
             const imgAllowed = isImageAllowedCategory(normCat);
-            const candidateImg = imgAllowed ? (raw.image_url || wikiData?.thumbnail?.source || '') : '';
+            let candidateImg = (imgAllowed && wikiThumb) ? wikiThumb : '';
+
+            // If category allows images but no thumbnail found for original query, try standardName
+            if (!candidateImg && imgAllowed && standardName.toLowerCase() !== cleanName.toLowerCase()) {
+              try {
+                const canonApi = `https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&prop=pageimages&titles=${encodeURIComponent(standardName)}&redirects=1&pithumbsize=500`;
+                const cRes = await fetch(canonApi);
+                if (cRes.ok) {
+                  const cJson = await cRes.json();
+                  const cPages = cJson?.query?.pages || {};
+                  for (const pid of Object.keys(cPages)) {
+                    if (pid !== '-1' && cPages[pid]?.thumbnail?.source) {
+                      candidateImg = cPages[pid].thumbnail.source;
+                      break;
+                    }
+                  }
+                }
+              } catch (_) {}
+            }
 
             // Check if AI resolved term to an existing character in glossary
             const matchInGlossary = entries.find(e =>
@@ -892,10 +937,11 @@ Return a JSON array with 1 object:
       }
 
       // Wikipedia direct fallback if Gemini was offline/quota exceeded
-      if (wikiData && wikiData.extract) {
-        const stdName = wikiData.title || cleanName;
-        const firstSentence = wikiData.extract.split('.')[0].trim() + '.';
-        const isDrug = /medication|drug|pharmaceutical|indicated for|dosage|antagonist|agonist/i.test(wikiData.extract);
+      const fallbackExtract = wikiExtract || wikiData?.extract;
+      if (fallbackExtract) {
+        const stdName = wikiTitle || wikiData?.title || cleanName;
+        const firstSentence = fallbackExtract.split('.')[0].trim() + '.';
+        const isDrug = /medication|drug|pharmaceutical|indicated for|dosage|antagonist|agonist/i.test(fallbackExtract);
         const cleanId = stdName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `entity-${Date.now()}`;
         const fallbackCat = isDrug ? 'Drug' : 'Concept';
         const fallbackChar = {
@@ -906,7 +952,7 @@ Return a JSON array with 1 object:
           sect_or_affiliation: isDrug ? 'Pharmacology' : 'Clinical Medicine',
           pinyin_or_chinese: '',
           aliases: [],
-          image_url: isImageAllowedCategory(fallbackCat) ? (wikiData.thumbnail?.source || '') : '',
+          image_url: isImageAllowedCategory(fallbackCat) ? (wikiThumb || wikiData?.thumbnail?.source || '') : '',
           summary: firstSentence,
           bnf_dosage: '',
           mentions: 0

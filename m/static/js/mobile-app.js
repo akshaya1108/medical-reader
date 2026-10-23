@@ -4,7 +4,7 @@
  * reliable paragraph bookmarking, and complete glossary management.
  */
 
-import { api } from './api.js?v=47';
+import { api } from './api.js?v=48';
 
 // --- Category Display Configuration ---
 const CATEGORIES = [
@@ -1657,10 +1657,10 @@ function openLoreSheet(charName, asCenteredModal = false) {
     ${aliasesHtml ? `<div class="lore-card-aliases"><span class="lore-card-aliases-label">AKA:</span> <div class="card-aliases-row" style="margin-top: 4px;">${aliasesHtml}</div></div>` : ''}
     ${(entry.image_url && isImageAllowedCategory(normCat)) ? `
       <div class="lore-card-img-wrap" style="margin: 10px 0; text-align: center;">
-        <img src="${escapeHtml(entry.image_url)}" alt="${escapeHtml(entry.name || charName)}" style="max-width: 100%; max-height: 180px; border-radius: 6px; object-fit: contain; background: #fff; border: 1px solid rgba(0,0,0,0.08); display: inline-block;">
+        <img src="${escapeHtml(entry.image_url)}" alt="${escapeHtml(entry.name || charName)}" referrerpolicy="no-referrer" onerror="this.closest('.lore-card-img-wrap').style.display='none';" style="max-width: 100%; max-height: 180px; border-radius: 6px; object-fit: contain; background: #fff; border: 1px solid rgba(0,0,0,0.08); display: inline-block;">
       </div>
     ` : ''}
-    <div class="lore-card-summary-box" style="white-space: pre-line;">${escapeHtml(summary || 'No description provided.')}</div>
+    <div class="lore-card-summary-box cat-summary-${catSlug}" style="white-space: pre-line;">${escapeHtml(summary || 'No description provided.')}</div>
     ${normCat === 'Drug' && entry.bnf_dosage ? `
       <div class="lore-card-bnf-wrap" style="margin-top: 10px; padding: 8px 10px; background: rgba(59, 130, 246, 0.08); border-left: 3px solid #2563eb; border-radius: 6px; font-size: 0.82rem; line-height: 1.4;">
         <div style="font-weight: 600; font-size: 0.74rem; text-transform: uppercase; color: #1d4ed8; margin-bottom: 4px;">📋 BNF 85 Indications &amp; Dose</div>
@@ -2707,6 +2707,10 @@ function setupEditLoreSheet() {
             document.getElementById('edit-lore-aliases').value = aliasesArr.join(', ');
           }
           if (c.summary) document.getElementById('edit-lore-summary').value = c.summary;
+          if (c.image_url && isImageAllowedCategory(c.category)) {
+            const imgInput = document.getElementById('edit-lore-image');
+            if (imgInput) imgInput.value = c.image_url;
+          }
           showToast(`Autofilled details for "${name}"`);
         } else {
           showToast('No information found for this name');
