@@ -223,8 +223,13 @@ SPECIAL_DRUG_PAGES = {
     "adrenaline": [243],
     "epinephrine": [243],
     "adrenaline/epinephrine": [243],
-    "amiodarone": [108],
-    "amiodarone hydrochloride": [108],
+    "amiodarone": [113],
+    "amiodarone hydrochloride": [113],
+    "digoxin": [118],
+    "propofol": [1468],
+    "etomidate": [1468],
+    "ketamine": [1485],
+    "fentanyl": [495],
 }
 
 def get_page_content_blocks(page):
@@ -233,40 +238,65 @@ def get_page_content_blocks(page):
         b for b in blocks 
         if b[0] >= 35 and b[2] <= 415 and b[1] >= 35 and b[3] <= 610
     ]
-    col1 = sorted([b for b in content_blocks if b[0] < 225], key=lambda b: b[1])
-    col2 = sorted([b for b in content_blocks if b[0] >= 225], key=lambda b: b[1])
+    col1 = sorted([b for b in content_blocks if b[0] < 218], key=lambda b: b[1])
+    col2 = sorted([b for b in content_blocks if b[0] >= 218], key=lambda b: b[1])
     return col1 + col2
 
+def is_true_monograph_heading(all_blocks, idx, q):
+    b = all_blocks[idx]
+    txt = b[4].strip()
+    lines = [l.strip().lower() for l in txt.splitlines() if l.strip()]
+    if not lines:
+        return False
+    first_line = lines[0]
+    
+    # Exclude medicinal forms / preparations
+    if any(unit in first_line for unit in [' mg', ' microgram', ' ml', 'tablet', 'capsule', 'solution for infusion']):
+        return False
+    # Exclude antibody fragments / other compounds unless explicitly requested
+    if 'antibody' in first_line and 'antibody' not in q.lower():
+        return False
+
+    q_clean = q.lower().strip()
+    q_parts = [q_clean] + [p.strip() for p in q_clean.split('/') if p.strip()]
+    
+    name_matched = False
+    for qp in q_parts:
+        if first_line == qp or first_line.startswith(qp + ' ') or first_line.startswith(qp + '/'):
+            name_matched = True
+            break
+        for salt in ['hydrochloride', 'sulfate', 'sulphate', 'bromide', 'chloride', 'sodium', 'potassium', 'tartrate', 'acetate']:
+            if first_line == f'{qp} {salt}':
+                name_matched = True
+                break
+        if name_matched:
+            break
+
+    if not name_matched:
+        return False
+
+    has_date = bool(re.search(r'\b\d{1,2}-[A-Za-z]{3}-\d{4}\b', txt))
+    has_dose_next = False
+    for next_idx in range(idx + 1, min(idx + 4, len(all_blocks))):
+        if 'indications and dose' in all_blocks[next_idx][4].lower():
+            has_dose_next = True
+            break
+
+    return has_date or has_dose_next
+
 def find_drug_heading_block(all_blocks, q):
-    date_regex = re.compile(r'\b\d{1,2}-[A-Za-z]{3}-\d{4}\b')
-    q_parts = [q] + [p.strip() for p in q.split('/') if p.strip()]
-
-    # Pass 1: Drug heading accompanied by revision date or directly followed by INDICATIONS AND DOSE
-    for i, b in enumerate(all_blocks):
-        txt = b[4].strip()
-        lines = [l.strip().lower() for l in txt.splitlines()]
-        if lines:
-            for q_term in q_parts:
-                if any(l == q_term or l.startswith(q_term + ' ') or l.startswith(q_term + '/') or q_term in l for l in lines):
-                    if date_regex.search(txt) or (i + 1 < len(all_blocks) and 'indications and dose' in all_blocks[i+1][4].lower()):
-                        return i
-
-    # Pass 2: Block immediately preceding 'INDICATIONS AND DOSE'
+    for i in range(len(all_blocks)):
+        if is_true_monograph_heading(all_blocks, i, q):
+            return i
+    # Secondary check: block immediately preceding INDICATIONS AND DOSE
     for i, b in enumerate(all_blocks):
         if 'indications and dose' in b[4].lower():
-            for q_term in q_parts:
-                if i > 0 and q_term in all_blocks[i-1][4].lower():
+            for qp in q.split('/'):
+                qp_s = qp.strip().lower()
+                if i > 0 and qp_s in all_blocks[i-1][4].lower() and not any(unit in all_blocks[i-1][4].lower() for unit in [' mg', ' ml']):
                     return i - 1
-                if q_term in b[4].lower():
+                if qp_s in b[4].lower():
                     return i
-
-    # Pass 3: Exact line matches
-    for i, b in enumerate(all_blocks):
-        lines = [l.strip().lower() for l in b[4].splitlines()]
-        for q_term in q_parts:
-            if any(l == q_term or l.startswith(q_term + '/') or l.startswith(q_term + ' ') for l in lines):
-                return i
-
     return -1
 
 def lookup_drug_bnf(drug_name: str) -> dict:
@@ -323,6 +353,7 @@ def lookup_drug_bnf(drug_name: str) -> dict:
     # Search around printed pages (PDF offset is usually ~14 to 22)
     target_page = None
     target_pno = None
+    drug_idx = -1
     q_parts = [q] + [p.strip() for p in q.split('/') if p.strip()]
 
     for printed_page in candidate_pages:
@@ -331,21 +362,20 @@ def lookup_drug_bnf(drug_name: str) -> dict:
             if 0 <= pno < len(doc):
                 txt = doc[pno].get_text().lower()
                 if any(qp in txt for qp in q_parts) and "indications and dose" in txt:
-                    target_page = doc[pno]
-                    target_pno = pno
-                    break
+                    blocks = get_page_content_blocks(doc[pno])
+                    h_idx = find_drug_heading_block(blocks, q)
+                    if h_idx != -1:
+                        target_page = doc[pno]
+                        target_pno = pno
+                        drug_idx = h_idx
+                        break
         if target_page:
             break
 
-    if not target_page:
+    if not target_page or drug_idx == -1:
         return {"found": False, "error": f"Monograph page not located for '{drug_name}'"}
 
-    # Extract column-sorted blocks from target page
     all_blocks = get_page_content_blocks(target_page)
-    drug_idx = find_drug_heading_block(all_blocks, q)
-
-    if drug_idx == -1:
-        return {"found": False, "error": "Could not isolate drug block"}
 
     # Extract INDICATIONS AND DOSE, IMPORTANT SAFETY INFORMATION, and CAUTIONS
     dose_blocks = []
@@ -353,9 +383,9 @@ def lookup_drug_bnf(drug_name: str) -> dict:
     cautions_blocks = []
     current_section = None
     stop_headings = [
-        "SIDE-EFFECTS", "INTERACTIONS", "CONTRA-INDICATIONS", 
+        "SIDE-EFFECTS", "CONTRA-INDICATIONS", 
         "HEPATIC IMPAIRMENT", "RENAL IMPAIRMENT", "PREGNANCY", 
-        "MEDICINAL FORMS", "DIRECTIONS FOR ADMINISTRATION"
+        "BREAST FEEDING", "MEDICINAL FORMS"
     ]
 
     for b in all_blocks[drug_idx:]:
@@ -374,13 +404,13 @@ def lookup_drug_bnf(drug_name: str) -> dict:
             current_section = "cautions"
             cautions_blocks.append(txt)
             continue
-        elif any(h in txt_upper for h in stop_headings):
+        elif any(h in txt_upper for h in stop_headings) or re.search(r'(L\s+INTERACTIONS|INTERACTIONS\s*→|APPENDIX\s+1)', txt_upper):
             current_section = "stop"
             break
         elif current_section == "dose":
             # Check if this looks like another drug's heading
             first_line = txt.splitlines()[0].strip() if txt.splitlines() else ""
-            if b[0] == all_blocks[drug_idx][0] and len(dose_blocks) >= 2 and len(first_line) > 3 and first_line.isupper() and "BY " not in first_line:
+            if b[0] == all_blocks[drug_idx][0] and len(dose_blocks) >= 2 and len(first_line) > 3 and first_line.isupper() and "BY " not in first_line and not first_line.startswith("DOSE"):
                 break
             dose_blocks.append(txt)
         elif current_section == "safety":
@@ -394,10 +424,10 @@ def lookup_drug_bnf(drug_name: str) -> dict:
         for b in next_blocks:
             txt = b[4].strip()
             txt_upper = txt.upper()
-            if any(h in txt_upper for h in stop_headings) or "IMPORTANT SAFETY INFORMATION" in txt_upper or "UNLICENSED USE" in txt_upper or "CAUTIONS" in txt_upper:
+            if any(h in txt_upper for h in stop_headings) or re.search(r'(L\s+INTERACTIONS|INTERACTIONS\s*→|APPENDIX\s+1)', txt_upper) or "IMPORTANT SAFETY INFORMATION" in txt_upper or "UNLICENSED USE" in txt_upper or "CAUTIONS" in txt_upper:
                 break
             first_line = txt.splitlines()[0].strip() if txt.splitlines() else ""
-            if len(first_line) > 3 and first_line.isupper() and "BY " not in first_line:
+            if len(first_line) > 3 and first_line.isupper() and "BY " not in first_line and not first_line.startswith("DOSE"):
                 break
             dose_blocks.append(txt)
 

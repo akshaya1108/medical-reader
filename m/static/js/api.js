@@ -82,15 +82,23 @@ function unpackSupabaseRow(row) {
 let _bnfDrugsCache = null;
 export async function lookupBnfDosage(drugName, aliases = []) {
   if (!_bnfDrugsCache) {
-    try {
-      const res = await fetch('static/data/bnf_drugs.json');
-      if (res.ok) {
-        _bnfDrugsCache = await res.json();
-      }
-    } catch (_) {
+    const urls = [
+      'static/data/bnf_drugs.json',
+      './static/data/bnf_drugs.json',
+      '/m/static/data/bnf_drugs.json',
+      '/static/data/bnf_drugs.json',
+      'https://raw.githubusercontent.com/akshaya1108/medical-reader/main/m/static/data/bnf_drugs.json'
+    ];
+    for (const u of urls) {
       try {
-        const res2 = await fetch('/static/data/bnf_drugs.json');
-        if (res2.ok) _bnfDrugsCache = await res2.json();
+        const res = await fetch(u);
+        if (res.ok) {
+          const data = await res.json();
+          if (data && typeof data === 'object' && Object.keys(data).length > 0) {
+            _bnfDrugsCache = data;
+            break;
+          }
+        }
       } catch (_) {}
     }
   }
@@ -104,7 +112,7 @@ export async function lookupBnfDosage(drugName, aliases = []) {
     if (_bnfDrugsCache[c]) {
       return _bnfDrugsCache[c].indications_and_dose || '';
     }
-    const simplified = c.replace(/\b(bromide|sulfate|sulphate|chloride|sodium|tartrate|hydrochloride|maleate|succinate|phosphate|acetate)\b/g, '').trim();
+    const simplified = c.replace(/\b(bromide|sulfate|sulphate|chloride|sodium|tartrate|hydrochloride|maleate|succinate|phosphate|acetate|potassium|calcium|fumarate|gluconate|hydrate)\b/g, '').trim();
     if (simplified && _bnfDrugsCache[simplified]) {
       return _bnfDrugsCache[simplified].indications_and_dose || '';
     }
