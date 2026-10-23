@@ -1,36 +1,6 @@
 {
-  "tombstones": {
-    "atropine": "2026-10-13T20:09:01.773811",
-    "rocuronium": "2026-10-13T20:20:15.090278",
-    "intubating-stylet": "2026-10-13T20:34:13.705088",
-    "intubating stylet": "2026-10-13T20:34:13.705088",
-    "gum-elastic-bougie": "2026-10-13T20:21:38.492768",
-    "gum elastic bougie": "2026-10-13T20:21:38.492768",
-    "laryngeal-mask-airway": "2026-10-13T20:24:23.089492",
-    "laryngeal mask airway": "2026-10-13T20:24:23.089492"
-  },
+  "tombstones": {},
   "last_synced_ids": {
-    "tintinalli-s-emergency-medicine-manual-1": [
-      "end-tidal-co2",
-      "orotracheal-intubation",
-      "ketamine",
-      "ett",
-      "fentanyl",
-      "vallecula",
-      "rapid-sequence-intubation",
-      "succinylcholine",
-      "preoxygenation",
-      "hyperkalemia",
-      "macintosh-blade",
-      "cricothyrotomy",
-      "glasgow-coma-scale",
-      "propofol",
-      "alprazolam",
-      "midazolam",
-      "rocuronium-bromide",
-      "etomidate"
-    ],
-    "charlie-and-the-chocolate-factory": [],
-    "bailey-love-s-short-practice-of-surgery-chapter-1": []
+    "tintinalli-s-emergency-medicine-manual-1": []
   }
 }

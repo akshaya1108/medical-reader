@@ -766,7 +766,7 @@ def push_glossary_to_supabase_async(book_id, entries):
             print(f"Background Supabase push notice: {e}")
     threading.Thread(target=_run, daemon=True).start()
 
-def save_glossary(book_id, glossary, push_remote=True):
+def save_glossary(book_id, glossary, push_remote=True, allow_empty=False):
     path = get_glossary_file(book_id)
 
     # 1. Automatic rolling snapshot backup
@@ -792,8 +792,8 @@ def save_glossary(book_id, glossary, push_remote=True):
     except Exception as e:
         print(f"Notice: Glossary backup snapshot encountered ({e})")
 
-    # Guard against accidental empty overwrite
-    if len(glossary) == 0 and os.path.exists(path) and os.path.getsize(path) > 100:
+    # Guard against accidental empty overwrite unless allow_empty is explicitly True
+    if not allow_empty and len(glossary) == 0 and os.path.exists(path) and os.path.getsize(path) > 100:
         try:
             with open(path, "r", encoding="utf-8") as rf:
                 existing_gl = json.load(rf)
@@ -805,6 +805,30 @@ def save_glossary(book_id, glossary, push_remote=True):
 
     books = load_books()
     book = next((b for b in books if b.get("id") == book_id), None)
+    canonical_id = (book.get("shared_glossary_id") if book else None) or book_id
+    cluster_bids = {book_id, canonical_id}
+    for b in books:
+        if b.get("shared_glossary_id") in (book_id, canonical_id) or b.get("id") == canonical_id:
+            cluster_bids.add(b["id"])
+
+    # If glossary is wiped to empty
+    if len(glossary) == 0:
+        for bid in cluster_bids:
+            b_path = get_glossary_file(bid)
+            try:
+                with open(b_path, "w", encoding="utf-8") as f:
+                    json.dump([], f, indent=2)
+            except Exception:
+                pass
+        if push_remote:
+            try:
+                headers = {"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}"}
+                for bid in cluster_bids:
+                    requests.delete(f"{SUPABASE_URL}/rest/v1/glossary?book_id=eq.{bid}", headers=headers, timeout=5)
+            except Exception:
+                pass
+        return
+
     is_chinese = is_chinese_novel(book.get("title", ""), book.get("genre", "")) if book else False
 
     # 2. Clean, deduplicate and save
@@ -2710,7 +2734,7 @@ def delete_character(book_id, char_id):
             remaining.append(c)
 
     # Save remaining entries locally without pushing remote immediately
-    save_glossary(book_id, remaining, push_remote=False)
+    save_glossary(book_id, remaining, push_remote=False, allow_empty=True)
 
     # Update tombstones and sync meta
     meta = load_sync_meta()

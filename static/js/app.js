@@ -2265,7 +2265,9 @@ async function openGlossary() {
     if (elements.readerSearchDrawer) {
       elements.readerSearchDrawer.classList.remove('open');
     }
-    // If chapters haven't loaded into memory yet, fetch them first so mention counts work
+    if (state.activeBookId) {
+      await loadGlossary(state.activeBookId);
+    }
     if (!state.chapters || state.chapters.length === 0) {
       await loadChapters(state.activeBookId);
     }

@@ -165,6 +165,13 @@ function switchView(viewName) {
     renderBookOverview();
   } else if (viewName === 'glossary') {
     renderGlossaryShelves();
+    if (state.activeBookId) {
+      api.getGlossary(state.activeBookId).then(fresh => {
+        state.glossary = fresh || [];
+        buildGlossaryMap();
+        renderGlossaryShelves();
+      }).catch(() => {});
+    }
   } else if (viewName === 'library') {
     renderLibrary();
   }
