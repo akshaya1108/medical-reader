@@ -746,8 +746,8 @@ def push_glossary_to_supabase_async(book_id, entries):
                     "affiliation": item.get("affiliation") or item.get("sect_or_affiliation", ""),
                     "sect_or_affiliation": item.get("sect_or_affiliation") or item.get("affiliation", ""),
                     "summary": item.get("summary", ""),
-                    "mentions": int(item.get("mentions") or 0),
-                    "updated_at": item.get("updated_at") or now_iso
+                    "description": item.get("summary") or item.get("description", ""),
+                    "mentions": int(item.get("mentions") or 0)
                 })
 
             # Push in chunks of 50 to avoid request size limits

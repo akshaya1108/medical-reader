@@ -51,6 +51,7 @@ function sanitizeForSupabase(row) {
     ? JSON.stringify(extraMeta) 
     : (row.pinyin_or_chinese || '');
 
+  const summ = row.summary || row.notes || '';
   return {
     book_id: row.book_id,
     id: row.id,
@@ -60,9 +61,9 @@ function sanitizeForSupabase(row) {
     aliases: Array.isArray(row.aliases) ? row.aliases : (row.aliases ? [row.aliases] : []),
     affiliation: row.affiliation || row.sect_or_affiliation || '',
     sect_or_affiliation: row.sect_or_affiliation || row.affiliation || '',
-    summary: row.summary || '',
-    mentions: Number(row.mentions || 0),
-    updated_at: row.updated_at || new Date().toISOString()
+    summary: summ,
+    description: summ,
+    mentions: Number(row.mentions || 0)
   };
 }
 
@@ -562,6 +563,18 @@ export const api = {
         if (res.ok) {
           let entries = await res.json();
           entries = entries.map(unpackSupabaseRow);
+          // Preserve any local entries in IndexedDB that may still be syncing
+          try {
+            const local = await offlineDB.getGlossary(targetId);
+            if (local && local.length > 0) {
+              const cloudIds = new Set(entries.map(e => e.id));
+              local.forEach(loc => {
+                if (loc.id && !cloudIds.has(loc.id)) {
+                  entries.push(loc);
+                }
+              });
+            }
+          } catch (_) {}
           // Store directly into canonical room in IndexedDB
           await offlineDB.saveGlossary(targetId, entries);
           if (targetId !== bookId) {
