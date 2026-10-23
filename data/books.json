@@ -12,8 +12,11 @@
     "chapters_count": 218,
     "total_words": 284792,
     "enable_glossary": true,
-    "last_read_at": "2026-10-23T15:01:17.451+00:00",
-    "bookmark": null,
+    "last_read_at": "2026-10-23T20:43:31.514402+00:00",
+    "bookmark": {
+      "chapter_number": 7,
+      "paragraph_index": 32
+    },
     "bookmarks": [
       {
         "id": "hl_1792743615881_ib50n9",
