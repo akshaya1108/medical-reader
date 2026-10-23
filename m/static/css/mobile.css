@@ -2369,9 +2369,11 @@ body.theme-dark .notes-list-type-pill.type-highlight {
 .sheet-card {
   background-color: var(--bg-card);
   border-radius: 20px 20px 0 0;
-  padding: 12px 20px max(24px, env(safe-area-inset-bottom)) 20px;
+  padding: 12px 20px max(32px, env(safe-area-inset-bottom) + 12px) 20px;
   max-height: 85vh;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   transform: translateY(100%);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.18);
@@ -2676,6 +2678,90 @@ body.theme-dark .lore-card-summary-box.cat-summary-drug {
 body.theme-dark .cat-box-location-realm .lore-card-summary-box {
   border-left-color: #4d6c94;
   background-color: rgba(77, 108, 148, 0.16);
+}
+
+/* ==========================================================================
+   BNF 85 Indications & Dosage Scrollable Block (Mobile Reader & Glossary)
+   ========================================================================== */
+.lore-card-bnf-wrap {
+  margin-top: 10px;
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  background: rgba(59, 130, 246, 0.08);
+  border-left: 3px solid #2563eb;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.lore-card-bnf-header {
+  font-weight: 700;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #1d4ed8;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lore-card-bnf-scroll-hint {
+  font-weight: 500;
+  font-size: 0.68rem;
+  text-transform: none;
+  letter-spacing: normal;
+  color: #2563eb;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.lore-card-bnf-content {
+  white-space: pre-line;
+  max-height: 190px;
+  overflow-y: scroll !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  overscroll-behavior: contain !important;
+  padding-right: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(37, 99, 235, 0.45) transparent;
+}
+
+.lore-card-bnf-content::-webkit-scrollbar {
+  width: 5px;
+  display: block;
+}
+
+.lore-card-bnf-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.lore-card-bnf-content::-webkit-scrollbar-thumb {
+  background: rgba(37, 99, 235, 0.4);
+  border-radius: 4px;
+}
+
+body.theme-dark .lore-card-bnf-wrap {
+  background: rgba(37, 99, 235, 0.16) !important;
+  border-left-color: #3b82f6 !important;
+}
+
+body.theme-dark .lore-card-bnf-header {
+  color: #60a5fa !important;
+}
+
+body.theme-dark .lore-card-bnf-scroll-hint {
+  color: #93c5fd !important;
+}
+
+body.theme-dark .lore-card-bnf-content {
+  color: #e2e8f0 !important;
+  scrollbar-color: rgba(96, 165, 250, 0.45) transparent;
+}
+
+body.theme-dark .lore-card-bnf-content::-webkit-scrollbar-thumb {
+  background: rgba(96, 165, 250, 0.45) !important;
 }
 
 /* Settings Options */

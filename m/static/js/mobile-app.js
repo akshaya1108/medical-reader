@@ -4,7 +4,7 @@
  * reliable paragraph bookmarking, and complete glossary management.
  */
 
-import { api } from './api.js?v=48';
+import { api } from './api.js?v=49';
 
 // --- Category Display Configuration ---
 const CATEGORIES = [
@@ -1662,9 +1662,12 @@ function openLoreSheet(charName, asCenteredModal = false) {
     ` : ''}
     <div class="lore-card-summary-box cat-summary-${catSlug}" style="white-space: pre-line;">${escapeHtml(summary || 'No description provided.')}</div>
     ${normCat === 'Drug' && entry.bnf_dosage ? `
-      <div class="lore-card-bnf-wrap" style="margin-top: 10px; padding: 8px 10px; background: rgba(59, 130, 246, 0.08); border-left: 3px solid #2563eb; border-radius: 6px; font-size: 0.82rem; line-height: 1.4;">
-        <div style="font-weight: 600; font-size: 0.74rem; text-transform: uppercase; color: #1d4ed8; margin-bottom: 4px;">📋 BNF 85 Indications &amp; Dose</div>
-        <div style="white-space: pre-line; max-height: 180px; overflow-y: auto;">${escapeHtml(entry.bnf_dosage)}</div>
+      <div class="lore-card-bnf-wrap">
+        <div class="lore-card-bnf-header">
+          <span>📋 BNF 85 Indications &amp; Dose</span>
+          <span class="lore-card-bnf-scroll-hint">Scroll for more &darr;</span>
+        </div>
+        <div class="lore-card-bnf-content">${escapeHtml(entry.bnf_dosage)}</div>
       </div>
     ` : ''}
     ${containingHl ? `
@@ -1740,6 +1743,23 @@ function openLoreSheet(charName, asCenteredModal = false) {
     if (content) {
       content.innerHTML = lorePaneHtml;
     }
+  }
+
+  // Ensure BNF scrollable container isolates touch gestures from sheet drag/swipes
+  const bnfScrollEl = content ? content.querySelector('.lore-card-bnf-content') : null;
+  const bnfHintEl = content ? content.querySelector('.lore-card-bnf-scroll-hint') : null;
+  if (bnfScrollEl) {
+    bnfScrollEl.addEventListener('scroll', () => {
+      if (bnfHintEl && bnfScrollEl.scrollTop > 20) {
+        bnfHintEl.style.opacity = '0';
+      }
+    }, { passive: true });
+    bnfScrollEl.addEventListener('touchstart', (e) => {
+      e.stopPropagation();
+    }, { passive: true });
+    bnfScrollEl.addEventListener('touchmove', (e) => {
+      e.stopPropagation();
+    }, { passive: true });
   }
 
   // If there's a containing note pill, wire its click to open Note Viewer
@@ -2405,6 +2425,7 @@ function setupLoreSheet() {
   let loreTouchStartY = 0;
   if (sheetCard) {
     sheetCard.addEventListener('touchstart', (e) => {
+      if (e.target.closest('.lore-card-bnf-wrap')) return;
       loreTouchStartX = e.touches[0].clientX;
       loreTouchStartY = e.touches[0].clientY;
     }, { passive: true });

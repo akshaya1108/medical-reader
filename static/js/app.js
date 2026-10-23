@@ -1886,10 +1886,13 @@ function setupCharacterClickListeners() {
     });
   });
 
-  // Stop clicks inside the card from closing it
+  // Stop clicks and scroll wheel inside the card from propagating to reader
   elements.charHoverCard.addEventListener('click', (e) => {
     e.stopPropagation();
   });
+  elements.charHoverCard.addEventListener('wheel', (e) => {
+    e.stopPropagation();
+  }, { passive: true });
 }
 
 function showCharacterTooltip(targetElement, char, triggerType) {
