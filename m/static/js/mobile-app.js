@@ -4,7 +4,7 @@
  * reliable paragraph bookmarking, and complete glossary management.
  */
 
-import { api } from './api.js';
+import { api } from './api.js?v=47';
 
 // --- Category Display Configuration ---
 const CATEGORIES = [
@@ -3675,6 +3675,12 @@ function setupConnectionStatusModal() {
         await api.flushSyncQueue();
         const fresh = await api.getBooks();
         state.books = fresh;
+        if (state.activeBookId) {
+          const freshGlossary = await api.getGlossary(state.activeBookId);
+          state.glossary = freshGlossary || [];
+          buildGlossaryMap();
+          if (state.activeView === 'glossary') renderGlossaryShelves();
+        }
         if (state.activeView === 'library') renderLibrary();
         await updateStatusDisplay();
         showToast('Cloud sync complete.');
@@ -3729,7 +3735,13 @@ async function initApp() {
             const updated = state.books.find(b => b.id === state.activeBookId);
             if (updated) state.currentBook = updated;
             if (state.activeView === 'book') renderBookOverview();
-            if (state.activeView === 'glossary') renderGlossaryShelves();
+            if (state.activeView === 'glossary') {
+              api.getGlossary(state.activeBookId).then(fresh => {
+                state.glossary = fresh || [];
+                buildGlossaryMap();
+                renderGlossaryShelves();
+              }).catch(() => {});
+            }
           }
         } catch (e) {}
       }

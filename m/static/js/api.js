@@ -563,19 +563,18 @@ export const api = {
         if (res.ok) {
           let entries = await res.json();
           entries = entries.map(unpackSupabaseRow);
-          // Preserve any local entries in IndexedDB that may still be syncing
+          // Only preserve entries that are currently queued for offline sync
           try {
-            const local = await offlineDB.getGlossary(targetId);
-            if (local && local.length > 0) {
-              const cloudIds = new Set(entries.map(e => e.id));
-              local.forEach(loc => {
-                if (loc.id && !cloudIds.has(loc.id)) {
-                  entries.push(loc);
-                }
-              });
-            }
+            const queue = await offlineDB.getSyncQueue();
+            const pending = (queue || []).filter(q => q.type === 'save_glossary' && q.bookId === targetId && q.row);
+            const cloudIds = new Set(entries.map(e => e.id));
+            pending.forEach(p => {
+              if (p.row && p.row.id && !cloudIds.has(p.row.id)) {
+                entries.push(p.row);
+              }
+            });
           } catch (_) {}
-          // Store directly into canonical room in IndexedDB
+          // Store directly into canonical room in IndexedDB (replaces old cache with fresh cloud state)
           await offlineDB.saveGlossary(targetId, entries);
           if (targetId !== bookId) {
             await offlineDB.saveGlossary(bookId, entries);
