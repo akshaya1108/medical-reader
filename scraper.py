@@ -182,10 +182,25 @@ Only return a valid JSON array.
                 if isinstance(parsed, list) and len(parsed) > 0:
                     entries = []
                     for item in parsed:
-                        if not item.get("id"):
-                            item["id"] = slugify(item.get("name", q_clean))
-                        if bnf_dose_info and item.get("category") == "Drug" and not item.get("bnf_dosage"):
-                            item["bnf_dosage"] = bnf_dose_info
+                        if item.get("category") == "Drug":
+                            # Attach pre-checked BNF dosage or look up with canonical name / aliases
+                            if bnf_dose_info:
+                                item["bnf_dosage"] = bnf_dose_info
+                            else:
+                                try:
+                                    import bnf_engine
+                                    c_name = item.get("name", "")
+                                    b_res = bnf_engine.lookup_drug_bnf(c_name)
+                                    if b_res.get("found"):
+                                        item["bnf_dosage"] = b_res.get("indications_and_dose", "")
+                                    else:
+                                        for al in item.get("aliases", []):
+                                            b_res = bnf_engine.lookup_drug_bnf(al)
+                                            if b_res.get("found"):
+                                                item["bnf_dosage"] = b_res.get("indications_and_dose", "")
+                                                break
+                                except Exception as e:
+                                    print(f"Notice: BNF lookup error for {c_name}: {e}")
                         clean_entry_for_novel(item)
                         if not item.get("image_url") and wiki_thumb:
                             item["image_url"] = wiki_thumb

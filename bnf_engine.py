@@ -118,38 +118,67 @@ def clean_bnf_text(raw_text: str) -> str:
     return res.strip()
 
 US_TO_BNF_SYNONYMS = {
-    "succinylcholine": "suxamethonium",
-    "succinylcholine chloride": "suxamethonium",
-    "sux": "suxamethonium",
-    "anectine": "suxamethonium",
-    "quelicin": "suxamethonium",
-    "epinephrine": "adrenaline",
-    "epi": "adrenaline",
-    "norepinephrine": "noradrenaline",
-    "norepi": "noradrenaline",
-    "levophed": "noradrenaline",
+    "roc": "rocuronium bromide",
+    "rocuronium": "rocuronium bromide",
+    "rocuronium bromide": "rocuronium bromide",
+    "zemuron": "rocuronium bromide",
+    "vec": "vecuronium bromide",
+    "vecuronium": "vecuronium bromide",
+    "vecuronium bromide": "vecuronium bromide",
+    "norcuron": "vecuronium bromide",
+    "cis": "cisatracurium",
+    "cisatracurium": "cisatracurium",
+    "nimbex": "cisatracurium",
+    "sux": "suxamethonium chloride",
+    "succs": "suxamethonium chloride",
+    "succinylcholine": "suxamethonium chloride",
+    "succinylcholine chloride": "suxamethonium chloride",
+    "suxamethonium": "suxamethonium chloride",
+    "suxamethonium chloride": "suxamethonium chloride",
+    "anectine": "suxamethonium chloride",
+    "quelicin": "suxamethonium chloride",
+    "atropine": "atropine sulfate",
+    "atropine sulfate": "atropine sulfate",
+    "epinephrine": "adrenaline/epinephrine",
+    "epi": "adrenaline/epinephrine",
+    "adrenaline": "adrenaline/epinephrine",
+    "adrenaline/epinephrine": "adrenaline/epinephrine",
+    "norepinephrine": "noradrenaline/norepinephrine",
+    "norepi": "noradrenaline/norepinephrine",
+    "noradrenaline": "noradrenaline/norepinephrine",
+    "noradrenaline/norepinephrine": "noradrenaline/norepinephrine",
+    "levophed": "noradrenaline/norepinephrine",
     "acetaminophen": "paracetamol",
     "tylenol": "paracetamol",
     "apap": "paracetamol",
+    "paracetamol": "paracetamol",
     "albuterol": "salbutamol",
     "ventolin": "salbutamol",
     "proventil": "salbutamol",
+    "salbutamol": "salbutamol",
     "meperidine": "pethidine",
     "demerol": "pethidine",
-    "glycopyrrolate": "glycopyrronium",
-    "robinul": "glycopyrronium",
+    "pethidine": "pethidine",
+    "glycopyrrolate": "glycopyrronium bromide",
+    "robinul": "glycopyrronium bromide",
+    "glycopyrronium": "glycopyrronium bromide",
+    "glycopyrronium bromide": "glycopyrronium bromide",
     "isoproterenol": "isoprenaline",
     "isuprel": "isoprenaline",
     "rifampin": "rifampicin",
-    "thiopental": "thiopentone",
-    "thiopental sodium": "thiopentone",
-    "pentothal": "thiopentone",
+    "thiopental": "thiopentone sodium",
+    "thiopental sodium": "thiopentone sodium",
+    "thiopentone": "thiopentone sodium",
+    "thiopentone sodium": "thiopentone sodium",
+    "pentothal": "thiopentone sodium",
     "methohexital": "methohexitone",
     "brevital": "methohexitone",
     "frusemide": "furosemide",
     "lasix": "furosemide",
+    "furosemide": "furosemide",
     "lignocaine": "lidocaine",
     "xylocaine": "lidocaine",
+    "lidocaine": "lidocaine",
     "bactrim": "co-trimoxazole",
     "septra": "co-trimoxazole",
     "sulfamethoxazole/trimethoprim": "co-trimoxazole",
@@ -176,13 +205,69 @@ US_TO_BNF_SYNONYMS = {
     "amidate": "etomidate",
     "ketamine": "ketamine",
     "ketalar": "ketamine",
-    "rocuronium": "rocuronium",
-    "zemuron": "rocuronium",
-    "vecuronium": "vecuronium",
-    "norcuron": "vecuronium",
-    "cisatracurium": "cisatracurium",
-    "nimbex": "cisatracurium",
+    "amiodarone": "amiodarone hydrochloride",
+    "amiodarone hydrochloride": "amiodarone hydrochloride",
 }
+
+SPECIAL_DRUG_PAGES = {
+    "atropine": [1472],
+    "atropine sulfate": [1472],
+    "rocuronium": [1477],
+    "rocuronium bromide": [1477],
+    "suxamethonium": [1475],
+    "suxamethonium chloride": [1475],
+    "succinylcholine": [1475],
+    "noradrenaline": [206],
+    "norepinephrine": [206],
+    "noradrenaline/norepinephrine": [206],
+    "adrenaline": [243],
+    "epinephrine": [243],
+    "adrenaline/epinephrine": [243],
+    "amiodarone": [108],
+    "amiodarone hydrochloride": [108],
+}
+
+def get_page_content_blocks(page):
+    blocks = page.get_text("blocks")
+    content_blocks = [
+        b for b in blocks 
+        if b[0] >= 35 and b[2] <= 415 and b[1] >= 35 and b[3] <= 610
+    ]
+    col1 = sorted([b for b in content_blocks if b[0] < 225], key=lambda b: b[1])
+    col2 = sorted([b for b in content_blocks if b[0] >= 225], key=lambda b: b[1])
+    return col1 + col2
+
+def find_drug_heading_block(all_blocks, q):
+    date_regex = re.compile(r'\b\d{1,2}-[A-Za-z]{3}-\d{4}\b')
+    q_parts = [q] + [p.strip() for p in q.split('/') if p.strip()]
+
+    # Pass 1: Drug heading accompanied by revision date or directly followed by INDICATIONS AND DOSE
+    for i, b in enumerate(all_blocks):
+        txt = b[4].strip()
+        lines = [l.strip().lower() for l in txt.splitlines()]
+        if lines:
+            for q_term in q_parts:
+                if any(l == q_term or l.startswith(q_term + ' ') or l.startswith(q_term + '/') or q_term in l for l in lines):
+                    if date_regex.search(txt) or (i + 1 < len(all_blocks) and 'indications and dose' in all_blocks[i+1][4].lower()):
+                        return i
+
+    # Pass 2: Block immediately preceding 'INDICATIONS AND DOSE'
+    for i, b in enumerate(all_blocks):
+        if 'indications and dose' in b[4].lower():
+            for q_term in q_parts:
+                if i > 0 and q_term in all_blocks[i-1][4].lower():
+                    return i - 1
+                if q_term in b[4].lower():
+                    return i
+
+    # Pass 3: Exact line matches
+    for i, b in enumerate(all_blocks):
+        lines = [l.strip().lower() for l in b[4].splitlines()]
+        for q_term in q_parts:
+            if any(l == q_term or l.startswith(q_term + '/') or l.startswith(q_term + ' ') for l in lines):
+                return i
+
+    return -1
 
 def lookup_drug_bnf(drug_name: str) -> dict:
     """
@@ -209,13 +294,14 @@ def lookup_drug_bnf(drug_name: str) -> dict:
     raw_q = drug_name.strip().lower()
     q = US_TO_BNF_SYNONYMS.get(raw_q, raw_q)
 
-    # Direct match or cross-reference
-    candidate_pages = index.get(q, [])
+    # Check SPECIAL_DRUG_PAGES first
+    candidate_pages = SPECIAL_DRUG_PAGES.get(raw_q) or SPECIAL_DRUG_PAGES.get(q) or index.get(q, [])
+
     if not candidate_pages:
         # Check cross-ref
         target_name = index.get(f"__see__{q}")
         if target_name:
-            candidate_pages = index.get(target_name, [])
+            candidate_pages = SPECIAL_DRUG_PAGES.get(target_name) or index.get(target_name, [])
             if not candidate_pages:
                 for k, v in index.items():
                     if target_name in k and not k.startswith("__see__"):
@@ -223,17 +309,13 @@ def lookup_drug_bnf(drug_name: str) -> dict:
                         break
 
     if not candidate_pages:
-        # Fuzzy/substring match in index keys
+        # Substring / exact match in index keys (avoid small substrings < 4 to prevent collisions like 'roc' -> 'abrocitinib')
         for k, v in index.items():
-            if not k.startswith("__see__") and (q == k or q in k or k in q):
-                candidate_pages.extend(v)
-                if len(candidate_pages) >= 3:
-                    break
-
-    if not candidate_pages:
-        # Fallback: search doc directly if term wasn't in index
-        for pno in range(100, min(1800, len(doc)), 50):
-            pass # Keep it fast; index covers >99% of drugs
+            if not k.startswith("__see__"):
+                if q == k or (len(q) >= 4 and (q in k or k in q)):
+                    candidate_pages.extend(v)
+                    if len(candidate_pages) >= 3:
+                        break
 
     if not candidate_pages:
         return {"found": False, "error": f"Drug '{drug_name}' not found in BNF index"}
@@ -241,14 +323,14 @@ def lookup_drug_bnf(drug_name: str) -> dict:
     # Search around printed pages (PDF offset is usually ~14 to 22)
     target_page = None
     target_pno = None
-    matched_term = drug_name
+    q_parts = [q] + [p.strip() for p in q.split('/') if p.strip()]
 
     for printed_page in candidate_pages:
         for offset in [18, 17, 19, 16, 20, 15, 21]:
             pno = printed_page + offset
             if 0 <= pno < len(doc):
                 txt = doc[pno].get_text().lower()
-                if q in txt and "indications and dose" in txt:
+                if any(qp in txt for qp in q_parts) and "indications and dose" in txt:
                     target_page = doc[pno]
                     target_pno = pno
                     break
@@ -259,30 +341,8 @@ def lookup_drug_bnf(drug_name: str) -> dict:
         return {"found": False, "error": f"Monograph page not located for '{drug_name}'"}
 
     # Extract column-sorted blocks from target page
-    blocks = target_page.get_text("blocks")
-    content_blocks = [
-        b for b in blocks 
-        if b[0] >= 35 and b[2] <= 415 and b[1] >= 35 and b[3] <= 610
-    ]
-
-    col1 = sorted([b for b in content_blocks if b[0] < 225], key=lambda b: b[1])
-    col2 = sorted([b for b in content_blocks if b[0] >= 225], key=lambda b: b[1])
-    all_blocks = col1 + col2
-
-    # Find the drug heading or closest match
-    drug_idx = -1
-    for i, b in enumerate(all_blocks):
-        txt_lower = b[4].strip().lower()
-        lines = [l.strip() for l in txt_lower.splitlines()]
-        if any(l == q or l.startswith(q + " ") for l in lines):
-            drug_idx = i
-            break
-
-    if drug_idx == -1:
-        for i, b in enumerate(all_blocks):
-            if q in b[4].lower():
-                drug_idx = i
-                break
+    all_blocks = get_page_content_blocks(target_page)
+    drug_idx = find_drug_heading_block(all_blocks, q)
 
     if drug_idx == -1:
         return {"found": False, "error": "Could not isolate drug block"}
@@ -292,8 +352,12 @@ def lookup_drug_bnf(drug_name: str) -> dict:
     safety_blocks = []
     cautions_blocks = []
     current_section = None
+    stop_headings = [
+        "SIDE-EFFECTS", "INTERACTIONS", "CONTRA-INDICATIONS", 
+        "HEPATIC IMPAIRMENT", "RENAL IMPAIRMENT", "PREGNANCY", 
+        "MEDICINAL FORMS", "DIRECTIONS FOR ADMINISTRATION"
+    ]
 
-    # Scan blocks belonging to this drug until next major drug/section
     for b in all_blocks[drug_idx:]:
         txt = b[4].strip()
         txt_upper = txt.upper()
@@ -310,20 +374,32 @@ def lookup_drug_bnf(drug_name: str) -> dict:
             current_section = "cautions"
             cautions_blocks.append(txt)
             continue
-        elif any(h in txt_upper for h in ["SIDE-EFFECTS", "INTERACTIONS", "CONTRA-INDICATIONS", "HEPATIC IMPAIRMENT", "RENAL IMPAIRMENT", "PREGNANCY"]):
-            # Stop dosage extraction when side effects / interactions begin
-            current_section = "other"
+        elif any(h in txt_upper for h in stop_headings):
+            current_section = "stop"
             break
         elif current_section == "dose":
             # Check if this looks like another drug's heading
             first_line = txt.splitlines()[0].strip() if txt.splitlines() else ""
-            if b[0] == all_blocks[drug_idx][0] and len(dose_blocks) >= 2 and len(first_line) > 2 and first_line.isupper() and "BY " not in first_line:
+            if b[0] == all_blocks[drug_idx][0] and len(dose_blocks) >= 2 and len(first_line) > 3 and first_line.isupper() and "BY " not in first_line:
                 break
             dose_blocks.append(txt)
         elif current_section == "safety":
             safety_blocks.append(txt)
         elif current_section == "cautions":
             cautions_blocks.append(txt)
+
+    # Multi-page continuation: if section was still 'dose' at page boundary, check next page
+    if current_section == "dose" and target_pno + 1 < len(doc):
+        next_blocks = get_page_content_blocks(doc[target_pno + 1])
+        for b in next_blocks:
+            txt = b[4].strip()
+            txt_upper = txt.upper()
+            if any(h in txt_upper for h in stop_headings) or "IMPORTANT SAFETY INFORMATION" in txt_upper or "UNLICENSED USE" in txt_upper or "CAUTIONS" in txt_upper:
+                break
+            first_line = txt.splitlines()[0].strip() if txt.splitlines() else ""
+            if len(first_line) > 3 and first_line.isupper() and "BY " not in first_line:
+                break
+            dose_blocks.append(txt)
 
     dose_raw = "\n".join(dose_blocks)
     cleaned_dose = clean_bnf_text(dose_raw)

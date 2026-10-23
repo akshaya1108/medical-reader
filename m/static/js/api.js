@@ -79,6 +79,51 @@ function unpackSupabaseRow(row) {
   return row;
 }
 
+let _bnfDrugsCache = null;
+export async function lookupBnfDosage(drugName, aliases = []) {
+  if (!_bnfDrugsCache) {
+    try {
+      const res = await fetch('static/data/bnf_drugs.json');
+      if (res.ok) {
+        _bnfDrugsCache = await res.json();
+      }
+    } catch (_) {
+      try {
+        const res2 = await fetch('/static/data/bnf_drugs.json');
+        if (res2.ok) _bnfDrugsCache = await res2.json();
+      } catch (_) {}
+    }
+  }
+  if (!_bnfDrugsCache) return '';
+
+  const candidates = [drugName, ...(Array.isArray(aliases) ? aliases : [])]
+    .map(c => (c || '').toLowerCase().trim())
+    .filter(Boolean);
+
+  for (const c of candidates) {
+    if (_bnfDrugsCache[c]) {
+      return _bnfDrugsCache[c].indications_and_dose || '';
+    }
+    const simplified = c.replace(/\b(bromide|sulfate|sulphate|chloride|sodium|tartrate|hydrochloride|maleate|succinate|phosphate|acetate)\b/g, '').trim();
+    if (simplified && _bnfDrugsCache[simplified]) {
+      return _bnfDrugsCache[simplified].indications_and_dose || '';
+    }
+  }
+
+  // Substring match in keys
+  for (const c of candidates) {
+    if (c.length >= 4) {
+      for (const k of Object.keys(_bnfDrugsCache)) {
+        if (k === c || k.startsWith(c) || c.startsWith(k)) {
+          return _bnfDrugsCache[k].indications_and_dose || '';
+        }
+      }
+    }
+  }
+
+  return '';
+}
+
 function isChineseNovel(title = '', genre = '') {
   const t = (title || '').toLowerCase();
   const g = (genre || '').toLowerCase();
@@ -830,7 +875,7 @@ Analyze "${cleanName}" in clinical medicine:
    - "affiliation": Associated organ system, drug class, or medical specialty (e.g. "Emergency Medicine / Pulmonology", "Third-generation Cephalosporin").
    - "summary": Exactly ONE concise sentence (1 line). A clear, punchy, high-yield clinical definition and primary indication or role. STRICT: Must be a single sentence.
    - "image_url": ${wikiThumb ? `"${wikiThumb}"` : `""`}
-   - "bnf_dosage": For Drug entries, standard indications and adult dosage (or empty string if not a drug).
+    - "bnf_dosage": "" (STRICT: Always leave as empty string ""; BNF clinical dosages are supplied exclusively by the official formulary database, do NOT invent or generate dosages).
 
 ${wikiExtract ? `Reference text:\n${wikiExtract.slice(0, 5000)}` : ''}
 
@@ -876,6 +921,15 @@ Return a JSON array with 1 object:
               } catch (_) {}
             }
 
+            // High-yield BNF monograph lookup for drugs
+            let verifiedBnfDosage = '';
+            if (normCat === 'Drug') {
+              verifiedBnfDosage = await lookupBnfDosage(standardName, raw.aliases || []);
+              if (!verifiedBnfDosage && standardName.toLowerCase() !== cleanName.toLowerCase()) {
+                verifiedBnfDosage = await lookupBnfDosage(cleanName);
+              }
+            }
+
             // Check if AI resolved term to an existing character in glossary
             const matchInGlossary = entries.find(e =>
               (e.name || '').toLowerCase() === standardName.toLowerCase() ||
@@ -886,8 +940,8 @@ Return a JSON array with 1 object:
               if (imgAllowed && candidateImg && !matchInGlossary.image_url) {
                 matchInGlossary.image_url = candidateImg;
               }
-              if (raw.bnf_dosage && !matchInGlossary.bnf_dosage) {
-                matchInGlossary.bnf_dosage = raw.bnf_dosage;
+              if (verifiedBnfDosage && !matchInGlossary.bnf_dosage) {
+                matchInGlossary.bnf_dosage = verifiedBnfDosage;
               }
               if (add) {
                 await this.saveGlossaryEntry(targetBookId, matchInGlossary);
@@ -917,7 +971,7 @@ Return a JSON array with 1 object:
               aliases: newAliases,
               image_url: imgAllowed ? candidateImg : '',
               summary: raw.summary || '',
-              bnf_dosage: raw.bnf_dosage || '',
+              bnf_dosage: verifiedBnfDosage || '',
               mentions: 0
             };
 
@@ -944,6 +998,13 @@ Return a JSON array with 1 object:
         const isDrug = /medication|drug|pharmaceutical|indicated for|dosage|antagonist|agonist/i.test(fallbackExtract);
         const cleanId = stdName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `entity-${Date.now()}`;
         const fallbackCat = isDrug ? 'Drug' : 'Concept';
+        let fallbackBnf = '';
+        if (fallbackCat === 'Drug') {
+          fallbackBnf = await lookupBnfDosage(stdName);
+          if (!fallbackBnf && stdName.toLowerCase() !== cleanName.toLowerCase()) {
+            fallbackBnf = await lookupBnfDosage(cleanName);
+          }
+        }
         const fallbackChar = {
           id: cleanId,
           name: stdName,
@@ -954,7 +1015,7 @@ Return a JSON array with 1 object:
           aliases: [],
           image_url: isImageAllowedCategory(fallbackCat) ? (wikiThumb || wikiData?.thumbnail?.source || '') : '',
           summary: firstSentence,
-          bnf_dosage: '',
+          bnf_dosage: fallbackBnf || '',
           mentions: 0
         };
         if (add) {

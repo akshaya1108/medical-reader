@@ -1,7 +1,25 @@
 {
   "tombstones": {},
   "last_synced_ids": {
-    "tintinalli-s-emergency-medicine-manual-1": [],
+    "tintinalli-s-emergency-medicine-manual-1": [
+      "succinylcholine",
+      "rocuronium",
+      "atropine",
+      "macintosh-laryngoscope-blade",
+      "laryngeal-mask-airway",
+      "propofol",
+      "mechanical-ventilation",
+      "fentanyl",
+      "gum-elastic-bougie",
+      "trachea",
+      "cricothyroid-membrane",
+      "ketamine",
+      "preoxygenation",
+      "rapid-sequence-intubation",
+      "thyroid-gland",
+      "etomidate",
+      "glottis"
+    ],
     "bailey-love-s-short-practice-of-surgery-chapter-1": []
   }
 }
