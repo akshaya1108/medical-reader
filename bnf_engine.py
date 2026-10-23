@@ -304,6 +304,22 @@ def find_drug_heading_block(all_blocks, q):
                     return i
     return -1
 
+_COMPILED_DRUGS_CACHE = None
+
+def load_compiled_drugs():
+    global _COMPILED_DRUGS_CACHE
+    if _COMPILED_DRUGS_CACHE is not None:
+        return _COMPILED_DRUGS_CACHE
+    json_path = os.path.join(DATA_DIR, "bnf_drugs.json")
+    if os.path.exists(json_path):
+        try:
+            with open(json_path, "r", encoding="utf-8") as f:
+                _COMPILED_DRUGS_CACHE = json.load(f)
+                return _COMPILED_DRUGS_CACHE
+        except Exception as e:
+            print(f"Error loading {json_path}: {e}")
+    return {}
+
 def lookup_drug_bnf(drug_name: str) -> dict:
     """
     Looks up drug in BNF 85.
@@ -321,14 +337,57 @@ def lookup_drug_bnf(drug_name: str) -> dict:
     if not drug_name:
         return {"found": False}
 
-    doc = get_bnf_doc()
-    if not doc:
-        return {"found": False, "error": "BNF PDF not found"}
-
-    index = build_or_load_index()
+    compiled = load_compiled_drugs()
     raw_q = drug_name.strip().lower()
     raw_q_norm = raw_q.replace("sulphate", "sulfate")
     q = US_TO_BNF_SYNONYMS.get(raw_q, US_TO_BNF_SYNONYMS.get(raw_q_norm, raw_q_norm))
+
+    # Check compiled database first
+    candidates = [q, raw_q, raw_q_norm]
+    base_q = re.sub(r'\b(hydrochloride|sulfate|sulphate|bromide|chloride|sodium|potassium|tartrate|acetate|fumarate|maleate|succinate|phosphate|gluconate)\b', '', q, flags=re.I).strip()
+    if base_q and base_q != q:
+        candidates.append(base_q)
+    base_raw = re.sub(r'\b(hydrochloride|sulfate|sulphate|bromide|chloride|sodium|potassium|tartrate|acetate|fumarate|maleate|succinate|phosphate|gluconate)\b', '', raw_q, flags=re.I).strip()
+    if base_raw and base_raw != raw_q:
+        candidates.append(base_raw)
+
+    for c in candidates:
+        if c in compiled:
+            entry = compiled[c]
+            return {
+                "found": True,
+                "drug": entry.get("drug", drug_name.title()),
+                "indications_and_dose": entry.get("indications_and_dose", ""),
+                "safety_info": entry.get("safety_info", ""),
+                "cautions": entry.get("cautions", ""),
+                "chapters": entry.get("chapters", []),
+                "pages": entry.get("pages", []),
+                "printed_page": entry.get("pages", [None])[0] if entry.get("pages") else None,
+                "source": entry.get("source", "British National Formulary (BNF 85)")
+            }
+
+    # Substring / Prefix match in compiled database
+    for c in candidates:
+        if len(c) >= 4:
+            for k, entry in compiled.items():
+                if k == c or k.startswith(c) or (len(c) >= 5 and c.startswith(k)):
+                    return {
+                        "found": True,
+                        "drug": entry.get("drug", drug_name.title()),
+                        "indications_and_dose": entry.get("indications_and_dose", ""),
+                        "safety_info": entry.get("safety_info", ""),
+                        "cautions": entry.get("cautions", ""),
+                        "chapters": entry.get("chapters", []),
+                        "pages": entry.get("pages", []),
+                        "printed_page": entry.get("pages", [None])[0] if entry.get("pages") else None,
+                        "source": entry.get("source", "British National Formulary (BNF 85)")
+                    }
+
+    doc = get_bnf_doc()
+    if not doc:
+        return {"found": False, "error": f"Drug '{drug_name}' not found in BNF database"}
+
+    index = build_or_load_index()
 
     # Check SPECIAL_DRUG_PAGES first
     candidate_pages = SPECIAL_DRUG_PAGES.get(raw_q) or SPECIAL_DRUG_PAGES.get(q) or index.get(q, [])
