@@ -411,7 +411,7 @@
     "summary": "Amiodarone is an antiarrhythmic medication used to treat and prevent a number of types of cardiac dysrhythmias.",
     "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Amiodarone_structure.svg/500px-Amiodarone_structure.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "bnf_dosage": "Treatment of arrhythmias, particularly when other drugs are ineffective or contra-indicated (including paroxysmal supraventricular, nodal and ventricular tachycardias, atrial fibrillation and flutter, ventricular fibrillation, and tachyarrhythmias associated with Wolff-\nParkinson-White syndrome) (initiated in hospital or under specialist supervision)\n\n[BY MOUTH]\n• Adult: 200 mg 3 times a day for 1 week, then reduced to 200 mg twice daily for a further week, followed by maintenance dose, usually 200 mg daily or the minimum dose required to control arrhythmia\n\n[BY INTRAVENOUS INFUSION]\n• Adult: Initially 5 mg/kg, to be given over 20–120 minutes with ECG monitoring, subsequent infusions given if necessary according to response;\nmaximum 1.2 g per day\nVentricular fibrillation or pulseless ventricular tachycardia refractory to defibrillation (for cardiopulmonary resuscitation)\n\n[BY INTRAVENOUS INJECTION]\n• Adult: Initially 300 mg, dose to be given over at least 3 minutes, dose should be given from a pre-ﬁlled syringe or diluted in 20 mL Glucose 5%, then 150 mg if",
-    "pinyin_or_chinese": "{\"bnf_dosage\": \"Treatment of arrhythmias, particularly when other drugs are ineffective or contra-indicated (including paroxysmal supraventricular, nodal and ventricular tachycardias, atrial fibrillation and flutter, ventricular fibrillation, and tachyarrhythmias associated with Wolff-\\nParkinson-White syndrome) (initiated in hospital or under specialist supervision)\\n\\n[BY MOUTH]\\n\\u2022 Adult: 200 mg 3 times a day for 1 week, then reduced to 200 mg twice daily for a further week, followed by maintenance dose, usually 200 mg daily or the minimum dose required to control arrhythmia\\n\\n[BY INTRAVENOUS INFUSION]\\n\\u2022 Adult: Initially 5 mg/kg, to be given over 20\\u2013120 minutes with ECG monitoring, subsequent infusions given if necessary according to response;\\nmaximum 1.2 g per day\\nVentricular fibrillation or pulseless ventricular tachycardia refractory to defibrillation (for cardiopulmonary resuscitation)\\n\\n[BY INTRAVENOUS INJECTION]\\n\\u2022 Adult: Initially 300 mg, dose to be given over at least 3 minutes, dose should be given from a pre-\\ufb01lled syringe or diluted in 20 mL Glucose 5%, then 150 mg if\"}",
+    "pinyin_or_chinese": "",
     "updated_at": "2026-10-23T17:00:38.697172+00:00"
   },
   {
@@ -426,7 +426,7 @@
     "summary": "Digoxin is a cardiac glycoside that increases myocardial contractility and decreases conduction velocity through the AV node, indicated for the management of heart failure and rate control in atrial fibrillation.",
     "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Digon_ball-and-stick.png/500px-Digon_ball-and-stick.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "id": "digoxin",
-    "pinyin_or_chinese": "{\"bnf_dosage\": \"Rapid digitalisation, for atrial fibrillation or flutter\\n\\n[BY MOUTH]\\n\\u2022 Adult: 0.75\\u20131.5 mg in divided doses, dose to be given over 24 hours, reduce dose in the elderly\\nMaintenance, for atrial fibrillation or flutter\\n\\n[BY MOUTH]\\n\\u2022 Adult: Maintenance 125\\u2013250 micrograms daily, dose according to renal function and initial loading dose, reduce dose in the elderly\\nHeart failure (for patients in sinus rhythm)\\n\\n[BY MOUTH]\\n\\u2022 Adult: 62.5\\u2013125 micrograms once daily, reduce dose in the elderly\\nEmergency loading dose, for atrial fibrillation or flutter\\n\\n[INITIALLY BY INTRAVENOUS INFUSION]\\n\\u2022 Adult: Loading dose 0.75\\u20131 mg, to be given over at east 2 hours, then (by mouth) maintenance, loading dose is rarely necessary, maintenance dose to be started on the day following the loading dose, reduce dose in the elderly\\nDOSE ADJUSTMENTS DUE TO INTERACTIONS\\nManufacturer advises reduce dose by half with concurrent use of amiodarone, dronedarone and quinine.\\nDOSE EQUIVALENCE AND CONVERSION\\nDose may need to be reduced if digoxin (or another cardiac glycoside) has been given in the preceding 2 weeks.\\nWhen switching from intravenous to oral route may need to increase dose by 20\\u201333% to maintain the same plasma-digoxin concentration.\\nUNLICENSED USE Digoxin doses in the BNF may differ from those in product literature.\"}",
+    "pinyin_or_chinese": "",
     "affiliation": "Cardiovascular / Antiarrhythmic Agent",
     "updated_at": "2026-10-23T17:01:12.932842+00:00",
     "bnf_dosage": "Rapid digitalisation, for atrial fibrillation or flutter\n\n[BY MOUTH]\n• Adult: 0.75–1.5 mg in divided doses, dose to be given over 24 hours, reduce dose in the elderly\nMaintenance, for atrial fibrillation or flutter\n\n[BY MOUTH]\n• Adult: Maintenance 125–250 micrograms daily, dose according to renal function and initial loading dose, reduce dose in the elderly\nHeart failure (for patients in sinus rhythm)\n\n[BY MOUTH]\n• Adult: 62.5–125 micrograms once daily, reduce dose in the elderly\nEmergency loading dose, for atrial fibrillation or flutter\n\n[INITIALLY BY INTRAVENOUS INFUSION]\n• Adult: Loading dose 0.75–1 mg, to be given over at east 2 hours, then (by mouth) maintenance, loading dose is rarely necessary, maintenance dose to be started on the day following the loading dose, reduce dose in the elderly\nDOSE ADJUSTMENTS DUE TO INTERACTIONS\nManufacturer advises reduce dose by half with concurrent use of amiodarone, dronedarone and quinine.\nDOSE EQUIVALENCE AND CONVERSION\nDose may need to be reduced if digoxin (or another cardiac glycoside) has been given in the preceding 2 weeks.\nWhen switching from intravenous to oral route may need to increase dose by 20–33% to maintain the same plasma-digoxin concentration.\nUNLICENSED USE Digoxin doses in the BNF may differ from those in product literature."
@@ -435,7 +435,7 @@
     "id": "heparin",
     "name": "Heparin",
     "category": "Drug",
-    "pinyin_or_chinese": "{\"bnf_dosage\":\"Reversal of apixaban or rivaroxaban in life-threatening or uncontrolled bleeding (specialist supervision in hospital)\\n\\n[BY INTRAVENOUS INFUSION]\\n• Adult: (consult product literature)\"}",
+    "pinyin_or_chinese": "",
     "aliases": [
       "Unfractionated Heparin",
       "UFH"
@@ -443,6 +443,65 @@
     "affiliation": "Hematology / Anticoagulant",
     "sect_or_affiliation": "Hematology / Anticoagulant",
     "summary": "Heparin is a parenteral anticoagulant that binds to antithrombin III to inhibit thrombin and factor Xa, indicated for the treatment and prophylaxis of thromboembolic disorders.",
-    "updated_at": "2026-10-23T22:37:54.043492"
+    "updated_at": "2026-10-23T22:37:54.043492",
+    "image_url": ""
+  },
+  {
+    "name": "Metoprolol",
+    "category": "Drug",
+    "aliases": [
+      "Lopressor",
+      "Toprol-XL"
+    ],
+    "sect_or_affiliation": "Cardiovascular / Beta-adrenergic blocking agent",
+    "summary": "Metoprolol is a selective β1-receptor antagonist primarily indicated for the management of hypertension, angina pectoris, and tachyarrhythmias, and for secondary prevention post-myocardial infarction.",
+    "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Metoprolol_ball-and-stick.png/500px-Metoprolol_ball-and-stick.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "id": "metoprolol",
+    "pinyin_or_chinese": "",
+    "affiliation": "Cardiovascular / Beta-adrenergic blocking agent",
+    "updated_at": "2026-10-23T17:46:17.966217+00:00"
+  },
+  {
+    "name": "Magnesium sulfate",
+    "category": "Drug",
+    "aliases": [
+      "MgSO4",
+      "Epsom salt"
+    ],
+    "sect_or_affiliation": "Electrolyte Replacement / Obstetrics / Emergency Medicine",
+    "summary": "Magnesium sulfate is an essential mineral used intravenously to treat eclampsia, torsades de pointes, and severe asthma exacerbations, and is also utilized for hypomagnesemia replacement.",
+    "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Mgaq6SO4.svg/500px-Mgaq6SO4.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "id": "magnesium-sulfate",
+    "pinyin_or_chinese": "{\"bnf_dosage\": \"Severe acute asthma | Continuing respiratory deterioration in anaphylaxis\\n\\n[BY INTRAVENOUS INFUSION]\\n\\u2022 Child 2\\u201317 years: 40 mg/kg (max. per dose 2 g), to be given over 20 minutes\\n\\u2022 Adult: 1.2\\u20132 g, to be given over 20 minutes\\nPrevention of seizures in pre-eclampsia\\n\\n[INITIALLY BY INTRAVENOUS INJECTION]\\n\\u2022 Adult: Initially 4 g, to be given over 5\\u201315 minutes, followed by (by intravenous infusion) 1 gram/hour for 24 hours, if seizure occurs, give an additional dose of 2\\u20134 g by intravenous injection over 5\\u201315 minutes\\nTreatment of seizures and prevention of seizure recurrence in eclampsia\\n\\n[INITIALLY BY INTRAVENOUS INJECTION]\\n\\u2022 Adult: Initially 4 g, to be given over 5\\u201315 minutes, followed by (by intravenous infusion) 1 gram/hour for 24 hours after seizure or delivery (whichever is later), if seizure recurs, give an additional dose of 2\\u20134 g by intravenous injection over 5\\u201315 minutes\\nHypomagnesaemia\\n\\n[BY INTRAVENOUS INFUSION, OR BY INTRAMUSCULAR INJECTION]\\n\\u2022 Adult: Up to 40 g, given over a period of up to 5 days, dose given depends on the amount required to replace the de\\ufb01cit (allowing for urinary losses)\\nHypomagnesaemia maintenance (e.g. in intravenous nutrition)\\n\\n[BY INTRAVENOUS INFUSION, OR BY INTRAMUSCULAR INJECTION]\\n\\u2022 Adult: 2.5\\u20135 g daily, usual dose 3 g daily\\nEmergency treatment of serious arrhythmias\\n\\n[BY INTRAVENOUS INJECTION]\\n\\u2022 Adult: 2 g, to be given over 10-15 minutes, dose may be repeated once if necessary\\nRapid bowel evacuation (acts in 2\\u20134 hours)\\n\\n[BY MOUTH]\\n\\u2022 Adult: 5\\u201310 g, dose to be mixed in a glass of water, taken preferably before breakfast\\nNeuroprotection of neonate [in established preterm abour or planned preterm birth within 24 hours]\\n\\n[INITIALLY BY INTRAVENOUS INJECTION]\\n\\u2022 Adult: Initially 4 g to be given as a bolus dose over 15 minutes, then (by intravenous infusion)\\n1 gram/hour until birth or for 24 hours, whichever is sooner\\nDOSE EQUIVALENCE AND CONVERSION\\nMagnesium sulfate heptahydrate 1 g equivalent to\\nMg2+ approx. 4 mmol.\\nUNLICENSED USE Magnesium sulfate may be used as detailed below, although these situations are considered unlicensed:\\n. severe acute asthma\\n. continuing respiratory deterioration in anaphylaxis\\nIn adults g Magnesium sulfate is used for neuroprotection of neonate in women with established preterm labour or planned preterm birth within 24 hours, h but is not licensed for this indication.\"}",
+    "affiliation": "Electrolyte Replacement / Obstetrics / Emergency Medicine",
+    "updated_at": "2026-10-23T17:48:05.008584+00:00",
+    "bnf_dosage": "Severe acute asthma | Continuing respiratory deterioration in anaphylaxis\n\n[BY INTRAVENOUS INFUSION]\n• Child 2–17 years: 40 mg/kg (max. per dose 2 g), to be given over 20 minutes\n• Adult: 1.2–2 g, to be given over 20 minutes\nPrevention of seizures in pre-eclampsia\n\n[INITIALLY BY INTRAVENOUS INJECTION]\n• Adult: Initially 4 g, to be given over 5–15 minutes, followed by (by intravenous infusion) 1 gram/hour for 24 hours, if seizure occurs, give an additional dose of 2–4 g by intravenous injection over 5–15 minutes\nTreatment of seizures and prevention of seizure recurrence in eclampsia\n\n[INITIALLY BY INTRAVENOUS INJECTION]\n• Adult: Initially 4 g, to be given over 5–15 minutes, followed by (by intravenous infusion) 1 gram/hour for 24 hours after seizure or delivery (whichever is later), if seizure recurs, give an additional dose of 2–4 g by intravenous injection over 5–15 minutes\nHypomagnesaemia\n\n[BY INTRAVENOUS INFUSION, OR BY INTRAMUSCULAR INJECTION]\n• Adult: Up to 40 g, given over a period of up to 5 days, dose given depends on the amount required to replace the deﬁcit (allowing for urinary losses)\nHypomagnesaemia maintenance (e.g. in intravenous nutrition)\n\n[BY INTRAVENOUS INFUSION, OR BY INTRAMUSCULAR INJECTION]\n• Adult: 2.5–5 g daily, usual dose 3 g daily\nEmergency treatment of serious arrhythmias\n\n[BY INTRAVENOUS INJECTION]\n• Adult: 2 g, to be given over 10-15 minutes, dose may be repeated once if necessary\nRapid bowel evacuation (acts in 2–4 hours)\n\n[BY MOUTH]\n• Adult: 5–10 g, dose to be mixed in a glass of water, taken preferably before breakfast\nNeuroprotection of neonate [in established preterm abour or planned preterm birth within 24 hours]\n\n[INITIALLY BY INTRAVENOUS INJECTION]\n• Adult: Initially 4 g to be given as a bolus dose over 15 minutes, then (by intravenous infusion)\n1 gram/hour until birth or for 24 hours, whichever is sooner\nDOSE EQUIVALENCE AND CONVERSION\nMagnesium sulfate heptahydrate 1 g equivalent to\nMg2+ approx. 4 mmol.\nUNLICENSED USE Magnesium sulfate may be used as detailed below, although these situations are considered unlicensed:\n. severe acute asthma\n. continuing respiratory deterioration in anaphylaxis\nIn adults g Magnesium sulfate is used for neuroprotection of neonate in women with established preterm labour or planned preterm birth within 24 hours, h but is not licensed for this indication."
+  },
+  {
+    "id": "calcium-gluconate",
+    "name": "Calcium Gluconate",
+    "category": "Drug",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Calcium D-gluconate"
+    ],
+    "affiliation": "Electrolyte Modifier / Emergency Medicine",
+    "sect_or_affiliation": "Electrolyte Modifier / Emergency Medicine",
+    "summary": "Calcium gluconate is an intravenous mineral supplement primarily used to treat hypocalcemia, hyperkalemia-induced cardiac toxicity, and magnesium toxicity.",
+    "updated_at": "2026-10-23T23:20:53.186296"
+  },
+  {
+    "id": "diphenhydramine",
+    "name": "Diphenhydramine",
+    "category": "Drug",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Benadryl",
+      "Diphenylhydramine"
+    ],
+    "affiliation": "First-generation H1-antihistamine / Anticholinergic",
+    "sect_or_affiliation": "First-generation H1-antihistamine / Anticholinergic",
+    "summary": "Diphenhydramine is a first-generation antihistamine with potent anticholinergic and sedative properties commonly used to treat acute allergic reactions, dystonic reactions, and insomnia.",
+    "updated_at": "2026-10-23T23:20:53.186296"
   }
 ]

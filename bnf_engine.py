@@ -207,6 +207,9 @@ US_TO_BNF_SYNONYMS = {
     "ketalar": "ketamine",
     "amiodarone": "amiodarone hydrochloride",
     "amiodarone hydrochloride": "amiodarone hydrochloride",
+    "magnesium sulphate": "magnesium sulfate",
+    "mag sulfate": "magnesium sulfate",
+    "mgso4": "magnesium sulfate",
 }
 
 SPECIAL_DRUG_PAGES = {
@@ -226,6 +229,8 @@ SPECIAL_DRUG_PAGES = {
     "amiodarone": [113],
     "amiodarone hydrochloride": [113],
     "digoxin": [118],
+    "magnesium sulfate": [1164],
+    "magnesium sulphate": [1164],
     "propofol": [1468],
     "etomidate": [1468],
     "ketamine": [1485],
@@ -236,7 +241,7 @@ def get_page_content_blocks(page):
     blocks = page.get_text("blocks")
     content_blocks = [
         b for b in blocks 
-        if b[0] >= 35 and b[2] <= 415 and b[1] >= 35 and b[3] <= 610
+        if b[0] >= 35 and b[2] <= 415 and b[1] >= 22 and b[3] <= 610 and "vnras.com" not in b[4]
     ]
     col1 = sorted([b for b in content_blocks if b[0] < 218], key=lambda b: b[1])
     col2 = sorted([b for b in content_blocks if b[0] >= 218], key=lambda b: b[1])
@@ -322,7 +327,8 @@ def lookup_drug_bnf(drug_name: str) -> dict:
 
     index = build_or_load_index()
     raw_q = drug_name.strip().lower()
-    q = US_TO_BNF_SYNONYMS.get(raw_q, raw_q)
+    raw_q_norm = raw_q.replace("sulphate", "sulfate")
+    q = US_TO_BNF_SYNONYMS.get(raw_q, US_TO_BNF_SYNONYMS.get(raw_q_norm, raw_q_norm))
 
     # Check SPECIAL_DRUG_PAGES first
     candidate_pages = SPECIAL_DRUG_PAGES.get(raw_q) or SPECIAL_DRUG_PAGES.get(q) or index.get(q, [])
