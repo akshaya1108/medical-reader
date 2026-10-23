@@ -118,11 +118,11 @@ export async function lookupBnfDosage(drugName, aliases = []) {
     }
   }
 
-  // Substring match in keys
+  // Word-boundary prefix match in keys (e.g. 'heparin' matches 'heparin (unfractionated)', not 'heparinoid')
   for (const c of candidates) {
-    if (c.length >= 4) {
+    if (c.length >= 3) {
       for (const k of Object.keys(_bnfDrugsCache)) {
-        if (k === c || k.startsWith(c) || c.startsWith(k)) {
+        if (k === c || k.startsWith(c + ' ') || k.startsWith(c + '(') || k.startsWith(c + '/')) {
           return _bnfDrugsCache[k].indications_and_dose || '';
         }
       }

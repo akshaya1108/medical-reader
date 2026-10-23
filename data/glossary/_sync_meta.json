@@ -1,7 +1,10 @@
 {
   "tombstones": {
     "succinylcholine": "2026-10-23T22:07:58.148540",
-    "rocuronium": "2026-10-23T22:08:05.395608"
+    "rocuronium": "2026-10-23T22:08:05.395608",
+    "diphenhydramine": "2026-10-24T00:25:43.988384",
+    "heparin": "2026-10-24T00:29:21.681138",
+    "amiodarone": "2026-10-24T00:29:47.351465"
   },
   "last_synced_ids": {
     "tintinalli-s-emergency-medicine-manual-1": [
@@ -14,15 +17,13 @@
       "etomidate",
       "adenosine",
       "fentanyl",
-      "heparin",
       "end-tidal-co2",
+      "lidocaine",
       "diltiazem",
-      "diphenhydramine",
       "glottis",
       "procainamide",
       "epinephrine",
       "magnesium-sulfate",
-      "amiodarone",
       "calcium-gluconate",
       "trachea",
       "bag-mask-ventilation",

@@ -366,11 +366,11 @@ def lookup_drug_bnf(drug_name: str) -> dict:
                 "source": entry.get("source", "British National Formulary (BNF 85)")
             }
 
-    # Substring / Prefix match in compiled database
+    # Word-boundary prefix match in compiled database (e.g. "metoprolol" -> "metoprolol tartrate", "heparin" -> "heparin (unfractionated)")
     for c in candidates:
-        if len(c) >= 4:
+        if len(c) >= 3:
             for k, entry in compiled.items():
-                if k == c or k.startswith(c) or (len(c) >= 5 and c.startswith(k)):
+                if k == c or k.startswith(c + ' ') or k.startswith(c + '(') or k.startswith(c + '/'):
                     return {
                         "found": True,
                         "drug": entry.get("drug", drug_name.title()),

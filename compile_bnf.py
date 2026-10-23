@@ -44,7 +44,22 @@ US_TO_BNF = {
     'betaloc': 'metoprolol tartrate',
     'cordarone': 'amiodarone hydrochloride',
     'lanoxin': 'digoxin',
-    'narcan': 'naloxone hydrochloride'
+    'narcan': 'naloxone hydrochloride',
+    'heparin': 'heparin (unfractionated)',
+    'unfractionated heparin': 'heparin (unfractionated)',
+    'ufh': 'heparin (unfractionated)',
+    'clexane': 'enoxaparin sodium',
+    'enoxaparin': 'enoxaparin sodium',
+    'lovenox': 'enoxaparin sodium',
+    'fragmin': 'dalteparin sodium',
+    'dalteparin': 'dalteparin sodium',
+    'innohep': 'tinzaparin sodium',
+    'tinzaparin': 'tinzaparin sodium',
+    'eliquis': 'apixaban',
+    'xarelto': 'rivaroxaban',
+    'pradaxa': 'dabigatran etexilate',
+    'coumadin': 'warfarin sodium',
+    'warfarin': 'warfarin sodium',
 }
 
 SALTS_REGEX = r'\b(hydrochloride|sulfate|sulphate|bromide|chloride|sodium|potassium|tartrate|acetate|fumarate|maleate|succinate|phosphate|gluconate|dihydrate|trihydrate|heptahydrate|mesilate|dipropionate|propionate|valerate|decanoate|enanthate|besilate|citrate|lactate)\b'
@@ -135,11 +150,18 @@ def compile_database():
                 if p_clean and p_clean not in compiled:
                     compiled[p_clean] = entry
                     
+        # Strip parenthetical qualifiers (e.g. "Heparin (unfractionated)" -> "heparin", "Calcitonin (salmon)" -> "calcitonin")
+        no_parens = re.sub(r'\(.*?\)', '', d_lower).strip()
+        no_parens = re.sub(r'\s+', ' ', no_parens).strip()
+        if no_parens and len(no_parens) >= 3 and no_parens not in compiled:
+            compiled[no_parens] = entry
+
         # Base name without salts (e.g. "Metoprolol" for "Metoprolol tartrate")
-        base = re.sub(SALTS_REGEX, '', d_lower, flags=re.I).strip()
-        base = re.sub(r'\s+', ' ', base).strip()
-        if base and len(base) >= 3 and base not in compiled:
-            compiled[base] = entry
+        for candidate_text in [d_lower, no_parens]:
+            base = re.sub(SALTS_REGEX, '', candidate_text, flags=re.I).strip()
+            base = re.sub(r'\s+', ' ', base).strip()
+            if base and len(base) >= 3 and base not in compiled:
+                compiled[base] = entry
             
         # British / American spelling variants (sulphate <-> sulfate)
         if 'sulfate' in d_lower:
