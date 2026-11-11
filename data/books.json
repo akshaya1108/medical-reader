@@ -317,5 +317,19 @@
     "last_read_at": "2026-10-13T14:11:48.375+00:00",
     "bookmark": null,
     "bookmarks": []
+  },
+  {
+    "id": "rosen-s-emergency-medicine-concepts-and-clinical-practice-10th-edition",
+    "title": "Rosen's Emergency Medicine: Concepts and Clinical Practice, 10th Edition",
+    "author": "Calvin A. Brown III, MD and Ron M. Walls, MD",
+    "genre": "EMERGENCY MEDICINE",
+    "description": "A foundational textbook providing comprehensive guidance on emergency airway management, including rapid sequence intubation, difficult airway approaches, and essential rescue techniques. This resource serves as a definitive clinical reference for the practice of emergency medicine.",
+    "color": "#c4884d",
+    "created_at": "11/11/2026",
+    "last_read_chapter": 1,
+    "last_chapter": 1,
+    "chapters_count": 2,
+    "total_words": 16349,
+    "enable_glossary": true
   }
 ]
