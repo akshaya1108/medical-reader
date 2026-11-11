@@ -22,4 +22,5 @@ scratch_chrome/
 
 # Backups & Temp data
 data/glossary/backups/
+data/.trash/
 *.bak

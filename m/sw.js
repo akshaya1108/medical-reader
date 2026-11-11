@@ -1,4 +1,4 @@
-const CACHE_NAME = 'med-mobile-v56';
+const CACHE_NAME = 'med-mobile-v57';
 const STATIC_ASSETS = [
   './',
   './manifest.json',
@@ -7,6 +7,7 @@ const STATIC_ASSETS = [
   './static/js/api.js',
   './static/js/mobile-app.js',
   './static/data/bnf_drugs.json',
+  './static/data/bnf_glossary.json',
   './static/icons/icon.svg',
   './static/icons/icon-192.png',
   './static/icons/icon-512.png',

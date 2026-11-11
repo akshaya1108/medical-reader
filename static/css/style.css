@@ -4841,4 +4841,626 @@ mark.search-match {
   letter-spacing: -0.2px;
 }
 
+/* ==========================================================================
+   BNF 85 FORMULARY STYLES & NAVIGATION
+   ========================================================================== */
+
+/* Top Nav Links */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  color: #dfd7cb;
+  border: 1px solid transparent;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.nav-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.nav-tab-btn.active {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.nav-btn-emoji {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+/* BNF Formulary Main Section */
+.bnf-section-view {
+  min-height: calc(100vh - 52px);
+  background-color: var(--bg-main);
+  padding: 32px 36px 64px 36px;
+  animation: fadeInView 0.2s ease;
+}
+
+@keyframes fadeInView {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bnf-section-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+/* BNF Header */
+.bnf-view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.bnf-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(30, 58, 138, 0.08);
+  border: 1px solid rgba(30, 58, 138, 0.2);
+  color: #1e3a8a;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.bnf-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2563eb;
+}
+
+.bnf-view-title {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.bnf-view-subtitle {
+  font-size: 0.94rem;
+  color: var(--text-muted);
+  max-width: 680px;
+  line-height: 1.45;
+}
+
+.bnf-active-book-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  padding: 10px 16px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.bnf-active-book-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.bnf-active-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bnf-active-title {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* BNF Controls Toolbar */
+.bnf-toolbar-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  padding: 12px 18px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.bnf-search-box {
+  position: relative;
+  flex: 1;
+  min-width: 280px;
+}
+
+.bnf-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.bnf-search-input {
+  width: 100%;
+  padding: 9px 36px 9px 36px;
+  background: var(--bg-main);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.bnf-search-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  background: #ffffff;
+}
+
+.bnf-search-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.15rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+}
+
+.bnf-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.bnf-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bnf-control-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.bnf-select {
+  padding: 8px 12px;
+  background: var(--bg-main);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-size: 0.86rem;
+  color: var(--text-main);
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.18s;
+}
+
+.bnf-select:focus {
+  border-color: #2563eb;
+}
+
+/* Alphabet Jump Pills */
+.bnf-alpha-pills {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+  padding: 6px 0;
+}
+
+.bnf-alpha-pill {
+  min-width: 30px;
+  height: 28px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.bnf-alpha-pill:hover {
+  background: #ffffff;
+  color: #2563eb;
+  border-color: #93c5fd;
+}
+
+.bnf-alpha-pill.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.25);
+}
+
+/* Status Bar */
+.bnf-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 2px 4px;
+  font-size: 0.82rem;
+}
+
+.bnf-count-label {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.bnf-hint-label {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* BNF Drugs Grid */
+.bnf-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.bnf-drug-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  cursor: pointer;
+}
+
+.bnf-drug-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  border-color: #93c5fd;
+}
+
+.bnf-card-top {
+  margin-bottom: 10px;
+}
+
+.bnf-card-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.bnf-card-pill-drug {
+  background: #dbeafe;
+  color: #1e40af;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.bnf-card-pill-chap {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bnf-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.bnf-card-aliases {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.bnf-card-alias {
+  background: var(--bg-main);
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.bnf-card-summary {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bnf-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-light);
+  padding-top: 10px;
+  margin-top: auto;
+}
+
+.bnf-card-pages {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.bnf-card-view-btn {
+  background: transparent;
+  border: none;
+  color: #2563eb;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+}
+
+.bnf-card-view-btn:hover {
+  text-decoration: underline;
+}
+
+/* BNF Monograph Inspector Modal */
+.modal-bnf-inspector-dialog {
+  max-width: 780px;
+  width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.modal-bnf-header {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border-card);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--bg-main);
+}
+
+.bnf-monograph-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.bnf-pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.bnf-pill-drug {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.bnf-pill-chapter {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.modal-bnf-drug-name {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.bnf-modal-aliases {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.bnf-modal-alias-tag {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  font-size: 0.75rem;
+  padding: 2px 7px;
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+
+.modal-bnf-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.bnf-dosage-section-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #1e3a8a;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(30, 58, 138, 0.12);
+}
+
+.bnf-monograph-content {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--text-main);
+}
+
+.bnf-monograph-content .bnf-dosage-container {
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.bnf-monograph-content .bnf-indication-header {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-top: 14px;
+  margin-bottom: 6px;
+}
+
+.bnf-monograph-content .bnf-route-tag {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #4b5563;
+  margin: 6px 0 4px 0;
+  background: rgba(0, 0, 0, 0.03);
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.bnf-monograph-content .bnf-dose-bullet {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 4px 0 6px 6px;
+}
+
+.modal-bnf-footer {
+  padding: 14px 24px;
+  border-top: 1px solid var(--border-card);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-main);
+  gap: 12px;
+}
+
+/* Dark theme support for BNF */
+body.theme-dark .nav-tab-btn.active,
+[data-theme="dark"] .nav-tab-btn.active {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+body.theme-dark .bnf-section-view,
+[data-theme="dark"] .bnf-section-view {
+  background-color: #181512;
+}
+
+body.theme-dark .bnf-toolbar-card,
+body.theme-dark .bnf-drug-card,
+body.theme-dark .bnf-active-book-box,
+body.theme-dark .bnf-alpha-pill,
+body.theme-dark .modal-bnf-inspector-dialog,
+[data-theme="dark"] .bnf-toolbar-card,
+[data-theme="dark"] .bnf-drug-card,
+[data-theme="dark"] .bnf-active-book-box,
+[data-theme="dark"] .bnf-alpha-pill,
+[data-theme="dark"] .modal-bnf-inspector-dialog {
+  background-color: #24201c;
+  border-color: #38322c;
+  color: #e5dbcb;
+}
+
+body.theme-dark .bnf-search-input,
+body.theme-dark .bnf-select,
+body.theme-dark .modal-bnf-header,
+body.theme-dark .modal-bnf-footer,
+[data-theme="dark"] .bnf-search-input,
+[data-theme="dark"] .bnf-select,
+[data-theme="dark"] .modal-bnf-header,
+[data-theme="dark"] .modal-bnf-footer {
+  background-color: #1e1a17;
+  border-color: #38322c;
+  color: #f1e9dd;
+}
+
+body.theme-dark .bnf-monograph-content .bnf-indication-header,
+[data-theme="dark"] .bnf-monograph-content .bnf-indication-header {
+  color: #93c5fd !important;
+}
+
+body.theme-dark .bnf-badge-pill,
+[data-theme="dark"] .bnf-badge-pill {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #93c5fd;
+}
+
+
 

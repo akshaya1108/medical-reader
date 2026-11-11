@@ -4004,3 +4004,15 @@ mark.search-match {
   transition: all 0.15s ease;
 }
 
+/* BNF Formulary Mobile View */
+.bnf-mobile-scroll-container {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bnf-mobile-card:active {
+  transform: scale(0.99);
+  border-color: #93c5fd !important;
+}
+

@@ -22,6 +22,16 @@
         <svg class="nav-icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
         <span class="nav-title">My Library</span>
       </div>
+      <nav class="nav-links-center">
+        <button type="button" class="nav-tab-btn active" id="nav-btn-library" title="Browse books in collection">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>Library</span>
+        </button>
+        <button type="button" class="nav-tab-btn" id="nav-btn-bnf" title="Browse all 1,699 medications in the British National Formulary">
+          <span class="nav-btn-emoji">💊</span>
+          <span>BNF 85 Formulary</span>
+        </button>
+      </nav>
     </div>
     <div class="nav-right" style="position: relative;">
       <button id="api-status-badge" class="status-pill status-connected" title="Cloud &amp; Sync Status" type="button">
@@ -116,6 +126,92 @@
     </div>
   </div>
 
+  <!-- BNF 85 FORMULARY VIEW -->
+  <div class="bnf-section-view" id="bnf-section-view" style="display: none;">
+    <div class="bnf-section-inner">
+      <!-- Header Area -->
+      <div class="bnf-view-header">
+        <div class="bnf-header-left">
+          <div class="bnf-badge-pill">
+            <span class="bnf-badge-dot"></span>
+            <span>British National Formulary (BNF 85)</span>
+          </div>
+          <h1 class="bnf-view-title">Medication Formulary</h1>
+          <p class="bnf-view-subtitle">
+            1,699 Monographed Medications • Indications, Adult &amp; Paediatric Dosages, Routes &amp; Formulations
+          </p>
+        </div>
+        <div class="bnf-header-right">
+          <div class="bnf-active-book-box" id="bnf-active-book-box" style="display: none;">
+            <div class="bnf-active-book-text">
+              <span class="bnf-active-label">Active Book:</span>
+              <strong class="bnf-active-title" id="bnf-active-book-name">No book selected</strong>
+            </div>
+            <button type="button" class="btn btn-green btn-sm" id="btn-bnf-add-to-active-book" title="Populate all 1,699 BNF 85 drugs into this novel's glossary">
+              <span style="margin-right: 4px;">💊</span>
+              <span>+ Add All BNF to Book</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search & Filters Toolbar -->
+      <div class="bnf-toolbar-card">
+        <div class="bnf-search-box">
+          <svg class="bnf-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="bnf-search-input" class="bnf-search-input" placeholder="Search 1,699 drugs, brand names (e.g. Lopressor, Tylenol, UFH), or clinical indications..." autocomplete="off">
+          <button type="button" class="bnf-search-clear" id="btn-clear-bnf-search" title="Clear search" style="display: none;">&times;</button>
+        </div>
+
+        <div class="bnf-toolbar-actions">
+          <!-- Chapter Filter -->
+          <div class="bnf-filter-group">
+            <label for="bnf-chapter-filter" class="bnf-control-label">BNF Chapter:</label>
+            <select id="bnf-chapter-filter" class="bnf-select">
+              <option value="all">All Chapters (1,699 drugs)</option>
+              <option value="Gastro-intestinal">Chapter 1: Gastro-intestinal</option>
+              <option value="Cardiovascular">Chapter 2: Cardiovascular</option>
+              <option value="Respiratory">Chapter 3: Respiratory</option>
+              <option value="Nervous">Chapter 4: Nervous system</option>
+              <option value="Infection">Chapter 5: Infection</option>
+              <option value="Endocrine">Chapter 6: Endocrine</option>
+              <option value="Genito-urinary">Chapter 7: Genito-urinary</option>
+              <option value="Immune">Chapter 8: Immune &amp; Malignant</option>
+              <option value="Blood">Chapter 9: Blood and nutrition</option>
+              <option value="Musculoskeletal">Chapter 10: Musculoskeletal</option>
+              <option value="Eye">Chapter 11: Eye</option>
+              <option value="Ear">Chapter 12: Ear, nose &amp; oropharynx</option>
+              <option value="Skin">Chapter 13: Skin</option>
+              <option value="Vaccines">Chapter 14: Vaccines</option>
+              <option value="Anaesthesia">Chapter 15: Anaesthesia</option>
+              <option value="Poisoning">Chapter 16: Poisoning &amp; Overdose</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alphabet Letter Jump Pills -->
+      <div class="bnf-alpha-pills" id="bnf-alpha-pills">
+        <button type="button" class="bnf-alpha-pill active" data-letter="all">ALL</button>
+      </div>
+
+      <!-- Live Count & Status Line -->
+      <div class="bnf-status-bar">
+        <span class="bnf-count-label" id="bnf-count-label">Loading formulary...</span>
+        <span class="bnf-hint-label">Tip: Click any medication card to inspect full BNF 85 dosage and indication monographs</span>
+      </div>
+
+      <!-- Drug Cards Container -->
+      <div class="bnf-cards-grid" id="bnf-cards-grid">
+        <!-- Rendered dynamically -->
+      </div>
+
+    </div>
+  </div>
+
   <!-- Hidden File Input for Home Cover Upload -->
   <input type="file" id="home-cover-file-input" accept="image/*" style="display: none;">
 
@@ -161,6 +257,10 @@
             <button type="button" class="book-dropdown-item" id="btn-link-glossary">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
               <span>Link lore glossary</span>
+            </button>
+            <button type="button" class="book-dropdown-item" id="btn-more-add-bnf">
+              <span style="font-size:14px; margin-right:8px;">💊</span>
+              <span>Populate BNF 85 Drugs</span>
             </button>
             <button type="button" class="book-dropdown-item" id="btn-auto-arrange-chapters">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="6" x2="21" y2="6"></line><line x1="10" y1="12" x2="21" y2="12"></line><line x1="10" y1="18" x2="21" y2="18"></line><polyline points="3 6 4 7 3 8"></polyline><polyline points="3 12 4 13 3 14"></polyline><polyline points="3 18 4 19 3 20"></polyline></svg>
@@ -213,6 +313,10 @@
                 <polyline points="2 12 12 17 22 12"></polyline>
               </svg>
               <span>Glossary</span>
+            </button>
+            <button class="btn btn-secondary" id="btn-book-add-bnf" title="Populate all 1,699 BNF 85 medications into this novel's glossary">
+              <span class="btn-icon">💊</span>
+              <span>Add BNF Drugs</span>
             </button>
           </div>
 
@@ -671,6 +775,17 @@
             <span class="toggle-label-desc">Enables interactive term highlights, quick character lookups, and wiki import</span>
           </span>
         </label>
+
+        <label class="toggle-row" for="import-bnf-toggle" style="margin-top: 14px;">
+          <span class="toggle-switch">
+            <input type="checkbox" id="import-bnf-toggle" checked>
+            <span class="toggle-slider"></span>
+          </span>
+          <span class="toggle-text-block">
+            <span class="toggle-label-title">Pre-populate BNF 85 Formulary</span>
+            <span class="toggle-label-desc">Automatically adds all 1,699 medications, dosages, and indications to this novel's glossary</span>
+          </span>
+        </label>
       </div>
 
       <!-- Loading / Progress State -->
@@ -712,6 +827,10 @@
           <button class="btn btn-secondary btn-sm" id="btn-open-wiki-scraper">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
             <span>Auto-Fill from Web</span>
+          </button>
+          <button class="btn btn-secondary btn-sm" id="btn-glossary-populate-bnf" title="Populate all 1,699 BNF 85 medications into this novel">
+            <span style="font-size: 13px;">💊</span>
+            <span>Add BNF 85</span>
           </button>
           <button class="modal-close-btn" id="btn-close-glossary" title="Close glossary">&times;</button>
         </div>
@@ -952,11 +1071,47 @@
     </div>
   </aside>
 
+  <!-- BNF Monograph Inspector Modal -->
+  <div class="modal-backdrop" id="modal-bnf-inspector" style="display: none;">
+    <div class="modal-dialog modal-bnf-inspector-dialog">
+      <div class="modal-bnf-header">
+        <div class="modal-bnf-title-group">
+          <div class="bnf-monograph-badges">
+            <span class="bnf-pill bnf-pill-drug">DRUG</span>
+            <span class="bnf-pill bnf-pill-chapter" id="bnf-modal-chapter">Chapter</span>
+          </div>
+          <h2 class="modal-bnf-drug-name" id="bnf-modal-title">Drug Name</h2>
+          <div class="bnf-modal-aliases" id="bnf-modal-aliases"></div>
+        </div>
+        <button type="button" class="modal-close-btn" id="btn-close-bnf-inspector" title="Close monograph">&times;</button>
+      </div>
+
+      <div class="modal-bnf-body" id="bnf-modal-body">
+        <div class="bnf-dosage-section-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+          <span>INDICATIONS AND DOSE (BNF 85)</span>
+        </div>
+        <div class="bnf-monograph-content" id="bnf-modal-dosage-text"></div>
+      </div>
+
+      <div class="modal-bnf-footer">
+        <button type="button" class="btn btn-secondary" id="btn-copy-bnf-dose">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          <span id="btn-copy-bnf-label">Copy Dosage</span>
+        </button>
+        <button type="button" class="btn btn-green" id="btn-bnf-modal-add-book" style="display: none;">
+          <span style="margin-right: 4px;">💊</span>
+          <span>Add / Update in Active Book</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Notification Toast -->
   <div class="toast" id="toast"></div>
 
   <!-- Client JavaScript -->
-  <script src="/static/js/app.js?v=56"></script>
+  <script src="/static/js/app.js?v=57"></script>
   <script src="/static/js/fidget.js"></script>
 </body>
 </html>

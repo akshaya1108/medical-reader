@@ -464,9 +464,9 @@ def load_glossary(book_id, sync_remote=True):
             successful_remote_query = False
             try:
                 res = requests.get(
-                    f"{SUPABASE_URL}/rest/v1/glossary?book_id=eq.{canonical_id}&select=*",
+                    f"{SUPABASE_URL}/rest/v1/glossary?book_id=eq.{canonical_id}&select=*&limit=5000",
                     headers=headers,
-                    timeout=3.5
+                    timeout=5.0
                 )
                 if res.status_code == 200:
                     successful_remote_query = True
@@ -480,9 +480,9 @@ def load_glossary(book_id, sync_remote=True):
                     if tid != canonical_id:
                         try:
                             res_alt = requests.get(
-                                f"{SUPABASE_URL}/rest/v1/glossary?book_id=eq.{tid}&select=*",
+                                f"{SUPABASE_URL}/rest/v1/glossary?book_id=eq.{tid}&select=*&limit=5000",
                                 headers=headers,
-                                timeout=2.5
+                                timeout=3.5
                             )
                             if res_alt.status_code == 200 and res_alt.json():
                                 remote_entries.extend(res_alt.json())
@@ -900,6 +900,77 @@ def save_glossary(book_id, glossary, push_remote=True, allow_empty=False):
 
     if push_remote:
         push_glossary_to_supabase_async(book_id, cleaned_glossary)
+
+def populate_book_with_bnf(book_id):
+    """
+    Populates all 1,699 British National Formulary (BNF 85) drug monographs into a book's glossary.
+    - Preserves all existing custom glossary entries and custom summaries.
+    - Updates bnf_dosage if previously missing or unavailable.
+    - Merges aliases seamlessly without duplicates.
+    - Persists locally and synchronizes to Supabase.
+    """
+    bnf_glossary_path = os.path.join(DATA_DIR, "bnf_glossary.json")
+    if not os.path.exists(bnf_glossary_path):
+        import compile_bnf
+        compile_bnf.compile_database()
+
+    with open(bnf_glossary_path, "r", encoding="utf-8") as f:
+        bnf_drugs = json.load(f)
+
+    glossary = load_glossary(book_id, sync_remote=False)
+
+    existing_by_id = {}
+    existing_by_name = {}
+    for item in glossary:
+        iid = (item.get("id") or "").strip()
+        iname = (item.get("name") or "").lower().strip()
+        if iid:
+            existing_by_id[iid] = item
+        if iname:
+            existing_by_name[iname] = item
+
+    added_count = 0
+    updated_count = 0
+    now_iso = datetime.datetime.now(datetime.timezone.utc).isoformat()
+
+    for b_item in bnf_drugs:
+        b_id = b_item.get("id")
+        b_name_lower = (b_item.get("name") or "").lower().strip()
+
+        target = existing_by_id.get(b_id) or existing_by_name.get(b_name_lower)
+        if target:
+            changed = False
+            # If target missing dosage or set to Unavailable, update with authentic BNF dosage
+            if not target.get("bnf_dosage") or target.get("bnf_dosage") == "Unavailable":
+                if b_item.get("bnf_dosage"):
+                    target["bnf_dosage"] = b_item["bnf_dosage"]
+                    changed = True
+            # Merge aliases
+            curr_aliases = set(target.get("aliases") or [])
+            new_aliases = set(b_item.get("aliases") or [])
+            if not new_aliases.issubset(curr_aliases):
+                target["aliases"] = sorted(list(curr_aliases.union(new_aliases)))
+                changed = True
+            if changed:
+                target["updated_at"] = now_iso
+                updated_count += 1
+        else:
+            entry = dict(b_item)
+            entry["updated_at"] = now_iso
+            glossary.append(entry)
+            if b_id:
+                existing_by_id[b_id] = entry
+            if b_name_lower:
+                existing_by_name[b_name_lower] = entry
+            added_count += 1
+
+    save_glossary(book_id, glossary, push_remote=True)
+    return {
+        "success": True,
+        "added": added_count,
+        "updated": updated_count,
+        "total": len(glossary)
+    }
 
 def sanitize_html(raw_html):
     if not raw_html:
@@ -1497,6 +1568,7 @@ def import_epub_endpoint():
 
     auto_detect_ai = request.form.get("auto_detect_ai", "true").lower() in ["true", "1", "yes"]
     user_enable_glossary = request.form.get("enable_glossary")
+    add_bnf_drugs = request.form.get("add_bnf_drugs", "false").lower() in ["true", "1", "yes"]
 
     import zipfile
     import bs4
@@ -1904,7 +1976,14 @@ def import_epub_endpoint():
                 except Exception:
                     pass
 
-            save_glossary(book_id, [])
+            if add_bnf_drugs:
+                try:
+                    populate_book_with_bnf(book_id)
+                except Exception as bnf_err:
+                    print(f"Notice: Failed to pre-populate BNF drugs: {bnf_err}")
+                    save_glossary(book_id, [])
+            else:
+                save_glossary(book_id, [])
 
             total_words = 0
             for idx, (ch_t, ch_content, w_cnt) in enumerate(raw_chapters, start=1):
@@ -2707,6 +2786,55 @@ def add_or_update_character(book_id):
     glossary.append(new_char)
     save_glossary(book_id, glossary)
     return jsonify({"success": True, "glossary": glossary})
+
+@app.route("/api/books/<book_id>/populate-bnf-glossary", methods=["POST"])
+def populate_book_bnf_glossary_route(book_id):
+    books = load_books()
+    book = next((b for b in books if b.get("id") == book_id), None)
+    if not book:
+        return jsonify({"error": "Book not found"}), 404
+    try:
+        res = populate_book_with_bnf(book_id)
+        return jsonify(res)
+    except Exception as e:
+        return jsonify({"error": f"Failed to populate BNF drugs: {str(e)}"}), 500
+
+@app.route("/api/bnf/drugs", methods=["GET"])
+def get_all_bnf_drugs():
+    """
+    Returns compiled BNF drugs for browsing, search, and filtering.
+    Supports ?q=<query>&chapter=<chapter_filter>.
+    """
+    bnf_glossary_path = os.path.join(DATA_DIR, "bnf_glossary.json")
+    if not os.path.exists(bnf_glossary_path):
+        import compile_bnf
+        compile_bnf.compile_database()
+
+    with open(bnf_glossary_path, "r", encoding="utf-8") as f:
+        drugs = json.load(f)
+
+    q = request.args.get("q", "").strip().lower()
+    chapter = request.args.get("chapter", "").strip().lower()
+
+    if q or chapter:
+        filtered = []
+        for d in drugs:
+            if chapter and chapter != "all":
+                chaps = [c.lower() for c in d.get("chapters", [])]
+                affil = (d.get("affiliation") or "").lower()
+                if not any(chapter in c for c in chaps) and chapter not in affil:
+                    continue
+            if q:
+                name_match = q in d.get("name", "").lower()
+                alias_match = any(q in a.lower() for a in d.get("aliases", []))
+                summary_match = q in d.get("summary", "").lower()
+                dose_match = q in (d.get("bnf_dosage") or "").lower()
+                if not (name_match or alias_match or summary_match or dose_match):
+                    continue
+            filtered.append(d)
+        return jsonify({"count": len(filtered), "drugs": filtered})
+
+    return jsonify({"count": len(drugs), "drugs": drugs})
 
 @app.route("/api/lookup-bnf", methods=["GET"])
 def api_lookup_bnf():

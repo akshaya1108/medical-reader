@@ -1,21 +1,5 @@
 [
   {
-    "id": "macintosh-laryngoscope-blade",
-    "name": "Macintosh Laryngoscope Blade",
-    "category": "Instrument / Device",
-    "pinyin_or_chinese": "",
-    "aliases": [
-      "Macintosh blade",
-      "Curved laryngoscope blade",
-      "curved blade"
-    ],
-    "affiliation": "Emergency Medicine / Anesthesiology",
-    "sect_or_affiliation": "Emergency Medicine / Anesthesiology",
-    "summary": "A curved laryngoscope blade designed to be inserted into the vallecula to indirectly lift the epiglottis, facilitating visualization of the glottic opening during endotracheal intubation.",
-    "updated_at": "2026-10-23T20:30:48.669586",
-    "image_url": ""
-  },
-  {
     "id": "rapid-sequence-intubation",
     "name": "Rapid sequence intubation",
     "category": "Concept",
@@ -547,5 +531,302 @@
     "sect_or_affiliation": "Antidote / Mucolytic",
     "summary": "Acetylcysteine is a mucolytic agent primarily used as the definitive antidote for acetaminophen (paracetamol) overdose by restoring hepatic glutathione stores.",
     "updated_at": "2026-10-24T01:06:45.386967"
+  },
+  {
+    "id": "vasopressin",
+    "name": "Vasopressin",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"Pituitary diabetes insipidus\\n\\n[BY INTRAMUSCULAR INJECTION, OR BY SUBCUTANEOUS]\\n\\n[INJECTION]\\n\\n• Adult: 5–20 units every 4 hours, dose expressed as argipressin\\n\\n[INJECTION] Initial control of oesophageal variceal bleeding\\n\\n[BY INTRAVENOUS INFUSION]\\n• Adult: 20 units, dose to be administered over 15 minutes, dose expressed as argipressin\\n\\nDose Equivalence And Conversion\\n\\nArgipressin 1 unit is equivalent to vasopressin 1 unit.\"}",
+    "aliases": [
+      "Antidiuretic Hormone",
+      "ADH",
+      "Arginine Vasopressin",
+      "AVP",
+      "Argipressin"
+    ],
+    "affiliation": "Vasoactive Hormone / Emergency Medicine",
+    "sect_or_affiliation": "Vasoactive Hormone / Emergency Medicine",
+    "summary": "Vasopressin is a peptide hormone that increases renal water reabsorption and causes peripheral vasoconstriction, utilized clinically to manage vasodilatory shock and cardiac arrest.",
+    "updated_at": "2026-10-24T17:56:43.604577"
+  },
+  {
+    "id": "curved-blade",
+    "name": "Curved Blade",
+    "category": "Instrument / Device",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Macintosh blade"
+    ],
+    "affiliation": "Emergency Medicine / Airway Management",
+    "sect_or_affiliation": "Emergency Medicine / Airway Management",
+    "summary": "A curved laryngoscope blade designed to fit into the vallecula and indirectly elevate the epiglottis to visualize the vocal cords during endotracheal intubation.",
+    "updated_at": "2026-10-24T17:56:43.604577"
+  },
+  {
+    "id": "epiglottic-vallecula",
+    "name": "Epiglottic Vallecula",
+    "category": "Anatomy",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Vallecula",
+      "Vallecula epiglottica"
+    ],
+    "affiliation": "Emergency Medicine / Airway Anatomy",
+    "sect_or_affiliation": "Emergency Medicine / Airway Anatomy",
+    "summary": "The epiglottic vallecula is a depression behind the root of the tongue that serves as a critical anatomical landmark for direct and video laryngoscopy during endotracheal intubation.",
+    "updated_at": "2026-10-24T17:56:43.604577"
+  },
+  {
+    "id": "burp-maneuver",
+    "name": "BURP maneuver",
+    "category": "Concept",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Backwards-Upwards-Rightwards Pressure maneuver"
+    ],
+    "affiliation": "Emergency Medicine / Airway Management",
+    "sect_or_affiliation": "Emergency Medicine / Airway Management",
+    "summary": "An external laryngeal manipulation technique used during endotracheal intubation to improve glottic visualization and facilitate optimal tube placement.",
+    "updated_at": "2026-10-24T17:56:43.604577"
+  },
+  {
+    "id": "end-tidal-co2-detector",
+    "name": "End-tidal CO2 detector",
+    "category": "Instrument / Device",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "ETCO2 detector",
+      "Capnography device",
+      "Colorimetric ETCO2 detector"
+    ],
+    "affiliation": "Emergency Medicine / Anesthesiology",
+    "sect_or_affiliation": "Emergency Medicine / Anesthesiology",
+    "summary": "An end-tidal CO2 detector is a diagnostic device used to confirm proper endotracheal tube placement and monitor the adequacy of ventilation during cardiopulmonary resuscitation.",
+    "updated_at": "2026-10-24T17:56:43.604577"
+  },
+  {
+    "id": "acetaminophen",
+    "name": "Acetaminophen",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"Mild to moderate pain | Pyrexia\\n\\n[BY MOUTH]\\n• Adult: 0.5–1 g every 4–6 hours; maximum 4 g per day\\n[BY INTRAVENOUS INFUSION]\\n• Adult (body-weight up to 50 kg): 15 mg/kg every 4–6 hours, dose to be administered over 15 minutes; maximum 60 mg/kg per day\\n• Adult (body-weight 50 kg and above): 1 g every 4–6 hours, dose to be administered over 15 minutes; maximum 4 g per day\\n[BY RECTUM]\\n• Adult: 0.5–1 g every 4–6 hours; maximum 4 g per day\\n\\nMild to moderate pain in patients with risk factors for hepatotoxicity | Pyrexia in patients with risk factors for hepatotoxicity\\n\\n[BY INTRAVENOUS INFUSION]\\n• Adult (body-weight up to 50 kg): 15 mg/kg every 4–6 hours, dose to be administered over 15 minutes; maximum 60 mg/kg per day\\n• Adult (body-weight 50 kg and above): 1 g every 4–6 hours, dose to be administered over 15 minutes; maximum 3 g per day\\n\\nPain | Pyrexia with discomfort\\n\\n[BY MOUTH]\\n• Child 3–5 months: 60 mg every 4–6 hours; maximum 4 doses per day\\n• Child 6–23 months: 120 mg every 4–6 hours; maximum 4 doses per day\\n• Child 2–3 years: 180 mg every 4–6 hours; maximum 4 doses per day\\n• Child 4–5 years: 240 mg every 4–6 hours; maximum 4 doses per day\\n• Child 6–7 years: 240–250 mg every 4–6 hours; maximum 4 doses per day\\n• Child 8–9 years: 360–375 mg every 4–6 hours; maximum 4 doses per day\\n• Child 10–11 years: 480–500 mg every 4–6 hours; maximum 4 doses per day\\n• Child 12–15 years: 480–750 mg every 4–6 hours; maximum 4 doses per day\\n• Child 16–17 years: 0.5–1 g every 4–6 hours; maximum 4 doses per day\\n[BY RECTUM]\\n• Child 3–11 months: 60–125 mg every 4–6 hours as required; maximum 4 doses per day\\n• Child 1–4 years: 125–250 mg every 4–6 hours as required; maximum 4 doses per day\\n• Child 5–11 years: 250–500 mg every 4–6 hours as required; maximum 4 doses per day\\n• Child 12–17 years: 500 mg every 4–6 hours\\n\\nPost-immunisation pyrexia in infants\\n\\n[BY MOUTH]\\n• Child 2–3 months: 60 mg for 1 dose, then 60 mg after 4–6 hours if required\\n• Child 4 months: 60 mg for 1 dose, then 60 mg after 4–6 hours; maximum 4 doses per day\\n\\nAcute migraine\\n\\n[BY MOUTH]\\n• Adult: 1 g for 1 dose, to be taken as soon as migraine symptoms develop\"}",
+    "aliases": [
+      "Paracetamol",
+      "APAP",
+      "N-acetyl-p-aminophenol"
+    ],
+    "affiliation": "Analgesic / Antipyretic",
+    "sect_or_affiliation": "Analgesic / Antipyretic",
+    "summary": "Acetaminophen is a widely used analgesic and antipyretic agent for mild to moderate pain and fever, with high doses carrying significant risk of hepatotoxicity and acute liver failure.",
+    "updated_at": "2026-10-24T17:56:43.604577"
+  },
+  {
+    "id": "carnett-sign",
+    "name": "Carnett sign",
+    "category": "Concept",
+    "pinyin_or_chinese": "",
+    "aliases": [
+      "Carnett's sign"
+    ],
+    "affiliation": "Emergency Medicine / Gastroenterology",
+    "sect_or_affiliation": "Emergency Medicine / Gastroenterology",
+    "summary": "A physical exam maneuver used to differentiate abdominal wall pain from intra-abdominal visceral pain, where tenderness that persists or worsens with contraction of the abdominal muscles indicates a musculoskeletal source.",
+    "updated_at": "2026-11-11T22:57:40.057224"
+  },
+  {
+    "id": "addisonian-crisis",
+    "name": "Addisonian crisis",
+    "category": "Pathology / Disease",
+    "pinyin_or_chinese": "{\"image_url\":\"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/AdrenalCrisis.jpg/500px-AdrenalCrisis.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail\"}",
+    "aliases": [
+      "Adrenal crisis",
+      "Acute adrenal insufficiency"
+    ],
+    "affiliation": "Endocrinology / Emergency Medicine",
+    "sect_or_affiliation": "Endocrinology / Emergency Medicine",
+    "summary": "Addisonian crisis is a life-threatening medical emergency caused by acute adrenal insufficiency, characterized by severe hypotension, hypovolemic shock, weakness, and altered mental status requiring immediate parenteral hydrocortisone and fluid resuscitation.",
+    "updated_at": "2026-11-11T22:57:40.057224"
+  },
+  {
+    "id": "succinylcholine",
+    "name": "Succinylcholine",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"Neuromuscular blockade (short duration) during surgery and intubation\\n\\n[BY INTRAVENOUS INJECTION]\\n• Adult: 1–1.5 mg/kg\"}",
+    "aliases": [
+      "Suxamethonium",
+      "Suxamethonium chloride",
+      "Sux",
+      "Scoline",
+      "Sucostrin"
+    ],
+    "affiliation": "Depolarizing neuromuscular-blocking agent",
+    "sect_or_affiliation": "Depolarizing neuromuscular-blocking agent",
+    "summary": "Succinylcholine is an ultrashort-acting depolarizing neuromuscular blocker primarily used to facilitate rapid sequence intubation in emergency medicine and anesthesia.",
+    "updated_at": "2026-11-11T22:57:40.057224"
+  },
+  {
+    "id": "rocuronium",
+    "name": "Rocuronium",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"Neuromuscular blockade (intermediate duration) during surgery and intubation\\n\\n[INITIALLY BY INTRAVENOUS INJECTION]\\n• Adult: Initially 600 micrograms/kg; (by intravenous injection) maintenance 150 micrograms/kg, alternatively (by intravenous infusion) maintenance 300–600 micrograms/kg/hour, adjusted according to response\\n• Elderly: Initially 600 micrograms/kg; (by intravenous injection) maintenance 75–100 micrograms/kg, alternatively (by intravenous infusion) maintenance up to 400 micrograms/kg/hour, adjusted according to response\\n\\nNeuromuscular blockade (intermediate duration) during intensive care\\n\\n[INITIALLY BY INTRAVENOUS INJECTION]\\n• Adult: Initially 600 micrograms/kg, initial dose is optional; (by intravenous infusion) maintenance 300–600 micrograms/kg/hour for ﬁrst hour, then (by intravenous infusion), adjusted according to response\\n\\nDoses At Extremes Of Body-Weight\\n\\nTo avoid excessive dosage in obese patients, dose should be calculated on the basis of ideal body-weight.\"}",
+    "aliases": [
+      "Rocuronium bromide",
+      "Zemuron",
+      "Esmeron",
+      "roc"
+    ],
+    "affiliation": "Neuromuscular Blocker / Anesthesiology",
+    "sect_or_affiliation": "Neuromuscular Blocker / Anesthesiology",
+    "summary": "Rocuronium is an aminosteroid non-depolarizing neuromuscular blocking agent used to facilitate endotracheal intubation and provide skeletal muscle relaxation during surgery or mechanical ventilation.",
+    "updated_at": "2026-11-11T22:57:40.057224"
+  },
+  {
+    "id": "rsr",
+    "name": "RSR",
+    "category": "Concept",
+    "pinyin_or_chinese": "",
+    "aliases": [],
+    "affiliation": "Clinical Medicine",
+    "sect_or_affiliation": "Clinical Medicine",
+    "summary": "RSR is a three letter acronym which may refer to:\n\nRadio Suisse Romande the Swiss French public service radio group\nRailway Safety Regulator, an agency of the South African government\nRetail Systems Research, a research company for the retail industry\nFormer international license plate code for Southern Rhodesia\nRock Structure Rating\nRochester and Southern Railroad\nRomanian Socialist Republic or Republica Socialistă România, the name of Communist Romania from 1965 to 1989\nRonald Suresh Roberts (born 1968), British West Indian biographer and columnist\nRotary Scout Reservation, a Boy Scout camp in upstate New York\nRSR (spyplane), a Russian supersonic surveillance aircraft\nRSR (\"RennSport Rennwagen\"), race versions of the Porsche 911\nRSR Round Sheffield Run, A multi stage trail run that happens in January and June every year in Sheffield.",
+    "updated_at": "2026-11-11T22:57:40.057224"
+  },
+  {
+    "id": "ondansetron",
+    "name": "Ondansetron",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"Moderately emetogenic chemotherapy or radiotherapy\\n\\n[BY MOUTH]\\n• Adult: Initially 8 mg, dose to be taken 1–2 hours before treatment, then 8 mg every 12 hours for up to 5 days\\n[BY RECTUM]\\n• Adult: Initially 16 mg, dose to be taken 1–2 hours before treatment, then 16 mg daily for up to 5 days\\n[INITIALLY BY INTRAMUSCULAR INJECTION, OR BY SLOW]\\n\\n[INTRAVENOUS INJECTION]\\n\\n• Adult: Initially 8 mg, dose to be administered immediately before treatment, then (by mouth) 8 mg every 12 hours for up to 5 days, alternatively (by rectum) 16 mg daily for up to 5 days\\n[INITIALLY BY INTRAMUSCULAR INJECTION, OR BY INTRAVENOUS]\\n\\n[INFUSION]\\n\\n• Elderly: Initially 8 mg, dose to be administered immediately before treatment, intravenous infusion to be given over at least 15 minutes, then (by mouth) 8 mg every 12 hours for up to 5 days, alternatively (by rectum) 16 mg daily for up to 5 days\\n\\n[INFUSION] Severely emetogenic chemotherapy (consult product literature for dose of concomitant corticosteroid)\\n\\n[BY MOUTH]\\n• Adult: 24 mg, dose to be taken 1–2 hours before treatment, then 8 mg every 12 hours for up to 5 days\\n[BY RECTUM]\\n• Adult: 16 mg, dose to be administered 1–2 hours before treatment, then 16 mg daily for up to 5 days\\n[INITIALLY BY INTRAMUSCULAR INJECTION, OR BY SLOW]\\n\\n[INTRAVENOUS INJECTION]\\n\\n• Adult: Initially 8 mg, dose to be administered immediately before treatment, followed by (by intramuscular injection or by slow intravenous injection) 8 mg every 4 hours if required for 2 doses, alternatively, followed by (by continuous intravenous infusion) 1 mg/hour for up to 24 hours, then (by mouth) 8 mg every 12 hours for up to 5 days, alternatively (by rectum) 16 mg daily for up to 5 days\\n[INITIALLY BY INTRAMUSCULAR INJECTION]\\n• Adult 65–74 years: Initially 8 mg, to be given immediately before treatment, followed by (by intramuscular injection) 8 mg every 4 hours if required for 2 doses, alternatively, followed by (by continuous intravenous infusion) 1 mg/hour for up to 24 hours, then (by mouth) 8 mg every 12 hours for up to 5 days, alternatively (by rectum) 16 mg daily for up to 5 days\\n[INITIALLY BY INTRAVENOUS INFUSION]\\n• Adult: Initially 16 mg, immediately before treatment (over at least 15 minutes), followed by (by intramuscular injection or by slow intravenous injection) 8 mg every 4 hours if required for 2 doses, then (by mouth) 8 mg every 12 hours for up to 5 days, alternatively (by rectum) 16 mg daily for up to 5 days\\n• Adult 65–74 years: Initially 8–16 mg, immediately before treatment (over at least 15 minutes), followed by (by intramuscular injection or by intravenous infusion) 8 mg every 4 hours if required for 2 doses, then (by mouth) 8 mg every 12 hours for up to 5 days, alternatively (by rectum) 16 mg daily for up to 5 days\\n• Adult 75 years and over: Initially 8 mg, immediately before treatment (over at least 15 minutes), followed by (by intravenous infusion) 8 mg every 4 hours if required for 2 doses, then (by mouth) 8 mg every 12 hours for up to 5 days, alternatively (by rectum) 16 mg daily for up to 5 days\\n\\n[INTRAVENOUS INJECTION] Prevention of postoperative nausea and vomiting\\n\\n[INITIALLY BY MOUTH]\\n• Adult: 16 mg, dose to be taken 1 hour before anaesthesia, alternatively (by intramuscular injection or by slow intravenous injection) 4 mg, dose to be administered at induction of anaesthesia\\n\\n[INTRAVENOUS INJECTION] Treatment of postoperative nausea and vomiting\\n\\n[BY INTRAMUSCULAR INJECTION, OR BY SLOW INTRAVENOUS]\\n\\n[INJECTION]\\n\\n• Adult: 4 mg for 1 dose\"}",
+    "aliases": [
+      "Zofran"
+    ],
+    "affiliation": "Serotonin 5-HT3 Receptor Antagonist",
+    "sect_or_affiliation": "Serotonin 5-HT3 Receptor Antagonist",
+    "summary": "Ondansetron is a selective serotonin 5-HT3 receptor antagonist primarily used to prevent and treat nausea and vomiting caused by chemotherapy, radiation therapy, surgery, or gastroenteritis.",
+    "updated_at": "2026-11-11T22:57:40.057224"
+  },
+  {
+    "id": "phenobarbital",
+    "name": "Phenobarbital",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"All forms of epilepsy except typical absence seizures\\n\\n[BY MOUTH]\\n• Adult: 60–180 mg once daily, dose to be taken at night\\n\\nStatus epilepticus\\n\\n[BY INTRAVENOUS INJECTION]\\n• Adult: 10 mg/kg (max. per dose 1 g)\\n[BY SLOW INTRAVENOUS INJECTION]\\n• Neonate: Initially 20 mg/kg, then 2.5–5 mg/kg 1–2 times a day.\\n• Child 1 month–11 years: Initially 20 mg/kg, then 2.5–5 mg/kg 1–2 times a day\\n• Child 12–17 years: Initially 20 mg/kg (max. per dose 1 g), then 300 mg twice daily\\n\\nDose Equivalence And Conversion\\n\\nFor therapeutic purposes phenobarbital and phenobarbital sodium may be considered equivalent in effect.\"}",
+    "aliases": [
+      "Luminal"
+    ],
+    "affiliation": "Barbiturate Anticonvulsant / Emergency Medicine",
+    "sect_or_affiliation": "Barbiturate Anticonvulsant / Emergency Medicine",
+    "summary": "Phenobarbital is a long-acting barbiturate used primarily as an anticonvulsant for the management of status epilepticus and various seizure disorders by enhancing GABAergic neurotransmission.",
+    "updated_at": "2026-11-11T22:57:40.057224"
+  },
+  {
+    "id": "normal-saline",
+    "name": "Normal Saline",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"Unavailable\"}",
+    "aliases": [
+      "0.9% Sodium Chloride",
+      "Saline Solution"
+    ],
+    "affiliation": "Crystalloid / Fluid Resuscitation",
+    "sect_or_affiliation": "Crystalloid / Fluid Resuscitation",
+    "summary": "Normal saline is a sterile 0.9% sodium chloride solution primarily used via intravenous infusion for extracellular fluid replacement, hypovolemia, and resuscitation.",
+    "updated_at": "2026-11-11T22:57:40.057224"
+  },
+  {
+    "id": "methylprednisolone",
+    "name": "Methylprednisolone",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"Suppression of inflammatory and allergic disorders | Cerebral oedema associated with malignancy\\n\\n[BY MOUTH]\\n• Adult: Initially 2–40 mg daily\\n[BY INTRAMUSCULAR INJECTION, OR BY SLOW INTRAVENOUS]\\n\\n[INJECTION, OR BY INTRAVENOUS INFUSION]\\n\\n• Adult: Initially 10–500 mg\\n\\n[INJECTION, OR BY INTRAVENOUS INFUSION] Treatment of graft rejection reactions\\n\\n[BY INTRAVENOUS INFUSION]\\n• Adult: Up to 1 g daily for up to 3 days\\n\\n[INJECTION, OR BY INTRAVENOUS INFUSION] Treatment of relapse in multiple sclerosis\\n\\n[BY MOUTH]\\n• Adult: 500 mg once daily for 5 days\\n\\n[INJECTION, OR BY INTRAVENOUS INFUSION] Treatment of relapse in multiple sclerosis (when oral steroids have failed or have not been tolerated, or in those who require hospital admission)\\n\\n[BY INTRAVENOUS INFUSION]\\n• Adult: 1 g once daily for 3–5 days\\n\\n[DEPO-MEDRONE ®] Suppression of inflammatory and allergic disorders\\n\\n[BY DEEP INTRAMUSCULAR INJECTION]\\n• Adult: 40–120 mg, then 40–120 mg after 2–3 weeks if required, to be injected into the gluteal muscle\\n\\n[DEPO-MEDRONE ®] Local inflammation of joints and soft tissues\\n\\n[BY INTRA-ARTICULAR INJECTION]\\n• Adult: 4–80 mg, select dose according to size; where appropriate dose may be repeated at intervals of 7–35 days, for details consult product literature\"}",
+    "aliases": [
+      "Medrol",
+      "Solu-Medrol"
+    ],
+    "affiliation": "Corticosteroid / Emergency Medicine",
+    "sect_or_affiliation": "Corticosteroid / Emergency Medicine",
+    "summary": "Methylprednisolone is a synthetic glucocorticoid prescribed for its potent anti-inflammatory and immunosuppressive effects in acute flares and chronic inflammatory conditions.",
+    "updated_at": "2026-11-11T22:57:40.057224"
+  },
+  {
+    "id": "prednisone",
+    "name": "Prednisone",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"Unavailable\"}",
+    "aliases": [
+      "Deltasone",
+      "Meticorten",
+      "Rayos"
+    ],
+    "affiliation": "Corticosteroid / Clinical Immunology",
+    "sect_or_affiliation": "Corticosteroid / Clinical Immunology",
+    "summary": "Prednisone is an oral systemic glucocorticoid prodrug converted by the liver into prednisolone to suppress inflammation and the immune system in conditions such as asthma, COPD, and autoimmune flare-ups.",
+    "updated_at": "2026-11-11T22:57:40.057224"
+  },
+  {
+    "id": "diphenhydramine",
+    "name": "Diphenhydramine",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"Unavailable\"}",
+    "aliases": [
+      "Benadryl",
+      "Diphenylhydramine"
+    ],
+    "affiliation": "First-generation H1-antihistamine / Anticholinergic",
+    "sect_or_affiliation": "First-generation H1-antihistamine / Anticholinergic",
+    "summary": "Diphenhydramine is a first-generation H1-antihistamine and anticholinergic agent primarily used in emergency medicine for the management of allergic reactions, acute urticaria, and extrapyramidal symptoms.",
+    "updated_at": "2026-11-11T22:57:40.057224"
+  },
+  {
+    "id": "prochlorperazine",
+    "name": "Prochlorperazine",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"Schizophrenia and other psychoses | Mania\\n\\n[BY MOUTH]\\n• Adult: 12.5 mg twice daily for 7 days, dose to be adjusted at intervals of 4–7 days according to response; usual dose 75–100 mg daily\\n[BY DEEP INTRAMUSCULAR INJECTION]\\n• Adult: 12.5–25 mg 2–3 times a day\\n\\nShort-term adjunctive management of severe anxiety\\n\\n[BY MOUTH]\\n• Adult: 15–20 mg daily in divided doses; maximum 40 mg per day\\n\\nNausea and vomiting, acute attack\\n\\n[BY MOUTH]\\n• Adult: Initially 20 mg, then 10 mg after 2 hours\\n[BY DEEP INTRAMUSCULAR INJECTION]\\n• Adult: 12.5 mg as required, to be followed if necessary after 6 hours by an oral dose\\n\\nNausea and vomiting, prevention\\n\\n[BY MOUTH]\\n• Adult: 5–10 mg 2–3 times a day\\n[BY DEEP INTRAMUSCULAR INJECTION]\\n• Adult: 12.5 mg as required, to be followed if necessary after 6 hours by an oral dose\\n\\nPrevention and treatment of nausea and vomiting\\n\\n[BY MOUTH]\\n• Child 1–11 years (body-weight 10 kg and above): 250 micrograms/kg 2–3 times a day\\n• Child 12–17 years: 5–10 mg up to 3 times a day if required\\n[BY INTRAMUSCULAR INJECTION]\\n• Child 2–4 years: 1.25–2.5 mg up to 3 times a day if required\\n• Child 5–11 years: 5–6.25 mg up to 3 times a day if required\\n• Child 12–17 years: 12.5 mg up to 3 times a day if required\\n\\nLabyrinthine disorders\\n\\n[BY MOUTH]\\n• Adult: 5 mg 3 times a day, increased if necessary to 30 mg daily in divided doses, dose to be increased gradually, then reduced to 5–10 mg daily, dose is reduced after several weeks\\n\\nNausea and vomiting in previously diagnosed migraine\\n\\n[BY BUCCAL ADMINISTRATION]\\n• Child 12–17 years: 3–6 mg twice daily, tablets to be placed high between upper lip and gum and left to dissolve\\n• Adult: 3–6 mg twice daily, tablets to be placed high between upper lip and gum and left to dissolve\\n\\nAcute migraine\\n\\n[BY MOUTH]\\n• Adult: 10 mg for 1 dose, to be taken as soon as migraine symptoms develop\\n\\nDose Equivalence And Conversion\\n\\nDoses are expressed as prochlorperazine maleate or mesilate; 1 mg prochlorperazine maleate : 1 mg prochlorperazine mesilate.\"}",
+    "aliases": [
+      "Compazine"
+    ],
+    "affiliation": "Phenothiazine Antipsychotic / Antiemetic",
+    "sect_or_affiliation": "Phenothiazine Antipsychotic / Antiemetic",
+    "summary": "Prochlorperazine is a typical antipsychotic and potent antiemetic agent primarily used for the treatment of severe nausea, vomiting, and migraines.",
+    "updated_at": "2026-11-11T22:57:40.057224"
+  },
+  {
+    "id": "nitroglycerin",
+    "name": "Nitroglycerin",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"Prophylaxis of angina\\n\\n[BY SUBLINGUAL ADMINISTRATION USING SUBLINGUAL TABLETS]\\n• Adult: 1 tablet, to be administered prior to activity likely to cause angina\\n\\nTreatment of angina\\n\\n[BY SUBLINGUAL ADMINISTRATION USING SUBLINGUAL TABLETS]\\n• Adult: 1 tablet, dose may be repeated at 5 minute intervals if required; seek urgent medical attention if symptoms have not resolved 5 minutes after the second dose, or earlier if the pain is intensifying or the person is unwell\\n\\nProphylaxis of angina\\n\\n[BY SUBLINGUAL ADMINISTRATION USING AEROSOL SPRAY]\\n• Adult: 400–800 micrograms, to be administered under the tongue and then close mouth prior to activity likely to cause angina\\n\\nTreatment of angina\\n\\n[BY SUBLINGUAL ADMINISTRATION USING AEROSOL SPRAY]\\n• Adult: 400–800 micrograms, to be administered under the tongue and then close mouth, dose may be repeated at 5 minute intervals if required; seek urgent medical attention if symptoms have not resolved 5 minutes after the second dose, or earlier if the pain is intensifying or the person is unwell\\n\\nControl of hypertension and myocardial ischaemia during and after cardiac surgery | Induction of controlled hypotension during surgery | Congestive heart failure | Unstable angina\\n\\n[BY INTRAVENOUS INFUSION]\\n• Adult: 10–200 micrograms/minute (max. per dose 400 micrograms/minute), adjusted according to response, consult product literature for recommended starting doses speciﬁc to indication\\n\\nAnal fissure\\n\\n[BY RECTUM USING OINTMENT]\\n• Adult: Apply 2.5 centimetres every 12 hours until pain stops. Max. duration of use 8 weeks, apply to anal canal, 2.5 cm of ointment contains 1.5 mg of glyceryl trinitrate\\n\\n[DEPONIT ®] Prophylaxis of angina\\n\\n[BY TRANSDERMAL APPLICATION]\\n• Adult: One ‘5’ or one ‘10’ patch to be applied to lateral chest wall, upper arm, thigh, abdomen, or shoulder; increase to two ‘10’ patches every 24 hours if necessary, to be replaced every 24 hours, siting replacement patch on different area\\n\\n[MINITRAN ®] Prophylaxis of angina\\n\\n[BY TRANSDERMAL APPLICATION]\\n• Adult: One ‘5’ patch to be applied to chest or upper arm; replace every 24 hours, siting replacement patch on different area, dose to be adjusted according to response\\n\\n[MINITRAN ®] Maintenance of venous patency (‘5’ patch only)\\n\\n[BY TRANSDERMAL APPLICATION]\\n• Adult: (consult product literature)\\n\\n[NITRO-DUR ®] Prophylaxis of angina\\n\\n[BY TRANSDERMAL APPLICATION]\\n• Adult: One ‘0.2mg/h’ patch to be applied to chest or outer upper arm and replaced every 24 hours, siting replacement patch on different area, dose adjusted according to response; maximum 15 mg per day\\n\\n[PERCUTOL ®] Prophylaxis of angina\\n\\n[TO THE SKIN]\\n• Adult: Usual dose 1–2 inches every 3–4 hours as required, to be measured on to Applirule ® and applied (usually to chest, arm, or thigh) without rubbing in and secured with surgical tape, approx. 800 micrograms/hour absorbed from 1 inch of ointment.\\n\\n[PERCUTOL ®] Prophylaxis of angina (to determine dose)\\n\\n[TO THE SKIN]\\n• Adult: ½ inch to be administered on ﬁrst day then increased by ½ inch/day until headache occurs, then reduced by ½ inch, to be measured on to Applirule ® and applied (usually to chest, arm, or thigh) without rubbing in and secured with surgical tape, approx. 800 micrograms/hour absorbed from 1 inch of ointment.\\n\\n[TRANSIDERM-NITRO ®] Prophylaxis of angina\\n\\n[BY TRANSDERMAL APPLICATION]\\n• Adult: One ‘5’ or one ‘10’ patch to be applied to lateral chest wall and replaced every 24 hours, siting replacement patch on different area, max. two ‘10’ patches daily\\n\\n[TRANSIDERM-NITRO ®] Prophylaxis of phlebitis and extravasation (‘5’ patch only)\\n\\n[BY TRANSDERMAL APPLICATION]\\n• Adult: (consult product literature)\"}",
+    "aliases": [
+      "Glyceryl trinitrate",
+      "GTN",
+      "Trinitroglycerin",
+      "TNG"
+    ],
+    "affiliation": "Cardiovascular Pharmacology / Emergency Medicine",
+    "sect_or_affiliation": "Cardiovascular Pharmacology / Emergency Medicine",
+    "summary": "A potent organic nitrate vasodilator that acts as a nitric oxide donor to treat angina pectoris, myocardial infarction, and acute heart failure by reducing preload and myocardial oxygen demand.",
+    "updated_at": "2026-11-11T22:57:40.057224"
+  },
+  {
+    "id": "amoxicillin-clavulanate",
+    "name": "Amoxicillin-clavulanate",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"Infections due to beta-lactamase-producing strains (where amoxicillin alone not appropriate), including respiratory tract infections, bone and joint infections, genito-urinary and abdominal infections\\n\\n[BY MOUTH USING TABLETS]\\n• Child 12–17 years: 250/125 mg every 8 hours; increased to 500/125 mg every 8 hours, increased dose used for severe infection\\n• Adult: 250/125 mg every 8 hours; increased to 500/125 mg every 8 hours, increased dose used for severe infection\\n[BY INTRAVENOUS INJECTION, OR BY INTRAVENOUS INFUSION]\\n• Adult: 1.2 g every 8 hours\\n\\nInfections due to beta-lactamase-producing strains (where amoxicillin alone not appropriate) including respiratory-tract infections, bone and joint infections, genito-urinary and abdominal infections (doses for 125/31 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 1–11 months: 0.25 mL/kilogram 3 times a day, dose doubled in severe infection\\n• Child 1–5 years: 0.25 mL/kilogram 3 times a day, alternatively 5 mL 3 times a day, dose doubled in severe infection\\n\\nInfections due to beta-lactamase-producing strains (where amoxicillin alone not appropriate) including respiratory-tract infections, bone and joint infections, genito-urinary and abdominal infections (doses for 250/62 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 6–11 years: 0.15 mL/kilogram 3 times a day, alternatively 5 mL 3 times a day, dose doubled in severe infection\\n\\nInfections due to beta-lactamase-producing strains (where amoxicillin alone not appropriate) including respiratory-tract infections, bone and joint infections, genito-urinary and abdominal infections (doses for 400/57 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 2–23 months: 0.15 mL/kilogram twice daily, doubled in severe infection\\n• Child 2–6 years (body-weight 13–21 kg): 2.5 mL twice daily, doubled in severe infection\\n• Child 7–12 years (body-weight 22–40 kg): 5 mL twice daily, doubled in severe infection\\n• Child 12–17 years (body-weight 41 kg and above): 10 mL twice daily; increased if necessary to 10 mL 3 times a day, increased frequency to be used in severe infection\\n• Adult: 10 mL twice daily; increased if necessary to 10 mL 3 times a day, increased frequency to be used in severe infection\\n\\nAcute diverticulitis\\n\\n[BY MOUTH]\\n• Adult: 500/125 mg 3 times a day for 5 days then review\\n[BY INTRAVENOUS INFUSION, OR BY INTRAVENOUS INJECTION]\\n• Adult: 1.2 g every 8 hours\\n\\nModerate diabetic foot infection | Severe diabetic foot infection\\n\\n[BY MOUTH USING TABLETS]\\n• Adult: 500/125 mg every 8 hours\\n[BY INTRAVENOUS INJECTION, OR BY INTRAVENOUS INFUSION]\\n• Adult: 1.2 g every 8 hours\\n\\nLeg ulcer infection\\n\\n[BY MOUTH USING TABLETS]\\n• Adult: 500/125 mg every 8 hours for 7 days\\n[BY INTRAVENOUS INJECTION, OR BY INTRAVENOUS INFUSION]\\n• Adult: 1.2 g every 8 hours\\n\\nCellulitis | Erysipelas\\n\\n[BY MOUTH USING TABLETS]\\n• Child 12–17 years: 250/125 mg every 8 hours, alternatively 500/125 mg every 8 hours for 5–7 days then review (review after 7 days in severe infection or if infection near the eyes or nose)\\n• Adult: 500/125 mg every 8 hours for 7 days then review\\n[BY INTRAVENOUS INJECTION, OR BY INTRAVENOUS INFUSION]\\n• Adult: 1.2 g every 8 hours\\n\\nCellulitis (doses for 125/31 suspension) | Erysipelas (doses for 125/31 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 1–11 months: 0.25 mL/kilogram 3 times a day for 5–7 days then review (review after 7 days in severe infection or if infection near the eyes or nose), dose doubled in severe infection\\n• Child 1–5 years: 0.25 mL/kilogram 3 times a day, alternatively 5 mL 3 times a day for 5–7 days then review (review after 7 days in severe infection or if infection near the eyes or nose), dose doubled in severe infection\\n\\nCellulitis (doses for 250/62 suspension) | Erysipelas (doses for 250/62 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 6–11 years: 0.15 mL/kilogram 3 times a day, alternatively 5 mL 3 times a day for 5–7 days then review (review after 7 days in severe infection or if infection near the eyes or nose), dose doubled in severe infection\\n\\nProphylaxis of infection from human bites | Prophylaxis of infection from animal bites\\n\\n[BY MOUTH USING TABLETS]\\n• Child 12–17 years: 250/125 mg 3 times a day, alternatively 500/125 mg 3 times a day for 3 days\\n• Adult: 250/125 mg 3 times a day, alternatively 500/125 mg 3 times a day for 3 days\\n[BY INTRAVENOUS INJECTION, OR BY INTRAVENOUS INFUSION]\\n• Child 1–2 months: 30 mg/kg every 12 hours, intravenous infusion recommended in children less than 3 months\\n• Child 3 months–17 years: 30 mg/kg every 8 hours (max. per dose 1.2 g every 8 hours)\\n• Adult: 1.2 g every 8 hours\\n\\nProphylaxis of infection from human bites (doses for 125/31 suspension) | Prophylaxis of infection from animal bites (doses for 125/31 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 1–11 months: 0.25 mL/kilogram 3 times a day for 3 days\\n• Child 1–5 years: 0.25 mL/kilogram 3 times a day, alternatively 5 mL 3 times a day for 3 days\\n\\nProphylaxis of infection from human bites (doses for 250/62 suspension) | Prophylaxis of infection from animal bites (doses for 250/62 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 6–11 years: 0.15 mL/kilogram 3 times a day, alternatively 5 mL 3 times a day for 3 days\\n\\nTreatment of infection from human bites | Treatment of infection from animal bites\\n\\n[BY MOUTH USING TABLETS]\\n• Child 12–17 years: 250/125 mg 3 times a day, alternatively 500/125 mg 3 times a day for 5–7 days\\n• Adult: 250/125 mg 3 times a day, alternatively 500/125 mg 3 times a day for 5–7 days\\n[BY INTRAVENOUS INJECTION, OR BY INTRAVENOUS INFUSION]\\n• Child 1–2 months: 30 mg/kg every 12 hours, intravenous infusion recommended in children less than 3 months\\n• Child 3 months–17 years: 30 mg/kg every 8 hours (max. per dose 1.2 g every 8 hours)\\n• Adult: 1.2 g every 8 hours\\n\\nTreatment of infection from human bites (doses for 125/31 suspension) | Treatment of infection from animal bites (doses for 125/31 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 1–11 months: 0.25 mL/kilogram 3 times a day for 5–7 days\\n• Child 1–5 years: 0.25 mL/kilogram 3 times a day, alternatively 5 mL 3 times a day for 5–7 days\\n\\nTreatment of infection from human bites (doses for 250/62 suspension) | Treatment of infection from animal bites (doses for 250/62 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 6–11 years: 0.15 mL/kilogram 3 times a day, alternatively 5 mL 3 times a day for 5–7 days\\n\\nSevere dental infection with spreading cellulitis | Dental infection not responding to first-line antibacterial\\n\\n[BY MOUTH USING TABLETS]\\n• Child 12–17 years: 250/125 mg every 8 hours for 5 days\\n• Adult: 250/125 mg every 8 hours for 5 days\\n\\nSurgical prophylaxis\\n\\n[BY INTRAVENOUS INJECTION, OR BY INTRAVENOUS INFUSION]\\n• Adult: 1.2 g, to be administered up to 30 minutes before the procedure, then 1.2 g every 8 hours for up to 2–3 further doses in high risk procedures\\n\\nCommunity-acquired pneumonia (doses for 125/31 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 1–11 months: 0.5 mL/kilogram 3 times a day for 5 days\\n• Child 1–5 years: 0.5 mL/kilogram 3 times a day for 5 days, alternatively 10 mL 3 times a day for 5 days\\n\\nCommunity-acquired pneumonia (doses for 250/62 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 6–11 years: 0.3 mL/kilogram 3 times a day for 5 days, alternatively 10 mL 3 times a day for 5 days\\n\\nCommunity-acquired pneumonia\\n\\n[BY MOUTH USING TABLETS]\\n• Child 12–17 years: 500/125 mg 3 times a day for 5 days\\n• Adult: 500/125 mg 3 times a day for 5 days\\n[BY INTRAVENOUS INJECTION, OR BY INTRAVENOUS INFUSION]\\n• Adult: 1.2 g every 8 hours\\n\\nHospital-acquired pneumonia (doses for 125/31 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 1–11 months: 0.5 mL/kilogram 3 times a day for 5 days then review\\n• Child 1–5 years: 0.5 mL/kilogram 3 times a day for 5 days then review, alternatively 10 mL 3 times a day for 5 days then review\\n\\nHospital-acquired pneumonia (doses for 250/62 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 6–11 years: 0.3 mL/kilogram 3 times a day for 5 days then review, alternatively 10 mL 3 times a day for 5 days then review\\n\\nHospital-acquired pneumonia\\n\\n[BY MOUTH USING TABLETS]\\n• Child 12–17 years: 500/125 mg 3 times a day for 5 days then review\\n• Adult: 500/125 mg 3 times a day for 5 days then review\\n\\nAcute exacerbation of bronchiectasis (doses for 125/31 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 1–11 months: 0.25 mL/kilogram 3 times a day for 7–14 days\\n• Child 1–5 years: 5 mL 3 times a day for 7–14 days, alternatively 0.25 mL/kilogram 3 times a day for 7–14 days\\n\\nAcute exacerbation of bronchiectasis (doses for 250/62 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 6–11 years: 5 mL 3 times a day for 7–14 days, alternatively 0.15 mL/kilogram 3 times a day for 7–14 days\\n\\nAcute exacerbation of bronchiectasis\\n\\n[BY MOUTH USING TABLETS]\\n• Child 12–17 years: 250/125 mg 3 times a day for 7–14 days, alternatively 500/125 mg 3 times a day for 7–14 days\\n• Adult: 500/125 mg 3 times a day for 7–14 days\\n[BY INTRAVENOUS INFUSION, OR BY INTRAVENOUS INJECTION]\\n• Adult: 1.2 g every 8 hours\\n\\nAcute exacerbation of chronic obstructive pulmonary disease\\n\\n[BY MOUTH USING TABLETS]\\n• Adult: 500/125 mg 3 times a day for 5 days\\n[BY INTRAVENOUS INJECTION, OR BY INTRAVENOUS INFUSION]\\n• Adult: 1.2 g every 8 hours\\n\\nAcute sinusitis (doses for 125/31 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 1–11 months: 0.25 mL/kilogram 3 times a day for 5 days\\n• Child 1–5 years: 5 mL 3 times a day for 5 days, alternatively 0.25 mL/kilogram 3 times a day for 5 days\\n\\nAcute sinusitis (doses for 250/62 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 6–11 years: 5 mL 3 times a day for 5 days, alternatively 0.15 mL/kilogram 3 times a day for 5 days\\n\\nAcute sinusitis\\n\\n[BY MOUTH USING TABLETS]\\n• Child 12–17 years: 250/125 mg 3 times a day for 5 days, alternatively 500/125 mg 3 times a day for 5 days\\n• Adult: 500/125 mg 3 times a day for 5 days\\n\\nAcute otitis media (doses for 125/31 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 1–11 months: 0.25 mL/kilogram 3 times a day for 5–7 days\\n• Child 1–5 years: 5 mL 3 times a day for 5–7 days, alternatively 0.25 mL/kilogram 3 times a day for 5–7 days\\n\\nAcute otitis media (doses for 250/62 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 6–11 years: 5 mL 3 times a day for 5–7 days, alternatively 0.15 mL/kilogram 3 times a day for 5–7 days\\n\\nAcute otitis media\\n\\n[BY MOUTH USING TABLETS]\\n• Child 12–17 years: 250/125 mg 3 times a day for 5–7 days, alternatively 500/125 mg 3 times a day for 5–7 days\\n\\nAcute pyelonephritis (doses for 125/31 suspension) | Urinary-tract infection (catheter-associated) (doses for 125/31 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 3–11 months: 0.25 mL/kilogram 3 times a day for 7 to 10 days, dose doubled in severe infection\\n• Child 1–5 years: 0.25 mL/kilogram 3 times a day, alternatively 5 mL 3 times a day for 7 to 10 days, dose doubled in severe infection\\n\\nAcute pyelonephritis (doses for 250/62 suspension) | Urinary-tract infection (catheter-associated) (doses for 250/62 suspension)\\n\\n[BY MOUTH USING ORAL SUSPENSION]\\n• Child 6–11 years: 0.15 mL/kilogram 3 times a day, alternatively 5 mL 3 times a day for 7 to 10 days, dose doubled in severe infection\\n\\nAcute pyelonephritis | Urinary-tract infection (catheter- associated)\\n\\n[BY MOUTH USING TABLETS]\\n• Child 12–15 years: 250/125 mg 3 times a day for 7–10 days, alternatively 500/125 mg 3 times a day for 7–10 days\\n• Child 16–17 years: 500/125 mg 3 times a day for 7–10 days\\n• Adult: 500/125 mg 3 times a day for 7–10 days\\n[BY SLOW INTRAVENOUS INJECTION, OR BY INTRAVENOUS]\\n\\n[INFUSION]\\n\\n• Adult: 1.2 g every 8 hours\\n\\nDose Equivalence And Conversion\\n\\nDoses are expressed as co-amoxiclav.\\nA mixture of amoxicillin (as the trihydrate or as the sodium salt) and clavulanic acid (as potassium clavulanate); the proportions are expressed in the form x/y where x and y are the strengths in milligrams of amoxicillin and clavulanic acid respectively.\"}",
+    "aliases": [
+      "Co-amoxiclav",
+      "Augmentin"
+    ],
+    "affiliation": "Penicillin-type Beta-lactamase Inhibitor Combination",
+    "sect_or_affiliation": "Penicillin-type Beta-lactamase Inhibitor Combination",
+    "summary": "A combination aminopenicillin and beta-lactamase inhibitor used to treat a wide range of bacterial infections, including those involving beta-lactamase-producing organisms.",
+    "updated_at": "2026-11-11T22:57:40.057224"
+  },
+  {
+    "id": "midazolam",
+    "name": "Midazolam",
+    "category": "Drug",
+    "pinyin_or_chinese": "{\"bnf_dosage\":\"Status epilepticus | Febrile convulsions\\n\\n[BY BUCCAL ADMINISTRATION]\\n• Child 1–2 months: 300 micrograms/kg (max. per dose 2.5 mg), then 300 micrograms/kg after 5–10 minutes (max. per dose 2.5 mg) if required\\n• Child 3–11 months: 2.5 mg, then 2.5 mg after 5–10 minutes if required\\n• Child 1–4 years: 5 mg, then 5 mg after 5–10 minutes if required\\n• Child 5–9 years: 7.5 mg, then 7.5 mg after 5–10 minutes if required\\n• Child 10–17 years: 10 mg, then 10 mg after 5–10 minutes if required\\n• Adult: 10 mg, then 10 mg after 5–10 minutes if required\\n\\nConscious sedation for procedures\\n\\n[BY SLOW INTRAVENOUS INJECTION]\\n• Adult: Initially 2–2.5 mg, to be administered 5–10 minutes before procedure at a rate of approximately 2 mg/minute, increased in steps of 1 mg if required, usual total dose is 3.5–5 mg; maximum 7.5 mg per course\\n• Elderly: Initially 0.5–1 mg, to be administered 5–10 minutes before procedure at a rate of approximately 2 mg/minute, increased in steps of 0.5–1 mg if required; maximum 3.5 mg per course\\n\\nSedative in combined anaesthesia\\n\\n[INITIALLY BY INTRAVENOUS INJECTION]\\n• Adult: 30–100 micrograms/kg, repeated if necessary, alternatively (by continuous intravenous infusion) 30–100 micrograms/kg/hour\\n• Elderly: Lower doses needed\\n\\nPremedication\\n\\n[BY DEEP INTRAMUSCULAR INJECTION]\\n• Adult: 70–100 micrograms/kg, to be administered 20–60 minutes before induction, for debilitated patients, use elderly dose\\n• Elderly: 25–50 micrograms/kg, to be administered 20–60 minutes before induction\\n[BY INTRAVENOUS INJECTION]\\n• Adult: 1–2 mg, repeated if necessary, to be administered 5–30 minutes before procedure, for debilitated patients, use elderly dose\\n• Elderly: 0.5 mg, repeated if necessary, initial dose to be administered 5–30 minutes before procedure, repeat dose slowly as required\\n\\nInduction of anaesthesia (but rarely used)\\n\\n[BY SLOW INTRAVENOUS INJECTION]\\n• Adult: 150–200 micrograms/kg daily in divided doses (max. per dose 5 mg), dose to be given at intervals of 2 minutes, maximum total dose 600 micrograms/kg, for debilitated patients, use elderly dose\\n• Elderly: 50–150 micrograms/kg daily in divided doses (max. per dose 5 mg), dose to be given at intervals of 2 minutes, maximum total dose 600 micrograms/kg\\n\\nSedation of patient receiving intensive care\\n\\n[INITIALLY BY SLOW INTRAVENOUS INJECTION]\\n• Adult: Initially 30–300 micrograms/kg, dose to be given in steps of 1–2.5 mg every 2 minutes, then (by slow intravenous injection or by continuous intravenous infusion) 30–200 micrograms/kg/hour, reduce dose (or reduce or omit initial dose) in hypovolaemia, vasoconstriction, or hypothermia, lower doses may be adequate if opioid analgesic also used\\n\\nAdjunct to antipsychotic for confusion and restlessness in palliative care\\n\\n[BY SUBCUTANEOUS INFUSION]\\n• Adult: Initially 10–20 mg/24 hours, adjusted according to response; usual dose 20–60 mg/24 hours\\n\\nConvulsions in palliative care\\n\\n[BY CONTINUOUS SUBCUTANEOUS INFUSION]\\n• Adult: Initially 20–40 mg/24 hours\"}",
+    "aliases": [
+      "Versed"
+    ],
+    "affiliation": "Benzodiazepine / Emergency Medicine",
+    "sect_or_affiliation": "Benzodiazepine / Emergency Medicine",
+    "summary": "Midazolam is a short-acting benzodiazepine primarily utilized for procedural sedation, anesthesia induction, premedication, and the management of acute agitation or prolonged seizures.",
+    "updated_at": "2026-11-11T22:57:40.057224"
   }
 ]

@@ -6,6 +6,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SRC_FILE = os.path.join(BASE_DIR, "bnf_drugs.json")
 DATA_OUT = os.path.join(BASE_DIR, "data", "bnf_drugs.json")
 MOBILE_OUT = os.path.join(BASE_DIR, "m", "static", "data", "bnf_drugs.json")
+DATA_GLOSSARY_OUT = os.path.join(BASE_DIR, "data", "bnf_glossary.json")
+MOBILE_GLOSSARY_OUT = os.path.join(BASE_DIR, "m", "static", "data", "bnf_glossary.json")
 
 US_TO_BNF = {
     'acetaminophen': 'paracetamol',
@@ -194,6 +196,103 @@ def compile_database():
         with open(out_path, 'w', encoding='utf-8') as f:
             json.dump(compiled, f, ensure_ascii=False, indent=2)
         print(f"Saved {out_path} ({os.path.getsize(out_path) / (1024*1024):.2f} MB)")
+
+    # Build structured list of all 1,699 drugs for the BNF Formulary Browser & Glossary population
+    def slugify(text):
+        t = text.lower().strip()
+        t = re.sub(r'[^\w\s-]', '', t)
+        t = re.sub(r'[\s_-]+', '-', t)
+        return t.strip('-')
+
+    bnf_to_synonyms = {}
+    for syn, target in US_TO_BNF.items():
+        bnf_to_synonyms.setdefault(target.lower().strip(), set()).add(syn)
+
+    glossary_list = []
+    seen_slugs = set()
+
+    for item in raw_list:
+        d_name = item.get('drug_name', '').strip()
+        if not d_name:
+            continue
+        slug = slugify(d_name)
+        if slug in seen_slugs:
+            continue
+        seen_slugs.add(slug)
+
+        d_lower = d_name.lower()
+        aliases = set()
+
+        # 1. Reverse US_TO_BNF synonyms
+        for target, syns in bnf_to_synonyms.items():
+            if target == d_lower or d_lower.startswith(target) or target.startswith(d_lower):
+                for s in syns:
+                    if s.lower() != d_lower:
+                        aliases.add(s.title())
+
+        # 2. Slash split
+        if '/' in d_name:
+            for p in d_name.split('/'):
+                p_clean = p.strip()
+                if p_clean and p_clean.lower() != d_lower and len(p_clean) >= 3:
+                    aliases.add(p_clean)
+
+        # 3. Strip parentheses
+        no_parens = re.sub(r'\(.*?\)', '', d_name).strip()
+        no_parens = re.sub(r'\s+', ' ', no_parens).strip()
+        if no_parens and len(no_parens) >= 3 and no_parens.lower() != d_lower:
+            aliases.add(no_parens)
+
+        # 4. Salt-stripped base name
+        for cand in [d_name, no_parens]:
+            base = re.sub(SALTS_REGEX, '', cand, flags=re.I).strip()
+            base = re.sub(r'\s+', ' ', base).strip()
+            if base and len(base) >= 3 and base.lower() != d_lower:
+                aliases.add(base)
+
+        # 5. Sulfate <-> Sulphate
+        if 'sulfate' in d_lower:
+            aliases.add(re.sub(r'sulfate', 'sulphate', d_name, flags=re.I))
+        if 'sulphate' in d_lower:
+            aliases.add(re.sub(r'sulphate', 'sulfate', d_name, flags=re.I))
+
+        inds = item.get('indications', [])
+        first_summary = ''
+        if inds:
+            ind_text = (inds[0].get('indication') or '').strip()
+            if ind_text:
+                first_summary = ind_text.split('\n')[0].strip()
+
+        raw_chapter = item.get('chapters', ['BNF 85 Formulary'])[0]
+        chapter_clean = raw_chapter.split(':', 1)[1].strip() if ':' in raw_chapter else raw_chapter
+        if not first_summary:
+            first_summary = f'BNF 85 Monograph ({chapter_clean})'
+
+        formatted_dose = clean_and_format_indications(inds)
+
+        entry = {
+            'id': slug,
+            'name': d_name,
+            'category': 'Drug',
+            'affiliation': chapter_clean,
+            'sect_or_affiliation': chapter_clean,
+            'aliases': sorted(list(aliases)),
+            'summary': first_summary[:250],
+            'bnf_dosage': formatted_dose,
+            'pinyin_or_chinese': '',
+            'chapters': item.get('chapters', []),
+            'pages': item.get('pages', []),
+            'source': 'British National Formulary (BNF 85)'
+        }
+        glossary_list.append(entry)
+
+    glossary_list.sort(key=lambda x: x['name'].lower())
+
+    for out_g_path in [DATA_GLOSSARY_OUT, MOBILE_GLOSSARY_OUT]:
+        os.makedirs(os.path.dirname(out_g_path), exist_ok=True)
+        with open(out_g_path, 'w', encoding='utf-8') as f:
+            json.dump(glossary_list, f, ensure_ascii=False, indent=2)
+        print(f"Saved {out_g_path} ({len(glossary_list)} entries, {os.path.getsize(out_g_path) / (1024*1024):.2f} MB)")
 
 if __name__ == "__main__":
     compile_database()

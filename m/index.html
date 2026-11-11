@@ -35,6 +35,10 @@
           <span class="header-count-badge" id="library-count-badge">0 Books</span>
         </div>
         <div class="header-actions">
+          <button class="status-wifi-btn" id="m-btn-open-bnf-library" title="British National Formulary" style="padding: 5px 9px; font-weight: 600; font-size: 0.76rem; border-radius: 16px; background: rgba(30, 58, 138, 0.08); border-color: rgba(30, 58, 138, 0.2); color: #1e3a8a; display: inline-flex; align-items: center; gap: 4px;">
+            <span style="font-size: 13px;">💊</span>
+            <span>BNF 85</span>
+          </button>
           <button class="status-wifi-btn" id="m-status-wifi-btn" title="Cloud &amp; Sync Status">
             <span class="status-dot"></span>
             <svg class="status-wifi-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -147,6 +151,11 @@
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
           </button>
+
+          <!-- Add BNF 85 Drugs Button -->
+          <button class="btn-book-action-icon" id="btn-book-populate-bnf" title="Populate BNF 85 Drugs into this novel">
+            <span style="font-size: 16px; line-height: 1;">💊</span>
+          </button>
         </div>
       </section>
 
@@ -189,13 +198,18 @@
           <span class="header-count-badge" id="glossary-total-badge">0</span>
         </div>
 
-        <button class="btn-header-add" id="btn-glossary-add-lore" title="Add lore entry">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-          </svg>
-          <span>Add</span>
-        </button>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <button class="btn-header-add" id="btn-glossary-populate-bnf" title="Populate BNF 85 Drugs" style="background: rgba(30, 58, 138, 0.08); border-color: rgba(30, 58, 138, 0.2); color: #1e3a8a; padding: 4px 8px;">
+            <span>💊 BNF 85</span>
+          </button>
+          <button class="btn-header-add" id="btn-glossary-add-lore" title="Add lore entry">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Add</span>
+          </button>
+        </div>
       </header>
 
       <div class="glossary-scroll-container">
@@ -354,7 +368,70 @@
       </div>
     </section>
 
-    <!-- Bottom Navigation Bar (Visible in Book and Glossary Views when Glossary is enabled) -->
+    <!-- 4. BNF 85 Formulary Browser Pane -->
+    <section id="view-bnf" class="view-pane">
+      <header class="app-header">
+        <button class="btn-header-back" id="btn-bnf-back" title="Back">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span id="btn-bnf-back-label">Library</span>
+        </button>
+
+        <div class="header-title-group" style="gap: 8px;">
+          <h1 class="header-page-title">BNF 85</h1>
+          <span class="header-count-badge" id="m-bnf-count-badge">1,699</span>
+        </div>
+
+        <button class="btn-header-add" id="m-btn-bnf-populate-book" title="Populate BNF into active novel" style="display: none; background: rgba(30, 58, 138, 0.08); border-color: rgba(30, 58, 138, 0.2); color: #1e3a8a; padding: 4px 8px; font-size: 0.76rem;">
+          <span style="font-size: 13px; margin-right: 2px;">💊</span>
+          <span>Add to Book</span>
+        </button>
+      </header>
+
+      <div class="bnf-mobile-scroll-container">
+        <!-- Search & Filter Controls -->
+        <div class="bnf-mobile-controls" style="padding: 12px 16px; background: var(--bg-card); border-bottom: 1px solid var(--border-light);">
+          <div class="search-input-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" class="directory-search-input" id="m-input-bnf-search" placeholder="Search drugs, brands (Lopressor), indications..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            <button type="button" id="m-btn-clear-bnf-search" class="btn-search-clear" style="display: none;" title="Clear search">&times;</button>
+          </div>
+
+          <div class="bnf-mobile-chapter-wrap" style="margin-top: 8px;">
+            <select class="glossary-select" id="m-select-bnf-chapter" style="width: 100%;">
+              <option value="all">All BNF Chapters (1,699 drugs)</option>
+              <option value="Gastro-intestinal">Chapter 1: Gastro-intestinal</option>
+              <option value="Cardiovascular">Chapter 2: Cardiovascular</option>
+              <option value="Respiratory">Chapter 3: Respiratory</option>
+              <option value="Nervous">Chapter 4: Nervous system</option>
+              <option value="Infection">Chapter 5: Infection</option>
+              <option value="Endocrine">Chapter 6: Endocrine</option>
+              <option value="Genito-urinary">Chapter 7: Genito-urinary</option>
+              <option value="Immune">Chapter 8: Immune &amp; Malignant</option>
+              <option value="Blood">Chapter 9: Blood and nutrition</option>
+              <option value="Musculoskeletal">Chapter 10: Musculoskeletal</option>
+              <option value="Eye">Chapter 11: Eye</option>
+              <option value="Ear">Chapter 12: Ear, nose &amp; oropharynx</option>
+              <option value="Skin">Chapter 13: Skin</option>
+              <option value="Vaccines">Chapter 14: Vaccines</option>
+              <option value="Anaesthesia">Chapter 15: Anaesthesia</option>
+              <option value="Poisoning">Chapter 16: Poisoning &amp; Overdose</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Drug Cards List -->
+        <div class="bnf-mobile-drugs-list" id="m-bnf-drugs-list" style="padding: 12px 16px 80px 16px; display: flex; flex-direction: column; gap: 10px;">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation Bar (Visible in Book, Glossary, and BNF Views when Glossary is enabled) -->
     <nav class="bottom-nav-bar" id="bottom-nav" style="display:none;">
       <button class="nav-item active" id="nav-tab-chapters" data-tab="chapters">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -376,7 +453,45 @@
         </svg>
         <span>Glossary</span>
       </button>
+
+      <button class="nav-item" id="nav-tab-bnf" data-tab="bnf" title="BNF 85 Formulary">
+        <span style="font-size: 17px; line-height: 1;">💊</span>
+        <span>BNF 85</span>
+      </button>
     </nav>
+
+    <!-- Bottom Sheet: Mobile BNF Monograph Inspector -->
+    <div class="sheet-backdrop" id="m-sheet-backdrop-bnf" style="display: none;">
+      <div class="sheet-card" id="m-sheet-card-bnf" style="max-height: 85vh; display: flex; flex-direction: column;">
+        <div class="sheet-header">
+          <div style="display: flex; flex-direction: column; gap: 4px; flex: 1;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="background:#dbeafe; color:#1e40af; font-size:0.68rem; font-weight:700; padding:2px 6px; border-radius:4px;">DRUG</span>
+              <span id="m-modal-bnf-chapter" style="font-size:0.72rem; color:var(--text-muted); font-weight:600;">Chapter</span>
+            </div>
+            <h2 class="sheet-title" id="m-modal-bnf-title" style="margin: 0; font-size: 1.25rem;">Drug Name</h2>
+            <div id="m-modal-bnf-aliases" style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px;"></div>
+          </div>
+          <button class="btn-sheet-close" id="m-btn-close-bnf-sheet" title="Close monograph">&times;</button>
+        </div>
+
+        <div class="sheet-body" id="m-modal-bnf-body" style="overflow-y: auto; padding: 16px 20px; flex: 1;">
+          <div style="font-size: 0.74rem; font-weight: 700; color: #1e3a8a; text-transform: uppercase; margin-bottom: 8px;">
+            INDICATIONS AND DOSE (BNF 85)
+          </div>
+          <div id="m-modal-bnf-dosage-text" style="font-size: 0.88rem; line-height: 1.5;"></div>
+        </div>
+
+        <div style="padding: 12px 20px; border-top: 1px solid var(--border-light); display: flex; gap: 10px; background: var(--bg-main);">
+          <button type="button" class="btn-sheet-action" id="m-btn-copy-bnf" style="flex: 1; padding: 10px; font-weight: 600; font-size: 0.85rem; border-radius: 8px; border: 1px solid var(--border-light); background: var(--bg-card); color: var(--text-main);">
+            Copy Dosage
+          </button>
+          <button type="button" class="btn-sheet-action" id="m-btn-bnf-add-to-book" style="flex: 1; padding: 10px; font-weight: 600; font-size: 0.85rem; border-radius: 8px; border: none; background: #5c8672; color: #fff; display: none;">
+            + Add to Book
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- Bottom Sheet: Reader Typography & Theme Settings (No background blur) -->
     <div class="sheet-backdrop" id="sheet-backdrop-settings">
@@ -749,6 +864,6 @@
   </div>
 
   <!-- JavaScript Module -->
-  <script type="module" src="static/js/mobile-app.js?v=56"></script>
+  <script type="module" src="static/js/mobile-app.js?v=57"></script>
 </body>
 </html>

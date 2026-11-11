@@ -42,7 +42,10 @@ const state = {
   homeSortBy: 'last_read', // 'last_read' | 'date_desc' | 'date_asc' | 'title_asc' | 'title_desc' | 'author_asc' | 'author_desc' | 'words_desc' | 'words_asc'
   glossaryCategoryFilter: 'all',
   glossarySortBy: 'relevance', // 'relevance' | 'time_newest' | 'time_oldest' | 'alpha'
-  glossarySearchQuery: ''
+  glossarySearchQuery: '',
+  bnfDrugs: [],
+  bnfFilter: { query: '', chapter: 'all', letter: 'all' },
+  activeBnfDrug: null
 };
 
 // DOM Elements
@@ -268,7 +271,40 @@ const elements = {
   groupSearchLoreBnf: document.getElementById('group-search-lore-bnf'),
   
   apiStatusBadge: document.getElementById('api-status-badge'),
-  toast: document.getElementById('toast')
+  toast: document.getElementById('toast'),
+
+  // Top Nav Tabs
+  navBtnLibrary: document.getElementById('nav-btn-library'),
+  navBtnBnf: document.getElementById('nav-btn-bnf'),
+
+  // BNF Formulary Section
+  bnfSectionView: document.getElementById('bnf-section-view'),
+  bnfActiveBookBox: document.getElementById('bnf-active-book-box'),
+  bnfActiveBookName: document.getElementById('bnf-active-book-name'),
+  btnBnfAddToActiveBook: document.getElementById('btn-bnf-add-to-active-book'),
+  bnfSearchInput: document.getElementById('bnf-search-input'),
+  btnClearBnfSearch: document.getElementById('btn-clear-bnf-search'),
+  bnfChapterFilter: document.getElementById('bnf-chapter-filter'),
+  bnfAlphaPills: document.getElementById('bnf-alpha-pills'),
+  bnfCountLabel: document.getElementById('bnf-count-label'),
+  bnfCardsGrid: document.getElementById('bnf-cards-grid'),
+
+  // BNF Monograph Inspector Modal
+  modalBnfInspector: document.getElementById('modal-bnf-inspector'),
+  btnCloseBnfInspector: document.getElementById('btn-close-bnf-inspector'),
+  bnfModalChapter: document.getElementById('bnf-modal-chapter'),
+  bnfModalTitle: document.getElementById('bnf-modal-title'),
+  bnfModalAliases: document.getElementById('bnf-modal-aliases'),
+  bnfModalDosageText: document.getElementById('bnf-modal-dosage-text'),
+  btnCopyBnfDose: document.getElementById('btn-copy-bnf-dose'),
+  btnCopyBnfLabel: document.getElementById('btn-copy-bnf-label'),
+  btnBnfModalAddBook: document.getElementById('btn-bnf-modal-add-book'),
+
+  // Book Overview & Glossary Action Buttons
+  btnBookAddBnf: document.getElementById('btn-book-add-bnf'),
+  btnMoreAddBnf: document.getElementById('btn-more-add-bnf'),
+  btnGlossaryPopulateBnf: document.getElementById('btn-glossary-populate-bnf'),
+  importBnfToggle: document.getElementById('import-bnf-toggle')
 };
 
 // --- Initialization ---
@@ -708,7 +744,9 @@ async function loadBooks() {
     
     const wasReaderOpen = localStorage.getItem('xianxia_reader_open') === 'true';
     const savedView = localStorage.getItem('xianxia_current_view');
-    if (wasReaderOpen || savedView === 'book') {
+    if (savedView === 'bnf') {
+      showBnfView();
+    } else if (wasReaderOpen || savedView === 'book') {
       showBookView();
     } else {
       showHomeView();
@@ -744,7 +782,7 @@ function renderBooksList() {
   });
 }
 
-// --- HOME SHELF VIEW & BOOK VIEW NAVIGATION ---
+// --- HOME SHELF VIEW, BOOK VIEW & BNF FORMULARY NAVIGATION ---
 function showHomeView() {
   state.currentView = 'home';
   localStorage.setItem('xianxia_current_view', 'home');
@@ -754,6 +792,9 @@ function showHomeView() {
   closeAllHomeDropdowns();
   if (elements.homeShelfView) elements.homeShelfView.style.display = 'block';
   if (elements.appLayout) elements.appLayout.style.display = 'none';
+  if (elements.bnfSectionView) elements.bnfSectionView.style.display = 'none';
+  if (elements.navBtnLibrary) elements.navBtnLibrary.classList.add('active');
+  if (elements.navBtnBnf) elements.navBtnBnf.classList.remove('active');
   renderHomeBooksGrid();
 }
 
@@ -762,7 +803,335 @@ function showBookView() {
   localStorage.setItem('xianxia_current_view', 'book');
   closeAllHomeDropdowns();
   if (elements.homeShelfView) elements.homeShelfView.style.display = 'none';
+  if (elements.bnfSectionView) elements.bnfSectionView.style.display = 'none';
   if (elements.appLayout) elements.appLayout.style.display = 'grid';
+  if (elements.navBtnLibrary) elements.navBtnLibrary.classList.add('active');
+  if (elements.navBtnBnf) elements.navBtnBnf.classList.remove('active');
+}
+
+function showBnfView() {
+  state.currentView = 'bnf';
+  localStorage.setItem('xianxia_current_view', 'bnf');
+  closeBookMoreMenu();
+  closeSearchDrawer();
+  closeGlossary();
+  closeAllHomeDropdowns();
+  if (elements.homeShelfView) elements.homeShelfView.style.display = 'none';
+  if (elements.appLayout) elements.appLayout.style.display = 'none';
+  if (elements.bnfSectionView) elements.bnfSectionView.style.display = 'block';
+  if (elements.navBtnBnf) elements.navBtnBnf.classList.add('active');
+  if (elements.navBtnLibrary) elements.navBtnLibrary.classList.remove('active');
+  updateBnfActiveBookBanner();
+  if (!state.bnfDrugs || state.bnfDrugs.length === 0) {
+    loadBnfCatalogue();
+  } else {
+    renderBnfDrugsGrid();
+  }
+}
+
+function updateBnfActiveBookBanner() {
+  const currentBook = state.books.find(b => b.id === state.activeBookId);
+  if (currentBook && elements.bnfActiveBookBox) {
+    elements.bnfActiveBookBox.style.display = 'flex';
+    if (elements.bnfActiveBookName) {
+      elements.bnfActiveBookName.textContent = currentBook.title;
+      elements.bnfActiveBookName.title = currentBook.title;
+    }
+    if (elements.btnBnfAddToActiveBook) {
+      elements.btnBnfAddToActiveBook.title = `Populate all 1,699 BNF drugs into "${currentBook.title}"`;
+    }
+  } else if (elements.bnfActiveBookBox) {
+    elements.bnfActiveBookBox.style.display = 'none';
+  }
+}
+
+let bnfRenderLimit = 80;
+
+async function loadBnfCatalogue() {
+  if (elements.bnfCountLabel) elements.bnfCountLabel.textContent = 'Loading 1,699 BNF medications...';
+  try {
+    let drugs = [];
+    try {
+      const res = await fetch('/data/bnf_glossary.json');
+      if (res.ok) {
+        drugs = await res.json();
+      }
+    } catch (_) {}
+
+    if (!drugs || drugs.length === 0) {
+      const apiRes = await fetch('/api/bnf/drugs');
+      if (apiRes.ok) {
+        const data = await apiRes.json();
+        drugs = data.drugs || [];
+      }
+    }
+
+    state.bnfDrugs = drugs || [];
+    initBnfAlphaPills();
+    renderBnfDrugsGrid();
+  } catch (err) {
+    console.error('Failed to load BNF medications:', err);
+    if (elements.bnfCountLabel) elements.bnfCountLabel.textContent = 'Failed to load BNF medications. Please refresh.';
+  }
+}
+
+function initBnfAlphaPills() {
+  if (!elements.bnfAlphaPills) return;
+  elements.bnfAlphaPills.innerHTML = '';
+
+  const letters = ['all', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
+  letters.forEach(letter => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = `bnf-alpha-pill ${state.bnfFilter.letter === letter ? 'active' : ''}`;
+    btn.textContent = letter.toUpperCase();
+    btn.dataset.letter = letter;
+
+    btn.addEventListener('click', () => {
+      state.bnfFilter.letter = letter;
+      elements.bnfAlphaPills.querySelectorAll('.bnf-alpha-pill').forEach(p => {
+        p.classList.toggle('active', p.dataset.letter === letter);
+      });
+      bnfRenderLimit = 80;
+      renderBnfDrugsGrid();
+    });
+
+    elements.bnfAlphaPills.appendChild(btn);
+  });
+}
+
+function renderBnfDrugsGrid() {
+  if (!elements.bnfCardsGrid) return;
+  const q = (state.bnfFilter.query || '').toLowerCase().trim();
+  const chapter = (state.bnfFilter.chapter || 'all').toLowerCase().trim();
+  const letter = (state.bnfFilter.letter || 'all').toLowerCase();
+
+  const filtered = state.bnfDrugs.filter(d => {
+    const name = (d.name || '').toLowerCase();
+    const aliases = (d.aliases || []).map(a => a.toLowerCase());
+    const summary = (d.summary || '').toLowerCase();
+    const chapList = (d.chapters || []).map(c => c.toLowerCase());
+    const affil = (d.affiliation || '').toLowerCase();
+
+    // Letter Filter
+    if (letter !== 'all') {
+      if (!name.startsWith(letter)) return false;
+    }
+
+    // Chapter Filter
+    if (chapter !== 'all') {
+      const matchChapter = chapList.some(c => c.includes(chapter)) || affil.includes(chapter);
+      if (!matchChapter) return false;
+    }
+
+    // Query Filter
+    if (q) {
+      const matchesQ = name.includes(q) ||
+        aliases.some(a => a.includes(q)) ||
+        summary.includes(q) ||
+        (d.bnf_dosage && d.bnf_dosage.toLowerCase().includes(q));
+      if (!matchesQ) return false;
+    }
+
+    return true;
+  });
+
+  const totalCount = filtered.length;
+  if (elements.bnfCountLabel) {
+    if (q || chapter !== 'all' || letter !== 'all') {
+      elements.bnfCountLabel.textContent = `Showing ${totalCount} of ${state.bnfDrugs.length} medications`;
+    } else {
+      elements.bnfCountLabel.textContent = `Showing all ${totalCount} medications`;
+    }
+  }
+
+  elements.bnfCardsGrid.innerHTML = '';
+  if (totalCount === 0) {
+    elements.bnfCardsGrid.innerHTML = `
+      <div style="grid-column: 1 / -1; padding: 48px 24px; text-align: center; color: var(--text-muted);">
+        <p style="font-size: 1.1rem; margin-bottom: 6px;">No medications found matching your filter.</p>
+        <p style="font-size: 0.88rem;">Try clearing your search query or switching chapter filter to "All Chapters".</p>
+      </div>
+    `;
+    return;
+  }
+
+  const itemsToRender = filtered.slice(0, bnfRenderLimit);
+  const frag = document.createDocumentFragment();
+
+  itemsToRender.forEach(drug => {
+    const card = document.createElement('div');
+    card.className = 'bnf-drug-card';
+
+    const cleanChapter = drug.affiliation || (drug.chapters && drug.chapters[0] ? drug.chapters[0].replace(/^Chapter\s+\d+:\s*/i, '') : 'BNF 85');
+    const aliases = Array.isArray(drug.aliases) ? drug.aliases : [];
+    const displayedAliases = aliases.slice(0, 3);
+    const extraAliasesCount = aliases.length - 3;
+
+    let aliasesHtml = '';
+    if (displayedAliases.length > 0) {
+      aliasesHtml = `<div class="bnf-card-aliases">` +
+        displayedAliases.map(a => `<span class="bnf-card-alias">${escapeHtml(a)}</span>`).join('') +
+        (extraAliasesCount > 0 ? `<span class="bnf-card-alias">+${extraAliasesCount} more</span>` : '') +
+        `</div>`;
+    }
+
+    const pagesStr = (drug.pages && drug.pages.length > 0) ? `p. ${drug.pages.join(', ')}` : '';
+
+    card.innerHTML = `
+      <div class="bnf-card-top">
+        <div class="bnf-card-badges">
+          <span class="bnf-card-pill-drug">DRUG</span>
+          <span class="bnf-card-pill-chap" title="${escapeHtml(cleanChapter)}">${escapeHtml(cleanChapter)}</span>
+        </div>
+        <h3 class="bnf-card-title">${escapeHtml(drug.name)}</h3>
+        ${aliasesHtml}
+        <p class="bnf-card-summary">${escapeHtml(drug.summary || 'BNF 85 Monograph with structured dosage and clinical indications.')}</p>
+      </div>
+      <div class="bnf-card-footer">
+        <span class="bnf-card-pages">${pagesStr}</span>
+        <button type="button" class="bnf-card-view-btn">
+          <span>View Monograph &rarr;</span>
+        </button>
+      </div>
+    `;
+
+    card.addEventListener('click', () => {
+      openBnfInspector(drug);
+    });
+
+    frag.appendChild(card);
+  });
+
+  elements.bnfCardsGrid.appendChild(frag);
+
+  // If there are more items than current render limit, show "Load More" button
+  if (filtered.length > bnfRenderLimit) {
+    const loadMoreWrap = document.createElement('div');
+    loadMoreWrap.style.gridColumn = '1 / -1';
+    loadMoreWrap.style.textAlign = 'center';
+    loadMoreWrap.style.padding = '24px 0 12px 0';
+    
+    const btnLoadMore = document.createElement('button');
+    btnLoadMore.className = 'btn btn-secondary';
+    btnLoadMore.textContent = `Show More (${filtered.length - bnfRenderLimit} remaining)`;
+    btnLoadMore.addEventListener('click', () => {
+      bnfRenderLimit += 100;
+      renderBnfDrugsGrid();
+    });
+    loadMoreWrap.appendChild(btnLoadMore);
+    elements.bnfCardsGrid.appendChild(loadMoreWrap);
+  }
+}
+
+function openBnfInspector(drug) {
+  state.activeBnfDrug = drug;
+  if (!elements.modalBnfInspector) return;
+
+  if (elements.bnfModalTitle) elements.bnfModalTitle.textContent = drug.name;
+  if (elements.bnfModalChapter) {
+    const ch = drug.affiliation || (drug.chapters && drug.chapters[0] ? drug.chapters[0].replace(/^Chapter\s+\d+:\s*/i, '') : 'BNF 85 Formulary');
+    elements.bnfModalChapter.textContent = ch;
+  }
+
+  if (elements.bnfModalAliases) {
+    elements.bnfModalAliases.innerHTML = '';
+    const aliases = Array.isArray(drug.aliases) ? drug.aliases : [];
+    if (aliases.length > 0) {
+      aliases.forEach(a => {
+        const tag = document.createElement('span');
+        tag.className = 'bnf-modal-alias-tag';
+        tag.textContent = a;
+        elements.bnfModalAliases.appendChild(tag);
+      });
+      elements.bnfModalAliases.style.display = 'flex';
+    } else {
+      elements.bnfModalAliases.style.display = 'none';
+    }
+  }
+
+  if (elements.bnfModalDosageText) {
+    elements.bnfModalDosageText.innerHTML = formatBnfDosage(drug.bnf_dosage);
+  }
+
+  // Active book button
+  const currentBook = state.books.find(b => b.id === state.activeBookId);
+  if (currentBook && elements.btnBnfModalAddBook) {
+    elements.btnBnfModalAddBook.style.display = 'inline-flex';
+    elements.btnBnfModalAddBook.innerHTML = `<span style="margin-right: 4px;">💊</span> Add / Update in ${escapeHtml(currentBook.title.slice(0, 20))}`;
+    elements.btnBnfModalAddBook.onclick = async () => {
+      await addSingleBnfDrugToCurrentBook(drug);
+    };
+  } else if (elements.btnBnfModalAddBook) {
+    elements.btnBnfModalAddBook.style.display = 'none';
+  }
+
+  if (elements.btnCopyBnfLabel) elements.btnCopyBnfLabel.textContent = 'Copy Dosage';
+  elements.modalBnfInspector.style.display = 'flex';
+}
+
+function closeBnfInspector() {
+  if (elements.modalBnfInspector) {
+    elements.modalBnfInspector.style.display = 'none';
+  }
+}
+
+async function addSingleBnfDrugToCurrentBook(drug) {
+  if (!state.activeBookId) {
+    showToast('Select a book first');
+    return;
+  }
+  try {
+    const res = await fetch(`/api/books/${state.activeBookId}/glossary`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: drug.id,
+        name: drug.name,
+        category: 'Drug',
+        affiliation: drug.affiliation,
+        aliases: drug.aliases,
+        summary: drug.summary,
+        bnf_dosage: drug.bnf_dosage
+      })
+    });
+    if (res.ok) {
+      await loadGlossary(state.activeBookId);
+      showToast(`Added "${drug.name}" to book glossary!`);
+    } else {
+      showToast('Failed to add drug to book');
+    }
+  } catch (err) {
+    console.error('Error adding drug to book:', err);
+    showToast('Failed to add drug to book');
+  }
+}
+
+async function populateBnfToBook(bookId) {
+  const book = state.books.find(b => b.id === bookId);
+  const bookTitle = book ? book.title : 'this novel';
+
+  const confirmMsg = `Pre-populate all 1,699 British National Formulary (BNF 85) medications into "${bookTitle}"?\n\n• Drugs and brand aliases will automatically highlight in chapters.\n• Clinical indications and dosages will be available on click.\n• Existing custom glossary entries and notes will be preserved.`;
+  if (!confirm(confirmMsg)) return;
+
+  showToast('Populating 1,699 BNF medications to book glossary...');
+
+  try {
+    const res = await fetch(`/api/books/${bookId}/populate-bnf-glossary`, {
+      method: 'POST'
+    });
+    const data = await res.json();
+    if (!res.ok || data.error) {
+      throw new Error(data.error || 'Failed to populate BNF drugs');
+    }
+
+    await loadGlossary(bookId);
+    showToast(`BNF Formulary added! (${data.added} added, ${data.updated} updated, ${data.total} total drugs)`);
+    renderGlossary();
+  } catch (err) {
+    console.error('Error populating BNF drugs:', err);
+    showToast(`Failed: ${err.message}`);
+  }
 }
 
 function closeAllHomeDropdowns() {
@@ -1841,6 +2210,13 @@ function renderReaderContent(rawHtml) {
         regex = new RegExp(`\\b(${pattern})\\b`, 'gi');
       }
 
+      // Build Map for O(1) instant trigger lookup
+      const triggerMap = new Map();
+      triggers.forEach(t => {
+        const k = t.text.toLowerCase();
+        if (!triggerMap.has(k)) triggerMap.set(k, t);
+      });
+
       // Split HTML by tags so we ONLY replace inside text content, never inside tags or attributes
       const parts = rawHtml.split(/(<[^>]+>)/g);
       const taggedHtml = parts.map(part => {
@@ -1848,7 +2224,7 @@ function renderReaderContent(rawHtml) {
           return part;
         }
         return part.replace(regex, (match, p1) => {
-          const matchedTrigger = triggers.find(t => t.text.toLowerCase() === p1.toLowerCase());
+          const matchedTrigger = triggerMap.get(p1.toLowerCase());
           const charId = matchedTrigger ? matchedTrigger.charId : '';
           const type = matchedTrigger ? matchedTrigger.type : 'Name';
           const normCat = matchedTrigger && matchedTrigger.charData ? normalizeCategory(matchedTrigger.charData.category) : 'Character';
@@ -4072,6 +4448,7 @@ async function submitImportEpub() {
   formData.append('file', selectedEpubFile);
   formData.append('auto_detect_ai', elements.importAiDetectToggle ? elements.importAiDetectToggle.checked : true);
   formData.append('enable_glossary', elements.importGlossaryToggle ? elements.importGlossaryToggle.checked : true);
+  formData.append('add_bnf_drugs', elements.importBnfToggle ? elements.importBnfToggle.checked : true);
 
   if (elements.btnSubmitImportEpub) {
     elements.btnSubmitImportEpub.disabled = true;
@@ -4706,6 +5083,127 @@ function setupEventListeners() {
       localStorage.setItem('xianxia_home_sort', state.homeSortBy);
       localStorage.setItem('xianxia_home_sort_v2', state.homeSortBy);
       renderHomeBooksGrid();
+    });
+  }
+
+  // --- BNF Formulary & Population Event Listeners ---
+  if (elements.navBtnLibrary) {
+    elements.navBtnLibrary.addEventListener('click', () => {
+      showHomeView();
+    });
+  }
+
+  if (elements.navBtnBnf) {
+    elements.navBtnBnf.addEventListener('click', () => {
+      showBnfView();
+    });
+  }
+
+  if (elements.btnBookAddBnf) {
+    elements.btnBookAddBnf.addEventListener('click', () => {
+      if (state.activeBookId) {
+        populateBnfToBook(state.activeBookId);
+      } else {
+        showToast('Please open or select a book first');
+      }
+    });
+  }
+
+  if (elements.btnMoreAddBnf) {
+    elements.btnMoreAddBnf.addEventListener('click', () => {
+      closeBookMoreMenu();
+      if (state.activeBookId) {
+        populateBnfToBook(state.activeBookId);
+      } else {
+        showToast('Please open or select a book first');
+      }
+    });
+  }
+
+  if (elements.btnGlossaryPopulateBnf) {
+    elements.btnGlossaryPopulateBnf.addEventListener('click', () => {
+      if (state.activeBookId) {
+        populateBnfToBook(state.activeBookId);
+      } else {
+        showToast('Please open or select a book first');
+      }
+    });
+  }
+
+  if (elements.btnBnfAddToActiveBook) {
+    elements.btnBnfAddToActiveBook.addEventListener('click', () => {
+      if (state.activeBookId) {
+        populateBnfToBook(state.activeBookId);
+      } else {
+        showToast('Please open or select a book first');
+      }
+    });
+  }
+
+  if (elements.btnCloseBnfInspector) {
+    elements.btnCloseBnfInspector.addEventListener('click', () => {
+      closeBnfInspector();
+    });
+  }
+
+  if (elements.modalBnfInspector) {
+    elements.modalBnfInspector.addEventListener('click', (e) => {
+      if (e.target === elements.modalBnfInspector) {
+        closeBnfInspector();
+      }
+    });
+  }
+
+  if (elements.btnCopyBnfDose) {
+    elements.btnCopyBnfDose.addEventListener('click', async () => {
+      if (!state.activeBnfDrug) return;
+      const textToCopy = `${state.activeBnfDrug.name}\n\n${state.activeBnfDrug.bnf_dosage || 'Indications and dose unavailable.'}`;
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+        if (elements.btnCopyBnfLabel) elements.btnCopyBnfLabel.textContent = 'Copied!';
+        setTimeout(() => {
+          if (elements.btnCopyBnfLabel) elements.btnCopyBnfLabel.textContent = 'Copy Dosage';
+        }, 2000);
+      } catch (_) {
+        showToast('Copied to clipboard');
+      }
+    });
+  }
+
+  let bnfSearchDebounce = null;
+  if (elements.bnfSearchInput) {
+    elements.bnfSearchInput.addEventListener('input', (e) => {
+      const q = e.target.value;
+      state.bnfFilter.query = q;
+      if (elements.btnClearBnfSearch) {
+        elements.btnClearBnfSearch.style.display = q.trim().length > 0 ? 'inline-block' : 'none';
+      }
+      clearTimeout(bnfSearchDebounce);
+      bnfSearchDebounce = setTimeout(() => {
+        bnfRenderLimit = 80;
+        renderBnfDrugsGrid();
+      }, 150);
+    });
+  }
+
+  if (elements.btnClearBnfSearch) {
+    elements.btnClearBnfSearch.addEventListener('click', () => {
+      if (elements.bnfSearchInput) {
+        elements.bnfSearchInput.value = '';
+        elements.bnfSearchInput.focus();
+      }
+      state.bnfFilter.query = '';
+      elements.btnClearBnfSearch.style.display = 'none';
+      bnfRenderLimit = 80;
+      renderBnfDrugsGrid();
+    });
+  }
+
+  if (elements.bnfChapterFilter) {
+    elements.bnfChapterFilter.addEventListener('change', (e) => {
+      state.bnfFilter.chapter = e.target.value;
+      bnfRenderLimit = 80;
+      renderBnfDrugsGrid();
     });
   }
 
