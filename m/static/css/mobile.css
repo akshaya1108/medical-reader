@@ -1456,6 +1456,9 @@ body.theme-dark .card-summary {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  flex: 1;
+  max-width: 160px;
   gap: 3px;
   color: var(--text-muted);
   font-family: var(--font-sans);
@@ -1463,7 +1466,8 @@ body.theme-dark .card-summary {
   font-weight: 600;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  padding: 6px 24px;
+  padding: 6px 16px;
+  transition: color 0.15s ease;
 }
 
 .nav-item.active {

@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- Mobile Styles -->
-  <link rel="stylesheet" href="static/css/mobile.css?v=56" />
+  <link rel="stylesheet" href="static/css/mobile.css?v=59" />
 </head>
 <body class="theme-sepia font-serif">
   <div id="app-root">
@@ -35,10 +35,6 @@
           <span class="header-count-badge" id="library-count-badge">0 Books</span>
         </div>
         <div class="header-actions">
-          <button class="status-wifi-btn" id="m-btn-open-bnf-library" title="British National Formulary" style="padding: 5px 9px; font-weight: 600; font-size: 0.76rem; border-radius: 16px; background: rgba(30, 58, 138, 0.08); border-color: rgba(30, 58, 138, 0.2); color: #1e3a8a; display: inline-flex; align-items: center; gap: 4px;">
-            <span style="font-size: 13px;">💊</span>
-            <span>BNF 85</span>
-          </button>
           <button class="status-wifi-btn" id="m-status-wifi-btn" title="Cloud &amp; Sync Status">
             <span class="status-dot"></span>
             <svg class="status-wifi-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -87,18 +83,6 @@
               <option value="words_asc">Word Count (Low - High)...</option>
             </select>
           </div>
-        </div>
-
-        <!-- Prominent BNF 85 Formulary Card on Library Shelf -->
-        <div class="m-bnf-banner-card" id="m-library-bnf-banner">
-          <div class="m-bnf-banner-left">
-            <span class="m-bnf-banner-icon">💊</span>
-            <div class="m-bnf-banner-text">
-              <div class="m-bnf-banner-title">BNF 85 Formulary</div>
-              <div class="m-bnf-banner-subtitle">1,699 medications • Dosages &amp; clinical indications</div>
-            </div>
-          </div>
-          <span class="m-bnf-banner-arrow">&rsaquo;</span>
         </div>
 
         <div class="library-books-list" id="library-books-list">
@@ -163,11 +147,6 @@
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
           </button>
-
-          <!-- Add BNF 85 Drugs Button -->
-          <button class="btn-book-action-icon" id="btn-book-populate-bnf" title="Populate BNF 85 Drugs into this novel">
-            <span style="font-size: 16px; line-height: 1;">💊</span>
-          </button>
         </div>
       </section>
 
@@ -211,9 +190,6 @@
         </div>
 
         <div style="display: flex; align-items: center; gap: 6px;">
-          <button class="btn-header-add" id="btn-glossary-populate-bnf" title="Populate BNF 85 Drugs" style="background: rgba(30, 58, 138, 0.08); border-color: rgba(30, 58, 138, 0.2); color: #1e3a8a; padding: 4px 8px;">
-            <span>💊 BNF 85</span>
-          </button>
           <button class="btn-header-add" id="btn-glossary-add-lore" title="Add lore entry">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -394,11 +370,6 @@
           <h1 class="header-page-title">BNF 85</h1>
           <span class="header-count-badge" id="m-bnf-count-badge">1,699</span>
         </div>
-
-        <button class="btn-header-add" id="m-btn-bnf-populate-book" title="Populate BNF into active novel" style="display: none; background: rgba(30, 58, 138, 0.08); border-color: rgba(30, 58, 138, 0.2); color: #1e3a8a; padding: 4px 8px; font-size: 0.76rem;">
-          <span style="font-size: 13px; margin-right: 2px;">💊</span>
-          <span>Add to Book</span>
-        </button>
       </header>
 
       <div class="bnf-mobile-scroll-container">
@@ -474,9 +445,9 @@
         <span>Glossary</span>
       </button>
 
-      <button class="nav-item" id="nav-tab-bnf" data-tab="bnf" title="BNF 85 Formulary">
+      <button class="nav-item" id="nav-tab-bnf" data-tab="bnf" title="BNF Formulary">
         <span style="font-size: 17px; line-height: 1;">💊</span>
-        <span>BNF 85</span>
+        <span>BNF</span>
       </button>
     </nav>
 
@@ -881,6 +852,6 @@
   </div>
 
   <!-- JavaScript Module -->
-  <script type="module" src="static/js/mobile-app.js?v=58"></script>
+  <script type="module" src="static/js/mobile-app.js?v=59"></script>
 </body>
 </html>
