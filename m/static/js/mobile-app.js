@@ -212,22 +212,21 @@ function switchView(viewName) {
   const targetPane = document.getElementById(`view-${viewName}`);
   if (targetPane) targetPane.classList.add('active');
 
-  // Bottom Nav handling: in book overview, glossary, or bnf
+  // Bottom Nav handling: visible in library, book, glossary, or bnf (hidden only in reader)
   const bottomNav = document.getElementById('bottom-nav');
-  const isGlossaryEnabled = state.currentBook ? (state.currentBook.enable_glossary !== false) : false;
   if (bottomNav) {
-    const showNav = (viewName === 'book' || viewName === 'glossary' || viewName === 'bnf') && (isGlossaryEnabled || viewName === 'bnf');
+    const showNav = (viewName === 'library' || viewName === 'book' || viewName === 'glossary' || viewName === 'bnf');
     bottomNav.style.display = showNav ? 'flex' : 'none';
 
     // Toggle active state on tabs
+    const tabLibrary = document.getElementById('nav-tab-library');
     const tabChapters = document.getElementById('nav-tab-chapters');
     const tabGlossary = document.getElementById('nav-tab-glossary');
     const tabBnf = document.getElementById('nav-tab-bnf');
-    if (tabChapters && tabGlossary) {
-      tabChapters.classList.toggle('active', viewName === 'book');
-      tabGlossary.classList.toggle('active', viewName === 'glossary');
-      if (tabBnf) tabBnf.classList.toggle('active', viewName === 'bnf');
-    }
+    if (tabLibrary) tabLibrary.classList.toggle('active', viewName === 'library');
+    if (tabChapters) tabChapters.classList.toggle('active', viewName === 'book');
+    if (tabGlossary) tabGlossary.classList.toggle('active', viewName === 'glossary');
+    if (tabBnf) tabBnf.classList.toggle('active', viewName === 'bnf');
   }
 
   if (viewName === 'book') {
@@ -3234,15 +3233,38 @@ function setupBookViewControls() {
     });
   }
 
-  // Bottom Navigation tabs (Chapters <-> Glossary <-> BNF)
+  // Bottom Navigation tabs (Library <-> Chapters <-> Glossary <-> BNF)
+  const tabLibrary = document.getElementById('nav-tab-library');
   const tabChapters = document.getElementById('nav-tab-chapters');
   const tabGlossary = document.getElementById('nav-tab-glossary');
   const tabBnf = document.getElementById('nav-tab-bnf');
+
+  if (tabLibrary) {
+    tabLibrary.addEventListener('click', () => switchView('library'));
+  }
   if (tabChapters) {
-    tabChapters.addEventListener('click', () => switchView('book'));
+    tabChapters.addEventListener('click', async () => {
+      if (state.activeBookId) {
+        switchView('book');
+      } else if (state.books && state.books.length > 0) {
+        await selectBook(state.books[0].id);
+        switchView('book');
+      } else {
+        showToast('Select a book from your library first');
+      }
+    });
   }
   if (tabGlossary) {
-    tabGlossary.addEventListener('click', () => switchView('glossary'));
+    tabGlossary.addEventListener('click', async () => {
+      if (state.activeBookId) {
+        switchView('glossary');
+      } else if (state.books && state.books.length > 0) {
+        await selectBook(state.books[0].id);
+        switchView('glossary');
+      } else {
+        showToast('Select a book from your library first');
+      }
+    });
   }
   if (tabBnf) {
     tabBnf.addEventListener('click', () => switchView('bnf'));
@@ -3482,31 +3504,6 @@ function openMobileBnfInspector(drug) {
     }
   }
 
-  if (addBtn) {
-    if (state.activeBookId && state.currentBook) {
-      addBtn.style.display = 'block';
-      addBtn.textContent = `+ Add to ${state.currentBook.title.slice(0, 16)}`;
-      addBtn.onclick = async () => {
-        try {
-          await api.addCharacter(state.activeBookId, {
-            id: drug.id,
-            name: drug.name,
-            category: 'Drug',
-            affiliation: drug.affiliation,
-            aliases: drug.aliases,
-            summary: drug.summary,
-            bnf_dosage: drug.bnf_dosage
-          });
-          showToast(`Added "${drug.name}" to book!`);
-        } catch (e) {
-          showToast('Failed to add drug to book');
-        }
-      };
-    } else {
-      addBtn.style.display = 'none';
-    }
-  }
-
   sheet.style.display = 'flex';
 }
 
@@ -3564,6 +3561,13 @@ function setupMobileBnfFeatures() {
   const mBtnOpenBnfLibrary = document.getElementById('m-btn-open-bnf-library');
   if (mBtnOpenBnfLibrary) {
     mBtnOpenBnfLibrary.addEventListener('click', () => {
+      switchView('bnf');
+    });
+  }
+
+  const mLibraryBnfBanner = document.getElementById('m-library-bnf-banner');
+  if (mLibraryBnfBanner) {
+    mLibraryBnfBanner.addEventListener('click', () => {
       switchView('bnf');
     });
   }

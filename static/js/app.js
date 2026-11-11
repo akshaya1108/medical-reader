@@ -1054,18 +1054,6 @@ function openBnfInspector(drug) {
     elements.bnfModalDosageText.innerHTML = formatBnfDosage(drug.bnf_dosage);
   }
 
-  // Active book button
-  const currentBook = state.books.find(b => b.id === state.activeBookId);
-  if (currentBook && elements.btnBnfModalAddBook) {
-    elements.btnBnfModalAddBook.style.display = 'inline-flex';
-    elements.btnBnfModalAddBook.innerHTML = `<span style="margin-right: 4px;">💊</span> Add / Update in ${escapeHtml(currentBook.title.slice(0, 20))}`;
-    elements.btnBnfModalAddBook.onclick = async () => {
-      await addSingleBnfDrugToCurrentBook(drug);
-    };
-  } else if (elements.btnBnfModalAddBook) {
-    elements.btnBnfModalAddBook.style.display = 'none';
-  }
-
   if (elements.btnCopyBnfLabel) elements.btnCopyBnfLabel.textContent = 'Copy Dosage';
   elements.modalBnfInspector.style.display = 'flex';
 }
@@ -1073,37 +1061,6 @@ function openBnfInspector(drug) {
 function closeBnfInspector() {
   if (elements.modalBnfInspector) {
     elements.modalBnfInspector.style.display = 'none';
-  }
-}
-
-async function addSingleBnfDrugToCurrentBook(drug) {
-  if (!state.activeBookId) {
-    showToast('Select a book first');
-    return;
-  }
-  try {
-    const res = await fetch(`/api/books/${state.activeBookId}/glossary`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        id: drug.id,
-        name: drug.name,
-        category: 'Drug',
-        affiliation: drug.affiliation,
-        aliases: drug.aliases,
-        summary: drug.summary,
-        bnf_dosage: drug.bnf_dosage
-      })
-    });
-    if (res.ok) {
-      await loadGlossary(state.activeBookId);
-      showToast(`Added "${drug.name}" to book glossary!`);
-    } else {
-      showToast('Failed to add drug to book');
-    }
-  } catch (err) {
-    console.error('Error adding drug to book:', err);
-    showToast('Failed to add drug to book');
   }
 }
 

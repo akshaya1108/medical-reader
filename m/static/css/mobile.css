@@ -243,7 +243,70 @@ body.font-sans {
   flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 26px 18px max(24px, env(safe-area-inset-bottom)) 18px;
+  padding: 20px 18px calc(72px + env(safe-area-inset-bottom)) 18px;
+}
+
+/* Prominent BNF 85 Card on Library Shelf */
+.m-bnf-banner-card {
+  max-width: 640px;
+  margin: 0 auto 16px auto;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(30, 58, 138, 0.04));
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.m-bnf-banner-card:active {
+  transform: scale(0.98);
+  background: rgba(37, 99, 235, 0.12);
+}
+
+.m-bnf-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.m-bnf-banner-icon {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.m-bnf-banner-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #1e3a8a;
+  line-height: 1.25;
+}
+
+.m-bnf-banner-subtitle {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.m-bnf-banner-arrow {
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 1.25rem;
+  padding-left: 6px;
+  line-height: 1;
+}
+
+body.theme-dark .m-bnf-banner-card {
+  background: rgba(37, 99, 235, 0.12);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+body.theme-dark .m-bnf-banner-title {
+  color: #93c5fd;
 }
 
 /* Library Search & Filter Bar - Matching Web App */

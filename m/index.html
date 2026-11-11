@@ -89,6 +89,18 @@
           </div>
         </div>
 
+        <!-- Prominent BNF 85 Formulary Card on Library Shelf -->
+        <div class="m-bnf-banner-card" id="m-library-bnf-banner">
+          <div class="m-bnf-banner-left">
+            <span class="m-bnf-banner-icon">💊</span>
+            <div class="m-bnf-banner-text">
+              <div class="m-bnf-banner-title">BNF 85 Formulary</div>
+              <div class="m-bnf-banner-subtitle">1,699 medications • Dosages &amp; clinical indications</div>
+            </div>
+          </div>
+          <span class="m-bnf-banner-arrow">&rsaquo;</span>
+        </div>
+
         <div class="library-books-list" id="library-books-list">
           <!-- Populated dynamically with minimalist borderless book cards -->
         </div>
@@ -431,9 +443,17 @@
       </div>
     </section>
 
-    <!-- Bottom Navigation Bar (Visible in Book, Glossary, and BNF Views when Glossary is enabled) -->
-    <nav class="bottom-nav-bar" id="bottom-nav" style="display:none;">
-      <button class="nav-item active" id="nav-tab-chapters" data-tab="chapters">
+    <!-- Bottom Navigation Bar (Visible in Library, Book, Glossary, and BNF Views) -->
+    <nav class="bottom-nav-bar" id="bottom-nav">
+      <button class="nav-item active" id="nav-tab-library" data-tab="library">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+        <span>Library</span>
+      </button>
+
+      <button class="nav-item" id="nav-tab-chapters" data-tab="chapters">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="8" y1="6" x2="21" y2="6"></line>
           <line x1="8" y1="12" x2="21" y2="12"></line>
@@ -483,11 +503,8 @@
         </div>
 
         <div style="padding: 12px 20px; border-top: 1px solid var(--border-light); display: flex; gap: 10px; background: var(--bg-main);">
-          <button type="button" class="btn-sheet-action" id="m-btn-copy-bnf" style="flex: 1; padding: 10px; font-weight: 600; font-size: 0.85rem; border-radius: 8px; border: 1px solid var(--border-light); background: var(--bg-card); color: var(--text-main);">
+          <button type="button" class="btn-sheet-action" id="m-btn-copy-bnf" style="flex: 1; padding: 12px; font-weight: 600; font-size: 0.9rem; border-radius: 8px; border: 1px solid var(--border-light); background: var(--bg-card); color: var(--text-main);">
             Copy Dosage
-          </button>
-          <button type="button" class="btn-sheet-action" id="m-btn-bnf-add-to-book" style="flex: 1; padding: 10px; font-weight: 600; font-size: 0.85rem; border-radius: 8px; border: none; background: #5c8672; color: #fff; display: none;">
-            + Add to Book
           </button>
         </div>
       </div>
@@ -864,6 +881,6 @@
   </div>
 
   <!-- JavaScript Module -->
-  <script type="module" src="static/js/mobile-app.js?v=57"></script>
+  <script type="module" src="static/js/mobile-app.js?v=58"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'med-mobile-v57';
+const CACHE_NAME = 'med-mobile-v58';
 const STATIC_ASSETS = [
   './',
   './manifest.json',
