@@ -317,5 +317,19 @@
     "last_read_at": "2026-10-13T14:11:48.375+00:00",
     "bookmark": null,
     "bookmarks": []
+  },
+  {
+    "id": "rosen-s-emergency-medicine-concepts-and-clinical-practice",
+    "title": "Rosen's Emergency Medicine: Concepts and Clinical Practice",
+    "author": "Calvin A. Brown III, MD and Ron M. Walls, MD",
+    "genre": "EMERGENCY MEDICINE",
+    "description": "Rosen's Emergency Medicine provides comprehensive clinical guidance on all aspects of acute care and resuscitation. This foundational reference covers essential procedural skills including emergency airway management, rapid sequence intubation, and complex airway rescue techniques.",
+    "color": "#c4884d",
+    "created_at": "11/11/2026",
+    "last_read_chapter": 1,
+    "last_chapter": 1,
+    "chapters_count": 2,
+    "total_words": 16616,
+    "enable_glossary": true
   }
 ]
