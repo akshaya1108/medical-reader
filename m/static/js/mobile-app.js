@@ -4,7 +4,7 @@
  * reliable paragraph bookmarking, and complete glossary management.
  */
 
-import { api, lookupBnfDosage } from './api.js?v=59';
+import { api, lookupBnfDosage } from './api.js?v=61';
 
 // --- Category Display Configuration ---
 const CATEGORIES = [

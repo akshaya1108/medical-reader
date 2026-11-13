@@ -608,13 +608,25 @@ export const api = {
 
     if (this.isOnline()) {
       try {
-        const res = await fetch(
-          `${SUPABASE_URL}/rest/v1/glossary?book_id=eq.${encodeURIComponent(targetId)}&select=*&order=name.asc`,
-          { headers: HEADERS, cache: 'no-store' }
-        );
-        if (res.ok) {
-          let entries = await res.json();
-          entries = entries.map(unpackSupabaseRow);
+        let allEntries = [];
+        let offset = 0;
+        const pageSize = 1000;
+
+        while (true) {
+          const res = await fetch(
+            `${SUPABASE_URL}/rest/v1/glossary?book_id=eq.${encodeURIComponent(targetId)}&select=*&order=name.asc&limit=${pageSize}&offset=${offset}`,
+            { headers: HEADERS, cache: 'no-store' }
+          );
+          if (!res.ok) break;
+          const chunk = await res.json();
+          if (!Array.isArray(chunk) || chunk.length === 0) break;
+          allEntries.push(...chunk);
+          if (chunk.length < pageSize) break;
+          offset += pageSize;
+        }
+
+        if (allEntries.length > 0) {
+          let entries = allEntries.map(unpackSupabaseRow);
           // Only preserve entries that are currently queued for offline sync
           try {
             const queue = await offlineDB.getSyncQueue();
@@ -1216,14 +1228,9 @@ Return a JSON array with 1 object:
 
     // 1. Fetch glossary
     onProgress({ status: 'glossary', percent: 5, message: 'Downloading lore glossary...' });
-    const glRes = await fetch(
-      `${SUPABASE_URL}/rest/v1/glossary?book_id=eq.${encodeURIComponent(bookId)}&select=*`,
-      { headers: HEADERS }
-    );
-    if (glRes.ok) {
-      const glEntries = await glRes.json();
-      await offlineDB.saveGlossary(bookId, glEntries);
-    }
+    try {
+      await this.getGlossary(bookId);
+    } catch (_) {}
 
     // 2. Fetch chapter list
     onProgress({ status: 'chapters_list', percent: 10, message: 'Fetching chapter index...' });
