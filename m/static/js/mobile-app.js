@@ -247,6 +247,7 @@ function switchView(viewName) {
   }
 
   if (viewName === 'book') {
+    const isGlossaryEnabled = state.currentBook ? (state.currentBook.enable_glossary !== false) : true;
     const viewBookEl = document.getElementById('view-book');
     if (viewBookEl) {
       viewBookEl.classList.toggle('no-bottom-nav', !isGlossaryEnabled);
@@ -887,7 +888,12 @@ function renderGlossaryShelves() {
     const items = grouped[cfg.key] || [];
     if (items.length === 0) return '';
 
-    const cardsHtml = items.map(char => {
+    // Cap items rendered per horizontal shelf to prevent mobile WebKit jetsam crashes (max 25 cards)
+    const shelfLimit = 25;
+    const displayedItems = items.slice(0, shelfLimit);
+    const hasMore = items.length > shelfLimit;
+
+    const cardsHtml = displayedItems.map(char => {
       const normCat = normalizeCategory(char.category);
       const catSlug = getCategorySlug(normCat);
       const badgeClass = getCategoryBadgeClass(normCat);
@@ -900,6 +906,7 @@ function renderGlossaryShelves() {
         allAliases.push(char.pinyin_or_chinese);
       }
       const aliasesHtml = allAliases
+        .slice(0, 3)
         .map(a => `<span class="alias-pill">${escapeHtml(a)}</span>`)
         .join('');
 
@@ -917,9 +924,8 @@ function renderGlossaryShelves() {
           <div class="card-item-body">
             ${summaryText ? `<p class="card-summary" style="white-space: pre-line;">${escapeHtml(summaryText)}</p>` : ''}
             ${(normCat === 'Drug' || char.category === 'Drug') && char.bnf_dosage ? `
-              <div class="card-bnf-badge" style="margin-top: 6px; padding: 4px 6px; background: rgba(59, 130, 246, 0.08); border-left: 2px solid #2563eb; border-radius: 4px; font-size: 0.72rem; line-height: 1.3;">
-                <span style="font-weight: 600; color: #1d4ed8;">📋 BNF 85:</span>
-                <div style="max-height: 80px; overflow-y: auto;">${formatBnfDosage(char.bnf_dosage)}</div>
+              <div class="card-bnf-badge" style="margin-top: 6px; padding: 2px 6px; background: rgba(59, 130, 246, 0.08); border-left: 2px solid #2563eb; border-radius: 4px; font-size: 0.72rem; color: #1d4ed8; font-weight: 600;">
+                📋 BNF 85 Monograph
               </div>
             ` : ''}
           </div>
@@ -927,27 +933,54 @@ function renderGlossaryShelves() {
       `;
     }).join('');
 
+    const moreCardHtml = hasMore ? `
+      <div class="glossary-card-item glossary-more-card" data-cat-filter="${escapeHtml(cfg.key)}" style="min-width: 140px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: var(--bg-card); border: 1.5px dashed var(--border-light); border-radius: 10px; padding: 16px; cursor: pointer;">
+        <span style="font-size: 1.15rem; font-weight: 700; color: var(--primary);">+${(items.length - shelfLimit).toLocaleString()}</span>
+        <span style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-weight: 600;">more ${escapeHtml(cfg.label)}</span>
+        <span style="font-size: 0.68rem; color: var(--text-muted); margin-top: 6px; opacity: 0.8;">Search above to filter</span>
+      </div>
+    ` : '';
+
     return `
       <div class="glossary-shelf-row">
         <div class="glossary-shelf-header">
           <div class="glossary-shelf-title-wrap">
             <span class="glossary-shelf-dot ${cfg.dotClass}"></span>
             <h3 class="glossary-shelf-title">${escapeHtml(cfg.label)}</h3>
-            <span class="glossary-shelf-count">${items.length}</span>
+            <span class="glossary-shelf-count">${items.length.toLocaleString()}</span>
           </div>
         </div>
         <div class="glossary-horizontal-track">
           ${cardsHtml}
+          ${moreCardHtml}
         </div>
       </div>
     `;
   }).join('');
 
   // Tapping a card opens Lore Sheet in centered modal mode with Edit option
-  container.querySelectorAll('.glossary-card-item').forEach(card => {
+  container.querySelectorAll('.glossary-card-item:not(.glossary-more-card)').forEach(card => {
     card.addEventListener('click', () => {
       const name = card.dataset.charName;
-      openLoreSheet(name, true);
+      if (name) openLoreSheet(name, true);
+    });
+  });
+
+  // Tapping a "+more" card focuses search and filters by category
+  container.querySelectorAll('.glossary-more-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const catKey = card.dataset.catFilter;
+      const catSelect = document.getElementById('glossary-category-select');
+      const searchInput = document.getElementById('glossary-search-input');
+      if (catSelect && catKey) {
+        catSelect.value = catKey;
+        state.glossaryCategoryFilter = catKey;
+        renderGlossaryShelves();
+      }
+      if (searchInput) {
+        searchInput.focus();
+      }
     });
   });
 }
@@ -3559,12 +3592,16 @@ function openMobileBnfInspector(drug) {
     }
   }
 
+  sheet.classList.add('active');
   sheet.style.display = 'flex';
 }
 
 function closeMobileBnfInspector() {
   const sheet = document.getElementById('m-sheet-backdrop-bnf');
-  if (sheet) sheet.style.display = 'none';
+  if (sheet) {
+    sheet.classList.remove('active');
+    sheet.style.display = 'none';
+  }
 }
 
 function setupMobileBnfFeatures() {
@@ -4223,6 +4260,7 @@ async function initApp() {
   setupSearch();
   setupConnectionStatusModal();
   setupMobileBnfFeatures();
+  switchView('library');
   loadMobileBnfCatalogue().catch(() => {});
 
   try {
